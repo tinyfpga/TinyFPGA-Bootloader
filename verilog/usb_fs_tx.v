@@ -1,9 +1,10 @@
 module usb_fs_tx (
-  // A 48MHz clock is required to send USB data at 12MHz
+  // A 48MHz clock is required to receive USB data at 12MHz
+  // it's simpler to juse use 48MHz everywhere
   input clk_48mhz,
   input reset,
 
-  // bit strobe to align with senders clock
+  // bit strobe from rx to align with senders clock
   input bit_strobe,
 
   // output enable to take ownership of bus and data out
