@@ -1,6 +1,6 @@
 module usb_fs_pe #(
-  NUM_OUT_EPS = 1,
-  NUM_IN_EPS = 1
+  parameter [4:0] NUM_OUT_EPS = 1,
+  parameter [4:0] NUM_IN_EPS = 1
 ) (
   input clk,
   input [6:0] dev_addr,
@@ -57,10 +57,13 @@ module usb_fs_pe #(
   /// USB TX/RX Interface
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
+  output usb_p_tx,
+  output usb_n_tx,
 
-  inout  dp,
-  inout  dn,
-  output pu
+  input  usb_p_rx,
+  input  usb_n_rx,
+
+  output usb_tx_en
 );
   // in pe interface
   wire [7:0] arb_in_ep_data;
@@ -94,13 +97,6 @@ module usb_fs_pe #(
   // sof interface
   assign sof_valid = rx_pkt_end && rx_pkt_valid && rx_pid == 4'b0101;
   assign frame_index = rx_frame_num;
-
-  // d+/d- muxing and interface
-  wire usb_output_enable;
-  wire dp_tx;
-  wire dn_tx;
-  wire dp_rx;
-  wire dn_rx;
 
   wire reset_i;
   assign reset = reset_i;
@@ -194,8 +190,8 @@ module usb_fs_pe #(
   usb_fs_rx usb_fs_rx_inst (
     .clk_48mhz(clk),
     .reset(reset_i),
-    .dp(dp_rx),
-    .dn(dn_rx),
+    .dp(usb_p_rx),
+    .dn(usb_n_rx),
     .bit_strobe(bit_strobe),
     .pkt_start(rx_pkt_start),
     .pkt_end(rx_pkt_end),
@@ -226,9 +222,9 @@ module usb_fs_pe #(
     .clk_48mhz(clk),
     .reset(reset_i),
     .bit_strobe(bit_strobe),
-    .oe(usb_output_enable),
-    .dp(dp_tx),
-    .dn(dn_tx),
+    .oe(usb_tx_en),
+    .dp(usb_p_tx),
+    .dn(usb_n_tx),
     .pkt_start(tx_pkt_start),
     .pkt_end(tx_pkt_end),
     .pid(tx_pid),
@@ -237,24 +233,10 @@ module usb_fs_pe #(
     .tx_data(tx_data)
   );
 
-  usb_fs_mux usb_fs_mux_inst (
+  usb_reset_det usb_reset_det_inst (
     .clk(clk),
     .reset(reset_i),
-
-    // raw usb d+/d- lines
-    .dp(dp),
-    .dn(dn),
-    .pu(pu),
-
-    // output enable
-    .oe(usb_output_enable),
-
-    // transmit value when output enabled
-    .dp_tx(dp_tx),
-    .dn_tx(dn_tx),
-
-    // receive value when output disabled
-    .dp_rx(dp_rx),
-    .dn_rx(dn_rx)
+    .usb_p_rx(usb_p_rx),
+    .usb_n_rx(usb_n_rx)
   );
 endmodule

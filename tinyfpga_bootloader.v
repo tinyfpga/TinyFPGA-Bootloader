@@ -1,21 +1,24 @@
 module tinyfpga_bootloader (
   input  clk_48mhz,
 
-  // USB lines
-  inout  usb_p,
-  inout  usb_n,
+  // USB lines.  Split into input vs. output and oe control signal to maintain
+  // highest level of compatibility with synthesis tools.
+  output usb_p_tx,
+  output usb_n_tx,
 
-  // 1.5k pull-up resistor should be connected between usb_pu and usb_p.
-  output usb_pu,
+  input  usb_p_rx,
+  input  usb_n_rx,
+
+  output usb_tx_en,
 
   // bootloader indicator light, pulses on and off when bootloader is active
   output led,
 
   // connection to SPI flash
-  input  spi_miso,
   output spi_cs,
-  output spi_mosi,
   output spi_sck,
+  output spi_mosi,
+  input  spi_miso,
 
   // when asserted it indicates the bootloader is ready for the FPGA to load
   // the user config.  different FPGAs use different primitives for this
@@ -108,7 +111,7 @@ module tinyfpga_bootloader (
   wire ctrl_in_ep_grant;
   wire ctrl_in_ep_data_free;
   wire ctrl_in_ep_data_put;
-  wire [7:0] ctrl_in_ep_data;clk_48mhz
+  wire [7:0] ctrl_in_ep_data;
   wire ctrl_in_ep_data_done;
   wire ctrl_in_ep_stall;
   wire ctrl_in_ep_acked;
@@ -222,9 +225,11 @@ module tinyfpga_bootloader (
     .clk(clk_48mhz),
     .reset(reset),
 
-    .dp(usb_p),
-    .dn(usb_n),
-    .pu(usb_pu),
+    .usb_p_tx(usb_p_tx),
+    .usb_n_tx(usb_n_tx),
+    .usb_p_rx(usb_p_rx),
+    .usb_n_rx(usb_n_rx),
+    .usb_tx_en(usb_tx_en),
 
     .dev_addr(dev_addr),
 

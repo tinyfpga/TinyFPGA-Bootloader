@@ -1,0 +1,48 @@
+###############################################################################
+# Family & Device:    iCE40LP8K
+# Package:            CM81
+###############################################################################
+
+set_io --warn-no-port pin_1 A2
+set_io --warn-no-port pin_2 A1
+set_io --warn-no-port pin_3 B1
+set_io --warn-no-port pin_4 C2
+set_io --warn-no-port pin_5 C1
+set_io --warn-no-port pin_6 D2
+set_io --warn-no-port pin_7 D1
+set_io --warn-no-port pin_8 E2
+set_io --warn-no-port pin_9 E1
+set_io --warn-no-port pin_10 G2
+set_io --warn-no-port pin_11 H1
+set_io --warn-no-port pin_12 J1
+set_io --warn-no-port pin_13 H2
+set_io --warn-no-port pin_14 H9
+set_io --warn-no-port pin_15 D9
+set_io --warn-no-port pin_16 D8
+set_io --warn-no-port pin_17 C9
+set_io --warn-no-port pin_18 A9
+set_io --warn-no-port pin_19 B8
+set_io --warn-no-port pin_20 A8
+set_io --warn-no-port pin_21 B7
+set_io --warn-no-port pin_22 A7
+set_io --warn-no-port pin_23 B6
+set_io --warn-no-port pin_24 A6
+set_io --warn-no-port pin_25 G1
+set_io --warn-no-port pin_26 J3
+set_io --warn-no-port pin_27 J4
+set_io --warn-no-port pin_28 H4
+set_io --warn-no-port pin_29_miso H7
+set_io --warn-no-port pin_30_cs F7
+set_io --warn-no-port pin_31_mosi G6
+set_io --warn-no-port pin_32_sck G7
+set_io --warn-no-port pin_33 J8
+set_io --warn-no-port pin_34 G9
+set_io --warn-no-port pin_35 J9
+set_io --warn-no-port pin_36 E8
+set_io --warn-no-port pin_37 J2
+set_io --warn-no-port pin_led B3
+set_io --warn-no-port pin_usbp B4
+set_io --warn-no-port pin_usbn A4
+set_io --warn-no-port pin_pu A3
+set_io --warn-no-port pin_clk B2
+
