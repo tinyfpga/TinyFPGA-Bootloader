@@ -8,9 +8,9 @@ module usb_fs_tx (
   input bit_strobe,
 
   // output enable to take ownership of bus and data out
-  output reg oe,
-  output reg dp,
-  output reg dn,
+  output reg oe = 0,
+  output reg dp = 0,
+  output reg dn = 0,
 
   // pulse to initiate new packet transmission
   input pkt_start,
@@ -56,9 +56,9 @@ module usb_fs_tx (
     bitstuff_qqqq <= bitstuff_qqq;
   end
 
-  reg [7:0] data_shift_reg;
-  reg [7:0] oe_shift_reg;
-  reg [7:0] se0_shift_reg;
+  reg [7:0] data_shift_reg = 0;
+  reg [7:0] oe_shift_reg = 0;
+  reg [7:0] se0_shift_reg = 0;
 
 
   wire serial_tx_data = data_shift_reg[0];
@@ -69,7 +69,7 @@ module usb_fs_tx (
 
   reg data_payload;
 
-  reg [31:0] pkt_state;
+  reg [31:0] pkt_state = 0;
   localparam IDLE = 0;
   localparam SYNC = 1;
   localparam PID = 2;

@@ -15,7 +15,7 @@ module usb_fs_pe #(
   ////////////////////
   // global endpoint interface 
   ////////////////////
-  output reset,
+  input reset,
 
 
   ////////////////////
@@ -98,9 +98,6 @@ module usb_fs_pe #(
   assign sof_valid = rx_pkt_end && rx_pkt_valid && rx_pid == 4'b0101;
   assign frame_index = rx_frame_num;
 
-  wire reset_i;
-  assign reset = reset_i;
-
 
   usb_fs_in_arb #(
     .NUM_IN_EPS(NUM_IN_EPS)
@@ -126,7 +123,7 @@ module usb_fs_pe #(
     .NUM_IN_EPS(NUM_IN_EPS)
   ) usb_fs_in_pe_inst (
     .clk(clk),
-    .reset(reset_i),
+    .reset(reset),
     .dev_addr(dev_addr),
 
     // endpoint interface 
@@ -159,7 +156,7 @@ module usb_fs_pe #(
     .NUM_OUT_EPS(NUM_OUT_EPS)
   ) usb_fs_out_pe_inst (
     .clk(clk),
-    .reset(reset_i),
+    .reset(reset),
     .dev_addr(dev_addr),
 
     // endpoint interface 
@@ -189,7 +186,7 @@ module usb_fs_pe #(
 
   usb_fs_rx usb_fs_rx_inst (
     .clk_48mhz(clk),
-    .reset(reset_i),
+    .reset(reset),
     .dp(usb_p_rx),
     .dn(usb_n_rx),
     .bit_strobe(bit_strobe),
@@ -220,7 +217,7 @@ module usb_fs_pe #(
 
   usb_fs_tx usb_fs_tx_inst (
     .clk_48mhz(clk),
-    .reset(reset_i),
+    .reset(reset),
     .bit_strobe(bit_strobe),
     .oe(usb_tx_en),
     .dp(usb_p_tx),
@@ -231,12 +228,5 @@ module usb_fs_pe #(
     .tx_data_avail(tx_data_avail),
     .tx_data_get(tx_data_get),
     .tx_data(tx_data)
-  );
-
-  usb_reset_det usb_reset_det_inst (
-    .clk(clk),
-    .reset(reset_i),
-    .usb_p_rx(usb_p_rx),
-    .usb_n_rx(usb_n_rx)
   );
 endmodule

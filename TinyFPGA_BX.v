@@ -10,7 +10,7 @@ module TinyFPGA_BX (
   input  pin_29_miso,
   output pin_30_cs,
   output pin_31_mosi,
-  output pin_32_sck,
+  output pin_32_sck
 );
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -75,6 +75,7 @@ module TinyFPGA_BX (
   ////////
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
+  wire reset;
   wire usb_p_tx;
   wire usb_n_tx;
   wire usb_p_rx;
@@ -83,6 +84,7 @@ module TinyFPGA_BX (
 
   tinyfpga_bootloader tinyfpga_bootloader_inst (
     .clk_48mhz(clk_48mhz),
+    .reset(reset),
     .usb_p_tx(usb_p_tx),
     .usb_n_tx(usb_n_tx),
     .usb_p_rx(usb_p_rx),
@@ -102,4 +104,12 @@ module TinyFPGA_BX (
   assign usb_p_rx = usb_tx_en ? 1'b1 : pin_usbp;
   assign usb_n_rx = usb_tx_en ? 1'b0 : pin_usbn;
 
+  
+
+  usb_reset_det usb_reset_det_inst (
+    .clk(clk),
+    .reset(reset),
+    .usb_p_rx(pin_usbp),
+    .usb_n_rx(pin_usbn)
+  );
 endmodule

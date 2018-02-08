@@ -69,7 +69,7 @@ module usb_fs_rx (
     packet will fail the data integrity checks.
   */
 
-  reg [2:0] line_state;
+  reg [2:0] line_state = 0;
   localparam  DT = 3'b100;
   localparam  DJ = 3'b010;
   localparam  DK = 3'b001;

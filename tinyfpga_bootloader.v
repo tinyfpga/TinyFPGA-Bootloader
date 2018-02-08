@@ -1,5 +1,6 @@
 module tinyfpga_bootloader (
   input  clk_48mhz,
+  input  reset,
 
   // USB lines.  Split into input vs. output and oe control signal to maintain
   // highest level of compatibility with synthesis tools.
@@ -145,8 +146,6 @@ module tinyfpga_bootloader (
   wire [31:0] output_pin_values;
   wire [31:0] output_pin_enables;
 
-  wire reset;
-
   assign boot = host_presence_timeout || boot_to_user_design;
 
   usb_serial_ctrl_ep ctrl_ep_inst (
@@ -219,8 +218,8 @@ module tinyfpga_bootloader (
   wire nak_in_ep_acked;
 
   usb_fs_pe #(
-    .NUM_OUT_EPS(2),
-    .NUM_IN_EPS(3)
+    .NUM_OUT_EPS(5'd2),
+    .NUM_IN_EPS(5'd3)
   ) usb_fs_pe_inst (
     .clk(clk_48mhz),
     .reset(reset),

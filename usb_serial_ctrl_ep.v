@@ -29,7 +29,7 @@ module usb_serial_ctrl_ep (
   input in_ep_acked
 );
   
-  reg [5:0] ctrl_xfr_state;
+  reg [5:0] ctrl_xfr_state = 0;
   reg [5:0] ctrl_xfr_state_next;
 
   localparam IDLE = 0;
