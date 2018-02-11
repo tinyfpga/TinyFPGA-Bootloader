@@ -138,8 +138,8 @@ module tinyfpga_bootloader (
   wire sof_valid;
   wire [10:0] frame_index;
 
-  reg [31:0] host_presence_timer;
-  reg host_presence_timeout;
+  reg [31:0] host_presence_timer = 0;
+  reg host_presence_timeout = 0;
 
   wire boot_to_user_design;
 
