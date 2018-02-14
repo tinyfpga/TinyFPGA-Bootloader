@@ -303,6 +303,9 @@ module usb_spi_bridge_ep (
     reset_spi_bit_counter <= 1'b0;
     update_spi_byte_counters <= 1'b0;
 
+    spi_cs_b <= 1'b1;
+    spi_sck <= 1'b0;
+
     case (spi_state)
       SPI_IDLE : begin
         spi_cs_b <= 1'b1;
