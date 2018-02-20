@@ -1,0 +1,106 @@
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+@N: MO111 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":15:9:15:20|Tristate driver out_ep_stall (in view: work.usb_serial_ctrl_ep(verilog)) on net out_ep_stall (in view: work.usb_serial_ctrl_ep(verilog)) has its enable tied to GND.
+@N: MO111 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":28:9:28:19|Tristate driver in_ep_stall (in view: work.usb_spi_bridge_ep(verilog)) on net in_ep_stall (in view: work.usb_spi_bridge_ep(verilog)) has its enable tied to GND.
+@N: MO111 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":15:9:15:20|Tristate driver out_ep_stall (in view: work.usb_spi_bridge_ep(verilog)) on net out_ep_stall (in view: work.usb_spi_bridge_ep(verilog)) has its enable tied to GND.
+@N: MO111 :|Tristate driver ctrl_out_ep_stall_t (in view: work.tinyfpga_bootloader(verilog)) on net ctrl_out_ep_stall (in view: work.tinyfpga_bootloader(verilog)) has its enable tied to GND.
+@N: MO111 :|Tristate driver serial_out_ep_stall_t (in view: work.tinyfpga_bootloader(verilog)) on net serial_out_ep_stall (in view: work.tinyfpga_bootloader(verilog)) has its enable tied to GND.
+@N: MO111 :|Tristate driver serial_in_ep_stall_t (in view: work.tinyfpga_bootloader(verilog)) on net serial_in_ep_stall (in view: work.tinyfpga_bootloader(verilog)) has its enable tied to GND.
+@N: MO111 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v":17:9:17:14|Tristate driver pin_26 (in view: work.TinyFPGA_EX(verilog)) on net pin_26 (in view: work.TinyFPGA_EX(verilog)) has its enable tied to GND.
+@N: MT206 |Auto Constrain mode is enabled
+@N: FX493 |Applying initial value "0000000" on instance tinyfpga_bootloader_inst.ctrl_ep_inst.new_dev_addr[6:0].
+@N: FX493 |Applying initial value "000" on instance tinyfpga_bootloader_inst.ctrl_ep_inst.rom_length[2:0].
+@N: FX493 |Applying initial value "0000000" on instance tinyfpga_bootloader_inst.ctrl_ep_inst.dev_addr_i[6:0].
+@N: FX493 |Applying initial value "000" on instance tinyfpga_bootloader_inst.usb_spi_bridge_ep_inst.spi_state[2:0].
+@N: FX493 |Applying initial value "0000" on instance tinyfpga_bootloader_inst.usb_spi_bridge_ep_inst.cmd_state[3:0].
+@N: FX493 |Applying initial value "000000000" on instance tinyfpga_bootloader_inst.usb_spi_bridge_ep_inst.spi_out_data[8:0].
+@N: FX493 |Applying initial value "00000000" on instance tinyfpga_bootloader_inst.usb_spi_bridge_ep_inst.spi_in_data[7:0].
+@N: FX493 |Applying initial value "000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.data_toggle[2:0].
+@N: FX493 |Applying initial value "0000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.tx_pid[3:0].
+@N: FX493 |Applying initial value "00" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.out_ep_setup[1:0].
+@N: FX493 |Applying initial value "00" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.data_toggle[1:0].
+@N: FX493 |Applying initial value "000000000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.rx_data_buffer[8:0].
+@N: FX493 |Applying initial value "0000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.endp[3:0].
+@N: FX493 |Applying initial value "0000000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.addr[6:0].
+@N: FX493 |Applying initial value "000000000000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.token_payload[11:0].
+@N: FX493 |Applying initial value "0000000000000000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.crc16[15:0].
+@N: FX493 |Applying initial value "00000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.crc5[4:0].
+@N: FX493 |Applying initial value "000000000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.full_pid[8:0].
+@N: FX493 |Applying initial value "000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.line_state[2:0].
+@N: FX493 |Applying initial value "0000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.dpair_q[3:0].
+@N: FX493 |Applying initial value "000000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.bitstuff_history[5:0].
+@N: FX493 |Applying initial value "000000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.line_history[5:0].
+@N: FX493 |Applying initial value "00000000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[7:0].
+@N: FX493 |Applying initial value "00000000000000000000000000000000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state[31:0].
+@N: FX493 |Applying initial value "000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.se0_shift_reg[2:0].
+@N: FX493 |Applying initial value "00000000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.oe_shift_reg[7:0].
+@N: FX493 |Applying initial value "0000000000000000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.crc16[15:0].
+@N: FX493 |Applying initial value "0000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pidq[3:0].
+@N: FX493 |Applying initial value "000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.dp_eop[2:0].
+@N: FX493 |Applying initial value "00000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.bit_history_q[4:0].
+@N: FX493 |Applying initial value "000" on instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.bit_count[2:0].
+@N: MO231 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v":80:2:80:7|Found counter in view:work.TinyFPGA_EX(verilog) instance boot_delay[8:0] 
+@N: MO231 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\tinyfpga_bootloader.v":87:2:87:7|Found counter in view:work.tinyfpga_bootloader(verilog) instance pwm_cnt[7:0] 
+@N: MO231 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Found counter in view:work.usb_serial_ctrl_ep(verilog) instance rom_addr[6:0] 
+@N: MO231 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":268:2:268:7|Found counter in view:work.usb_spi_bridge_ep(verilog) instance data_out_length[15:0] 
+@N: MO231 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":268:2:268:7|Found counter in view:work.usb_spi_bridge_ep(verilog) instance data_in_length[15:0] 
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|There are no possible illegal states for state machine \.ep_state_2_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|There are no possible illegal states for state machine \.ep_state_1_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|There are no possible illegal states for state machine \.ep_state_0_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":346:2:346:7|There are no possible illegal states for state machine in_xfr_state[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+@N: MF179 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":121:4:121:24|Found 7 by 7 bit equality operator ('==') un1_dev_addr (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":360:2:360:7|There are no possible illegal states for state machine out_xfr_state[3:0] (in view: work.usb_fs_out_pe_2_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":205:6:205:11|There are no possible illegal states for state machine genblk1\[1\]\.ep_state_1_[3:0] (in view: work.usb_fs_out_pe_2_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":205:6:205:11|There are no possible illegal states for state machine genblk1\[0\]\.ep_state_0_[3:0] (in view: work.usb_fs_out_pe_2_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+@N: MF179 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":113:4:113:24|Found 7 by 7 bit equality operator ('==') un1_dev_addr (in view: work.usb_fs_out_pe_2_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":360:2:360:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.data_toggle[0] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":360:2:360:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.data_toggle[1] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":360:2:360:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.out_xfr_state[1] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":360:2:360:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.out_xfr_state[0] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":205:6:205:11|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.genblk1\[1\]\.ep_state_1_[1] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":205:6:205:11|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.genblk1\[1\]\.ep_state_1_[0] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":205:6:205:11|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.genblk1\[0\]\.ep_state_0_[1] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":205:6:205:11|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.genblk1\[0\]\.ep_state_0_[0] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":360:2:360:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.current_endp[0] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":360:2:360:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.last_data_toggle (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":360:2:360:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.nak_out_transfer (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":346:2:346:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_xfr_state[1] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":346:2:346:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_xfr_state[0] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
+@N: FA113 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":114:4:114:25|Pipelining module un1_rx_endp. For more information, search for "pipelining" in Online Help.
+@N: MF169 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_rx.v":332:2:332:7|Pushed in register endp[3:0].
+@N: MF169 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":360:2:360:7|Pushed in register current_endp[0].
+@N: MF169 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_rx.v":322:2:322:7|Pushed in register token_payload[11:0].
+@N: MF169 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":346:2:346:7|Pushed in register current_endp[1:0].
+@N: MF169 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":360:2:360:7|Pushed in register data_toggle[1:0].
+@N: MF169 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":360:2:360:7|Pushed in register ep_put_addr\\\[0\\\].
+@N: MF169 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":360:2:360:7|Pushed in register ep_put_addr\\\[1\\\].
+@N: MF169 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":346:2:346:7|Pushed in register ep_get_addr\\\[0\\\].
+@N: MF169 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":346:2:346:7|Pushed in register ep_get_addr\\\[1\\\].
+@N: MF169 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|Pushed in register ep_state_0_.
+@N: MF169 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|Pushed in register ep_state_1_.
+@N: MF169 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":346:2:346:7|Pushed in register data_toggle[2:0].
+@N: MF169 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":346:2:346:7|Pushed in register ep_get_addr\\\[2\\\].
+@N: MF169 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|Pushed in register ep_state_2_.
+@N: MF169 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":118:2:118:7|Pushed in register in_ep_data_put.
+@N: FO126 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":260:2:260:7|Generating RAM tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer[7:0]
+@N: FO126 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":360:2:360:7|Generating RAM tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.out_data_buffer[7:0]
+@N: FX214 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":339:4:339:7|Generating ROM tinyfpga_bootloader_inst.ctrl_ep_inst.in_ep_data_1[7:0] (in view: work.TinyFPGA_EX(verilog)).
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":346:2:346:7|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp[0] (in view: work.TinyFPGA_EX(verilog)) with 32 loads 3 times to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Replicating instance tinyfpga_bootloader_inst.ctrl_ep_inst.bytes_sent[0] (in view: work.TinyFPGA_EX(verilog)) with 8 loads 1 time to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Replicating instance tinyfpga_bootloader_inst.ctrl_ep_inst.bytes_sent[1] (in view: work.TinyFPGA_EX(verilog)) with 7 loads 1 time to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Replicating instance tinyfpga_bootloader_inst.ctrl_ep_inst.bytes_sent[2] (in view: work.TinyFPGA_EX(verilog)) with 7 loads 1 time to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":205:6:205:11|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.genblk1\[0\]\.ep_get_addr_0_[0] (in view: work.TinyFPGA_EX(verilog)) with 6 loads 1 time to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_rx.v":240:2:240:7|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.full_pid[2] (in view: work.TinyFPGA_EX(verilog)) with 24 loads 2 times to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_rx.v":240:2:240:7|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.full_pid[1] (in view: work.TinyFPGA_EX(verilog)) with 24 loads 2 times to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":346:2:346:7|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp[1] (in view: work.TinyFPGA_EX(verilog)) with 32 loads 3 times to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_rx.v":168:2:168:7|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.packet_valid (in view: work.TinyFPGA_EX(verilog)) with 54 loads 2 times to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":205:6:205:11|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.genblk1\[1\]\.ep_state_1__ns_1_0_.m17 (in view: work.TinyFPGA_EX(verilog)) with 2 loads 1 time(s) to improve timing.
+@N: FX164 |The option to pack registers in the IOB has not been specified. Please set syn_useioff attribute.  
+@N: MO111 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v":17:9:17:14|Tristate driver pin_26_obuft.un1[0] (in view: work.TinyFPGA_EX(verilog)) on net pin_26 (in view: work.TinyFPGA_EX(verilog)) has its enable tied to GND.
+@N: MT611 :|Automatically generated clock usb_pll_inst|CLKOP_inferred_clock is not used and is being removed
+@N: MT617 :|Automatically generated clock usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s|in_xfr_state_derived_clock[1] has lost its master clock usb_pll_inst|CLKOP_inferred_clock and is being removed
+@N: MT611 :|Automatically generated clock usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s|in_xfr_state_derived_clock[1] is not used and is being removed
+@N: FX1056 |Writing EDF file: C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\diamond_impl.edi
+@N: BW106 |Synplicity Constraint File capacitance units using default value of 1pF 
+@N: MT320 |This timing report is an estimate of place and route data. For final timing results, use the FPGA vendor place and route report.
+@N: MT322 |Clock constraints include only register-to-register paths associated with each individual clock.

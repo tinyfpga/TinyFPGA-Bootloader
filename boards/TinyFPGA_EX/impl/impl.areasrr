@@ -1,0 +1,266 @@
+----------------------------------------------------------------------
+Report for cell TinyFPGA_EX.verilog
+
+Register bits: 498 of 24288 (2%)
+PIC Latch:       0
+I/O cells:       12
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                                 BB        2       100.0
+                              CCU2C      100       100.0
+                           DPR16X4C       18       100.0
+                            EHXPLLL        1       100.0
+                            FD1P3AX      238       100.0
+                            FD1P3IX       18       100.0
+                            FD1P3JX        8       100.0
+                            FD1S3AX      145       100.0
+                            FD1S3AY        1       100.0
+                            FD1S3IX       82       100.0
+                            FD1S3JX        4       100.0
+                                GSR        1       100.0
+                                 IB        2       100.0
+                           IFS1P3DX        1       100.0
+                                INV        7       100.0
+                                 OB        7       100.0
+                                OBZ        1       100.0
+                           OFS1P3DX        1       100.0
+                           ORCALUT4      807       100.0
+                              PFUMX       26       100.0
+                                PUR        1       100.0
+                           ROM16X1A        2       100.0
+                           ROM32X1A        4       100.0
+                           ROM64X1A        8       100.0
+                            USRMCLK        1       100.0
+                                VHI       11       100.0
+                                VLO        3       100.0
+SUB MODULES 
+              falling_edge_detector        1       100.0
+             rising_edge_detector_0        1       100.0
+                tinyfpga_bootloader        1       100.0
+                    usb_fs_in_arb_3        1       100.0
+          usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s        1       100.0
+                   usb_fs_out_arb_2        1       100.0
+          usb_fs_out_pe_2_32s_0s_1s_2s_3s_0s_1s_2s_3s        1       100.0
+                      usb_fs_pe_2_3        1       100.0
+                          usb_fs_rx        1       100.0
+                          usb_fs_tx        1       100.0
+                      usb_fs_tx_mux        1       100.0
+                       usb_pll_inst        1       100.0
+                 usb_serial_ctrl_ep        1       100.0
+                  usb_spi_bridge_ep        1       100.0
+                            
+                         TOTAL          1514           
+----------------------------------------------------------------------
+Report for cell tinyfpga_bootloader.netlist
+     Instance path:  tinyfpga_bootloader_inst
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                              CCU2C       95        95.0
+                           DPR16X4C       18       100.0
+                            FD1P3AX      229        96.2
+                            FD1P3IX       18       100.0
+                            FD1P3JX        8       100.0
+                            FD1S3AX      144        99.3
+                            FD1S3AY        1       100.0
+                            FD1S3IX       82       100.0
+                            FD1S3JX        4       100.0
+                                INV        6        85.7
+                           ORCALUT4      804        99.6
+                              PFUMX       26       100.0
+                           ROM16X1A        2       100.0
+                           ROM32X1A        4       100.0
+                           ROM64X1A        8       100.0
+                                VHI       10        90.9
+                                VLO        1        33.3
+SUB MODULES 
+              falling_edge_detector        1       100.0
+             rising_edge_detector_0        1       100.0
+                    usb_fs_in_arb_3        1       100.0
+          usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s        1       100.0
+                   usb_fs_out_arb_2        1       100.0
+          usb_fs_out_pe_2_32s_0s_1s_2s_3s_0s_1s_2s_3s        1       100.0
+                      usb_fs_pe_2_3        1       100.0
+                          usb_fs_rx        1       100.0
+                          usb_fs_tx        1       100.0
+                      usb_fs_tx_mux        1       100.0
+                 usb_serial_ctrl_ep        1       100.0
+                  usb_spi_bridge_ep        1       100.0
+                            
+                         TOTAL          1472           
+----------------------------------------------------------------------
+Report for cell usb_fs_pe_2_3.netlist
+     Instance path:  tinyfpga_bootloader_inst.usb_fs_pe_inst
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                              CCU2C       18        18.0
+                           DPR16X4C       18       100.0
+                            FD1P3AX      127        53.4
+                            FD1P3IX       18       100.0
+                            FD1S3AX       89        61.4
+                            FD1S3IX       25        30.5
+                            FD1S3JX        4       100.0
+                                INV        4        57.1
+                           ORCALUT4      516        63.9
+                              PFUMX       25        96.2
+                                VHI        5        45.5
+                                VLO        1        33.3
+SUB MODULES 
+                    usb_fs_in_arb_3        1       100.0
+          usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s        1       100.0
+                   usb_fs_out_arb_2        1       100.0
+          usb_fs_out_pe_2_32s_0s_1s_2s_3s_0s_1s_2s_3s        1       100.0
+                          usb_fs_rx        1       100.0
+                          usb_fs_tx        1       100.0
+                      usb_fs_tx_mux        1       100.0
+                            
+                         TOTAL           857           
+----------------------------------------------------------------------
+Report for cell usb_fs_tx.netlist
+     Instance path:  tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                            FD1P3AX       36        15.1
+                            FD1S3AX       27        18.6
+                                INV        1        14.3
+                           ORCALUT4      111        13.8
+                              PFUMX        6        23.1
+                                VHI        1         9.1
+                            
+                         TOTAL           182           
+----------------------------------------------------------------------
+Report for cell usb_fs_tx_mux.netlist
+     Instance path:  tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_mux_inst
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                           ORCALUT4        5         0.6
+                              PFUMX        1         3.8
+                                VHI        1         9.1
+                            
+                         TOTAL             7           
+----------------------------------------------------------------------
+Report for cell usb_fs_rx.netlist
+     Instance path:  tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                            FD1P3AX       69        29.0
+                            FD1S3AX       13         9.0
+                            FD1S3IX        2         2.4
+                                INV        1        14.3
+                           ORCALUT4       98        12.1
+                                VHI        1         9.1
+                            
+                         TOTAL           184           
+----------------------------------------------------------------------
+Report for cell usb_fs_out_pe_2_32s_0s_1s_2s_3s_0s_1s_2s_3s.netlist
+     Instance path:  tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                              CCU2C       10        10.0
+                           DPR16X4C        8        44.4
+                            FD1P3AX       21         8.8
+                            FD1S3AX       22        15.2
+                            FD1S3IX       11        13.4
+                            FD1S3JX        2        50.0
+                                INV        2        28.6
+                           ORCALUT4      137        17.0
+                              PFUMX       10        38.5
+                                VHI        1         9.1
+                            
+                         TOTAL           224           
+----------------------------------------------------------------------
+Report for cell usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s.netlist
+     Instance path:  tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                              CCU2C        8         8.0
+                           DPR16X4C       10        55.6
+                            FD1P3AX        1         0.4
+                            FD1P3IX       18       100.0
+                            FD1S3AX       27        18.6
+                            FD1S3IX       12        14.6
+                            FD1S3JX        2        50.0
+                           ORCALUT4      152        18.8
+                              PFUMX        8        30.8
+                                VHI        1         9.1
+                                VLO        1        33.3
+                            
+                         TOTAL           240           
+----------------------------------------------------------------------
+Report for cell usb_fs_out_arb_2.netlist
+     Instance path:  tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_arb_inst
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                           ORCALUT4        1         0.1
+                            
+                         TOTAL             1           
+----------------------------------------------------------------------
+Report for cell usb_fs_in_arb_3.netlist
+     Instance path:  tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_arb_inst
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                           ORCALUT4        8         1.0
+                            
+                         TOTAL             8           
+----------------------------------------------------------------------
+Report for cell usb_spi_bridge_ep.netlist
+     Instance path:  tinyfpga_bootloader_inst.usb_spi_bridge_ep_inst
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                              CCU2C       18        18.0
+                            FD1P3AX       39        16.4
+                            FD1S3AX       23        15.9
+                            FD1S3IX        4         4.9
+                                INV        1        14.3
+                           ORCALUT4      138        17.1
+                              PFUMX        1         3.8
+                                VHI        1         9.1
+                            
+                         TOTAL           225           
+----------------------------------------------------------------------
+Report for cell usb_serial_ctrl_ep.netlist
+     Instance path:  tinyfpga_bootloader_inst.ctrl_ep_inst
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                              CCU2C       18        18.0
+                            FD1P3AX       62        26.1
+                            FD1S3AX       13         9.0
+                            FD1S3AY        1       100.0
+                            FD1S3IX       15        18.3
+                           ORCALUT4      108        13.4
+                           ROM16X1A        2       100.0
+                           ROM32X1A        4       100.0
+                           ROM64X1A        8       100.0
+                                VHI        3        27.3
+SUB MODULES 
+              falling_edge_detector        1       100.0
+             rising_edge_detector_0        1       100.0
+                            
+                         TOTAL           236           
+----------------------------------------------------------------------
+Report for cell rising_edge_detector_0.netlist
+  Original Cell name rising_edge_detector
+     Instance path:  tinyfpga_bootloader_inst.ctrl_ep_inst.detect_in_data_transfer_done
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                            FD1S3AX        1         0.7
+                                VHI        1         9.1
+                            
+                         TOTAL             2           
+----------------------------------------------------------------------
+Report for cell falling_edge_detector.netlist
+     Instance path:  tinyfpga_bootloader_inst.ctrl_ep_inst.detect_pkt_end
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                            FD1S3AX        1         0.7
+                                VHI        1         9.1
+                            
+                         TOTAL             2           
+----------------------------------------------------------------------
+Report for cell usb_pll_inst.netlist
+     Instance path:  usb_pll_inst_inst
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                            EHXPLLL        1       100.0
+                                VLO        1        33.3
+                            
+                         TOTAL             2           

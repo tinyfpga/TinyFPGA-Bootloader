@@ -1,0 +1,331 @@
+Synopsys HDL Compiler, version comp2016q3p1, Build 141R, built Dec  5 2016
+@N|Running in 64-bit mode
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+
+Synopsys Verilog Compiler, version comp2016q3p1, Build 141R, built Dec  5 2016
+@N|Running in 64-bit mode
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+
+@N:: Running Verilog Compiler in System Verilog mode
+@N:: Running Verilog Compiler in Multiple File Compilation Unit mode
+@I::"C:\lscc\diamond\3.9_x64\synpbase\lib\lucent\ecp5u.v" (library work)
+@I::"C:\lscc\diamond\3.9_x64\synpbase\lib\lucent\pmi_def.v" (library work)
+@I::"C:\lscc\diamond\3.9_x64\synpbase\lib\vlog\hypermods.v" (library __hyper__lib__)
+@I::"C:\lscc\diamond\3.9_x64\synpbase\lib\vlog\umr_capim.v" (library snps_haps)
+@I::"C:\lscc\diamond\3.9_x64\synpbase\lib\vlog\scemi_objects.v" (library snps_haps)
+@I::"C:\lscc\diamond\3.9_x64\synpbase\lib\vlog\scemi_pipes.svh" (library snps_haps)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\edge_detect.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\tinyfpga_bootloader.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_arb.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_arb.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_pe.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_rx.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx_mux.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_reset_det.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\source\usb_pll_inst.v" (library work)
+Verilog syntax check successful!
+Options changed - recompiling
+Selecting top level module TinyFPGA_EX
+@N: CG364 :"C:\lscc\diamond\3.9_x64\synpbase\lib\lucent\ecp5u.v":757:7:757:9|Synthesizing module VHI in library work.
+
+@N: CG364 :"C:\lscc\diamond\3.9_x64\synpbase\lib\lucent\ecp5u.v":761:7:761:9|Synthesizing module VLO in library work.
+
+@N: CG364 :"C:\lscc\diamond\3.9_x64\synpbase\lib\lucent\ecp5u.v":1696:7:1696:13|Synthesizing module EHXPLLL in library work.
+
+@N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\source\usb_pll_inst.v":8:7:8:18|Synthesizing module usb_pll_inst in library work.
+
+@W: CL168 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\source\usb_pll_inst.v":18:8:18:21|Removing instance scuba_vhi_inst because it does not drive other instances. To preserve this instance, use the syn_noprune synthesis directive.
+@N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\edge_detect.v":1:7:1:26|Synthesizing module rising_edge_detector in library work.
+
+@N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\edge_detect.v":15:7:15:27|Synthesizing module falling_edge_detector in library work.
+
+@N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":1:7:1:24|Synthesizing module usb_serial_ctrl_ep in library work.
+
+@W: CG360 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":15:9:15:20|Removing wire out_ep_stall, as there is no assignment to it.
+@W: CL169 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused register raw_setup_data[5][9:0]. Make sure that there are no unused intermediate registers.
+@W: CL169 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused register raw_setup_data[4][9:0]. Make sure that there are no unused intermediate registers.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[7][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[6][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[3][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 7 of raw_setup_data[2][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[1][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[0][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 6 to 0 of raw_setup_data[0][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Register bit rom_length[3] is always 0.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Register bit rom_length[5] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning register bit 5 of rom_length[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning register bit 3 of rom_length[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":1:7:1:23|Synthesizing module usb_spi_bridge_ep in library work.
+
+@W: CG360 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":15:9:15:20|Removing wire out_ep_stall, as there is no assignment to it.
+@W: CG360 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":28:9:28:19|Removing wire in_ep_stall, as there is no assignment to it.
+@W: CL265 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":399:2:399:7|Removing unused bit 8 of spi_in_data[8:0]. Either assign all bits or reduce the width of the signal.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[31]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[31]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[30]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[30]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[29]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[29]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[28]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[28]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[27]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[27]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[26]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[26]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[25]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[25]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[24]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[24]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[23]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[23]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[22]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[22]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[21]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[21]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[20]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[20]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[19]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[19]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[18]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[18]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[17]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[17]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[16]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[16]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[15]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[15]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[14]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[14]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[13]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[13]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[12]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[12]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[11]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[11]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[10]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[10]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[9]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[9]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[8]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[8]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[7]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[7]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[6]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[6]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[5]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[5]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[4]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[4]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[3]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[3]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[2]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[2]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[1]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[1]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_values[0]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":149:4:149:7|Latch generated from always block for signal output_pin_enables[0]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":303:4:303:7|Latch generated from always block for signal spi_sck; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":303:4:303:7|Latch generated from always block for signal spi_cs_b; possible missing assignment in an if or case statement.
+@N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_arb.v":1:7:1:19|Synthesizing module usb_fs_in_arb in library work.
+
+	NUM_IN_EPS=5'b00011
+   Generated name = usb_fs_in_arb_3
+
+@N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_arb.v":1:7:1:20|Synthesizing module usb_fs_out_arb in library work.
+
+	NUM_OUT_EPS=5'b00010
+   Generated name = usb_fs_out_arb_2
+
+@N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":2:7:2:18|Synthesizing module usb_fs_in_pe in library work.
+
+	NUM_IN_EPS=5'b00011
+	MAX_IN_PACKET_SIZE=32'b00000000000000000000000000100000
+	READY_FOR_PKT=32'b00000000000000000000000000000000
+	PUTTING_PKT=32'b00000000000000000000000000000001
+	GETTING_PKT=32'b00000000000000000000000000000010
+	STALL=32'b00000000000000000000000000000011
+	IDLE=32'b00000000000000000000000000000000
+	RCVD_IN=32'b00000000000000000000000000000001
+	SEND_DATA=32'b00000000000000000000000000000010
+	WAIT_ACK=32'b00000000000000000000000000000011
+   Generated name = usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s
+
+@W: CG532 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":97:2:97:8|Within an initial block, only Verilog force statements and memory $readmemh/$readmemb initialization statements are recognized, and all other content is ignored.
+@N: CL134 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":260:2:260:7|Found RAM in_data_buffer, depth=96, width=8
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":283:4:283:7|Latch generated from always block for signal tx_pid[3:0]; possible missing assignment in an if or case statement.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":346:2:346:7|Register bit current_endp[2] is always 0.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":346:2:346:7|Register bit current_endp[3] is always 0.
+@W: CL279 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":346:2:346:7|Pruning register bits 3 to 2 of current_endp[3:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":2:7:2:19|Synthesizing module usb_fs_out_pe in library work.
+
+	NUM_OUT_EPS=5'b00010
+	MAX_OUT_PACKET_SIZE=32'b00000000000000000000000000100000
+	READY_FOR_PKT=32'b00000000000000000000000000000000
+	PUTTING_PKT=32'b00000000000000000000000000000001
+	GETTING_PKT=32'b00000000000000000000000000000010
+	STALL=32'b00000000000000000000000000000011
+	IDLE=32'b00000000000000000000000000000000
+	RCVD_OUT=32'b00000000000000000000000000000001
+	RCVD_DATA_START=32'b00000000000000000000000000000010
+	RCVD_DATA_END=32'b00000000000000000000000000000011
+   Generated name = usb_fs_out_pe_2_32s_0s_1s_2s_3s_0s_1s_2s_3s
+
+@N: CL134 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":360:2:360:7|Found RAM out_data_buffer, depth=64, width=8
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":299:4:299:7|Latch generated from always block for signal out_ep_acked[1]; possible missing assignment in an if or case statement.
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":299:4:299:7|Latch generated from always block for signal out_ep_acked[0]; possible missing assignment in an if or case statement.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":360:2:360:7|Register bit current_endp[1] is always 0.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":360:2:360:7|Register bit current_endp[2] is always 0.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":360:2:360:7|Register bit current_endp[3] is always 0.
+@W: CL279 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":360:2:360:7|Pruning register bits 3 to 1 of current_endp[3:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_rx.v":1:7:1:15|Synthesizing module usb_fs_rx in library work.
+
+@N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx_mux.v":1:7:1:19|Synthesizing module usb_fs_tx_mux in library work.
+
+@N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":1:7:1:15|Synthesizing module usb_fs_tx in library work.
+
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Register bit se0_shift_reg[7] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Pruning register bit 7 of se0_shift_reg[7:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_pe.v":1:7:1:15|Synthesizing module usb_fs_pe in library work.
+
+	NUM_OUT_EPS=5'b00010
+	NUM_IN_EPS=5'b00011
+   Generated name = usb_fs_pe_2_3
+
+@W: CG781 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_pe.v":124:4:124:20|Input reset_ep on instance usb_fs_in_pe_inst is undriven; assigning to 0.  Simulation mismatch possible. Either assign the input or remove the declaration. 
+@W: CG781 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_pe.v":157:4:157:21|Input reset_ep on instance usb_fs_out_pe_inst is undriven; assigning to 0.  Simulation mismatch possible. Either assign the input or remove the declaration. 
+@W: CG781 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_pe.v":157:4:157:21|Input bit_strobe on instance usb_fs_out_pe_inst is undriven; assigning to 0.  Simulation mismatch possible. Either assign the input or remove the declaration. 
+@N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\tinyfpga_bootloader.v":1:7:1:25|Synthesizing module tinyfpga_bootloader in library work.
+
+@W: CL169 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\tinyfpga_bootloader.v":61:2:61:7|Pruning unused register ms_cnt[9:0]. Make sure that there are no unused intermediate registers.
+@N: CG364 :"C:\lscc\diamond\3.9_x64\synpbase\lib\lucent\ecp5u.v":1591:7:1591:13|Synthesizing module USRMCLK in library work.
+
+@N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v":1:7:1:17|Synthesizing module TinyFPGA_EX in library work.
+
+@W: CG360 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v":17:9:17:14|Removing wire pin_26, as there is no assignment to it.
+@W: CL157 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v":17:9:17:14|*Output pin_26 has undriven bits; assigning undriven bits to 0.  Simulation mismatch possible. Assign all bits of the output.
+@N: CL135 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":52:2:52:7|Found sequential shift bitstuff_qqqq with address depth of 4 words and data bit width of 1.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Register bit se0_shift_reg[6] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Pruning register bit 6 of se0_shift_reg[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Register bit se0_shift_reg[5] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Pruning register bit 5 of se0_shift_reg[5:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Register bit se0_shift_reg[4] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Pruning register bit 4 of se0_shift_reg[4:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Trying to extract state machine for register pkt_state.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Register bit se0_shift_reg[3] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Pruning register bit 3 of se0_shift_reg[3:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":5:8:5:12|Input reset is unused.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_rx.v":81:2:81:7|Trying to extract state machine for register line_state.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":205:6:205:11|Trying to extract state machine for register genblk1[1].ep_state_1_.
+Extracted state machine for register genblk1[1].ep_state_1_
+State machine has 4 reachable states with original encodings of:
+   00
+   01
+   10
+   11
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":205:6:205:11|Trying to extract state machine for register genblk1[0].ep_state_0_.
+Extracted state machine for register genblk1[0].ep_state_0_
+State machine has 4 reachable states with original encodings of:
+   00
+   01
+   10
+   11
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":360:2:360:7|Trying to extract state machine for register out_xfr_state.
+Extracted state machine for register out_xfr_state
+State machine has 4 reachable states with original encodings of:
+   00
+   01
+   10
+   11
+@W: CL249 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":360:2:360:7|Initial value is not supported on state machine out_xfr_state
+@N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":10:8:10:17|Input bit_strobe is unused.
+@N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":36:15:36:26|Input rx_frame_num is unused.
+@N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":49:8:49:17|Input tx_pkt_end is unused.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":220:6:220:11|Trying to extract state machine for register .ep_state_2_.
+Extracted state machine for register .ep_state_2_
+State machine has 4 reachable states with original encodings of:
+   00
+   01
+   10
+   11
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":220:6:220:11|Trying to extract state machine for register .ep_state_1_.
+Extracted state machine for register .ep_state_1_
+State machine has 4 reachable states with original encodings of:
+   00
+   01
+   10
+   11
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":220:6:220:11|Trying to extract state machine for register .ep_state_0_.
+Extracted state machine for register .ep_state_0_
+State machine has 4 reachable states with original encodings of:
+   00
+   01
+   10
+   11
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":346:2:346:7|Trying to extract state machine for register in_xfr_state.
+Extracted state machine for register in_xfr_state
+State machine has 4 reachable states with original encodings of:
+   00
+   01
+   10
+   11
+@W: CL249 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":346:2:346:7|Initial value is not supported on state machine in_xfr_state
+@N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":28:8:28:19|Input rx_pkt_start is unused.
+@N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":36:15:36:26|Input rx_frame_num is unused.
+@N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":45:8:45:17|Input tx_pkt_end is unused.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":399:2:399:7|Trying to extract state machine for register spi_state.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":268:2:268:7|Trying to extract state machine for register cmd_state.
+@W: CL157 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":15:9:15:20|*Output out_ep_stall has undriven bits; assigning undriven bits to 0.  Simulation mismatch possible. Assign all bits of the output.
+@W: CL157 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":28:9:28:19|*Output in_ep_stall has undriven bits; assigning undriven bits to 0.  Simulation mismatch possible. Assign all bits of the output.
+@N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":3:8:3:12|Input reset is unused.
+@N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":12:8:12:19|Input out_ep_setup is unused.
+@N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":16:8:16:19|Input out_ep_acked is unused.
+@N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":29:8:29:18|Input in_ep_acked is unused.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Register bit bytes_sent[7] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning register bit 7 of bytes_sent[7:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":217:2:217:7|Trying to extract state machine for register ctrl_xfr_state.
+Extracted state machine for register ctrl_xfr_state
+State machine has 6 reachable states with original encodings of:
+   000000
+   000001
+   000010
+   000011
+   000100
+   000101
+@W: CL249 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":217:2:217:7|Initial value is not supported on state machine ctrl_xfr_state
+@W: CL157 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":15:9:15:20|*Output out_ep_stall has undriven bits; assigning undriven bits to 0.  Simulation mismatch possible. Assign all bits of the output.
+
+At c_ver Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 79MB peak: 83MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Mon Feb 19 19:17:07 2018
+
+###########################################################]
+Synopsys Netlist Linker, version comp2016q3p1, Build 141R, built Dec  5 2016
+@N|Running in 64-bit mode
+
+At syn_nfilter Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 69MB peak: 70MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Mon Feb 19 19:17:07 2018
+
+###########################################################]
+@END
+
+At c_hdl Exit (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 3MB peak: 4MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Mon Feb 19 19:17:07 2018
+
+###########################################################]

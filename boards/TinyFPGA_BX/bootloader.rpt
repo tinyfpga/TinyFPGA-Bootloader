@@ -1,0 +1,52 @@
+
+icetime topological timing analysis report
+==========================================
+
+Info: max_span_hack is enabled: estimate is conservative.
+
+Report for critical path:
+-------------------------
+
+        loop-start at net_61943
+        t3248 (LocalMux) I -> O: 0.486 ns
+        inmux_16_12_66068_66094 (InMux) I -> O: 0.382 ns
+        lc40_16_12_0 (LogicCell40) in1 -> lcout: 0.589 ns
+1000001.458 ns net_61943 (tinyfpga_bootloader_inst.ctrl_ep_inst.out_ep_acked)
+        t3250 (LocalMux) I -> O: 0.486 ns
+        inmux_17_13_70276_70326 (InMux) I -> O: 0.382 ns
+        lc40_17_13_5 (LogicCell40) in3 -> lcout: 0.465 ns
+1000002.791 ns net_66147 ($abc$26257$n1266)
+        t3571 (LocalMux) I -> O: 0.486 ns
+        inmux_17_13_70273_70295 (InMux) I -> O: 0.382 ns
+        t722 (CascadeMux) I -> O: 0.000 ns
+        lc40_17_13_0 (LogicCell40) in2 -> lcout: 0.558 ns
+1000004.217 ns net_66142 ($abc$26257$n1265)
+        odrv_17_13_66142_66047 (Odrv4) I -> O: 0.548 ns
+        t3594 (Span4Mux_h4) I -> O: 0.465 ns
+        t3593 (LocalMux) I -> O: 0.486 ns
+        inmux_14_14_58160_58213 (InMux) I -> O: 0.382 ns
+        lc40_14_14_4 (LogicCell40) in3 -> lcout: 0.465 ns
+1000006.564 ns net_54039 ($abc$26257$n1722)
+        odrv_14_14_54039_54060 (Odrv4) I -> O: 0.548 ns
+        t2694 (LocalMux) I -> O: 0.486 ns
+        inmux_14_15_58281_58315 (InMux) I -> O: 0.382 ns
+        lc40_14_15_1 (LogicCell40) in0 -> lcout: 0.662 ns
+1000008.642 ns net_54159 ($abc$26257$n1726)
+        odrv_14_15_54159_37982 (Odrv12) I -> O: 0.796 ns
+        t2708 (LocalMux) I -> O: 0.486 ns
+        inmux_14_15_58286_58348 (InMux) I -> O: 0.382 ns
+1000010.306 ns net_58348 ($abc$26257$n1726)
+        lc40_14_15_6 (LogicCell40) in3 [setup]: 0.320 ns
+1000010.626 ns net_54164 (tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.ep_state[0][1])
+
+Resolvable net names on path:
+1000001.458 ns ..1000002.326 ns tinyfpga_bootloader_inst.ctrl_ep_inst.out_ep_acked
+1000002.791 ns ..1000003.659 ns $abc$26257$n1266
+1000004.217 ns ..1000006.099 ns $abc$26257$n1265
+1000006.564 ns ..1000007.980 ns $abc$26257$n1722
+1000008.642 ns ..1000010.306 ns $abc$26257$n1726
+                  lcout -> tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.ep_state[0][1]
+
+Total number of logic levels: 6
+Total path delay: 1000010.63 ns (0.00 MHz)
+

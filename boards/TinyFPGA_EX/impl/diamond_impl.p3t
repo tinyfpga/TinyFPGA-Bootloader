@@ -1,0 +1,5 @@
+-rem
+-distrce
+-log "diamond_impl.log"
+-o "diamond_impl.csv"
+-pr "diamond_impl.prf"

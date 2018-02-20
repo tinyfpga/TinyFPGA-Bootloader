@@ -1,0 +1,152 @@
+---------------------------------------------------
+Report for cell TinyFPGA_EX
+   Instance path: TinyFPGA_EX
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	     690.00        100.0
+                                 IOLGC	       2.00        100.0
+                                  LUT4	     849.00        100.0
+                               DISTRAM	      54.00        100.0
+                                 IOREG	          2        100.0
+                                 IOBUF	         12        100.0
+                                PFUREG	        500        100.0
+                                RIPPLE	        100        100.0
+SUB MODULES
+                                  cell	      count    SLC Usage(%)
+                          usb_pll_inst	          1         0.1
+                   tinyfpga_bootloader	          1        98.8
+---------------------------------------------------
+Report for cell tinyfpga_bootloader
+   Instance path: TinyFPGA_EX/tinyfpga_bootloader_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	     681.83        98.8
+                                  LUT4	     844.00        99.4
+                               DISTRAM	      54.00        100.0
+                                PFUREG	        490        98.0
+                                RIPPLE	         95        95.0
+SUB MODULES
+                                  cell	      count    SLC Usage(%)
+                     usb_spi_bridge_ep	          1        15.5
+                    usb_serial_ctrl_ep	          1        18.3
+                         usb_fs_pe_2_3	          1        55.7
+---------------------------------------------------
+Report for cell usb_fs_pe_2_3
+   Instance path: TinyFPGA_EX/tinyfpga_bootloader_inst/usb_fs_pe_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	     384.33        55.7
+                                  LUT4	     513.00        60.4
+                               DISTRAM	      54.00        100.0
+                                PFUREG	        267        53.4
+                                RIPPLE	         18        18.0
+SUB MODULES
+                                  cell	      count    SLC Usage(%)
+                             usb_fs_tx	          1         9.2
+                         usb_fs_tx_mux	          1         0.3
+                             usb_fs_rx	          1        10.1
+usb_fs_out_pe_2_32s_0s_1s_2s_3s_0s_1s_2s_3s	          1        16.2
+                      usb_fs_out_arb_2	          1         0.0
+usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s	          1        19.1
+                       usb_fs_in_arb_3	          1         0.6
+---------------------------------------------------
+Report for cell usb_fs_tx
+   Instance path: TinyFPGA_EX/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      63.50         9.2
+                                  LUT4	     113.00        13.3
+                                PFUREG	         63        12.6
+---------------------------------------------------
+Report for cell usb_fs_tx_mux
+   Instance path: TinyFPGA_EX/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_mux_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       2.33         0.3
+                                  LUT4	       7.00         0.8
+---------------------------------------------------
+Report for cell usb_fs_rx
+   Instance path: TinyFPGA_EX/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      69.67        10.1
+                                  LUT4	     105.00        12.4
+                                PFUREG	         90        18.0
+---------------------------------------------------
+Report for cell usb_fs_out_pe_2_32s_0s_1s_2s_3s_0s_1s_2s_3s
+   Instance path: TinyFPGA_EX/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	     111.83        16.2
+                                  LUT4	     128.00        15.1
+                               DISTRAM	      24.00        44.4
+                                PFUREG	         53        10.6
+                                RIPPLE	         10        10.0
+---------------------------------------------------
+Report for cell usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s
+   Instance path: TinyFPGA_EX/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	     131.83        19.1
+                                  LUT4	     149.00        17.6
+                               DISTRAM	      30.00        55.6
+                                PFUREG	         61        12.2
+                                RIPPLE	          8         8.0
+---------------------------------------------------
+Report for cell usb_fs_out_arb_2
+   Instance path: TinyFPGA_EX/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_arb_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       0.33         0.0
+                                  LUT4	       1.00         0.1
+---------------------------------------------------
+Report for cell usb_fs_in_arb_3
+   Instance path: TinyFPGA_EX/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_arb_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       3.83         0.6
+                                  LUT4	       8.00         0.9
+---------------------------------------------------
+Report for cell usb_spi_bridge_ep
+   Instance path: TinyFPGA_EX/tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	     106.67        15.5
+                                  LUT4	     135.00        15.9
+                                PFUREG	         66        13.2
+                                RIPPLE	         18        18.0
+---------------------------------------------------
+Report for cell usb_serial_ctrl_ep
+   Instance path: TinyFPGA_EX/tinyfpga_bootloader_inst/ctrl_ep_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	     126.50        18.3
+                                  LUT4	     153.00        18.0
+                                PFUREG	         91        18.2
+                                RIPPLE	         18        18.0
+SUB MODULES
+                                  cell	      count    SLC Usage(%)
+                rising_edge_detector_0	          1         0.1
+                 falling_edge_detector	          1         0.1
+---------------------------------------------------
+Report for cell rising_edge_detector_0
+   Instance path: TinyFPGA_EX/tinyfpga_bootloader_inst/ctrl_ep_inst/detect_in_data_transfer_done
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       0.50         0.1
+                                PFUREG	          1         0.2
+---------------------------------------------------
+Report for cell falling_edge_detector
+   Instance path: TinyFPGA_EX/tinyfpga_bootloader_inst/ctrl_ep_inst/detect_pkt_end
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       0.67         0.1
+                                  LUT4	       1.00         0.1
+                                PFUREG	          1         0.2
+---------------------------------------------------
+Report for cell usb_pll_inst
+   Instance path: TinyFPGA_EX/usb_pll_inst_inst
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	       1.00         0.1
+                                  LUT4	       1.00         0.1

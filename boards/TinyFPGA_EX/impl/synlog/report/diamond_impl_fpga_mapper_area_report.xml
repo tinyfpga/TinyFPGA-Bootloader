@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- *************************************************************************************
+FILE DESCRIPTION
+The file contains the area information from mapper to be displayed as part of the summary report.
+*******************************************************************************************-->
+<report_table display_priority="1" name="Area Summary">
+<report_link name="Detailed report">
+<data>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synlog\report\diamond_impl_fpga_mapper_resourceusage.rpt</data>
+<title>Resource Usage</title>
+</report_link>
+<parameter tooltip="Total Register bits used" name="Register bits">
+<data>502</data>
+</parameter>
+<parameter tooltip="Total I/O cells used" name="I/O cells">
+<data>12</data>
+</parameter>
+<parameter tcl_name="v_ram" tooltip="Total Block RAMs used" name="Block RAMs">
+<data>0</data>
+</parameter>
+<parameter tcl_name="dsp_used" tooltip="Total DSPs used" name="DSPs">
+<data>0</data>
+</parameter>
+<parameter tcl_name="total_luts" tooltip="Total ORCA LUTs used" name="ORCA LUTs">
+<data>811</data>
+</parameter>
+</report_table>

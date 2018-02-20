@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- *************************************************************************************
+FILE DESCRIPTION
+The file contains the optimization information from mapper to be displayed as part of the summary report.
+*******************************************************************************************-->
+<report_table display_priority="3" name="Optimizations Summary">
+<parameter tooltip="Non-gated/non-generated clock trees / Gated/generated clock trees" name="Combined Clock Conversion">
+<data>1 / 1</data>
+<report_link name="more">
+<data>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synlog\report\diamond_impl_fpga_mapper_combined_clk.rpt</data>
+<title>START OF CLOCK OPTIMIZATION REPORT</title>
+</report_link>
+</parameter>
+</report_table>

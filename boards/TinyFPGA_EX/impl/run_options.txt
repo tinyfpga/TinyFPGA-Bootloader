@@ -1,0 +1,91 @@
+#--  Synopsys, Inc.
+#--  Version L-2016.09L
+#--  Project file C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\run_options.txt
+#--  Written on Mon Feb 19 19:52:39 2018
+
+
+#project files
+add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/boards/TinyFPGA_EX/bootloader.v"
+add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/common/edge_detect.v"
+add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/common/tinyfpga_bootloader.v"
+add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/common/usb_fs_in_arb.v"
+add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/common/usb_fs_in_pe.v"
+add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/common/usb_fs_out_arb.v"
+add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/common/usb_fs_out_pe.v"
+add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/common/usb_fs_pe.v"
+add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/common/usb_fs_rx.v"
+add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/common/usb_fs_tx.v"
+add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/common/usb_fs_tx_mux.v"
+add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/common/usb_reset_det.v"
+add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/common/usb_serial_ctrl_ep.v"
+add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/common/usb_spi_bridge_ep.v"
+add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/boards/TinyFPGA_EX/impl/source/usb_pll_inst.v"
+
+
+
+#implementation: "impl"
+impl -add impl -type fpga
+
+#
+#implementation attributes
+
+set_option -vlog_std v2001
+set_option -project_relative_includes 1
+set_option -include_path {C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/boards/TinyFPGA_EX}
+
+#device options
+set_option -technology ECP5U
+set_option -part LFE5U_25F
+set_option -package MG285C
+set_option -speed_grade -6
+set_option -part_companion ""
+
+#compilation/mapping options
+set_option -top_module "TinyFPGA_EX"
+
+# hdl_compiler_options
+set_option -distributed_compile 0
+
+# mapper_without_write_options
+set_option -frequency auto
+set_option -srs_instrumentation 1
+
+# mapper_options
+set_option -write_verilog 0
+set_option -write_vhdl 0
+
+# Lattice XP
+set_option -maxfan 1000
+set_option -disable_io_insertion 0
+set_option -retiming 0
+set_option -pipe 1
+set_option -forcegsr false
+set_option -fix_gated_and_generated_clocks 1
+set_option -rw_check_on_ram 1
+set_option -update_models_cp 0
+set_option -syn_edif_array_rename 1
+set_option -Write_declared_clocks_only 1
+
+# NFilter
+set_option -no_sequential_opt 0
+
+# sequential_optimization_options
+set_option -symbolic_fsm_compiler 1
+
+# Compiler Options
+set_option -compiler_compatible 0
+set_option -resource_sharing 1
+set_option -multi_file_compilation_unit 1
+
+# Compiler Options
+set_option -auto_infer_blackbox 0
+
+#automatic place and route (vendor) options
+set_option -write_apr_constraint 1
+
+#set result format/file last
+project -result_file "./diamond_impl.edi"
+
+#set log file 
+set_option log_file "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/boards/TinyFPGA_EX/impl/diamond_impl.srf" 
+impl -active "impl"

@@ -1,0 +1,14 @@
+test.v
+../../common/edge_detect.v
+../../common/tinyfpga_bootloader.v
+../../common/usb_fs_in_arb.v
+../../common/usb_fs_in_pe.v
+../../common/usb_fs_out_arb.v
+../../common/usb_fs_out_pe.v
+../../common/usb_fs_pe.v
+../../common/usb_fs_rx.v
+../../common/usb_fs_tx.v
+../../common/usb_fs_tx_mux.v
+../../common/usb_reset_det.v
+../../common/usb_serial_ctrl_ep.v
+../../common/usb_spi_bridge_ep.v

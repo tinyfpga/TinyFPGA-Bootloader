@@ -1,0 +1,2 @@
+CKID0001:@|S:usb_pll_inst_inst.PLLInst_0@|E:tinyfpga_bootloader_inst.count_down@|F:@syn_sample_clock_path==CKID0001@|M:ClockId0001 
+CKID0002:@|S:pin_clk@|E:boot_delay[0]@|F:@syn_sample_clock_path==CKID0002@|M:ClockId0002 

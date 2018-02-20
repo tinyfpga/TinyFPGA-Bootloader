@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!-- 
+  Synopsys, Inc.
+  Version L-2016.09L
+  Project file C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\syntmp\run_option.xml
+  Written on Mon Feb 19 19:52:39 2018
+
+
+--> 
+<project_attribute_list name="Project Settings"> 
+     <option name="project_name" display_name="Project Name">proj_1</option>
+     <option name="impl_name" display_name="Implementation Name">impl</option>
+     <option name="top_module" display_name="Top Module">TinyFPGA_EX</option>
+     <option name="pipe" display_name="Pipelining">1</option>
+     <option name="retiming" display_name="Retiming">0</option>
+     <option name="resource_sharing" display_name="Resource Sharing">1</option>
+     <option name="maxfan" display_name="Fanout Guide">1000</option>
+     <option name="disable_io_insertion" display_name="Disable I/O Insertion">0</option>
+     <option name="no_sequential_opt" display_name="Disable Sequential Optimizations">0</option>
+     <option name="fix_gated_and_generated_clocks" display_name="Clock Conversion">1</option>
+     <option name="symbolic_fsm_compiler" display_name="FSM Compiler">1</option>
+</project_attribute_list>
+

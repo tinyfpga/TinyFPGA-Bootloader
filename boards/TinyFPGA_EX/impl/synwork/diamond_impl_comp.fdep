@@ -1,0 +1,87 @@
+#OPTIONS:"|-layerid|0|-orig_srs|C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\boards\\TinyFPGA_EX\\impl\\synwork\\diamond_impl_comp.srs|-top|TinyFPGA_EX|-prodtype|synplify_pro|-dspmac|-fixsmult|-infer_seqShift|-nram|-sdff_counter|-divnmod|-nostructver|-I|C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\boards\\TinyFPGA_EX|-I|C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\boards\\TinyFPGA_EX\\impl\\|-I|C:\\lscc\\diamond\\3.9_x64\\synpbase\\lib|-v2001|-devicelib|C:\\lscc\\diamond\\3.9_x64\\synpbase\\lib\\lucent\\ecp5u.v|-devicelib|C:\\lscc\\diamond\\3.9_x64\\synpbase\\lib\\lucent\\pmi_def.v|-encrypt|-pro|-ui|-fid2|-ram|-sharing|on|-ll|2000|-autosm|-D_MULTIPLE_FILE_COMPILATION_UNIT_|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work"
+#CUR:"C:\\lscc\\diamond\\3.9_x64\\synpbase\\bin64\\c_ver.exe":1481017140
+#CUR:"C:\\lscc\\diamond\\3.9_x64\\synpbase\\lib\\lucent\\ecp5u.v":1481014422
+#CUR:"C:\\lscc\\diamond\\3.9_x64\\synpbase\\lib\\lucent\\pmi_def.v":1481014424
+#CUR:"C:\\lscc\\diamond\\3.9_x64\\synpbase\\lib\\vlog\\hypermods.v":1481016754
+#CUR:"C:\\lscc\\diamond\\3.9_x64\\synpbase\\lib\\vlog\\umr_capim.v":1481016754
+#CUR:"C:\\lscc\\diamond\\3.9_x64\\synpbase\\lib\\vlog\\scemi_objects.v":1481016754
+#CUR:"C:\\lscc\\diamond\\3.9_x64\\synpbase\\lib\\vlog\\scemi_pipes.svh":1481016754
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\boards\\TinyFPGA_EX\\bootloader.v":1519098027
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\edge_detect.v":1517376190
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\tinyfpga_bootloader.v":1518985392
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_in_arb.v":1517376190
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_in_pe.v":1519073936
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_out_arb.v":1517376190
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_out_pe.v":1518985942
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_pe.v":1517779770
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_rx.v":1518985544
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_tx.v":1518985762
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_tx_mux.v":1517376190
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_reset_det.v":1517779408
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_serial_ctrl_ep.v":1519074294
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_spi_bridge_ep.v":1519098010
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\boards\\TinyFPGA_EX\\impl\\source\\usb_pll_inst.v":1517877284
+0			"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v" verilog
+1			"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\edge_detect.v" verilog
+2			"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\tinyfpga_bootloader.v" verilog
+3			"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_arb.v" verilog
+4			"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v" verilog
+5			"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_arb.v" verilog
+6			"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v" verilog
+7			"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_pe.v" verilog
+8			"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_rx.v" verilog
+9			"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v" verilog
+10			"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx_mux.v" verilog
+11			"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_reset_det.v" verilog
+12			"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v" verilog
+13			"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v" verilog
+14			"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\source\usb_pll_inst.v" verilog
+#Dependency Lists(Uses List)
+0 2 14
+1 -1
+2 7 13 12
+3 -1
+4 -1
+5 -1
+6 -1
+7 9 10 8 6 4 5 3
+8 -1
+9 -1
+10 -1
+11 -1
+12 1
+13 -1
+14 -1
+#Dependency Lists(Users Of)
+0 -1
+1 12
+2 0
+3 7
+4 7
+5 7
+6 7
+7 2
+8 7
+9 7
+10 7
+11 -1
+12 2
+13 2
+14 0
+#Design Unit to File Association
+module work usb_reset_det 11
+module work usb_fs_tx 9
+module work usb_fs_tx_mux 10
+module work usb_fs_rx 8
+module work usb_fs_out_pe 6
+module work usb_fs_out_arb 5
+module work usb_fs_in_pe 4
+module work usb_fs_in_arb 3
+module work usb_fs_pe 7
+module work usb_spi_bridge_ep 13
+module work usb_serial_ctrl_ep 12
+module work falling_edge_detector 1
+module work rising_edge_detector 1
+module work TinyFPGA_EX 0
+module work tinyfpga_bootloader 2
+module work usb_pll_inst 14

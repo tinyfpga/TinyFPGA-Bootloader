@@ -1,0 +1,12 @@
+set_io -nowarn pin_clk    35
+set_io -nowarn BTN_N      10
+set_io -nowarn pin_led    11
+
+set_io -nowarn pin_32_sck 15
+set_io -nowarn pin_30_cs  16
+set_io -nowarn pin_31_mosi 14
+set_io -nowarn pin_29_miso 17
+
+set_io -nowarn pin_usbp   43
+set_io -nowarn pin_usbn   42
+set_io -nowarn pin_pu     38

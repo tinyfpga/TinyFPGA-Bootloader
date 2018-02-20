@@ -1,0 +1,190 @@
+----------------------------------------------------------------------
+Report for cell bootloader.TECH
+Register bits:  428 of 5280 (8.106%)
+I/O cells:      0
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                           SB_CARRY       154          100.0
+                             SB_DFF        62          100.0
+                            SB_DFFE       159          100.0
+                          SB_DFFESR        90          100.0
+                          SB_DFFESS        42          100.0
+                           SB_DFFSR        70          100.0
+                           SB_DFFSS         5          100.0
+                              SB_IO         8          100.0
+                            SB_LUT4       811          100.0
+                       SB_PLL40_PAD         1          100.0
+                        SB_RAM512x8         3          100.0
+                        SB_WARMBOOT         1          100.0
+SUB MODULES
+              falling_edge_detector         1
+               rising_edge_detector         1
+                tinyfpga_bootloader         1
+   usb_fs_in_arb(NUM_IN_EPS=5'b011)         1
+    usb_fs_in_pe(NUM_IN_EPS=5'b011)         1
+ usb_fs_out_arb(NUM_OUT_EPS=5'b010)         1
+  usb_fs_out_pe(NUM_OUT_EPS=5'b010)         1
+usb_fs_pe(NUM_OUT_EPS=5'b010,NUM_IN_EPS=5'b011)         1
+                          usb_fs_rx         1
+                          usb_fs_tx         1
+                 usb_serial_ctrl_ep         1
+                  usb_spi_bridge_ep         1
+                              TOTAL      1418
+----------------------------------------------------------------------
+Report for cell tinyfpga_bootloader.v1
+Instance Path : tinyfpga_bootloader_inst
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                           SB_CARRY       154          100.0
+                             SB_DFF        62          100.0
+                            SB_DFFE       159          100.0
+                          SB_DFFESR        90          100.0
+                          SB_DFFESS        42          100.0
+                           SB_DFFSR        70          100.0
+                           SB_DFFSS         5          100.0
+                            SB_LUT4       790           97.4
+                        SB_RAM512x8         3          100.0
+SUB MODULES
+              falling_edge_detector         1
+               rising_edge_detector         1
+   usb_fs_in_arb(NUM_IN_EPS=5'b011)         1
+    usb_fs_in_pe(NUM_IN_EPS=5'b011)         1
+ usb_fs_out_arb(NUM_OUT_EPS=5'b010)         1
+  usb_fs_out_pe(NUM_OUT_EPS=5'b010)         1
+usb_fs_pe(NUM_OUT_EPS=5'b010,NUM_IN_EPS=5'b011)         1
+                          usb_fs_rx         1
+                          usb_fs_tx         1
+                 usb_serial_ctrl_ep         1
+                  usb_spi_bridge_ep         1
+                              TOTAL      1386
+----------------------------------------------------------------------
+Report for cell usb_spi_bridge_ep.v1
+Instance Path : tinyfpga_bootloader_inst.usb_spi_bridge_ep_inst
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                           SB_CARRY        30           19.5
+                             SB_DFF         8           12.9
+                            SB_DFFE        47           29.6
+                          SB_DFFESR         5            5.6
+                           SB_DFFSR         8           11.4
+                            SB_LUT4       170           21.0
+                              TOTAL       268
+----------------------------------------------------------------------
+Report for cell usb_fs_pe(NUM_OUT_EPS=5'b010,NUM_IN_EPS=5'b011).v1
+Instance Path : tinyfpga_bootloader_inst.usb_fs_pe_inst
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                           SB_CARRY        20           13.0
+                             SB_DFF        33           53.2
+                            SB_DFFE        49           30.8
+                          SB_DFFESR        60           66.7
+                          SB_DFFESS        42          100.0
+                           SB_DFFSR        19           27.1
+                           SB_DFFSS         5          100.0
+                            SB_LUT4       393           48.5
+                        SB_RAM512x8         2           66.7
+SUB MODULES
+   usb_fs_in_arb(NUM_IN_EPS=5'b011)         1
+    usb_fs_in_pe(NUM_IN_EPS=5'b011)         1
+ usb_fs_out_arb(NUM_OUT_EPS=5'b010)         1
+  usb_fs_out_pe(NUM_OUT_EPS=5'b010)         1
+                          usb_fs_rx         1
+                          usb_fs_tx         1
+                              TOTAL       629
+----------------------------------------------------------------------
+Report for cell usb_fs_tx.v1
+Instance Path : tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                             SB_DFF        10           16.1
+                            SB_DFFE        23           14.5
+                          SB_DFFESR         8            8.9
+                          SB_DFFESS        18           42.9
+                           SB_DFFSR         1            1.4
+                           SB_DFFSS         2           40.0
+                            SB_LUT4        81           10.0
+                              TOTAL       143
+----------------------------------------------------------------------
+Report for cell usb_fs_rx.v1
+Instance Path : tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                             SB_DFF         6            9.7
+                            SB_DFFE        17           10.7
+                          SB_DFFESR        32           35.6
+                          SB_DFFESS        24           57.1
+                           SB_DFFSR         4            5.7
+                           SB_DFFSS         1           20.0
+                            SB_LUT4        70            8.6
+                              TOTAL       154
+----------------------------------------------------------------------
+Report for cell usb_fs_out_pe(NUM_OUT_EPS=5'b010).v1
+Instance Path : tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                           SB_CARRY         5            3.2
+                             SB_DFF        10           16.1
+                            SB_DFFE         5            3.1
+                          SB_DFFESR         8            8.9
+                           SB_DFFSR         8           11.4
+                            SB_LUT4        90           11.1
+                        SB_RAM512x8         1           33.3
+                              TOTAL       127
+----------------------------------------------------------------------
+Report for cell usb_fs_out_arb(NUM_OUT_EPS=5'b010).v1
+Instance Path : tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_arb_inst
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            SB_LUT4         2            0.2
+                              TOTAL         2
+----------------------------------------------------------------------
+Report for cell usb_fs_in_pe(NUM_IN_EPS=5'b011).v1
+Instance Path : tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                           SB_CARRY        15            9.7
+                             SB_DFF         7           11.3
+                            SB_DFFE         4            2.5
+                          SB_DFFESR        12           13.3
+                           SB_DFFSR         6            8.6
+                           SB_DFFSS         2           40.0
+                            SB_LUT4       139           17.1
+                        SB_RAM512x8         1           33.3
+                              TOTAL       186
+----------------------------------------------------------------------
+Report for cell usb_fs_in_arb(NUM_IN_EPS=5'b011).v1
+Instance Path : tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_arb_inst
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            SB_LUT4         9            1.1
+                              TOTAL         9
+----------------------------------------------------------------------
+Report for cell usb_serial_ctrl_ep.v1
+Instance Path : tinyfpga_bootloader_inst.ctrl_ep_inst
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                           SB_CARRY        13            8.4
+                             SB_DFF        11           17.7
+                            SB_DFFE        53           33.3
+                          SB_DFFESR        15           16.7
+                           SB_DFFSR         5            7.1
+                            SB_LUT4       101           12.5
+                        SB_RAM512x8         1           33.3
+SUB MODULES
+              falling_edge_detector         1
+               rising_edge_detector         1
+                              TOTAL       201
+----------------------------------------------------------------------
+Report for cell falling_edge_detector.v1
+Instance Path : tinyfpga_bootloader_inst.ctrl_ep_inst.detect_pkt_end
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            SB_LUT4         5            0.6
+                              TOTAL         5
+----------------------------------------------------------------------
+Report for cell rising_edge_detector.v1
+Instance Path : tinyfpga_bootloader_inst.ctrl_ep_inst.detect_in_data_transfer_done
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                             SB_DFF         1            1.6
+                              TOTAL         1

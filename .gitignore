@@ -1,3 +1,4 @@
+*.gtkw
 *_Implmnt/
 stdout.log
 synlog.tcl

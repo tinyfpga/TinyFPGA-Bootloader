@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------
+Lattice Synthesis Timing Report, Version  
+Mon Feb 19 15:07:14 2018
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2016 Lattice Semiconductor Corporation,  All rights reserved.
+
+Report Information
+------------------
+Design:     bootloader
+Constraint file:  
+Report level:    verbose report, limited to 3 items per constraint
+--------------------------------------------------------------------------------
+
+
+
+================================================================================
+Constraint: create_clock -period 20.833333 -name clk1 [get_nets clk_48mhz]
+            0 items scored, 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+
+================================================================================
+Constraint: create_clock -period 20.833333 -name clk0 [get_nets pin_clk]
+            0 items scored, 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+Timing Report Summary
+--------------
+--------------------------------------------------------------------------------
+Constraint                              |   Constraint|       Actual|Levels
+--------------------------------------------------------------------------------
+                                        |             |             |
+create_clock -period 20.833333 -name    |             |             |
+clk1 [get_nets clk_48mhz]               |            -|            -|     0  
+                                        |             |             |
+create_clock -period 20.833333 -name    |             |             |
+clk0 [get_nets pin_clk]                 |            -|            -|     0  
+                                        |             |             |
+--------------------------------------------------------------------------------
+
+
+All constraints were met.
+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0
+
+Constraints cover  0 paths, 0 nets, and 0 connections (0.0% coverage)
+
+
+Peak memory: 50737152 bytes, TRCE: 0 bytes, DLYMAN: 0 bytes
+CPU_TIME_REPORT: 0 secs 

@@ -1,0 +1,2 @@
+@E: CG389 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v":29:15:29:31|Reference to undefined module usb_pll_inst
+

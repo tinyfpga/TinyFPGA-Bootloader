@@ -1,0 +1,49 @@
+#Build: Synplify Pro L-2016.09L, Build 077R, Dec  2 2016
+#install: C:\lscc\diamond\3.9_x64\synpbase
+#OS: Windows 8 6.2
+#Hostname: DESKTOP-V34NFE6
+
+# Mon Feb 19 15:32:32 2018
+
+#Implementation: impl
+
+Synopsys HDL Compiler, version comp2016q3p1, Build 141R, built Dec  5 2016
+@N|Running in 64-bit mode
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+
+Synopsys Verilog Compiler, version comp2016q3p1, Build 141R, built Dec  5 2016
+@N|Running in 64-bit mode
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+
+@I::"C:\lscc\diamond\3.9_x64\synpbase\lib\lucent\ecp5u.v" (library work)
+@I::"C:\lscc\diamond\3.9_x64\synpbase\lib\lucent\pmi_def.v" (library work)
+@I::"C:\lscc\diamond\3.9_x64\synpbase\lib\vlog\hypermods.v" (library __hyper__lib__)
+@I::"C:\lscc\diamond\3.9_x64\synpbase\lib\vlog\umr_capim.v" (library snps_haps)
+@I::"C:\lscc\diamond\3.9_x64\synpbase\lib\vlog\scemi_objects.v" (library snps_haps)
+@I::"C:\lscc\diamond\3.9_x64\synpbase\lib\vlog\scemi_pipes.svh" (library snps_haps)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\edge_detect.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\tinyfpga_bootloader.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_arb.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_arb.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_pe.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_rx.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx_mux.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_reset_det.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v" (library work)
+@I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v" (library work)
+Verilog syntax check successful!
+Selecting top level module TinyFPGA_EX
+@E: CG389 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v":29:15:29:31|Reference to undefined module usb_pll_inst
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Mon Feb 19 15:32:32 2018
+
+###########################################################]
+@END
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Mon Feb 19 15:32:32 2018
+
+###########################################################]

@@ -1,0 +1,82 @@
+#--  Synopsys, Inc.
+#--  Version L-2016.09L+ice40
+#--  Project file C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\ICEBreaker_bitsy\icecube2\icecube2_syn.prj
+#--  Written on Mon Feb 19 15:12:10 2018
+
+
+#project files
+
+
+
+add_file -verilog -lib work "../bootloader.v" 
+add_file -verilog -lib work "../../../common/edge_detect.v" 
+add_file -verilog -lib work "../../../common/tinyfpga_bootloader.v" 
+add_file -verilog -lib work "../../../common/usb_fs_in_arb.v" 
+add_file -verilog -lib work "../../../common/usb_fs_in_pe.v" 
+add_file -verilog -lib work "../../../common/usb_fs_out_arb.v" 
+add_file -verilog -lib work "../../../common/usb_fs_out_pe.v" 
+add_file -verilog -lib work "../../../common/usb_fs_pe.v" 
+add_file -verilog -lib work "../../../common/usb_fs_rx.v" 
+add_file -verilog -lib work "../../../common/usb_fs_tx.v" 
+add_file -verilog -lib work "../../../common/usb_fs_tx_mux.v" 
+add_file -verilog -lib work "../../../common/usb_serial_ctrl_ep.v" 
+add_file -verilog -lib work "../../../common/usb_spi_bridge_ep.v" 
+#implementation: "icecube2_Implmnt"
+impl -add icecube2_Implmnt -type fpga
+
+#
+#implementation attributes
+
+set_option -vlog_std v2001
+set_option -project_relative_includes 1
+
+#device options
+set_option -technology SBTiCE40UP
+set_option -part iCE40UP5K
+set_option -package SG48
+set_option -speed_grade 
+set_option -part_companion ""
+
+#compilation/mapping options
+
+# hdl_compiler_options
+set_option -distributed_compile 0
+
+# mapper_without_write_options
+set_option -frequency 4
+set_option -srs_instrumentation 1
+
+# mapper_options
+set_option -write_verilog 0
+set_option -write_vhdl 0
+
+# Lattice iCE40UP
+set_option -maxfan 10000
+set_option -rw_check_on_ram 0
+set_option -disable_io_insertion 0
+set_option -pipe 1
+set_option -retiming 1
+set_option -update_models_cp 0
+set_option -fix_gated_and_generated_clocks 1
+set_option -run_prop_extract 1
+
+# NFilter
+set_option -no_sequential_opt 0
+
+# sequential_optimization_options
+set_option -symbolic_fsm_compiler 1
+
+# Compiler Options
+set_option -compiler_compatible 0
+set_option -resource_sharing 1
+
+# Compiler Options
+set_option -auto_infer_blackbox 0
+
+#automatic place and route (vendor) options
+set_option -write_apr_constraint 1
+
+#set result format/file last
+project -result_file "icecube2_Implmnt/icecube2.edf"
+impl -active icecube2_Implmnt
+project -run synthesis -clean

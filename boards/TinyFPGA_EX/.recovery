@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="3.2" title="diamond" device="LFE5U-25F-6MG285C" default_implementation="impl">
+    <Options/>
+    <Implementation title="impl" dir="impl" description="impl" synthesis="synplify" default_strategy="Strategy1">
+        <Options def_top="usb_reset_det" top="TinyFPGA_EX"/>
+        <Source name="bootloader.v" type="Verilog" type_short="Verilog">
+            <Options top_module="TinyFPGA_EX"/>
+        </Source>
+        <Source name="../../common/edge_detect.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="../../common/tinyfpga_bootloader.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="../../common/usb_fs_in_arb.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="../../common/usb_fs_in_pe.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="../../common/usb_fs_out_arb.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="../../common/usb_fs_out_pe.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="../../common/usb_fs_pe.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="../../common/usb_fs_rx.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="../../common/usb_fs_tx.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="../../common/usb_fs_tx_mux.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="../../common/usb_reset_det.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="../../common/usb_serial_ctrl_ep.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="../../common/usb_spi_bridge_ep.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="impl/source/usb_pll_inst.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="diamond.lpf" type="Logic Preference" type_short="LPF">
+            <Options/>
+        </Source>
+        <Source name="power.pcf" type="Power Calculator" type_short="PCF" excluded="TRUE">
+            <Options/>
+        </Source>
+    </Implementation>
+    <Strategy name="Strategy1" file="diamond1.sty"/>
+</BaliProject>

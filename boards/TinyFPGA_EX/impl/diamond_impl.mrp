@@ -1,0 +1,930 @@
+
+         Lattice Mapping Report File for Design Module 'TinyFPGA_EX'
+
+
+Design Information
+------------------
+
+Command line:   map -a ECP5U -p LFE5U-25F -t CSFBGA285 -s 6 -oc Commercial
+     diamond_impl.ngd -o diamond_impl_map.ncd -pr diamond_impl.prf -mp
+     diamond_impl.mrp -lpf C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Boot
+     loader/boards/TinyFPGA_EX/impl/diamond_impl_synplify.lpf -lpf C:/Users/lval
+     e/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/boards/TinyFPGA_EX/diamond.l
+     pf -gui 
+Target Vendor:  LATTICE
+Target Device:  LFE5U-25FCSFBGA285
+Target Performance:   6
+Mapper:  sa5p00,  version:  Diamond (64-bit) 3.9.0.99.2
+Mapped on:  02/19/18  19:52:50
+
+Design Summary
+--------------
+
+   Number of registers:    502 out of 24642 (2%)
+      PFU registers:          500 out of 24288 (2%)
+      PIO registers:            2 out of   354 (1%)
+   Number of SLICEs:       690 out of 12144 (6%)
+      SLICEs as Logic/ROM:    636 out of 12144 (5%)
+      SLICEs as RAM:           54 out of  9108 (1%)
+      SLICEs as Carry:        100 out of 12144 (1%)
+   Number of LUT4s:        1157 out of 24288 (5%)
+      Number used as logic LUTs:        849
+      Number used as distributed RAM:   108
+      Number used as ripple logic:      200
+      Number used as shift registers:     0
+   Number of PIO sites used: 12 out of 118 (10%)
+   Number of block RAMs:  0 out of 56 (0%)
+   Number of GSRs:  0 out of 1 (0%)
+   JTAG used :      No
+   Readback used :  No
+   Oscillator used :  No
+   Startup used :   No
+   DTR used :   No
+   Number of Dynamic Bank Controller (BCINRD):  0 out of 4 (0%)
+   Number of Dynamic Bank Controller (BCLVDSOB):  0 out of 4 (0%)
+   Number of DCC:  0 out of 60 (0%)
+   Number of DCS:  0 out of 2 (0%)
+   Number of PLLs:  1 out of 2 (50%)
+   Number of DDRDLLs:  0 out of 4 (0%)
+   Number of CLKDIV:  0 out of 4 (0%)
+   Number of ECLKSYNC:  0 out of 10 (0%)
+   Number of ECLKBRIDGECS:  0 out of 2 (0%)
+   Notes:-
+      1. Total number of LUT4s = (Number of logic LUT4s) + 2*(Number of
+     distributed RAMs) + 2*(Number of ripple logic)
+      2. Number of logic LUT4s does not include count of distributed RAM and
+     ripple logic.
+
+        Number Of Mapped DSP Components:
+   --------------------------------
+   MULT18X18D          0
+   MULT9X9D            0
+   ALU54B              0
+
+                                    Page 1
+
+
+
+
+Design:  TinyFPGA_EX                                   Date:  02/19/18  19:52:50
+
+Design Summary (cont)
+---------------------
+   ALU24B              0
+   PRADD18A            0
+   PRADD9A             0
+   --------------------------------
+   Number of Used DSP MULT Sites:  0 out of 56 (0 %)
+   Number of Used DSP ALU Sites:  0 out of 28 (0 %)
+   Number of Used DSP PRADD Sites:  0 out of 56 (0 %)
+   Number of clocks:  2
+     Net pin_clk_c: 7 loads, 7 rising, 0 falling (Driver: PIO pin_clk )
+     Net clk_48mhz: 336 loads, 336 rising, 0 falling (Driver:
+     usb_pll_inst_inst/PLLInst_0 )
+   Number of Clock Enables:  38
+     Net initiate_boot: 5 loads, 5 LSLICEs
+     Net get_spi_out_data_q_RNI6Q2O: 5 loads, 4 LSLICEs
+     Net tinyfpga_bootloader_inst.usb_spi_bridge_ep_inst.spi_get_bit_q: 5 loads,
+     4 LSLICEs
+     Net tinyfpga_bootloader_inst/us_rst: 5 loads, 5 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/bit_count14: 1
+     loads, 1 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/in_xfr_state_i_d[1]: 2 loads, 2
+     LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/tx_pkt_start: 3 loads, 3
+     LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/un1_pkt_state41_
+     3_i: 1 loads, 1 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/oe_shift_reg_0_s
+     qmuxa_1_i: 6 loads, 6 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/g0_0_11: 1
+     loads, 1 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/un1_pkt_state41_
+     1_i: 2 loads, 2 LSLICEs
+     Net
+     tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/crc16_1_sqmuxa_i: 8
+     loads, 8 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/token_payload_1_
+     sqmuxa_i: 6 loads, 6 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/rx_data_buffer_1
+     _sqmuxa_i: 5 loads, 5 LSLICEs
+     Net
+     tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/line_state_valid: 6
+     loads, 6 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/full_pid_1_sqmux
+     a_i: 8 loads, 8 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/addr4: 6 loads,
+     6 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/crc5_1_sqmuxa_i:
+     11 loads, 11 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un1_out_ep_s
+     etup_1_sqmuxa_5: 1 loads, 1 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/out_xfr_stat
+     e_297_d: 1 loads, 1 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/out_xfr_star
+     t_0_sqmuxa: 2 loads, 2 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un1_ep_put_a
+     ddr[1]_0_sqmuxa: 3 loads, 3 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un1_ep_put_a
+
+                                    Page 2
+
+
+
+
+Design:  TinyFPGA_EX                                   Date:  02/19/18  19:52:50
+
+Design Summary (cont)
+---------------------
+     ddr[0]_0_sqmuxa: 6 loads, 6 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/N_185: 3
+     loads, 3 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/N_183: 3
+     loads, 3 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/N_184: 3
+     loads, 3 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/data_out_lengthe: 8
+     loads, 8 LSLICEs
+     Net
+     tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/data_in_length_1_sqmuxa: 5
+     loads, 5 LSLICEs
+     Net tinyfpga_bootloader_inst/ctrl_ep_inst/new_dev_addr_1_sqmuxa: 4 loads, 4
+     LSLICEs
+     Net tinyfpga_bootloader_inst/ctrl_ep_inst/save_dev_addr_0_sqmuxa_i: 1
+     loads, 1 LSLICEs
+     Net tinyfpga_bootloader_inst/ctrl_ep_inst/rom_addre: 4 loads, 4 LSLICEs
+     Net tinyfpga_bootloader_inst/ctrl_ep_inst/raw_setup_data[7]_0_sqmuxa: 4
+     loads, 4 LSLICEs
+     Net tinyfpga_bootloader_inst/ctrl_ep_inst/raw_setup_data[6]_0_sqmuxa: 4
+     loads, 4 LSLICEs
+     Net tinyfpga_bootloader_inst/ctrl_ep_inst/raw_setup_data[3]_0_sqmuxa: 4
+     loads, 4 LSLICEs
+     Net tinyfpga_bootloader_inst/ctrl_ep_inst/raw_setup_data[2]_0_sqmuxa: 4
+     loads, 4 LSLICEs
+     Net tinyfpga_bootloader_inst/ctrl_ep_inst/raw_setup_data[1]_0_sqmuxa: 4
+     loads, 4 LSLICEs
+     Net tinyfpga_bootloader_inst/ctrl_ep_inst/raw_setup_data[0]_0_sqmuxa: 1
+     loads, 1 LSLICEs
+     Net tinyfpga_bootloader_inst/ctrl_ep_inst/dev_addr_i_0_sqmuxa: 4 loads, 4
+     LSLICEs
+   Number of LSRs:  16
+     Net tinyfpga_bootloader_inst/sof_valid: 17 loads, 17 LSLICEs
+     Net tinyfpga_bootloader_inst/us_rst: 4 loads, 4 LSLICEs
+     Net tinyfpga_bootloader_inst/count_down_0_sqmuxa_RNIR539: 4 loads, 4
+     LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/line_state33: 1
+     loads, 1 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/ep_state_1__
+     ns_i[0]: 1 loads, 1 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/ep_state_1__
+     355_d: 3 loads, 3 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/ep_state_0__
+     464_d: 4 loads, 4 LSLICEs
+     Net tinyfpga_bootloader_inst/ctrl_in_ep_stall: 1 loads, 1 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/current_endp_
+     RNI9SL05_1[0]: 3 loads, 3 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/ep_state_1__2
+     60_d: 4 loads, 4 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/ep_state_0__2
+     91_d: 4 loads, 4 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/current_endp_
+     RNI9SL05[0]: 3 loads, 3 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/current_endp_
+     RNI9SL05_0[0]: 3 loads, 3 LSLICEs
+     Net tinyfpga_bootloader_inst/send_zero_length_data_pkt_0_sqmuxa_i_0: 1
+
+                                    Page 3
+
+
+
+
+Design:  TinyFPGA_EX                                   Date:  02/19/18  19:52:50
+
+Design Summary (cont)
+---------------------
+     loads, 1 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/N_446_i: 2 loads, 2
+     LSLICEs
+     Net tinyfpga_bootloader_inst/ctrl_ep_inst/status_stage_end: 8 loads, 8
+     LSLICEs
+   Number of nets driven by tri-state buffers:  0
+   Top 10 highest fanout non-clock nets:
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/un16_ep_get_a
+     ddr[1]: 45 loads
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/un16_ep_get_a
+     ddr[0]: 44 loads
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/un16_ep_get_a
+     ddr[2]: 44 loads
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/un16_ep_get_a
+     ddr[3]: 44 loads
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/packet_valid: 44
+     loads
+     Net tinyfpga_bootloader_inst/ctrl_ep_inst/rom_addr[1]: 36 loads
+     Net tinyfpga_bootloader_inst/ctrl_ep_inst/rom_addr[2]: 35 loads
+     Net tinyfpga_bootloader_inst/ctrl_ep_inst/rom_addr[3]: 35 loads
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/buffer_get_a
+     ddr[0]: 32 loads
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/buffer_get_a
+     ddr[1]: 32 loads
+
+
+
+
+   Number of warnings:  5
+   Number of errors:    0
+     
+
+Design Errors/Warnings
+----------------------
+
+WARNING - map: Semantic error in "LOCATE COMP "pin_io3" SITE "N18" ;": The
+     signal "pin_io3" has been assigned to PIN "N18", which is a dual function
+     pin. This pin will be used during the configuration of the device. The pin
+     can be used for logic after configuration. External logic may be needed to
+     avoid contention on this pin.
+WARNING - map: Semantic error in "LOCATE COMP "pin_io2" SITE "R18" ;": The
+     signal "pin_io2" has been assigned to PIN "R18", which is a dual function
+     pin. This pin will be used during the configuration of the device. The pin
+     can be used for logic after configuration. External logic may be needed to
+     avoid contention on this pin.
+WARNING - map: Semantic error in "LOCATE COMP "pin_mosi" SITE "U18" ;": The
+     signal "pin_mosi" has been assigned to PIN "U18", which is a dual function
+     pin. This pin will be used during the configuration of the device. The pin
+     can be used for logic after configuration. External logic may be needed to
+     avoid contention on this pin.
+WARNING - map: Semantic error in "LOCATE COMP "pin_cs" SITE "U17" ;": The signal
+     "pin_cs" has been assigned to PIN "U17", which is a dual function pin. This
+     pin will be used during the configuration of the device. The pin can be
+     used for logic after configuration. External logic may be needed to avoid
+     contention on this pin.
+WARNING - map: Semantic error in "LOCATE COMP "pin_miso" SITE "T18" ;": The
+
+                                    Page 4
+
+
+
+
+Design:  TinyFPGA_EX                                   Date:  02/19/18  19:52:50
+
+Design Errors/Warnings (cont)
+-----------------------------
+     signal "pin_miso" has been assigned to PIN "T18", which is a dual function
+     pin. This pin will be used during the configuration of the device. The pin
+     can be used for logic after configuration. External logic may be needed to
+     avoid contention on this pin.
+
+IO (PIO) Attributes
+-------------------
+
++---------------------+-----------+-----------+------------+
+| IO Name             | Direction | Levelmode | IO         |
+|                     |           |  IO_TYPE  | Register   |
++---------------------+-----------+-----------+------------+
+| pin_usbp            | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| pin_26              | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| pin_pu              | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| pin_clk             | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| pin_programn        | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| pin_io3             | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| pin_io2             | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| pin_mosi            | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| pin_cs              | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| pin_miso            | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| pin_led             | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| pin_usbn            | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+
+Removed logic
+-------------
+
+Block GSR_INST undriven or does not drive anything - clipped.
+Block tinyfpga_bootloader_inst/ctrl_ep_inst/detect_pkt_end/VCC undriven or does
+     not drive anything - clipped.
+Block tinyfpga_bootloader_inst/ctrl_ep_inst/detect_in_data_transfer_done/VCC
+     undriven or does not drive anything - clipped.
+Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/VCC undriven or
+     does not drive anything - clipped.
+Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_mux_inst/VCC undriven or
+     does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/out_ep_acked_m was merged into
+     signal tinyfpga_bootloader_inst/ctrl_ep_inst/ctrl_xfr_state[5]
+Signal usb_tx_en_i was merged into signal usb_tx_en
+Signal tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/in_ep_data_put_0_am
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/g0_16_bm undriven
+     or does not drive anything - clipped.
+
+                                    Page 5
+
+
+
+
+Design:  TinyFPGA_EX                                   Date:  02/19/18  19:52:50
+
+Removed logic (cont)
+--------------------
+Signal GND undriven or does not drive anything - clipped.
+Signal VCC undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/VCC undriven or does not drive anything -
+     clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/VCC undriven or does not drive
+     anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/VCC undriven or does not
+     drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/GND undriven or
+     does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/VCC undriven or
+     does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/VCC undriven
+     or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/VCC undriven or
+     does not drive anything - clipped.
+Signal boot_delay_cry_0_S0[0] undriven or does not drive anything - clipped.
+Signal N_1 undriven or does not drive anything - clipped.
+Signal usb_pll_inst_inst/CLKINTFB undriven or does not drive anything - clipped.
+     
+Signal usb_pll_inst_inst/REFCLK undriven or does not drive anything - clipped.
+Signal usb_pll_inst_inst/INTLOCK undriven or does not drive anything - clipped.
+Signal usb_pll_inst_inst/LOCK undriven or does not drive anything - clipped.
+Signal usb_pll_inst_inst/CLKOS3 undriven or does not drive anything - clipped.
+Signal usb_pll_inst_inst/CLKOS2 undriven or does not drive anything - clipped.
+Signal usb_pll_inst_inst/CLKOS undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/led_cry_7_0_S0 undriven or does not drive
+     anything - clipped.
+Signal tinyfpga_bootloader_inst/led_cry_7_0_COUT undriven or does not drive
+     anything - clipped.
+Signal tinyfpga_bootloader_inst/led_cry_5_0_S1 undriven or does not drive
+     anything - clipped.
+Signal tinyfpga_bootloader_inst/led_cry_5_0_S0 undriven or does not drive
+     anything - clipped.
+Signal tinyfpga_bootloader_inst/led_cry_3_0_S1 undriven or does not drive
+     anything - clipped.
+Signal tinyfpga_bootloader_inst/led_cry_3_0_S0 undriven or does not drive
+     anything - clipped.
+Signal tinyfpga_bootloader_inst/led_cry_1_0_S1 undriven or does not drive
+     anything - clipped.
+Signal tinyfpga_bootloader_inst/led_cry_1_0_S0 undriven or does not drive
+     anything - clipped.
+Signal tinyfpga_bootloader_inst/led_cry_0_0_S1 undriven or does not drive
+     anything - clipped.
+Signal tinyfpga_bootloader_inst/led_cry_0_0_S0 undriven or does not drive
+     anything - clipped.
+Signal tinyfpga_bootloader_inst/N_1 undriven or does not drive anything -
+     clipped.
+Signal tinyfpga_bootloader_inst/un2_led_pwm_8_s_7_0_S1 undriven or does not
+     drive anything - clipped.
+Signal tinyfpga_bootloader_inst/un2_led_pwm_8_s_7_0_COUT undriven or does not
+     drive anything - clipped.
+Signal tinyfpga_bootloader_inst/un2_led_pwm_8_cry_0_0_S1 undriven or does not
+     drive anything - clipped.
+Signal tinyfpga_bootloader_inst/un2_led_pwm_8_cry_0_0_S0 undriven or does not
+     drive anything - clipped.
+
+                                    Page 6
+
+
+
+
+Design:  TinyFPGA_EX                                   Date:  02/19/18  19:52:50
+
+Removed logic (cont)
+--------------------
+Signal tinyfpga_bootloader_inst/N_2 undriven or does not drive anything -
+     clipped.
+Signal tinyfpga_bootloader_inst/un1_us_cnt_4_s_9_0_S1 undriven or does not drive
+     anything - clipped.
+Signal tinyfpga_bootloader_inst/un1_us_cnt_4_s_9_0_COUT undriven or does not
+     drive anything - clipped.
+Signal tinyfpga_bootloader_inst/un1_us_cnt_4_cry_3_0_S1 undriven or does not
+     drive anything - clipped.
+Signal tinyfpga_bootloader_inst/un1_us_cnt_4_cry_1_0_S1 undriven or does not
+     drive anything - clipped.
+Signal tinyfpga_bootloader_inst/un1_us_cnt_4_cry_1_0_S0 undriven or does not
+     drive anything - clipped.
+Signal tinyfpga_bootloader_inst/un1_us_cnt_4_cry_0_0_S1 undriven or does not
+     drive anything - clipped.
+Signal tinyfpga_bootloader_inst/un1_us_cnt_4_cry_0_0_S0 undriven or does not
+     drive anything - clipped.
+Signal tinyfpga_bootloader_inst/N_3 undriven or does not drive anything -
+     clipped.
+Signal tinyfpga_bootloader_inst/un2_host_presence_timer_s_31_0_S1 undriven or
+     does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/un2_host_presence_timer_s_31_0_COUT undriven or
+     does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/un2_host_presence_timer_cry_0_0_S1 undriven or
+     does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/un2_host_presence_timer_cry_0_0_S0 undriven or
+     does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/N_4 undriven or does not drive anything -
+     clipped.
+Signal tinyfpga_bootloader_inst/pwm_cnt_s_0_S1[7] undriven or does not drive
+     anything - clipped.
+Signal tinyfpga_bootloader_inst/pwm_cnt_s_0_COUT[7] undriven or does not drive
+     anything - clipped.
+Signal tinyfpga_bootloader_inst/pwm_cnt_cry_0_S0[0] undriven or does not drive
+     anything - clipped.
+Signal tinyfpga_bootloader_inst/N_5 undriven or does not drive anything -
+     clipped.
+Signal tinyfpga_bootloader_inst/un1_us_cnt_4_cry_3dup_0_S0 undriven or does not
+     drive anything - clipped.
+Signal tinyfpga_bootloader_inst/un1_us_cnt_4_cry_3dup_0_COUT undriven or does
+     not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/un1_us_cnt_4_cry_0dup_0_S0 undriven or does not
+     drive anything - clipped.
+Signal tinyfpga_bootloader_inst/N_6 undriven or does not drive anything -
+     clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_15_0_S0
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_15_0_COUT
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_13_0_S1
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_13_0_S0
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_11_0_S1
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_11_0_S0
+     undriven or does not drive anything - clipped.
+
+                                    Page 7
+
+
+
+
+Design:  TinyFPGA_EX                                   Date:  02/19/18  19:52:50
+
+Removed logic (cont)
+--------------------
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_9_0_S1
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_9_0_S0
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_7_0_S1
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_7_0_S0
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_5_0_S1
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_5_0_S0
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_3_0_S1
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_3_0_S0
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_1_0_S1
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_1_0_S0
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_0_0_S1
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_0_0_S0
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/N_2 undriven or does not drive
+     anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_cry_6_0_S1 undriven
+     or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_cry_6_0_COUT
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_cry_5_0_S1 undriven
+     or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_cry_5_0_S0 undriven
+     or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_cry_3_0_S1 undriven
+     or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_cry_3_0_S0 undriven
+     or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_cry_1_0_S1 undriven
+     or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_cry_1_0_S0 undriven
+     or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_cry_0_0_S1 undriven
+     or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_cry_0_0_S0 undriven
+     or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/N_3 undriven or does not drive
+     anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/rom_addr_cry_0_COUT[5] undriven or
+     does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/rom_addr_cry_0_S0[0] undriven or
+     does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/ctrl_ep_inst/N_4 undriven or does not drive
+     anything - clipped.
+Signal
+     tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/data_out_length_s_0_S1[15]
+
+                                    Page 8
+
+
+
+
+Design:  TinyFPGA_EX                                   Date:  02/19/18  19:52:50
+
+Removed logic (cont)
+--------------------
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/data_out_length_s_0_COUT[
+     15] undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/data_out_length_cry_0_S0[
+     0] undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/N_1 undriven or does not
+     drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/data_in_length_s_0_S1[15]
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/data_in_length_s_0_COUT[1
+     5] undriven or does not drive anything - clipped.
+Signal
+     tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/data_in_length_cry_0_S0[0]
+     undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/N_2 undriven or does not
+     drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/more_data_to_se
+     nd_cry_5_0_S0 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/more_data_to_se
+     nd_cry_5_0_COUT undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/more_data_to_se
+     nd_cry_3_0_S1 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/more_data_to_se
+     nd_cry_3_0_S0 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/more_data_to_se
+     nd_cry_1_0_S1 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/more_data_to_se
+     nd_cry_1_0_S0 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/more_data_to_se
+     nd_cry_0_0_S1 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/more_data_to_se
+     nd_cry_0_0_S0 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/N_1 undriven or
+     does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/ep_put_addr[1]_
+     s_5_0_S1 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/ep_put_addr[1]_
+     s_5_0_COUT undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/ep_put_addr[1]_
+     cry_0_0_S0 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/N_2 undriven or
+     does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un7_out_ep_dat
+     a_avail_cry_6_0_S1 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un7_out_ep_dat
+     a_avail_cry_6_0_COUT undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un7_out_ep_dat
+     a_avail_cry_5_0_S1 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un7_out_ep_dat
+     a_avail_cry_5_0_S0 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un7_out_ep_dat
+     a_avail_cry_3_0_S1 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un7_out_ep_dat
+     a_avail_cry_3_0_S0 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un7_out_ep_dat
+     a_avail_cry_1_0_S1 undriven or does not drive anything - clipped.
+
+                                    Page 9
+
+
+
+
+Design:  TinyFPGA_EX                                   Date:  02/19/18  19:52:50
+
+Removed logic (cont)
+--------------------
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un7_out_ep_dat
+     a_avail_cry_1_0_S0 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un7_out_ep_dat
+     a_avail_cry_0_0_S1 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un7_out_ep_dat
+     a_avail_cry_0_0_S0 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/N_1 undriven
+     or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un24_out_ep_da
+     ta_avail_cry_6_0_S1 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un24_out_ep_da
+     ta_avail_cry_6_0_COUT undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un24_out_ep_da
+     ta_avail_cry_5_0_S1 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un24_out_ep_da
+     ta_avail_cry_5_0_S0 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un24_out_ep_da
+     ta_avail_cry_3_0_S1 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un24_out_ep_da
+     ta_avail_cry_3_0_S0 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un24_out_ep_da
+     ta_avail_cry_1_0_S1 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un24_out_ep_da
+     ta_avail_cry_1_0_S0 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un24_out_ep_da
+     ta_avail_cry_0_0_S1 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un24_out_ep_da
+     ta_avail_cry_0_0_S0 undriven or does not drive anything - clipped.
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/N_2 undriven
+     or does not drive anything - clipped.
+Signal boot_delay_cry_0_COUT[7] undriven or does not drive anything - clipped.
+Block tinyfpga_bootloader_inst/ctrl_ep_inst/ctrl_xfr_state_RNISMJC[5] was
+     optimized away.
+Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/oe_RNI4QDA was
+     optimized away.
+Block tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/in_ep_data_put_0_am was
+     optimized away.
+Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/g0_16_bm was
+     optimized away.
+Block GND was optimized away.
+Block VCC was optimized away.
+Block tinyfpga_bootloader_inst/VCC was optimized away.
+Block tinyfpga_bootloader_inst/ctrl_ep_inst/VCC was optimized away.
+Block tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/VCC was optimized away.
+Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/GND was
+     optimized away.
+Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/VCC was
+     optimized away.
+Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/VCC was
+     optimized away.
+Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/VCC was optimized
+     away.
+
+
+
+
+
+                                   Page 10
+
+
+
+
+Design:  TinyFPGA_EX                                   Date:  02/19/18  19:52:50
+
+Memory Usage
+------------
+
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/in_data_buffer_ram:
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/in_data_buffer_ram_0:
+     
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/in_data_buffer_ram_1:
+     
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/in_data_buffer_ram_10
+     :
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/in_data_buffer_ram_2:
+     
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/in_data_buffer_ram_3:
+     
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/in_data_buffer_ram_4:
+     
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/in_data_buffer_ram_5:
+     
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/in_data_buffer_ram_6:
+     
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/in_data_buffer_ram_7:
+     
+
+                                   Page 11
+
+
+
+
+Design:  TinyFPGA_EX                                   Date:  02/19/18  19:52:50
+
+Memory Usage (cont)
+-------------------
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/out_data_buffer_ram:
+     
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/out_data_buffer_ram_
+     0:
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/out_data_buffer_ram_
+     1:
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/out_data_buffer_ram_
+     2:
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/out_data_buffer_ram_
+     3:
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/out_data_buffer_ram_
+     4:
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/out_data_buffer_ram_
+     5:
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+/tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/out_data_buffer_ram_
+     6:
+    EBRs: 0
+    RAM SLICEs: 3
+    Logic SLICEs: 0
+    PFU Registers: 0
+
+     
+
+
+
+                                   Page 12
+
+
+
+
+Design:  TinyFPGA_EX                                   Date:  02/19/18  19:52:50
+
+PLL/DLL Summary
+---------------
+
+PLL 1:                                     Pin/Node Value
+  PLL Instance Name:                                usb_pll_inst_inst/PLLInst_0
+  PLL Type:                                         EHXPLLL
+  Input Clock:                             PIN      pin_clk_c
+  Input Clock2:                                     NONE
+  Input Clock select:                               NONE
+  Output Clock(P):                         NODE     clk_48mhz
+  Output Clock(S):                                  NONE
+  Output Clock(S2):                                 NONE
+  Output Clock(S3):                                 NONE
+  Feedback Signal:                         NODE     clk_48mhz
+  Reset Signal:                                     NONE
+  Standby Signal:                          NODE     usb_pll_inst_inst/GND
+  PLL LOCK signal:                                  NONE
+  PLL Internal LOCK Signal:                         NONE
+  Input Clock Frequency (MHz):                      16.0000
+  Output Clock(P) Frequency (MHz):                  48.0000
+  Output Clock(S) Frequency (MHz):                  NA
+  Output Clock(S2) Frequency (MHz):                 NA
+  Output Clock(S3) Frequency (MHz):                 NA
+  CLKOP Post Divider A Input:                       DIVA
+  CLKOS Post Divider B Input:                       DIVB
+  CLKOS2 Post Divider C Input:                      DIVC
+  CLKOS3 Post Divider D Input:                      DIVD
+  Pre Divider A Input:                              NONE
+  Pre Divider B Input:                              NONE
+  Pre Divider C Input:                              NONE
+  Pre Divider D Input:                              NONE
+  FB_MODE:                                          CLKOP
+  CLKI Divider:                                     1
+  CLKFB Divider:                                    3
+  CLKOP Divider:                                    12
+  CLKOS Divider:                                    1
+  CLKOS2 Divider:                                   1
+  CLKOS3 Divider:                                   1
+  Fractional N Divider:                             NONE
+  CLKOP Desired Phase Shift(degree):                0
+  CLKOP Trim Option Rising/Falling:                 FALLING
+  CLKOP Trim Option Delay:                          0
+  CLKOS Desired Phase Shift(degree):                0
+  CLKOS Trim Option Rising/Falling:                 FALLING
+  CLKOS Trim Option Delay:                          0
+  CLKOS2 Desired Phase Shift(degree):               0
+  CLKOS2 Trim Option Rising/Falling:                NONE
+  CLKOS2 Trim Option Delay:                         NONE
+  CLKOS3 Desired Phase Shift(degree):               0
+  CLKOS3 Trim Option Rising/Falling:                NONE
+  CLKOS3 Trim Option Delay:                         NONE
+
+ASIC Components
+---------------
+
+Instance Name: usb_pll_inst_inst/PLLInst_0
+         Type: EHXPLLL
+
+
+                                   Page 13
+
+
+
+
+Design:  TinyFPGA_EX                                   Date:  02/19/18  19:52:50
+
+Run Time and Memory Usage
+-------------------------
+
+   Total CPU Time: 0 secs  
+   Total REAL Time: 0 secs  
+   Peak Memory Usage: 116 MB
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                   Page 14
+
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+     Copyright (c) 1995 AT&T Corp.   All rights reserved.
+     Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+     Copyright (c) 2001 Agere Systems   All rights reserved.
+     Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights
+     reserved.
