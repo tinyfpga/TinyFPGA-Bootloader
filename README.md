@@ -1,5 +1,19 @@
-# USB Bootloader
-The USB Bootloader implements a USB virtual serial port to SPI flash bridge.  From the host computer's perspective, it looks like a serial port.  This method was chosen because programming with serial ports is generally easier to understand than other USB-specific protocols.  Commands boot into the user configuration or access the SPI flash are all transfered over this interface.  
+# The TinyFPGA USB Bootloader
+The TinyFPGA USB Bootloader is an open source IP for programming FPGAs without extra USB interface chips.  It implements a USB virtual serial port to SPI flash bridge on the FPGA fabric itself.  For FPGAs that support loading multiple configurations it is possible for the bootloader to be completely unloaded from the FPGA before the user configuration is loaded in.  
+
+From the host computer's perspective, the bootloader looks like a serial port.  This method was chosen because programming with serial ports is generally easier to understand than other USB-specific protocols.  Commands to boot into the user configuration or access the SPI flash are all transfered over this interface.  Using this serial interface, a programmer application on the host computer can issue commands to the SPI flash directly through the bootloader.  All of the details about programming the SPI flash are handled by the programmer application.
+
+## Hardware Requirements
+In order to implement the TinyFPGA USB Bootloader, an FPGA system...
+1. MUST have USB_P and USB_N lines with 3.3v signalling for the USB interface.
+2. MUST have an oscillator and PLL capable of generating an accurate and stable 48MHz in the FPGA fabric.
+3. MUST have FPGA configuration stored on external SPI flash, loaded by FPGA on boot.
+4. MUST have a 1.5k pull-up resistor on the USB_P line and SHOULD disable the 1.5K pull-up resistor until the FPGA is configured.
+5. SHOULD support booting from multiple images stored in SPI flash.  The bootloader in the primary image, and the user configuration in a secondary image.  
+6. SHOULD use SPI flash that is large enough for a multi-boot image with at least two FPGA configurations as well as any user data that may be stored there.  Use the appropriate tools for your FPGA to determine the size of the mult-boot image before selecting the SPI flash size.
+7. SHOULD use SPI flash that supports programmable security register pages accessed with opcodes 0x44, 0x42, 0x48.
+
+## FPGA Board Metadata
 
 ## Protocol
 The protocol on top of the USB virtual serial port takes the form of requests and responses.  Only the host computer is able to initiate requests.  The bootloader on the FPGA can only respond to requests.
