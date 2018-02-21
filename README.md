@@ -16,7 +16,40 @@ In order to implement the TinyFPGA USB Bootloader, an FPGA system...
 ## FPGA Board Metadata
 Each FPGA board implementing the TinyFPGA USB Bootloader may have different locations for the bootloader image, user image, user data, and other information.  These differences are driven by the FPGA's multi-boot capabilities/requirements and the size of the FPGA configuration image.
 
-In order for a common bootloader and programmer application to program user images and user data to the correct locations, the programmer must know where these locations are in the SPI flash.  It is also useful to identify the board with a name and unique serial number.  
+In order for a common bootloader and programmer application to program user images and user data to the correct locations, the programmer must know where these locations are in the SPI flash.  It is also useful to identify the board with a name and unique serial number.  This information along with other required and optional metadata is stored in the non-volatile security register pages of the SPI flash and optionally in the main SPI flash memory.
+
+The programmer application will search security register pages 0-3 for valid metadata.  The metadata is stored in JSON format.  JSON was choosen because it is compact enough, is well understood, and easier to read and understand than a binary format. 
+
+Below is an example of how the metadata may be structured and formatted for the TinyFPGA BX board:
+
+### SPI Flash Security Register Page 1 (write-protected)
+```javascript
+{"boardmeta":{
+  "model": "TinyFPGA BX",
+  "hver": "1.0.0",
+  "serial": 10034
+}}
+```
+
+### SPI Flash Security Register Page 2 (not write-protected)
+```javascript
+{"metapointer":"0xFF000+445"}
+```
+
+### SPI Flash Memory Address 0xFF000
+```javascript
+{"bootmeta":{
+  "bver": "2.0.0",
+  "update": "https://tinyfpga.com/update/tinyfpga-bx",
+  "addrmap": {
+    "bootloader": "0x00000+131542",
+    "userimage":  "0x30000+131542",
+    "userdata":   "0x50000+720000"
+  }
+}}
+```
+
+A detailed explanation of the metadata structure will be added here.
 
 ## Protocol
 The protocol on top of the USB virtual serial port takes the form of requests and responses.  Only the host computer is able to initiate requests.  The bootloader on the FPGA can only respond to requests.
