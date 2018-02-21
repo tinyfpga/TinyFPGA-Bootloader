@@ -5,15 +5,18 @@ From the host computer's perspective, the bootloader looks like a serial port.  
 
 ## Hardware Requirements
 In order to implement the TinyFPGA USB Bootloader, an FPGA system...
-1. MUST have USB_P and USB_N lines with 3.3v signalling for the USB interface.
-2. MUST have an oscillator and PLL capable of generating an accurate and stable 48MHz in the FPGA fabric.
-3. MUST have FPGA configuration stored on external SPI flash, loaded by FPGA on boot.
-4. MUST have a 1.5k pull-up resistor on the USB_P line and SHOULD disable the 1.5K pull-up resistor until the FPGA is configured.
-5. SHOULD support booting from multiple images stored in SPI flash.  The bootloader in the primary image, and the user configuration in a secondary image.  
-6. SHOULD use SPI flash that is large enough for a multi-boot image with at least two FPGA configurations as well as any user data that may be stored there.  Use the appropriate tools for your FPGA to determine the size of the mult-boot image before selecting the SPI flash size.
-7. SHOULD use SPI flash that supports programmable security register pages accessed with opcodes 0x44, 0x42, 0x48.
+1. **MUST** have USB_P and USB_N lines with 3.3v signalling for the USB interface.
+2. **MUST** have an oscillator and PLL capable of generating an accurate and stable 48MHz in the FPGA fabric.
+3. **MUST** have FPGA configuration stored on external SPI flash, loaded by FPGA on boot.
+4. **MUST** have a 1.5k pull-up resistor on the USB_P line and **SHOULD** connect the 1.5K pull-up resistor to the `usb_pu` signal from the bootloader.
+5. **SHOULD** support booting from multiple images stored in SPI flash.  The bootloader in the primary image, and the user configuration in a secondary image.  
+6. **SHOULD** use SPI flash that is large enough for a multi-boot image with at least two FPGA configurations as well as any user data that may be stored there.  Use the appropriate tools for your FPGA to determine the size of the mult-boot image before selecting the SPI flash size.
+7. **SHOULD** use SPI flash that supports programmable security register pages accessed with opcodes 0x44, 0x42, 0x48.  These register places are a useful location to store metadata for the board that the programmer application needs to properly program user configurations and data.
 
 ## FPGA Board Metadata
+Each FPGA board implementing the TinyFPGA USB Bootloader may have different locations for the bootloader image, user image, user data, and other information.  These differences are driven by the FPGA's multi-boot capabilities/requirements and the size of the FPGA configuration image.
+
+In order for a common bootloader and programmer application to program user images and user data to the correct locations, the programmer must know where these locations are in the SPI flash.  It is also useful to identify the board with a name and unique serial number.  
 
 ## Protocol
 The protocol on top of the USB virtual serial port takes the form of requests and responses.  Only the host computer is able to initiate requests.  The bootloader on the FPGA can only respond to requests.
