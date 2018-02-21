@@ -23,6 +23,8 @@ The programmer application will search security register pages 0-3 for valid met
 Below is an example of how the metadata may be structured and formatted for the TinyFPGA BX board:
 
 ### SPI Flash Security Register Page 1 (write-protected)
+One of the SPI flash security register pages contains fixed data about the board that does not change.  This is the name of the board, the hardware revision of the board, and serial number unique to the board name.  This security register page should be write protected as it should never be changed.  If the rest of the SPI flash is erased, this minimal amount of information will help the user to find recovery instructions.
+
 ```javascript
 {"boardmeta":{
   "model": "TinyFPGA BX",
@@ -32,6 +34,10 @@ Below is an example of how the metadata may be structured and formatted for the 
 ```
 
 ### SPI Flash Security Register Page 2 (not write-protected)
+A seperate SPI flash security register page should contain or point to information that can change.  This includes the bootloader version number, update URL for new bootloader releases for this board, and an address map for the SPI flash that describes where the bootloader, user image, and user data belong.  Using this information the programmer application is able to discover where to put new user images and data without any input from the user or built-in knowledge about the board.  It makes the board plug-and-play.
+
+Optionally, an additional `desc.gz` file may be included in the SPI flash itself, or on the update page.  This `desc.gz` file contains the information necessary to develop with the board.  At a minimum it describes the FPGA name, package, and a mapping from FPGA pins to board IOs and peripherals.
+
 ```javascript
 {"metapointer":"0xFF000+445"}
 ```
@@ -44,7 +50,8 @@ Below is an example of how the metadata may be structured and formatted for the 
   "addrmap": {
     "bootloader": "0x00000+131542",
     "userimage":  "0x30000+131542",
-    "userdata":   "0x50000+720000"
+    "userdata":   "0x50000+710000",
+    "desc.gz":    "0xFC000+16000"
   }
 }}
 ```
