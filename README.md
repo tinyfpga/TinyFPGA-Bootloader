@@ -22,7 +22,7 @@ The programmer application will search security register pages 0-3 for valid met
 
 Below is an example of how the metadata may be structured and formatted for the TinyFPGA BX board:
 
-### SPI Flash Security Register Page 1 (write-protected)
+#### SPI Flash Security Register Page 1 (write-protected)
 One of the SPI flash security register pages contains fixed data about the board that does not change.  This is the name of the board, the hardware revision of the board, and serial number unique to the board name.  This security register page should be write protected as it should never be changed.  If the rest of the SPI flash is erased, this minimal amount of information will help the user to find recovery instructions.
 
 ```javascript
@@ -34,16 +34,16 @@ One of the SPI flash security register pages contains fixed data about the board
 }}
 ```
 
-### SPI Flash Security Register Page 2 (not write-protected)
+#### SPI Flash Security Register Page 2 (not write-protected)
 A seperate SPI flash security register page should contain or point to information that can change.  This includes the bootloader version number, update URL for new bootloader releases for this board, and an address map for the SPI flash that describes where the bootloader, user image, and user data belong.  Using this information the programmer application is able to discover where to put new user images and data without any input from the user or built-in knowledge about the board.  It makes the board plug-and-play.
 
-Optionally, an additional `desc.gz` file may be included in the SPI flash itself, or on the update page.  This `desc.gz` file contains the information necessary to develop with the board.  At a minimum it describes the FPGA name, package, and a mapping from FPGA pins to board IOs and peripherals.
+Optionally, an additional `desc.tgz` file may be included in the SPI flash itself, or on the update page.  This `desc.gz` file contains the information necessary to develop with the board.  At a minimum it describes the FPGA name, package, and a mapping from FPGA pins to board IOs and peripherals.
 
 ```javascript
-{"bootmeta":"@0xFF000+445"}
+{"bootmeta": "@0xFF000+445"}
 ```
 
-### SPI Flash Memory Address 0xFF000
+#### SPI Flash Memory Address 0xFF000
 ```javascript
 {
   "bootloader": "TinyFPGA USB Bootloader",
@@ -115,8 +115,6 @@ Length: Variable
 +-----+-------------------+------+
 ```
 
-**NOTE: Even though the read and write fields are two bytes long, the current bootloader only supports read and write lengths of up to 16 bytes.  It will crash if larger lengths are used.**
-
 The `Access SPI` command executes a transfer with the SPI flash.  SPI flash commands can have two phases:
 1. Write phase.  Command opcode, address, and potentially data are shifted out the SPI master to the SPI flash.
 2. Read phase.  Data is shifted from the SPI flash to the SPI master.
@@ -139,32 +137,36 @@ Here's a summary of the commands used to properly erase, program, and verify bit
 
 ## SPI Flash Programming Flow
 
-The SPI flash needs to be accessed in a specific order to successfully program the bitstream.  The following pseudocode illustrates how the `tinyfpgab.py` programmer accesses the SPI flash:
+The SPI flash needs to be accessed in a specific order to successfully program the bitstream.  The following pseudocode illustrates how the `tinyprog` programmer programs user FPGA bitstreams into the SPI flash:
 
 ```
 // SPI flash will be in deep sleep, we need to wake it up
-Issue Resume command     
+issue resume command     
 
-// these two commands work around a bootloader bug
-Read Status Register        
-Read 16 bytes from addr 0  
+// read FPGA board metadata
+for each SPI flash security register page 0-3:
+    read the security register page and metadata JSON
+    recursively read any other locations in SPI flash referenced by the metadata
+ 
+ userimage_addr = metadata["bootmeta"]["addrmap"]["userimage"]
 
 // erase user flash area
-For each 4k block from (0x30000) to (0x30000 + length(bitstream)):
-    Issue Block Erase 4 KBytes at current block address
-    Poll Read Status Reg 1 until bit 0 is cleared
+for each 4k block from (userimage_addr) to (userimage_addr + length(bitstream)):
+    issue write enable command
+    issue block erase 4 KBytes at current block address
+    poll status reg 1 until bit 0 is cleared
 
 // program new user bitstream into user flash area
-For each 16 bytes from (0x30000) to (0x30000 + length(bitstream)):
-    Issue write enable command
-    Write 16 bytes of of the bitstream and increment write offset by 16 bytes
+for each 256 bytes from (userimage_addr) to (userimage_addr + length(bitstream)):
+    issue write enable command
+    write 256 bytes of of the bitstream and increment write offset by 256 bytes
+    poll status reg 1 until bit 0 is cleared
     
 // verify bitstream data is correct
-For each 16 bytes from (0x30000) to (0x30000 + length(bitstream)):
-    Read 16 bytes of of the bitstream, compare to bitstream file, and increment read offset by 16 bytes
+read length(bitstream) bytes of of the bitstream, compare to bitstream file
 
-Issue Boot command to the bootloader
+if verify is successful then issue boot command to the bootloader
 ```
 
-For exact details, see the [tinyfpgab.py](https://github.com/tinyfpga/TinyFPGA-B-Series/blob/master/programmer/tinyfpgab.py) programming script in this repo.
+For exact details, see the [`tinyprog/__init__.py`](https://github.com/tinyfpga/TinyFPGA-Bootloader/blob/master/programmer/tinyprog/__init__.py) Python module in this repo.
 
