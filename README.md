@@ -27,7 +27,8 @@ One of the SPI flash security register pages contains fixed data about the board
 
 ```javascript
 {"boardmeta":{
-  "model": "TinyFPGA BX",
+  "name": "TinyFPGA BX",
+  "fpga": "ice40lp8k-cm81",
   "hver": "1.0.0",
   "serial": 10034
 }}
@@ -39,21 +40,22 @@ A seperate SPI flash security register page should contain or point to informati
 Optionally, an additional `desc.gz` file may be included in the SPI flash itself, or on the update page.  This `desc.gz` file contains the information necessary to develop with the board.  At a minimum it describes the FPGA name, package, and a mapping from FPGA pins to board IOs and peripherals.
 
 ```javascript
-{"metapointer":"0xFF000+445"}
+{"bootmeta":"@0xFF000+445"}
 ```
 
 ### SPI Flash Memory Address 0xFF000
 ```javascript
-{"bootmeta":{
+{
+  "bootloader": "TinyFPGA USB Bootloader",
   "bver": "2.0.0",
   "update": "https://tinyfpga.com/update/tinyfpga-bx",
   "addrmap": {
     "bootloader": "0x00000+131542",
     "userimage":  "0x30000+131542",
     "userdata":   "0x50000+710000",
-    "desc.gz":    "0xFC000+16000"
+    "desc.tgz":   "0xFC000+16000"
   }
-}}
+}
 ```
 
 A detailed explanation of the metadata structure will be added here.
