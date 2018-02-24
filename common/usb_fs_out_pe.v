@@ -96,7 +96,7 @@ module usb_fs_out_pe #(
   reg [7:0] out_data_buffer [(MAX_OUT_PACKET_SIZE * NUM_OUT_EPS) - 1:0];
 
   // current get_addr when outputting a packet from the buffer
-  reg [4:0] ep_get_addr [NUM_OUT_EPS - 1:0];
+  reg [5:0] ep_get_addr [NUM_OUT_EPS - 1:0];
 
   // endpoint put_addrs when inputting a packet into the buffer
   reg [5:0] ep_put_addr [NUM_OUT_EPS - 1:0];
@@ -177,7 +177,7 @@ module usb_fs_out_pe #(
 
             GETTING_PKT : begin
 
-              if (ep_get_addr[ep_num][4:0] >= (ep_put_addr[ep_num][5:0] - 2)) begin
+              if (ep_get_addr[ep_num][5:0] >= (ep_put_addr[ep_num][5:0])) begin
                 ep_state_next[ep_num] <= READY_FOR_PKT;
 
               end else begin
@@ -221,7 +221,7 @@ module usb_fs_out_pe #(
             if (
               out_ep_data_get[ep_num] 
             ) begin
-              ep_get_addr[ep_num][4:0] <= ep_get_addr[ep_num][4:0] + 1;
+              ep_get_addr[ep_num][5:0] <= ep_get_addr[ep_num][5:0] + 1;
             end
           end
 
@@ -229,7 +229,7 @@ module usb_fs_out_pe #(
                   
           case (ep_state[ep_num])
             READY_FOR_PKT : begin
-              ep_get_addr[ep_num][4:0] <= 0;
+              ep_get_addr[ep_num][5:0] <= 0;
             end
 
             PUTTING_PKT : begin
@@ -246,7 +246,7 @@ module usb_fs_out_pe #(
       
 
       assign out_ep_data_avail[ep_num] = 
-        (ep_get_addr[ep_num][4:0] < (ep_put_addr[ep_num][5:0] - 2)) && 
+        (ep_get_addr[ep_num][5:0] < (ep_put_addr[ep_num][5:0])) && 
         (ep_state[ep_num][1:0] == GETTING_PKT);
 
     end

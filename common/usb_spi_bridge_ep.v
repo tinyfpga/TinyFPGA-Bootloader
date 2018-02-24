@@ -356,7 +356,11 @@ module usb_spi_bridge_ep (
         reset_spi_bit_counter <= 1'b1;
 
         if (spi_has_more_out_bytes) begin
-          spi_state_next <= SPI_START;
+          if (spi_byte_out_xfr_ready) begin
+	    spi_state_next <= SPI_START;
+          end else begin
+	    spi_state_next <= SPI_END;
+          end
 
         end else if (spi_dir_transition) begin
           spi_state_next <= SPI_START;
