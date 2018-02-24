@@ -91,6 +91,7 @@ module usb_fs_out_pe #(
 
   // latched on valid OUT/SETUP token
   reg [3:0] current_endp = 0;
+  wire [1:0] current_ep_state = ep_state[current_endp];
 
   // endpoint data buffer
   reg [7:0] out_data_buffer [(MAX_OUT_PACKET_SIZE * NUM_OUT_EPS) - 1:0];
@@ -356,6 +357,10 @@ module usb_fs_out_pe #(
     endcase
   end
 
+  wire current_ep_busy =
+    (ep_state[current_endp] == GETTING_PKT) || 
+    (ep_state[current_endp] == READY_FOR_PKT);
+
   integer j;
   always @(posedge clk) begin
     if (reset) begin
@@ -381,14 +386,16 @@ module usb_fs_out_pe #(
         end
 
         RCVD_OUT : begin
-          ep_put_addr[current_endp][5:0] <= 0;
-          nak_out_transfer <= 
-            (ep_state[current_endp] == GETTING_PKT) || 
-            (ep_state[current_endp] == READY_FOR_PKT);
+          if (current_ep_busy) begin
+            nak_out_transfer <= 1;
+          end else begin
+            nak_out_transfer <= 0;
+            ep_put_addr[current_endp][5:0] <= 0;
+          end
         end
 
         RCVD_DATA_START : begin
-          if (rx_data_put && !ep_put_addr[current_endp][5]) begin
+          if (!nak_out_transfer && rx_data_put && !ep_put_addr[current_endp][5]) begin
             ep_put_addr[current_endp][5:0] <= ep_put_addr[current_endp][5:0] + 1;
             out_data_buffer[buffer_put_addr][7:0] <= rx_data;
           end
