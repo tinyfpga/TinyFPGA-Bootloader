@@ -1,37 +1,65 @@
 import struct
 import time
+import json
+import jsonmerge
+import re
+import intelhex 
+
+class TinyMeta(object):
+    def __init__(self, prog):
+        self.prog = prog
+        self.root = self._read_metadata()
+
+    def _parse_json(self, data):
+        try:
+            return json.loads(data)
+        except:
+            return None
+
+    def _resolve_pointers(self, meta):
+        if isinstance(meta, dict):
+            return {k: self._resolve_pointers(v) for k, v in meta.items()}
+
+        if isinstance(meta, list):
+            return [self._resolve_pointers(v) for v in meta]
+
+        if isinstance(meta, str):
+            m = re.search(r"^\s*@\s*0x(?P<addr>[A-Fa-f0-9]+)\s*\+\s*(?P<len>\d+)\s*$")
+            if m:
+                return json.loads(self.prog.read(int(m.groups("addr"), 16), int(m.groups("len"))))
+            else:
+                return meta
+
+        return meta
+
+    def _read_metadata(self):
+        meta_roots = [self._parse_json(self.prog.read_security_register_page(p)) for p in [1, 2, 3]]
+        meta_roots = [root for root in meta_roots if root is not None]
+        meta = reduce(jsonmerge.merge, meta_roots)
+
+        return self._resolve_pointers(meta)
 
 
-class TinyFPGAB(object):
+
+
+class TinyProg(object):
     def __init__(self, ser, progress=None):
         self.ser = ser
-        self.spinner = 0
         if progress is None:
             self.progress = lambda x: x
         else:
             self.progress = progress
 
     def is_bootloader_active(self):
-        time.sleep(0.1)
-        for i in range(6):
-            self.wake()
-            time.sleep(0.001)
-            self.read(0, 16)
-            time.sleep(0.001)
-            self.wake()
-            time.sleep(0.001)
-            devid = self.read_id()
-            expected_devids = ['\x1f\x84\x01', '\x1f\x85\x01', '\x01\x60\x17', '\xef\x70\x18']
-            if devid in expected_devids:
-                return True
-            else:
-                print "unknown flash id: " + str([hex(ord(x)) for x in devid])
-            time.sleep(0.05)
+        self.wake()
+        devid = self.read_id()
+        print "flash id: " + str([hex(ord(x)) for x in devid])
+        if devid not in ['\xff\xff\xff']:
+            return True
         return False
 
-    def cmd(self, opcode, addr=None, data='', read_len=0):
+    def cmd(self, opcode, addr=None, data='', cmd_read_len=0):
         assert isinstance(data, str)
-        cmd_read_len = read_len # + 1 if read_len else 0
         addr = '' if addr is None else struct.pack('>I', addr)[1:]
         write_string = chr(opcode) + addr + data
         cmd_write_string = '\x01{}{}'.format(
@@ -40,7 +68,7 @@ class TinyFPGAB(object):
         )
         self.ser.write(cmd_write_string)
         self.ser.flush()
-        return self.ser.read(read_len)
+        return self.ser.read(cmd_read_len)
 
     def sleep(self):
         self.cmd(0xb9)
@@ -54,10 +82,23 @@ class TinyFPGAB(object):
     def read_sts(self):
         return self.cmd(0x05, read_len=1)
 
+    def erase_security_register_page(self, page):
+        self.write_enable()
+        self.cmd(0x44, page << 8)
+        self.wait_while_busy()
+
+    def program_security_register_page(self, page, data):
+        self.write_enable()
+        self.cmd(0x42, page << 8, data)
+        self.wait_while_busy()
+
+    def read_security_register_page(self, page):
+        return self.cmd(0x48, page << 8, '\x00', read_len=256)
+
     def read(self, addr, length):
         data = ''
         while length > 0:
-            read_length = min(16, length)
+            read_length = min(1024, length)
             data += self.cmd(0x0b, addr, '\x00', read_len=read_length)
             self.progress(read_length)
             addr += read_length
@@ -71,18 +112,12 @@ class TinyFPGAB(object):
         self.cmd(0x04)
 
     def wait_while_busy(self):
-        # FIXME: this is a workaround for a bug in the bootloader verilog.  if
-        #        the status register read comes too early, then it corrupts the
-        #        SPI flash write in progress.  this busy loop waits long enough
-        #        such that the write data has finished and data corruption is
-        #        no longer possible.
-        self._delay_micros(70)
         while ord(self.read_sts()) & 1:
-            self._delay_micros(10)
+            pass
 
     def _erase(self, addr, length):
         opcode = {
-            4 * 1024: 0x20,
+             4 * 1024: 0x20,
             32 * 1024: 0x52,
             64 * 1024: 0xd8,
         }[length]
@@ -139,13 +174,6 @@ class TinyFPGAB(object):
             length -= erase_length
             addr += erase_length
 
-    def _delay_micros(self, micros):
-        import timeit
-        seconds = micros / 1000000.0
-        t = timeit.default_timer()
-        while timeit.default_timer() - t < seconds:
-            self.spinner = (self.spinner + 1) & 0xff
-
     # don't use this directly, use the public "write" function instead
     def _write(self, addr, data):
         self.write_enable()
@@ -157,13 +185,10 @@ class TinyFPGAB(object):
         offset = 0
         while offset < len(data):
             dist_to_256_byte_boundary = 256 - (addr & 0xff)
-            write_length = min(16, len(data) - offset, dist_to_256_byte_boundary)
+            write_length = min(256, len(data) - offset, dist_to_256_byte_boundary)
             write_data = data[offset : offset+write_length]
             
-            #print "addr: %08x, offset: %08x" % (addr, offset)
-            
             self._write(addr, write_data)
-            #data = data[write_length:]
             offset += write_length
             addr += write_length
 
@@ -181,53 +206,8 @@ class TinyFPGAB(object):
             self.progress("Success!")
             return True
         else:
-            self.progress("Need to rewrite some pages...")
-
-            self.progress(
-                "len: {:06x} {:06x}"
-                .format(len(data), len(read_back)))
-
-            mismatch_4k_pages = set()
-            for i in range(min(len(data), len(read_back))):
-                if read_back[i] != data[i]:
-                    mismatch_4k_pages.add(i >> 12)
-
-            for page in mismatch_4k_pages:
-                page_offset = page << 12
-                page_addr = addr + page_offset
-                page_len = min(4 * 1024, len(data) - page_offset)
-                page_data = data[page_offset:page_offset + page_len]
-                self.progress("rewriting page {:06x}".format(page_addr))
-                success = True
-                for attempt in range(6):
-                    self.erase(page_addr, page_len)
-                    self.write(page_addr, page_data)
-                    page_read_back_data = self.read(page_addr, page_len)
-
-                    if len(page_read_back_data) != len(page_data):
-                        success = False
-                    else:
-                        for i in range(page_len):
-                            if page_read_back_data[i] != page_data[i]:
-                                self.progress(
-                                    "        diff {:06x}: {:02x} {:02x}"
-                                    .format(
-                                        i,
-                                        ord(page_read_back_data[i]),
-                                        ord(page_data[i])))
-                                success = False
-
-                    if success:
-                        break
-                    else:
-                        time.sleep(0.1)
-
-                if not success:
-                    self.progress("Verification Failed!")
-                    return False
-
-            self.progress("Success!")
-            return True
+            self.progress("Failure!")
+            return False
 
     def boot(self):
         self.ser.write("\x00")
@@ -248,9 +228,5 @@ class TinyFPGAB(object):
         if self.program(addr, bitstream):
             self.boot()
             return True
-
-        # FIXME: printing out this spinner ensures the busy loop in _write is
-        #        not optimized away
-        print "Your lucky number: " + str(self.spinner)
 
         return False
