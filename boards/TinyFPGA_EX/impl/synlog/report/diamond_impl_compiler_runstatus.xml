@@ -18,7 +18,7 @@ The file contains the job information from compiler to be displayed as part of t
   <report_link name="more"><data>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synlog\report\diamond_impl_compiler_notes.txt</data></report_link>
   </info>
 			<info name="Warnings">
-  <data>104</data>
+  <data>105</data>
   <report_link name="more"><data>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synlog\report\diamond_impl_compiler_warnings.txt</data></report_link>
   </info>
 			<info name="Errors">
@@ -35,7 +35,7 @@ The file contains the job information from compiler to be displayed as part of t
   <data>-</data>
   </info>
 			<info name="Date &amp;Time">
-  <data type="timestamp">1519098760</data>
+  <data type="timestamp">1519531629</data>
   </info>
 			</job_info>
 </job_run_status>

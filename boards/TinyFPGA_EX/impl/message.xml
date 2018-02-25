@@ -1239,780 +1239,780 @@
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL265 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:398:2:398:7|Removing unused bit 8 of spi_in_data[8:0]. Either assign all bits or reduce the width of the signal.</Dynamic>
+            <Dynamic>CL265 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:391:2:391:7|Removing unused bit 8 of spi_in_data[8:0]. Either assign all bits or reduce the width of the signal.</Dynamic>
             <Navigation>CL265</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>398</Navigation>
+            <Navigation>391</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>398</Navigation>
+            <Navigation>391</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Removing unused bit 8 of spi_in_data[8:0]. Either assign all bits or reduce the width of the signal.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[31]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[31]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[31]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[31]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[31]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[31]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[30]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[30]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[30]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[30]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[30]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[30]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[29]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[29]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[29]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[29]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[29]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[29]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[28]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[28]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[28]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[28]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[28]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[28]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[27]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[27]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[27]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[27]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[27]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[27]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[26]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[26]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[26]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[26]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[26]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[26]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[25]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[25]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[25]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[25]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[25]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[25]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[24]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[24]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[24]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[24]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[24]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[24]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[23]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[23]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[23]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[23]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[23]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[23]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[22]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[22]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[22]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[22]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[22]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[22]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[21]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[21]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[21]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[21]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[21]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[21]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[20]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[20]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[20]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[20]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[20]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[20]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[19]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[19]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[19]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[19]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[19]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[19]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[18]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[18]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[18]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[18]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[18]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[18]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[17]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[17]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[17]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[17]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[17]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[17]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[16]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[16]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[16]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[16]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[16]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[16]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[15]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[15]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[15]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[15]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[15]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[15]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[14]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[14]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[14]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[14]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[14]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[14]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[13]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[13]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[13]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[13]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[13]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[13]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[12]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[12]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[12]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[12]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[12]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[12]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[11]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[11]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[11]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[11]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[11]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[11]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[10]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[10]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[10]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[10]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[10]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[10]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[9]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[9]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[9]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[9]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[9]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[9]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[8]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[8]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[8]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[8]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[8]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[8]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[7]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[7]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[7]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[7]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[7]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[7]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[6]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[6]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[6]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[6]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[6]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[6]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[5]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[5]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[5]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[5]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[5]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[5]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[4]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[4]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[4]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[4]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[4]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[4]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[3]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[3]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[3]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[3]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[3]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[3]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[2]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[2]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[2]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[2]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[2]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[2]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[1]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[1]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[1]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[1]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[1]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[1]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_values[0]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_values[0]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_values[0]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:149:4:149:7|Latch generated from always block for signal output_pin_enables[0]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v&quot;:151:4:151:7|Latch generated from always block for signal output_pin_enables[0]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>149</Navigation>
+            <Navigation>151</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal output_pin_enables[0]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
@@ -2055,36 +2055,48 @@
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v&quot;:299:4:299:7|Latch generated from always block for signal out_ep_acked[1]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL169 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v&quot;:354:2:354:7|Pruning unused register last_data_toggle. Make sure that there are no unused intermediate registers.</Dynamic>
+            <Navigation>CL169</Navigation>
+            <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v</Navigation>
+            <Navigation>354</Navigation>
+            <Navigation>2</Navigation>
+            <Navigation>354</Navigation>
+            <Navigation>7</Navigation>
+            <Navigation>Pruning unused register last_data_toggle. Make sure that there are no unused intermediate registers.</Navigation>
+        </Message>
+        <Message>
+            <ID>2019991</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v&quot;:282:4:282:7|Latch generated from always block for signal out_ep_acked[1]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v</Navigation>
-            <Navigation>299</Navigation>
+            <Navigation>282</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>299</Navigation>
+            <Navigation>282</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal out_ep_acked[1]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v&quot;:299:4:299:7|Latch generated from always block for signal out_ep_acked[0]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v&quot;:282:4:282:7|Latch generated from always block for signal out_ep_acked[0]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v</Navigation>
-            <Navigation>299</Navigation>
+            <Navigation>282</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>299</Navigation>
+            <Navigation>282</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal out_ep_acked[0]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL279 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v&quot;:360:2:360:7|Pruning register bits 3 to 1 of current_endp[3:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
+            <Dynamic>CL279 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v&quot;:354:2:354:7|Pruning register bits 3 to 1 of current_endp[3:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
             <Navigation>CL279</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v</Navigation>
-            <Navigation>360</Navigation>
+            <Navigation>354</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>360</Navigation>
+            <Navigation>354</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning register bits 3 to 1 of current_endp[3:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Navigation>
         </Message>
@@ -2223,12 +2235,12 @@
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL249 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v&quot;:360:2:360:7|Initial value is not supported on state machine out_xfr_state</Dynamic>
+            <Dynamic>CL249 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v&quot;:354:2:354:7|Initial value is not supported on state machine out_xfr_state</Dynamic>
             <Navigation>CL249</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v</Navigation>
-            <Navigation>360</Navigation>
+            <Navigation>354</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>360</Navigation>
+            <Navigation>354</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Initial value is not supported on state machine out_xfr_state</Navigation>
         </Message>
@@ -2434,12 +2446,12 @@
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>MT531 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v&quot;:299:4:299:7|Found signal identified as System clock which controls 1 sequential elements including tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.out_ep_acked_1[0].  Using this clock, which has no specified timing constraint, can prevent conversion of gated or generated clocks and can adversely impact design performance.</Dynamic>
+            <Dynamic>MT531 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v&quot;:282:4:282:7|Found signal identified as System clock which controls 1 sequential elements including tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.out_ep_acked_1[0].  Using this clock, which has no specified timing constraint, can prevent conversion of gated or generated clocks and can adversely impact design performance.</Dynamic>
             <Navigation>MT531</Navigation>
             <Navigation>c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v</Navigation>
-            <Navigation>299</Navigation>
+            <Navigation>282</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>299</Navigation>
+            <Navigation>282</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Found signal identified as System clock which controls 1 sequential elements including tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.out_ep_acked_1[0].  Using this clock, which has no specified timing constraint, can prevent conversion of gated or generated clocks and can adversely impact design performance. </Navigation>
         </Message>
@@ -2458,14 +2470,14 @@
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>MT529 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\edge_detect.v&quot;:8:2:8:7|Found inferred clock usb_pll_inst|CLKOP_inferred_clock which controls 525 sequential elements including tinyfpga_bootloader_inst.ctrl_ep_inst.detect_pkt_start.in_q. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance.</Dynamic>
+            <Dynamic>MT529 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\edge_detect.v&quot;:8:2:8:7|Found inferred clock usb_pll_inst|CLKOP_inferred_clock which controls 527 sequential elements including tinyfpga_bootloader_inst.ctrl_ep_inst.detect_pkt_start.in_q. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance.</Dynamic>
             <Navigation>MT529</Navigation>
             <Navigation>c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\edge_detect.v</Navigation>
             <Navigation>8</Navigation>
             <Navigation>2</Navigation>
             <Navigation>8</Navigation>
             <Navigation>7</Navigation>
-            <Navigation>Found inferred clock usb_pll_inst|CLKOP_inferred_clock which controls 525 sequential elements including tinyfpga_bootloader_inst.ctrl_ep_inst.detect_pkt_start.in_q. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. </Navigation>
+            <Navigation>Found inferred clock usb_pll_inst|CLKOP_inferred_clock which controls 527 sequential elements including tinyfpga_bootloader_inst.ctrl_ep_inst.detect_pkt_start.in_q. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. </Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
@@ -2513,12 +2525,12 @@
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>MO129 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v&quot;:299:4:299:7|Sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.out_ep_acked_1[0] is reduced to a combinational gate by constant propagation.</Dynamic>
+            <Dynamic>MO129 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v&quot;:282:4:282:7|Sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.out_ep_acked_1[0] is reduced to a combinational gate by constant propagation.</Dynamic>
             <Navigation>MO129</Navigation>
             <Navigation>c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v</Navigation>
-            <Navigation>299</Navigation>
+            <Navigation>282</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>299</Navigation>
+            <Navigation>282</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.out_ep_acked_1[0] is reduced to a combinational gate by constant propagation.</Navigation>
         </Message>

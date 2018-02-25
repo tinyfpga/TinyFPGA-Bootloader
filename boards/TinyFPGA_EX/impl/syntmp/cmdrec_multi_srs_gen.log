@@ -1,7 +1,7 @@
 C:\lscc\diamond\3.9_x64\synpbase\bin64\syn_nfilter.exe  -link  -top  TinyFPGA_EX  -multisrs  C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synwork\diamond_impl_comp.srs  -osyn  C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synwork\diamond_impl_mult.srs  -log  C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synlog\diamond_impl_multi_srs_gen.srr 
 rc:0 success:1 runtime:0
-file:C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synwork\diamond_impl_comp.srs|io:i|time:1519098717|size:64267|exec:0
-file:C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synwork\diamond_impl_mult.srs|io:o|time:1519098718|size:3841|exec:0
-file:C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synlog\diamond_impl_multi_srs_gen.srr|io:o|time:1519098718|size:551|exec:0
+file:C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synwork\diamond_impl_comp.srs|io:i|time:1519531629|size:64725|exec:0
+file:C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synwork\diamond_impl_mult.srs|io:o|time:1519531630|size:3837|exec:0
+file:C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synlog\diamond_impl_multi_srs_gen.srr|io:o|time:1519531630|size:551|exec:0
 file:C:\lscc\diamond\3.9_x64\synpbase\bin\syn_nfilter.exe|io:i|time:1481016996|size:3128320|exec:1
 file:C:\lscc\diamond\3.9_x64\synpbase\bin64\syn_nfilter.exe|io:i|time:1481017264|size:3947520|exec:1

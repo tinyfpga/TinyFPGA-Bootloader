@@ -9,7 +9,7 @@ The file contains the area information from mapper to be displayed as part of th
 <title>Resource Usage</title>
 </report_link>
 <parameter tooltip="Total Register bits used" name="Register bits">
-<data>502</data>
+<data>491</data>
 </parameter>
 <parameter tooltip="Total I/O cells used" name="I/O cells">
 <data>12</data>
@@ -21,6 +21,6 @@ The file contains the area information from mapper to be displayed as part of th
 <data>0</data>
 </parameter>
 <parameter tcl_name="total_luts" tooltip="Total ORCA LUTs used" name="ORCA LUTs">
-<data>811</data>
+<data>846</data>
 </parameter>
 </report_table>

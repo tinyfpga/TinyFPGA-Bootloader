@@ -63,38 +63,38 @@ fsm_state_encoding {1034623467} 11 {11}
 
 fsm_registers {1034623467} {in_xfr_state[1]}  {in_xfr_state[0]} 
 
-fsm_encoding {1236023603} sequential
+fsm_encoding {1221862181} sequential
 
-fsm_state_encoding {1236023603} 00 {00}
+fsm_state_encoding {1221862181} 00 {00}
 
-fsm_state_encoding {1236023603} 01 {01}
+fsm_state_encoding {1221862181} 01 {01}
 
-fsm_state_encoding {1236023603} 10 {10}
+fsm_state_encoding {1221862181} 10 {10}
 
-fsm_state_encoding {1236023603} 11 {11}
+fsm_state_encoding {1221862181} 11 {11}
 
-fsm_registers {1236023603} {out_xfr_state[1]}  {out_xfr_state[0]} 
+fsm_registers {1221862181} {genblk1Û1Ý®ep_state_1_[1]}  {genblk1Û1Ý®ep_state_1_[0]} 
 
-fsm_encoding {1220562051} sequential
+fsm_encoding {1221862182} sequential
 
-fsm_state_encoding {1220562051} 00 {00}
+fsm_state_encoding {1221862182} 00 {00}
 
-fsm_state_encoding {1220562051} 01 {01}
+fsm_state_encoding {1221862182} 01 {01}
 
-fsm_state_encoding {1220562051} 10 {10}
+fsm_state_encoding {1221862182} 10 {10}
 
-fsm_state_encoding {1220562051} 11 {11}
+fsm_state_encoding {1221862182} 11 {11}
 
-fsm_registers {1220562051} {genblk1Û1Ý®ep_state_1_[1]}  {genblk1Û1Ý®ep_state_1_[0]} 
+fsm_registers {1221862182} {genblk1Û0Ý®ep_state_0_[1]}  {genblk1Û0Ý®ep_state_0_[0]} 
 
-fsm_encoding {1220562052} sequential
+fsm_encoding {1235423543} sequential
 
-fsm_state_encoding {1220562052} 00 {00}
+fsm_state_encoding {1235423543} 00 {00}
 
-fsm_state_encoding {1220562052} 01 {01}
+fsm_state_encoding {1235423543} 01 {01}
 
-fsm_state_encoding {1220562052} 10 {10}
+fsm_state_encoding {1235423543} 10 {10}
 
-fsm_state_encoding {1220562052} 11 {11}
+fsm_state_encoding {1235423543} 11 {11}
 
-fsm_registers {1220562052} {genblk1Û0Ý®ep_state_0_[1]}  {genblk1Û0Ý®ep_state_0_[0]} 
+fsm_registers {1235423543} {out_xfr_state[1]}  {out_xfr_state[0]} 

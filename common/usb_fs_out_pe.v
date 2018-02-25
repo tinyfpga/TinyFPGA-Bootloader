@@ -140,8 +140,11 @@ module usb_fs_out_pe #(
 
   reg last_data_toggle = 0;
 
-  wire data_packet_matches_toggle =
-    last_data_toggle == data_toggle[current_endp];
+  wire bad_data_toggle =
+    data_packet_received &&
+    rx_pid[3] != data_toggle[rx_endp];
+
+    //last_data_toggle == data_toggle[current_endp];
 
   ////////////////////////////////////////////////////////////////////////////////
   // endpoint state machine
@@ -297,13 +300,18 @@ module usb_fs_out_pe #(
       end
 
       RCVD_DATA_START : begin
-        if (invalid_packet_received || non_data_packet_received) begin
+        if (bad_data_toggle) begin
+          out_xfr_state_next <= IDLE;
+          rollback_data <= 1;
+          tx_pkt_start <= 1;
+          tx_pid <= 4'b0010; // ACK
+
+        end else if (invalid_packet_received || non_data_packet_received) begin
           out_xfr_state_next <= IDLE;
           rollback_data <= 1;
 
         end else if (data_packet_received) begin
           out_xfr_state_next <= RCVD_DATA_END;
-
 
         end else begin
           out_xfr_state_next <= RCVD_DATA_START;
@@ -319,14 +327,16 @@ module usb_fs_out_pe #(
 
         end else if (nak_out_transfer) begin
           tx_pid <= 4'b1010; // NAK
+          rollback_data <= 1;
 
-        end else if (data_packet_matches_toggle) begin
+        end else begin
           tx_pid <= 4'b0010; // ACK
           new_pkt_end <= 1;
           out_ep_acked[current_endp] <= 1;
 
-        end else begin
-          tx_pid <= 4'b0010; // ACK
+        //end else begin
+        //  tx_pid <= 4'b0010; // ACK
+        //  rollback_data <= 1;
         end
       end
 

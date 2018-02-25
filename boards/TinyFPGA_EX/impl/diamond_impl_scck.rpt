@@ -1,7 +1,7 @@
 # Synopsys Constraint Checker(syntax only), version maplat, Build 1612R, built Dec  5 2016
 # Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
 
-# Written on Mon Feb 19 19:52:40 2018
+# Written on Sat Feb 24 20:07:11 2018
 
 
 ##### DESIGN INFO #######################################################
@@ -27,5 +27,5 @@ Clock                                                                        Fre
 System                                                                       1.0 MHz       1000.000      system                                               system_clkgroup           1    
 TinyFPGA_EX|pin_clk                                                          927.5 MHz     1.078         inferred                                             Autoconstr_clkgroup_0     10   
 usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s|in_xfr_state_derived_clock[1]     4.2 MHz       240.282       derived (from usb_pll_inst|CLKOP_inferred_clock)     Autoconstr_clkgroup_1     67   
-usb_pll_inst|CLKOP_inferred_clock                                            4.2 MHz       240.282       inferred                                             Autoconstr_clkgroup_1     525  
+usb_pll_inst|CLKOP_inferred_clock                                            4.2 MHz       240.282       inferred                                             Autoconstr_clkgroup_1     527  
 =============================================================================================================================================================================================

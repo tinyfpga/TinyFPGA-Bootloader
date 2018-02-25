@@ -12,14 +12,14 @@
 #CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_in_arb.v":1517376190
 #CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_in_pe.v":1519073936
 #CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_out_arb.v":1517376190
-#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_out_pe.v":1518985942
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_out_pe.v":1519531251
 #CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_pe.v":1517779770
-#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_rx.v":1518985544
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_rx.v":1519519359
 #CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_tx.v":1518985762
 #CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_fs_tx_mux.v":1517376190
 #CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_reset_det.v":1517779408
 #CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_serial_ctrl_ep.v":1519074294
-#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_spi_bridge_ep.v":1519098010
+#CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\common\\usb_spi_bridge_ep.v":1519522447
 #CUR:"C:\\Users\\lvale\\Documents\\TinyFPGA\\repos\\TinyFPGA-Bootloader\\boards\\TinyFPGA_EX\\impl\\source\\usb_pll_inst.v":1517877284
 0			"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v" verilog
 1			"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\edge_detect.v" verilog

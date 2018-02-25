@@ -23,19 +23,19 @@ Target Vendor:  LATTICE
 Target Device:  LFE5U-25FCSFBGA285
 Target Performance:   6
 Mapper:  sa5p00,  version:  Diamond (64-bit) 3.9.0.99.2
-Mapped on:  02/19/18  19:52:50
+Mapped on:  02/24/18  20:07:19
 
 
 <A name="mrp_ds"></A><B><U><big>Design Summary</big></U></B>
-   Number of registers:    502 out of 24642 (2%)
-      PFU registers:          500 out of 24288 (2%)
+   Number of registers:    491 out of 24642 (2%)
+      PFU registers:          489 out of 24288 (2%)
       PIO registers:            2 out of   354 (1%)
-   Number of SLICEs:       690 out of 12144 (6%)
-      SLICEs as Logic/ROM:    636 out of 12144 (5%)
+   Number of SLICEs:       707 out of 12144 (6%)
+      SLICEs as Logic/ROM:    653 out of 12144 (5%)
       SLICEs as RAM:           54 out of  9108 (1%)
       SLICEs as Carry:        100 out of 12144 (1%)
-   Number of LUT4s:        1157 out of 24288 (5%)
-      Number used as logic LUTs:        849
+   Number of LUT4s:        1197 out of 24288 (5%)
+      Number used as logic LUTs:        889
       Number used as distributed RAM:   108
       Number used as ripple logic:      200
       Number used as shift registers:     0
@@ -77,66 +77,62 @@ Mapped on:  02/19/18  19:52:50
    Number of Used DSP PRADD Sites:  0 out of 56 (0 %)
    Number of clocks:  2
      Net pin_clk_c: 7 loads, 7 rising, 0 falling (Driver: PIO pin_clk )
-     Net clk_48mhz: 336 loads, 336 rising, 0 falling (Driver:
+     Net clk_48mhz: 327 loads, 327 rising, 0 falling (Driver:
      usb_pll_inst_inst/PLLInst_0 )
-   Number of Clock Enables:  38
+   Number of Clock Enables:  37
      Net initiate_boot: 5 loads, 5 LSLICEs
      Net get_spi_out_data_q_RNI6Q2O: 5 loads, 4 LSLICEs
      Net tinyfpga_bootloader_inst.usb_spi_bridge_ep_inst.spi_get_bit_q: 5 loads,
      4 LSLICEs
      Net tinyfpga_bootloader_inst/us_rst: 5 loads, 5 LSLICEs
-     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/bit_count14: 1
-     loads, 1 LSLICEs
-     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/in_xfr_state_i_d[1]: 2 loads, 2
-     LSLICEs
-     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/tx_pkt_start: 3 loads, 3
-     LSLICEs
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/un1_pkt_state41_
      3_i: 1 loads, 1 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/bit_count14: 1
+     loads, 1 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/tx_pkt_start: 3 loads, 3
+     LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/g0_2_0_a3_5: 1
+     loads, 1 LSLICEs
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/oe_shift_reg_0_s
      qmuxa_1_i: 6 loads, 6 LSLICEs
-     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/g0_0_11: 1
-     loads, 1 LSLICEs
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/un1_pkt_state41_
      1_i: 2 loads, 2 LSLICEs
      Net
      tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/crc16_1_sqmuxa_i: 8
      loads, 8 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/addr4: 6 loads,
+     6 LSLICEs
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/token_payload_1_
      sqmuxa_i: 6 loads, 6 LSLICEs
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/rx_data_buffer_1
      _sqmuxa_i: 5 loads, 5 LSLICEs
-     Net
-     tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/line_state_valid: 6
-     loads, 6 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/line_state_valid: 4 loads, 4
+     LSLICEs
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/full_pid_1_sqmux
-     a_i: 8 loads, 8 LSLICEs
-     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/addr4: 6 loads,
-     6 LSLICEs
+     a_i: 6 loads, 6 LSLICEs
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/crc5_1_sqmuxa_i:
      11 loads, 11 LSLICEs
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un1_out_ep_s
      etup_1_sqmuxa_5: 1 loads, 1 LSLICEs
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/out_xfr_stat
-     e_297_d: 1 loads, 1 LSLICEs
-     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/out_xfr_star
-     t_0_sqmuxa: 2 loads, 2 LSLICEs
+     e_604_d: 1 loads, 1 LSLICEs
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un1_ep_put_a
-     ddr[1]_0_sqmuxa: 3 loads, 3 LSLICEs
+     ddr[1]_1_sqmuxa: 3 loads, 3 LSLICEs
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un1_ep_put_a
+     ddr[0]_1_sqmuxa: 5 loads, 5 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/N_676_i_0: 1
+     loads, 1 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/ep_get_addr[0
+     ]_1_sqmuxa_i: 3 loads, 3 LSLICEs
 
-     ddr[0]_0_sqmuxa: 6 loads, 6 LSLICEs
-     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/N_185: 3
-     loads, 3 LSLICEs
-     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/N_183: 3
-     loads, 3 LSLICEs
-     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/N_184: 3
-     loads, 3 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/ep_get_addr[2
+     ]_1_sqmuxa_i: 3 loads, 3 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/ep_get_addr[1
+     ]_1_sqmuxa_i: 3 loads, 3 LSLICEs
      Net tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/data_out_lengthe: 8
      loads, 8 LSLICEs
-     Net
-     tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/data_in_length_1_sqmuxa: 5
-     loads, 5 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/data_in_lengthe: 8
+     loads, 8 LSLICEs
      Net tinyfpga_bootloader_inst/ctrl_ep_inst/new_dev_addr_1_sqmuxa: 4 loads, 4
      LSLICEs
      Net tinyfpga_bootloader_inst/ctrl_ep_inst/save_dev_addr_0_sqmuxa_i: 1
@@ -163,49 +159,46 @@ Mapped on:  02/19/18  19:52:50
      LSLICEs
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/line_state33: 1
      loads, 1 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/N_36_i: 3
+     loads, 3 LSLICEs
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/ep_state_1__
-     ns_i[0]: 1 loads, 1 LSLICEs
-     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/ep_state_1__
-     355_d: 3 loads, 3 LSLICEs
-     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/ep_state_0__
-     464_d: 4 loads, 4 LSLICEs
+     retc_i: 1 loads, 1 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/ep_get_addr_
+     next_0_2: 4 loads, 4 LSLICEs
      Net tinyfpga_bootloader_inst/ctrl_in_ep_stall: 1 loads, 1 LSLICEs
-     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/current_endp_
-     RNI9SL05_1[0]: 3 loads, 3 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/rollback_in_x
+     fr_0_RNID4121_0: 3 loads, 3 LSLICEs
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/ep_state_1__2
      60_d: 4 loads, 4 LSLICEs
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/ep_state_0__2
      91_d: 4 loads, 4 LSLICEs
-     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/current_endp_
-     RNI9SL05[0]: 3 loads, 3 LSLICEs
-     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/current_endp_
-     RNI9SL05_0[0]: 3 loads, 3 LSLICEs
-     Net tinyfpga_bootloader_inst/send_zero_length_data_pkt_0_sqmuxa_i_0: 1
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/rollback_in_x
+     fr_0_RNIE42O_1: 3 loads, 3 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/rollback_in_x
+     fr_0_RNIE42O_2: 3 loads, 3 LSLICEs
+     Net tinyfpga_bootloader_inst/N_387: 1 loads, 1 LSLICEs
+     Net tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/N_51: 2 loads, 2
+     LSLICEs
+     Net tinyfpga_bootloader_inst/ctrl_ep_inst/status_stage_end_iv_iso: 8 loads,
+     8 LSLICEs
 
-     loads, 1 LSLICEs
-     Net tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/N_446_i: 2 loads, 2
-     LSLICEs
-     Net tinyfpga_bootloader_inst/ctrl_ep_inst/status_stage_end: 8 loads, 8
-     LSLICEs
    Number of nets driven by tri-state buffers:  0
    Top 10 highest fanout non-clock nets:
+     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/packet_valid: 55 loads
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/un16_ep_get_a
      ddr[1]: 45 loads
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/un16_ep_get_a
-     ddr[0]: 44 loads
+     ddr_i_m2[0]: 45 loads
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/un16_ep_get_a
-     ddr[2]: 44 loads
+     ddr_i_m2[2]: 44 loads
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/un16_ep_get_a
-     ddr[3]: 44 loads
-     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/packet_valid: 44
-     loads
+     ddr_i_m2[3]: 44 loads
+     Net tinyfpga_bootloader_inst/cmd_state[3]: 36 loads
      Net tinyfpga_bootloader_inst/ctrl_ep_inst/rom_addr[1]: 36 loads
      Net tinyfpga_bootloader_inst/ctrl_ep_inst/rom_addr[2]: 35 loads
      Net tinyfpga_bootloader_inst/ctrl_ep_inst/rom_addr[3]: 35 loads
      Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/buffer_get_a
      ddr[0]: 32 loads
-     Net tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/buffer_get_a
-     ddr[1]: 32 loads
 
 
 
@@ -240,11 +233,13 @@ WARNING - map: Semantic error in "LOCATE COMP "pin_cs" SITE "U17" ;": The signal
      used for logic after configuration. External logic may be needed to avoid
      contention on this pin.
 WARNING - map: Semantic error in "LOCATE COMP "pin_miso" SITE "T18" ;": The
-
      signal "pin_miso" has been assigned to PIN "T18", which is a dual function
      pin. This pin will be used during the configuration of the device. The pin
      can be used for logic after configuration. External logic may be needed to
      avoid contention on this pin.
+
+
+
 
 
 
@@ -288,23 +283,25 @@ Block tinyfpga_bootloader_inst/ctrl_ep_inst/detect_pkt_end/VCC undriven or does
      not drive anything - clipped.
 Block tinyfpga_bootloader_inst/ctrl_ep_inst/detect_in_data_transfer_done/VCC
      undriven or does not drive anything - clipped.
+Block tinyfpga_bootloader_inst/usb_fs_pe_inst/VCC undriven or does not drive
+     anything - clipped.
+Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_arb_inst/VCC undriven
+     or does not drive anything - clipped.
 Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_rx_inst/VCC undriven or
      does not drive anything - clipped.
 Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_mux_inst/VCC undriven or
      does not drive anything - clipped.
-Signal tinyfpga_bootloader_inst/ctrl_ep_inst/out_ep_acked_m was merged into
-     signal tinyfpga_bootloader_inst/ctrl_ep_inst/ctrl_xfr_state[5]
+Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/VCC undriven or
+     does not drive anything - clipped.
 Signal usb_tx_en_i was merged into signal usb_tx_en
-Signal tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/in_ep_data_put_0_am
-     undriven or does not drive anything - clipped.
-Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/g0_16_bm undriven
-     or does not drive anything - clipped.
-
+Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/in_xfr_state_s1
+     _0_a2_0_bm undriven or does not drive anything - clipped.
 Signal GND undriven or does not drive anything - clipped.
 Signal VCC undriven or does not drive anything - clipped.
 Signal tinyfpga_bootloader_inst/VCC undriven or does not drive anything -
      clipped.
 Signal tinyfpga_bootloader_inst/ctrl_ep_inst/VCC undriven or does not drive
+
      anything - clipped.
 Signal tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/VCC undriven or does not
      drive anything - clipped.
@@ -314,8 +311,6 @@ Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/VCC undriven or
      does not drive anything - clipped.
 Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/VCC undriven
      or does not drive anything - clipped.
-Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/VCC undriven or
-     does not drive anything - clipped.
 Signal boot_delay_cry_0_S0[0] undriven or does not drive anything - clipped.
 Signal N_1 undriven or does not drive anything - clipped.
 Signal usb_pll_inst_inst/CLKINTFB undriven or does not drive anything - clipped.
@@ -356,7 +351,6 @@ Signal tinyfpga_bootloader_inst/un2_led_pwm_8_cry_0_0_S1 undriven or does not
      drive anything - clipped.
 Signal tinyfpga_bootloader_inst/un2_led_pwm_8_cry_0_0_S0 undriven or does not
      drive anything - clipped.
-
 Signal tinyfpga_bootloader_inst/N_2 undriven or does not drive anything -
      clipped.
 Signal tinyfpga_bootloader_inst/un1_us_cnt_4_s_9_0_S1 undriven or does not drive
@@ -364,6 +358,7 @@ Signal tinyfpga_bootloader_inst/un1_us_cnt_4_s_9_0_S1 undriven or does not drive
 Signal tinyfpga_bootloader_inst/un1_us_cnt_4_s_9_0_COUT undriven or does not
      drive anything - clipped.
 Signal tinyfpga_bootloader_inst/un1_us_cnt_4_cry_3_0_S1 undriven or does not
+
      drive anything - clipped.
 Signal tinyfpga_bootloader_inst/un1_us_cnt_4_cry_1_0_S1 undriven or does not
      drive anything - clipped.
@@ -413,7 +408,6 @@ Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_11_0_S1
      undriven or does not drive anything - clipped.
 Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_11_0_S0
      undriven or does not drive anything - clipped.
-
 Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_9_0_S1
      undriven or does not drive anything - clipped.
 Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_9_0_S0
@@ -421,6 +415,7 @@ Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_9_0_S0
 Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_7_0_S1
      undriven or does not drive anything - clipped.
 Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_7_0_S0
+
      undriven or does not drive anything - clipped.
 Signal tinyfpga_bootloader_inst/ctrl_ep_inst/un1_bytes_sent_2_cry_5_0_S1
      undriven or does not drive anything - clipped.
@@ -470,7 +465,6 @@ Signal tinyfpga_bootloader_inst/ctrl_ep_inst/N_4 undriven or does not drive
      anything - clipped.
 Signal
      tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/data_out_length_s_0_S1[15]
-
      undriven or does not drive anything - clipped.
 Signal tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/data_out_length_s_0_COUT[
      15] undriven or does not drive anything - clipped.
@@ -478,6 +472,7 @@ Signal tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/data_out_length_cry_0_S0[
      0] undriven or does not drive anything - clipped.
 Signal tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/N_1 undriven or does not
      drive anything - clipped.
+
 Signal tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/data_in_length_s_0_S1[15]
      undriven or does not drive anything - clipped.
 Signal tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/data_in_length_s_0_COUT[1
@@ -527,7 +522,6 @@ Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un7_out_ep_dat
      a_avail_cry_3_0_S0 undriven or does not drive anything - clipped.
 Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un7_out_ep_dat
      a_avail_cry_1_0_S1 undriven or does not drive anything - clipped.
-
 Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un7_out_ep_dat
      a_avail_cry_1_0_S0 undriven or does not drive anything - clipped.
 Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un7_out_ep_dat
@@ -535,6 +529,7 @@ Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un7_out_ep_dat
 Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un7_out_ep_dat
      a_avail_cry_0_0_S0 undriven or does not drive anything - clipped.
 Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/N_1 undriven
+
      or does not drive anything - clipped.
 Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un24_out_ep_da
      ta_avail_cry_6_0_S1 undriven or does not drive anything - clipped.
@@ -559,14 +554,10 @@ Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/un24_out_ep_da
 Signal tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/N_2 undriven
      or does not drive anything - clipped.
 Signal boot_delay_cry_0_COUT[7] undriven or does not drive anything - clipped.
-Block tinyfpga_bootloader_inst/ctrl_ep_inst/ctrl_xfr_state_RNISMJC[5] was
-     optimized away.
 Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/oe_RNI4QDA was
      optimized away.
-Block tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/in_ep_data_put_0_am was
-     optimized away.
-Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/g0_16_bm was
-     optimized away.
+Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/in_xfr_state_s1_
+     0_a2_0_bm was optimized away.
 Block GND was optimized away.
 Block VCC was optimized away.
 Block tinyfpga_bootloader_inst/VCC was optimized away.
@@ -578,12 +569,6 @@ Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/VCC was
      optimized away.
 Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/VCC was
      optimized away.
-Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/VCC was optimized
-     away.
-
-
-
-
 
 
 
@@ -602,6 +587,7 @@ Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/VCC was optimized
     PFU Registers: 0
 /tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/in_data_buffer_ram_1:
      
+
     EBRs: 0
     RAM SLICEs: 3
     Logic SLICEs: 0
@@ -644,7 +630,6 @@ Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/VCC was optimized
     PFU Registers: 0
 /tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/in_data_buffer_ram_7:
      
-
     EBRs: 0
     RAM SLICEs: 3
     Logic SLICEs: 0
@@ -659,6 +644,7 @@ Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/VCC was optimized
      0:
     EBRs: 0
     RAM SLICEs: 3
+
     Logic SLICEs: 0
     PFU Registers: 0
 /tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/out_data_buffer_ram_
@@ -702,8 +688,6 @@ Block tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/VCC was optimized
 
 
 
-
-
 <A name="mrp_pll"></A><B><U><big>PLL/DLL Summary</big></U></B>
 ---------------
 
@@ -719,6 +703,7 @@ PLL 1:                                     Pin/Node Value
   Output Clock(S3):                                 NONE
   Feedback Signal:                         NODE     clk_48mhz
   Reset Signal:                                     NONE
+
   Standby Signal:                          NODE     usb_pll_inst_inst/GND
   PLL LOCK signal:                                  NONE
   PLL Internal LOCK Signal:                         NONE
@@ -766,59 +751,13 @@ Instance Name: usb_pll_inst_inst/PLLInst_0
 
 
 
-
 <A name="mrp_runtime"></A><B><U><big>Run Time and Memory Usage</big></U></B>
 -------------------------
 
    Total CPU Time: 0 secs  
-   Total REAL Time: 0 secs  
-   Peak Memory Usage: 116 MB
+   Total REAL Time: 2 secs  
+   Peak Memory Usage: 117 MB
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

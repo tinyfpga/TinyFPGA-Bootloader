@@ -17,10 +17,10 @@
 @N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":346:2:346:7|Register bit current_endp[2] is always 0.
 @N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":346:2:346:7|Register bit current_endp[3] is always 0.
 @N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":2:7:2:19|Synthesizing module usb_fs_out_pe in library work.
-@N: CL134 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":360:2:360:7|Found RAM out_data_buffer, depth=64, width=8
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":360:2:360:7|Register bit current_endp[1] is always 0.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":360:2:360:7|Register bit current_endp[2] is always 0.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":360:2:360:7|Register bit current_endp[3] is always 0.
+@N: CL134 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":354:2:354:7|Found RAM out_data_buffer, depth=64, width=8
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":354:2:354:7|Register bit current_endp[1] is always 0.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":354:2:354:7|Register bit current_endp[2] is always 0.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":354:2:354:7|Register bit current_endp[3] is always 0.
 @N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_rx.v":1:7:1:15|Synthesizing module usb_fs_rx in library work.
 @N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx_mux.v":1:7:1:19|Synthesizing module usb_fs_tx_mux in library work.
 @N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":1:7:1:15|Synthesizing module usb_fs_tx in library work.
@@ -37,9 +37,9 @@
 @N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Register bit se0_shift_reg[3] is always 0.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":5:8:5:12|Input reset is unused.
 @N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_rx.v":81:2:81:7|Trying to extract state machine for register line_state.
-@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":205:6:205:11|Trying to extract state machine for register genblk1[1].ep_state_1_.
-@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":205:6:205:11|Trying to extract state machine for register genblk1[0].ep_state_0_.
-@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":360:2:360:7|Trying to extract state machine for register out_xfr_state.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":218:6:218:11|Trying to extract state machine for register genblk1[1].ep_state_1_.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":218:6:218:11|Trying to extract state machine for register genblk1[0].ep_state_0_.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":354:2:354:7|Trying to extract state machine for register out_xfr_state.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":10:8:10:17|Input bit_strobe is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":36:15:36:26|Input rx_frame_num is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":49:8:49:17|Input tx_pkt_end is unused.
@@ -50,8 +50,8 @@
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":28:8:28:19|Input rx_pkt_start is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":36:15:36:26|Input rx_frame_num is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":45:8:45:17|Input tx_pkt_end is unused.
-@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":398:2:398:7|Trying to extract state machine for register spi_state.
-@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":268:2:268:7|Trying to extract state machine for register cmd_state.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":391:2:391:7|Trying to extract state machine for register spi_state.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":256:2:256:7|Trying to extract state machine for register cmd_state.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":3:8:3:12|Input reset is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":12:8:12:19|Input out_ep_setup is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":16:8:16:19|Input out_ep_acked is unused.

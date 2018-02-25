@@ -1,10 +1,8 @@
 [ START MERGED ]
-tinyfpga_bootloader_inst/ctrl_ep_inst/out_ep_acked_m tinyfpga_bootloader_inst/ctrl_ep_inst/ctrl_xfr_state[5]
 usb_tx_en_i usb_tx_en
 [ END MERGED ]
 [ START CLIPPED ]
-tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/in_ep_data_put_0_am
-tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/g0_16_bm
+tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/in_xfr_state_s1_0_a2_0_bm
 GND
 VCC
 tinyfpga_bootloader_inst/VCC
@@ -13,7 +11,6 @@ tinyfpga_bootloader_inst/usb_spi_bridge_ep_inst/VCC
 tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/GND
 tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_in_pe_inst/VCC
 tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_out_pe_inst/VCC
-tinyfpga_bootloader_inst/usb_fs_pe_inst/usb_fs_tx_inst/VCC
 boot_delay_cry_0_S0[0]
 N_1
 usb_pll_inst_inst/CLKINTFB
@@ -140,7 +137,7 @@ boot_delay_cry_0_COUT[7]
 [ END CLIPPED ]
 [ START DESIGN PREFS ]
 SCHEMATIC START ;
-# map:  version Diamond (64-bit) 3.9.0.99.2 -- WARNING: Map write only section -- Mon Feb 19 19:52:51 2018
+# map:  version Diamond (64-bit) 3.9.0.99.2 -- WARNING: Map write only section -- Sat Feb 24 20:07:21 2018
 
 SYSCONFIG SLAVE_SPI_PORT=DISABLE MASTER_SPI_PORT=DISABLE SLAVE_PARALLEL_PORT=DISABLE BACKGROUND_RECONFIG=OFF DONE_EX=OFF DONE_OD=ON DONE_PULL=ON MCCLK_FREQ=38.8 TRANSFR=OFF CONFIG_IOVOLTAGE=3.3 CONFIG_SECURE=OFF WAKE_UP=21 COMPRESS_CONFIG=ON CONFIG_MODE=SPI_QUAD ;
 LOCATE COMP "pin_usbp" SITE "F16" ;
