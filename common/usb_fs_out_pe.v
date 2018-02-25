@@ -98,6 +98,8 @@ module usb_fs_out_pe #(
 
   // current get_addr when outputting a packet from the buffer
   reg [5:0] ep_get_addr [NUM_OUT_EPS - 1:0];
+  reg [5:0] ep_get_addr_next [NUM_OUT_EPS - 1:0];
+  
 
   // endpoint put_addrs when inputting a packet into the buffer
   reg [5:0] ep_put_addr [NUM_OUT_EPS - 1:0];
@@ -178,7 +180,7 @@ module usb_fs_out_pe #(
 
             GETTING_PKT : begin
 
-              if (ep_get_addr[ep_num][5:0] >= (ep_put_addr[ep_num][5:0])) begin
+              if (ep_get_addr[ep_num][5:0] >= (ep_put_addr[ep_num][5:0] - 2)) begin
                 ep_state_next[ep_num] <= READY_FOR_PKT;
 
               end else begin
@@ -201,54 +203,31 @@ module usb_fs_out_pe #(
           endcase
         end
 
+        if (ep_state_next[ep_num][1:0] == READY_FOR_PKT) begin
+          ep_get_addr_next[ep_num][5:0] <= 0;
+        end else if (ep_state_next[ep_num][1:0] == GETTING_PKT && out_ep_data_get[ep_num]) begin
+          ep_get_addr_next[ep_num][5:0] <= ep_get_addr[ep_num][5:0] + 1;
+        end else begin
+          ep_get_addr_next[ep_num][5:0] <= ep_get_addr[ep_num][5:0];
+        end
       end
 
       always @(posedge clk) begin
         if (reset || reset_ep[ep_num]) begin
           ep_state[ep_num] <= READY_FOR_PKT;
-
         end else begin
           ep_state[ep_num] <= ep_state_next[ep_num];
-
-          //out_ep_data_avail_i[ep_num] <= 0; 
-          //out_ep_data_avail_j[ep_num] <= out_ep_data_avail_i[ep_num];
-          //out_ep_data_avail[ep_num] <= out_ep_data_avail_j[ep_num] && out_ep_data_avail_i[ep_num];
-
-          if (ep_state_next[ep_num][1:0] == GETTING_PKT) begin
-            //if (ep_state[ep_num][1:0] == GETTING_PKT) begin
-            //  out_ep_data_avail_i[ep_num] <= 1;
-            //end
-
-            if (
-              out_ep_data_get[ep_num] 
-            ) begin
-              ep_get_addr[ep_num][5:0] <= ep_get_addr[ep_num][5:0] + 1;
-            end
-          end
-
-        
-                  
-          case (ep_state[ep_num])
-            READY_FOR_PKT : begin
-              ep_get_addr[ep_num][5:0] <= 0;
-            end
-
-            PUTTING_PKT : begin
-            end
-
-            GETTING_PKT : begin   
-            end
-
-            STALL : begin
-            end
-          endcase
         end
+
+        ep_get_addr[ep_num][5:0] <= ep_get_addr_next[ep_num][5:0];
       end
       
 
       assign out_ep_data_avail[ep_num] = 
-        (ep_get_addr[ep_num][5:0] < (ep_put_addr[ep_num][5:0])) && 
+        (ep_get_addr[ep_num][5:0] < (ep_put_addr[ep_num][5:0] - 2)) && 
         (ep_state[ep_num][1:0] == GETTING_PKT);
+
+
 
     end
   endgenerate
@@ -396,8 +375,12 @@ module usb_fs_out_pe #(
 
         RCVD_DATA_START : begin
           if (!nak_out_transfer && rx_data_put && !ep_put_addr[current_endp][5]) begin
-            ep_put_addr[current_endp][5:0] <= ep_put_addr[current_endp][5:0] + 1;
             out_data_buffer[buffer_put_addr][7:0] <= rx_data;
+          end
+          
+          if (!nak_out_transfer && rx_data_put) begin
+            ep_put_addr[current_endp][5:0] <= ep_put_addr[current_endp][5:0] + 1;
+
           end
         end
 

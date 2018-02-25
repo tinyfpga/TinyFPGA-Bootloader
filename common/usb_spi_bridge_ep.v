@@ -80,6 +80,7 @@ module usb_spi_bridge_ep (
   localparam CMD_DO_IN = 9;
 
   reg get_cmd_out_data = 0;
+  reg get_cmd_out_data_q = 0;
   reg spi_has_more_in_bytes = 0;
   reg spi_has_more_out_bytes = 0;
   reg spi_start_new_xfr = 0;
@@ -127,8 +128,9 @@ module usb_spi_bridge_ep (
   always @(posedge clk) in_ep_data_done_q <= in_ep_data_done_i;
   always @(posedge clk) in_ep_data_done <= in_ep_data_done_q;
 
-  reg out_data_ready = 0;
-  always @(posedge clk) out_data_ready <= out_ep_grant && out_ep_data_avail; 
+  wire out_data_ready = out_ep_grant && out_ep_data_avail; 
+  reg out_data_valid = 0;
+  always @(posedge clk) out_data_valid <= out_data_ready;
 
   reg spi_dir_transition = 0;
   reg spi_put_last_in_byte = 0;
@@ -148,26 +150,14 @@ module usb_spi_bridge_ep (
 
     case (cmd_state)
       CMD_IDLE : begin
-        if (out_data_ready) begin
-          get_cmd_out_data <= 1'b1;
-          cmd_state_next <= CMD_PRE;
-
-        end else begin
-          cmd_state_next <= CMD_IDLE;
-        end
-      end
-
-      CMD_PRE : begin
-        get_cmd_out_data <= 1'b1;
-
-        if (out_data_ready && out_ep_data == 8'h0) begin
+        get_cmd_out_data <= out_data_ready;
+        if (out_data_valid && out_ep_data == 8'h0) begin
           cmd_state_next <= CMD_OP_BOOT;
 
-        end else if (out_data_ready && out_ep_data == 8'h1) begin  
-          //cmd_state_next <= CMD_OP_XFR;    
+        end else if (out_data_valid && out_ep_data == 8'h1) begin  
           cmd_state_next <= CMD_SAVE_DOL_LO;    
   
-        end else if (out_data_ready && out_ep_data[7]) begin
+        end else if (out_data_valid && out_ep_data[7]) begin
           // out_ep_data[6] // output pin value
           // out_ep_data[5] // output pin enable
           // out_ep_data[4:0] // output pin id 
@@ -187,13 +177,9 @@ module usb_spi_bridge_ep (
         boot_to_user_design <= 1'b1;
       end
 
-      //CMD_OP_XFR : begin
-      //  cmd_state_next <= CMD_SAVE_DOL_LO;
-      //end
-
       CMD_SAVE_DOL_LO : begin
-        if (out_data_ready) begin   
-          get_cmd_out_data <= 1'b1;
+        get_cmd_out_data <= out_data_ready;
+        if (out_data_valid) begin   
           cmd_state_next <= CMD_SAVE_DOL_HI;     
   
         end else begin
@@ -202,8 +188,8 @@ module usb_spi_bridge_ep (
       end
 
       CMD_SAVE_DOL_HI : begin
-        if (out_data_ready) begin   
-          get_cmd_out_data <= 1'b1;
+        get_cmd_out_data <= out_data_ready;
+        if (out_data_valid) begin   
           cmd_state_next <= CMD_SAVE_DIL_LO;     
   
         end else begin
@@ -212,8 +198,8 @@ module usb_spi_bridge_ep (
       end
 
       CMD_SAVE_DIL_LO : begin
-        if (out_data_ready) begin   
-          get_cmd_out_data <= 1'b1;
+        get_cmd_out_data <= out_data_ready;
+        if (out_data_valid) begin   
           cmd_state_next <= CMD_SAVE_DIL_HI;     
   
         end else begin
@@ -221,16 +207,18 @@ module usb_spi_bridge_ep (
         end
       end
 
+      
       CMD_SAVE_DIL_HI : begin
-        if (out_data_ready) begin   
+        if (out_data_valid) begin   
           cmd_state_next <= CMD_DO_OUT; 
-          //get_cmd_out_data <= 1'b1;    
           spi_start_new_xfr <= 1'b1;
   
         end else begin
+          get_cmd_out_data <= out_data_ready;
           cmd_state_next <= CMD_SAVE_DIL_HI;
         end
       end
+      
 
       CMD_DO_OUT : begin
         if (data_out_length == 16'h0) begin
@@ -267,8 +255,9 @@ module usb_spi_bridge_ep (
 
   always @(posedge clk) begin
     cmd_state <= cmd_state_next;
+    get_cmd_out_data_q <= get_cmd_out_data;
     
-    if (get_cmd_out_data) begin
+    if (get_cmd_out_data_q) begin
       case (cmd_state)
         CMD_SAVE_DOL_LO : data_out_length[7:0] <= out_ep_data;
         CMD_SAVE_DOL_HI : data_out_length[15:8] <= out_ep_data;
@@ -303,7 +292,7 @@ module usb_spi_bridge_ep (
         spi_sck <= 1'b1;
 
         if (spi_start_new_xfr) begin
-          spi_state_next <= SPI_START;
+          spi_state_next <= SPI_END;
           reset_spi_bit_counter <= 1'b1;
 
         end else begin
