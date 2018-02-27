@@ -92,7 +92,8 @@ module usb_serial_ctrl_ep (
   wire in_data_stage;
   assign in_data_stage = has_data_stage && bmRequestType[7];
 
-
+  reg [7:0] bytes_sent = 0;
+  reg [6:0] rom_length = 0;
 
   wire all_data_sent = 
     (bytes_sent >= rom_length) ||
@@ -115,9 +116,7 @@ module usb_serial_ctrl_ep (
   assign in_ep_data_put = ctrl_xfr_state == DATA_IN && more_data_to_send && in_ep_data_free;
 
 
-  reg [7:0] bytes_sent = 0;
   reg [6:0] rom_addr = 0;
-  reg [6:0] rom_length = 0;
 
   reg save_dev_addr = 0;
   reg [6:0] new_dev_addr = 0;

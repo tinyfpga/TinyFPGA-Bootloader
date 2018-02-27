@@ -60,6 +60,9 @@ module usb_fs_in_pe #(
   reg [1:0] ep_state [NUM_IN_EPS - 1:0];
   reg [1:0] ep_state_next [NUM_IN_EPS - 1:0];
 
+  // latched on valid IN token
+  reg [3:0] current_endp = 0;
+
   wire [1:0] current_ep_state = ep_state[current_endp][1:0];
 
   localparam READY_FOR_PKT = 0;
@@ -140,16 +143,14 @@ module usb_fs_in_pe #(
   wire [5:0] current_ep_get_addr = ep_get_addr[current_endp][5:0];
   wire [5:0] current_ep_put_addr = ep_put_addr[current_endp][5:0];
 
-  assign tx_data_avail = tx_data_avail_i;
-
-  // latched on valid IN token
-  reg [3:0] current_endp = 0;
 
 
   
   wire tx_data_avail_i =
     in_xfr_state == SEND_DATA &&
     more_data_to_send; 
+
+  assign tx_data_avail = tx_data_avail_i;
 
 
 
