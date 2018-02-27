@@ -1,4 +1,4 @@
-`include "../top_tb_header.vh"
+`include "top_tb_header.vh"
   initial begin
     prepare_spi_xfer(
       /* MOSI */ {32'hcafebabe, 32'h00000000}, 
@@ -23,4 +23,4 @@
 
     $finish(0);
   end
-`include "../top_tb_footer.vh"
+`include "top_tb_footer.vh"

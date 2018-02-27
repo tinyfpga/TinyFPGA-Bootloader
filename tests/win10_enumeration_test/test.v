@@ -1,4 +1,4 @@
-`include "../top_tb_header.vh"
+`include "top_tb_header.vh"
   initial begin
     #1000000;
     send_usb_port_reset();
@@ -280,4 +280,4 @@
 
     $finish(0);
   end
-`include "../top_tb_footer.vh"
+`include "top_tb_footer.vh"
