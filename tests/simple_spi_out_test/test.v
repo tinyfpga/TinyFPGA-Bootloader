@@ -1,4 +1,4 @@
-`include "../top_tb_header.vh"
+`include "top_tb_header.vh"
   initial begin
     prepare_spi_xfer({8'hAB}, {8'h00}, 8);
 
@@ -13,4 +13,4 @@
 
     $finish(0);
   end
-`include "../top_tb_footer.vh"
+`include "top_tb_footer.vh"

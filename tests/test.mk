@@ -1,5 +1,5 @@
 test: test.v ../../common/*.v ../*.vh
-	iverilog -s top_tb -o test -c ../file_list.txt 
+	iverilog -I.. -s top_tb -o test -c ../file_list.txt 
 	./test
 
 clean:
