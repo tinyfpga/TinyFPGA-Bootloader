@@ -1,17 +1,23 @@
 `timescale 1ps / 1ps
 
+`ifdef __ICARUS__
+ `define finish_and_return(code) $finish_and_return(code)
+`else
+ `define finish_and_return(code) $finish
+`endif
+
 `define assert(msg, signal, value) \
         if ((signal) !== value) begin \
             $display("ERROR (%m): %s. signal != value", msg); \
             $display("    signal: %x", signal); \
             $display("    value: %x", value); \
-            $finish_and_return(1); \
+            `finish_and_return(1); \
         end
 
 `define assert_true(msg, signal) \
         if (!(signal)) begin \
             $display("ERROR (%m): %s. (signal) == FALSE", msg); \
-            $finish_and_return(1); \
+            `finish_and_return(1); \
         end
 
 module top_tb;
