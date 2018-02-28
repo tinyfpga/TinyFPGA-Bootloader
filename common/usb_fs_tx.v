@@ -35,6 +35,15 @@ module usb_fs_tx (
     end
   end
 
+  reg [7:0] data_shift_reg = 0;
+  reg [7:0] oe_shift_reg = 0;
+  reg [7:0] se0_shift_reg = 0;
+
+
+  wire serial_tx_data = data_shift_reg[0];
+  wire serial_tx_oe = oe_shift_reg[0];
+  wire serial_tx_se0 = se0_shift_reg[0];
+
 
   // serialize sync, pid, data payload, and crc16
   reg byte_strobe = 0;
@@ -56,15 +65,6 @@ module usb_fs_tx (
     bitstuff_qqqq <= bitstuff_qqq;
   end
 
-  reg [7:0] data_shift_reg = 0;
-  reg [7:0] oe_shift_reg = 0;
-  reg [7:0] se0_shift_reg = 0;
-
-
-  wire serial_tx_data = data_shift_reg[0];
-  wire serial_tx_oe = oe_shift_reg[0];
-  wire serial_tx_se0 = se0_shift_reg[0];                               
-
   assign pkt_end = bit_strobe && se0_shift_reg[1:0] == 2'b01;
 
   reg data_payload = 0;
@@ -77,6 +77,7 @@ module usb_fs_tx (
   localparam CRC16_1 = 4;
   localparam EOP = 5;
 
+  reg [15:0] crc16 = 0;
 
   always @(posedge clk) begin
     case (pkt_state)
@@ -181,7 +182,6 @@ module usb_fs_tx (
 
 
   // calculate crc16
-  reg [15:0] crc16 = 0; 
   wire crc16_invert = serial_tx_data ^ crc16[15];  
 
   always @(posedge clk) begin

@@ -1,0 +1,235 @@
+CAPI=2:
+name : ::TinyFPGA-Bootloader:0
+
+filesets:
+  common:
+    files:
+      - common/usb_fs_out_arb.v
+      - common/usb_reset_det.v
+      - common/usb_serial_ctrl_ep.v
+      - common/usb_fs_tx_mux.v
+      - common/usb_fs_in_pe.v
+      - common/usb_fs_rx.v
+      - common/usb_fs_tx.v
+      - common/usb_fs_out_pe.v
+      - common/usb_spi_bridge_ep.v
+      - common/usb_fs_in_arb.v
+      - common/usb_fs_pe.v
+      - common/tinyfpga_bootloader.v
+      - common/edge_detect.v
+    file_type : verilogSource
+  icebreaker_bitsy:
+    files:
+      - boards/ICEBreaker_bitsy/pins.pcf     : {file_type : PCF}
+      - boards/ICEBreaker_bitsy/bootloader.v : {file_type : verilogSource}
+  tinyfpga_bx:
+    files:
+      - boards/TinyFPGA_BX/pins.pcf     : {file_type : PCF}
+      - boards/TinyFPGA_BX/bootloader.v : {file_type : verilogSource}
+    
+#  tinyfpga_b2:
+#    files:
+#      - boards/TinyFPGA_B2/pins.pcf      : {file_type : PCF}
+#      - boards/TinyFPGA_B2/TinyFPGA_B2.v : {file_type : verilogSource}
+  test_common:
+    files:
+      - tests/top_tb_header.vh : {is_include_file : true}
+      - tests/top_tb_footer.vh : {is_include_file : true}
+    file_type : verilogSource
+
+  address_device_test:
+    files : [tests/address_device_test/test.v : {file_type : verilogSource}]
+    
+  in_nak_test:
+    files : [tests/in_nak_test/test.v : {file_type : verilogSource}]
+
+  simple_spi_in_test:
+    files : [tests/simple_spi_in_test/test.v : {file_type : verilogSource}]
+
+  simple_spi_out_test:
+    files : [tests/simple_spi_out_test/test.v : {file_type : verilogSource}]
+
+  spi_in_test_16_bytes_dataack_smash:
+    files : [tests/spi_in_test_16_bytes_dataack_smash/test.v : {file_type : verilogSource}]
+
+  spi_in_test_4_bytes:
+    files : [tests/spi_in_test_4_bytes/test.v : {file_type : verilogSource}]
+
+  spi_in_test_16_bytes:
+    files : [tests/spi_in_test_16_bytes/test.v : {file_type : verilogSource}]
+
+  spi_in_test_16_bytes_x4:
+    files : [tests/spi_in_test_16_bytes_x4/test.v : {file_type : verilogSource}]
+
+  spi_in_test_32_bytes:
+    files : [tests/spi_in_test_32_bytes/test.v : {file_type : verilogSource}]
+
+  spi_in_test_64_bytes:
+    files : [tests/spi_in_test_64_bytes/test.v : {file_type : verilogSource}]
+
+  spi_in_test_64_bytes_slow:
+    files : [tests/spi_in_test_64_bytes_slow/test.v : {file_type : verilogSource}]
+
+  spi_in_test_combined_cmd_x2:
+    files : [tests/spi_in_test_combined_cmd_x2/test.v : {file_type : verilogSource}]
+
+  spi_in_test_split_cmd:
+    files : [tests/spi_in_test_split_cmd/test.v : {file_type : verilogSource}]
+
+  spi_in_test_split_cmd_1:
+    files : [tests/spi_in_test_split_cmd_1/test.v : {file_type : verilogSource}]
+
+  spi_in_test_split_cmd_2:
+    files : [tests/spi_in_test_split_cmd_2/test.v : {file_type : verilogSource}]
+
+  spi_in_test_split_cmd_3:
+    files : [tests/spi_in_test_split_cmd_3/test.v : {file_type : verilogSource}]
+
+  spi_in_test_split_cmd_4:
+    files : [tests/spi_in_test_split_cmd_4/test.v : {file_type : verilogSource}]
+
+  spi_in_test_split_cmd_5:
+    files : [tests/spi_in_test_split_cmd_5/test.v : {file_type : verilogSource}]
+
+  spi_in_test_split_cmd_6:
+    files : [tests/spi_in_test_split_cmd_6/test.v : {file_type : verilogSource}]
+
+  spi_in_test_split_cmd_7:
+    files : [tests/spi_in_test_split_cmd_7/test.v : {file_type : verilogSource}]
+
+  spi_out_test_64_bytes:
+    files : [tests/spi_out_test_64_bytes/test.v : {file_type : verilogSource}]
+
+  spi_out_test_64_bytes_ack_smash:
+    files : [tests/spi_out_test_64_bytes_ack_smash/test.v : {file_type : verilogSource}]
+
+  spi_out_test_64_bytes_slow:
+    files : [tests/spi_out_test_64_bytes_slow/test.v : {file_type : verilogSource}]
+
+  win10_enumeration_test:
+    files : [tests/win10_enumeration_test/test.v : {file_type : verilogSource}]
+
+targets:
+  lint:
+    default_tool: verilator
+    filesets :  [common]
+    tools:
+      verilator:
+        mode : lint-only
+    toplevel : [tinyfpga_bootloader]
+
+  icebreaker_bitsy:
+    default_tool : icestorm
+    filesets : [common, icebreaker_bitsy]
+    tools:
+      icestorm:
+        arachne_pnr_options : [-d, 5k, -P, sg48]
+    toplevel : [bootloader]
+
+  tinyfpga_bx:
+    default_tool : icestorm
+    filesets : [common, tinyfpga_bx]
+    tools:
+      icestorm:
+        arachne_pnr_options : [-d, 8k, -P, cm81]
+    toplevel : [bootloader]
+
+  address_device_test: &tc
+    default_tool : icarus
+    filesets : [common, test_common, address_device_test]
+    tools:
+      modelsim:
+        vlog_options : [-sv]
+    toplevel : [top_tb]
+
+  in_nak_test:
+    <<: *tc
+    filesets : [common, test_common, in_nak_test]
+
+  simple_spi_in_test:
+    <<: *tc
+    filesets : [common, test_common, simple_spi_in_test]
+
+  simple_spi_out_test:
+    <<: *tc
+    filesets : [common, test_common, simple_spi_out_test]
+
+  spi_in_test_16_bytes_dataack_smash:
+    <<: *tc
+    filesets : [common, test_common, spi_in_test_16_bytes_dataack_smash]
+
+  spi_in_test_4_bytes:
+    <<: *tc
+    filesets : [common, test_common, spi_in_test_4_bytes]
+
+  spi_in_test_16_bytes:
+    <<: *tc
+    filesets : [common, test_common, spi_in_test_16_bytes]
+
+  spi_in_test_16_bytes_x4:
+    <<: *tc
+    filesets : [common, test_common, spi_in_test_16_bytes_x4]
+
+  spi_in_test_32_bytes:
+    <<: *tc
+    filesets : [common, test_common, spi_in_test_32_bytes]
+
+  spi_in_test_64_bytes:
+    <<: *tc
+    filesets : [common, test_common, spi_in_test_64_bytes]
+
+  spi_in_test_64_bytes_slow:
+    <<: *tc
+    filesets : [common, test_common, spi_in_test_64_bytes_slow]
+
+  spi_in_test_combined_cmd_x2:
+    <<: *tc
+    filesets : [common, test_common, spi_in_test_combined_cmd_x2]
+
+  spi_in_test_split_cmd:
+    <<: *tc
+    filesets : [common, test_common, spi_in_test_split_cmd]
+
+  spi_in_test_split_cmd_1:
+    <<: *tc
+    filesets : [common, test_common, spi_in_test_split_cmd_1]
+
+  spi_in_test_split_cmd_2:
+    <<: *tc
+    filesets : [common, test_common, spi_in_test_split_cmd_2]
+
+  spi_in_test_split_cmd_3:
+    <<: *tc
+    filesets : [common, test_common, spi_in_test_split_cmd_3]
+
+  spi_in_test_split_cmd_4:
+    <<: *tc
+    filesets : [common, test_common, spi_in_test_split_cmd_4]
+
+  spi_in_test_split_cmd_5:
+    <<: *tc
+    filesets : [common, test_common, spi_in_test_split_cmd_5]
+
+  spi_in_test_split_cmd_6:
+    <<: *tc
+    filesets : [common, test_common, spi_in_test_split_cmd_6]
+
+  spi_in_test_split_cmd_7:
+    <<: *tc
+    filesets : [common, test_common, spi_in_test_split_cmd_7]
+
+  spi_out_test_64_bytes:
+    <<: *tc
+    filesets : [common, test_common, spi_out_test_64_bytes_ack_smash]
+
+  spi_out_test_64_bytes_ack_smash:
+    <<: *tc
+    filesets : [common, test_common, spi_out_test_64_bytes_ack_smash]
+
+  spi_out_test_64_bytes_slow:
+    <<: *tc
+    filesets : [common, test_common, spi_out_test_64_bytes_slow]
+
+  win10_enumeration_test:
+    <<: *tc
+    filesets : [common, test_common, win10_enumeration_test]
