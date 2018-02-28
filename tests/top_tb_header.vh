@@ -1,9 +1,13 @@
 `timescale 1ps / 1ps
 
-`ifdef __ICARUS__
- `define finish_and_return(code) $finish_and_return(code)
+`ifdef continue_on_fail
+ `define finish_and_return(code) #0
 `else
- `define finish_and_return(code) $finish
+ `ifdef __ICARUS__
+  `define finish_and_return(code) $finish_and_return(code)
+ `else
+  `define finish_and_return(code) $finish
+ `endif
 `endif
 
 `define assert(msg, signal, value) \

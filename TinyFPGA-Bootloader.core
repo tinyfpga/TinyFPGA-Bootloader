@@ -138,6 +138,7 @@ targets:
   address_device_test: &tc
     default_tool : icarus
     filesets : [common, test_common, address_device_test]
+    parameters : [continue_on_fail]
     tools:
       modelsim:
         vlog_options : [-sv]
@@ -234,3 +235,9 @@ targets:
   win10_enumeration_test:
     <<: *tc
     filesets : [common, test_common, win10_enumeration_test]
+
+parameters:
+  continue_on_fail:
+    datatype    : bool
+    description : Continue instead of exit on failed assertions
+    paramtype   : vlogdefine
