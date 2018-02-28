@@ -21,10 +21,13 @@
         end
 
 module top_tb;
-    initial begin
-      $dumpfile("test.vcd");
-      $dumpvars(0, dut);
-    end
+    /* By instantiating vlog_tb_utils we get access to some
+     extra functionality that can be activated by plusargs at
+     runtime.
+     fusesoc run --target=simple_spi_in_test TinyFPGA-Bootloader --help
+     will list all available options. Refer to this for details
+     */
+    vlog_tb_utils vtu();
 
    /* Set a default name for the tap file.
     Doesn't necessarily have to be unique as each target
