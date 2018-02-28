@@ -26,6 +26,16 @@ module top_tb;
       $dumpvars(0, dut);
     end
 
+   /* Set a default name for the tap file.
+    Doesn't necessarily have to be unique as each target
+    executes in a separate work directory
+    Filename specified here can be overridden with the
+    vtg.set_file("filename") function at compile-time
+    or with a plusarg at run time by adding --tapfile=filename
+    to the FuseSoC command line
+    */
+   vlog_tap_generator #("test.tap") vtg();
+
     reg clk_48mhz;
     reg reset = 0;
 

@@ -36,6 +36,7 @@ filesets:
       - tests/top_tb_header.vh : {is_include_file : true}
       - tests/top_tb_footer.vh : {is_include_file : true}
     file_type : verilogSource
+    depend : [">=::vlog_tb_utils:1.1"]
 
   address_device_test:
     files : [tests/address_device_test/test.v : {file_type : verilogSource}]
