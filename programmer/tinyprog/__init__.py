@@ -74,7 +74,7 @@ class TinyMeta(object):
 
 
     def _read_metadata(self):
-        meta_roots = [self._parse_json(self.prog.read_security_register_page(p).replace("\x00", "")) for p in [1, 2, 3]]
+        meta_roots = [self._parse_json(self.prog.read_security_register_page(p).replace("\x00", "").replace("\xff", "")) for p in [1, 2, 3]]
         meta_roots = [root for root in meta_roots if root is not None]
         if len(meta_roots) > 0:
             meta = reduce(jsonmerge.merge, meta_roots)
@@ -92,7 +92,7 @@ class TinyMeta(object):
         addr_str = self.root[u"bootmeta"][u"addrmap"][name]
         m = re.search(r"^\s*0x(?P<start>[A-Fa-f0-9]+)\s*-\s*0x(?P<end>[A-Fa-f0-9]+)\s*$", addr_str)
         if m:
-            return (int(m.group("start"), 16), int(m.group("end")))
+            return (int(m.group("start"), 16), int(m.group("end"), 16))
         else:
             return None
 
