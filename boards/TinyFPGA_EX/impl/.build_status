@@ -5,34 +5,34 @@
             <Task name="IBIS" build_result="0" update_result="3" update_time="0"/>
             <Task name="TimingSimFileVlg" build_result="0" update_result="3" update_time="0"/>
             <Task name="TimingSimFileVHD" build_result="0" update_result="3" update_time="0"/>
-            <Task name="Bitgen" build_result="2" update_result="0" update_time="1519531660"/>
+            <Task name="Bitgen" build_result="2" update_result="0" update_time="1520378994"/>
             <Task name="Promgen" build_result="0" update_result="3" update_time="0"/>
         </Milestone>
-        <Milestone name="Map" build_result="2" build_time="1519531641">
-            <Task name="Map" build_result="2" update_result="0" update_time="1519531641"/>
+        <Milestone name="Map" build_result="2" build_time="1520378972">
+            <Task name="Map" build_result="2" update_result="0" update_time="1520378972"/>
             <Task name="MapTrace" build_result="0" update_result="3" update_time="0"/>
             <Task name="MapVerilogSimFile" build_result="0" update_result="3" update_time="0"/>
             <Task name="MapVHDLSimFile" build_result="0" update_result="3" update_time="0"/>
         </Milestone>
-        <Milestone name="PAR" build_result="2" build_time="1519531656">
-            <Task name="PAR" build_result="2" update_result="0" update_time="1519531656"/>
+        <Milestone name="PAR" build_result="2" build_time="1520378989">
+            <Task name="PAR" build_result="2" update_result="0" update_time="1520378989"/>
             <Task name="PARTrace" build_result="0" update_result="3" update_time="0"/>
             <Task name="IOTiming" build_result="0" update_result="3" update_time="0"/>
         </Milestone>
-        <Milestone name="Synthesis" build_result="2" build_time="1519531638">
-            <Task name="Synplify_Synthesis" build_result="2" update_result="0" update_time="1519531638"/>
+        <Milestone name="Synthesis" build_result="2" build_time="1520378970">
+            <Task name="Synplify_Synthesis" build_result="2" update_result="0" update_time="1520378970"/>
         </Milestone>
         <Milestone name="TOOL_Report" build_result="0" build_time="0">
-            <Task name="HDLE" build_result="0" update_result="3" update_time="0"/>
+            <Task name="HDLE" build_result="2" update_result="0" update_time="1520378953"/>
         </Milestone>
-        <Milestone name="Translate" build_result="2" build_time="1519531639">
-            <Task name="Translate" build_result="2" update_result="0" update_time="1519531639"/>
+        <Milestone name="Translate" build_result="2" build_time="1520378971">
+            <Task name="Translate" build_result="2" update_result="0" update_time="1520378971"/>
         </Milestone>
-        <Report name="diamond_impl.bgn" last_build_time="1519531659" last_build_size="4233"/>
-        <Report name="diamond_impl.bit" last_build_time="1519531659" last_build_size="116401"/>
-        <Report name="diamond_impl.edi" last_build_time="1519531635" last_build_size="983691"/>
-        <Report name="diamond_impl.ncd" last_build_time="1519531656" last_build_size="1303549"/>
-        <Report name="diamond_impl.ngd" last_build_time="1519531639" last_build_size="877215"/>
-        <Report name="diamond_impl_map.ncd" last_build_time="1519531641" last_build_size="928540"/>
+        <Report name="diamond_impl.bgn" last_build_time="1520378994" last_build_size="4332"/>
+        <Report name="diamond_impl.bit" last_build_time="1520378994" last_build_size="180562"/>
+        <Report name="diamond_impl.edi" last_build_time="1520378969" last_build_size="982008"/>
+        <Report name="diamond_impl.ncd" last_build_time="1520378989" last_build_size="1294712"/>
+        <Report name="diamond_impl.ngd" last_build_time="1520378971" last_build_size="876703"/>
+        <Report name="diamond_impl_map.ncd" last_build_time="1520378972" last_build_size="925675"/>
     </Strategy>
 </BuildStatus>

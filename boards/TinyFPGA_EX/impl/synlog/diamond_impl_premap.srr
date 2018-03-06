@@ -1,4 +1,4 @@
-# Sat Feb 24 20:07:10 2018
+# Tue Mar 06 15:29:23 2018
 
 Synopsys Lattice Technology Pre-mapping, Version maplat, Build 1612R, Built Dec  5 2016 10:33:02
 Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
@@ -12,10 +12,10 @@ Printing clock  summary report in "C:\Users\lvale\Documents\TinyFPGA\repos\TinyF
 @N: MF248 |Running in 64-bit mode.
 @N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
 
-Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 103MB peak: 106MB)
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 104MB peak: 106MB)
 
 
-Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 103MB peak: 106MB)
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 104MB peak: 106MB)
 
 
 Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 114MB peak: 115MB)
@@ -24,7 +24,7 @@ Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00
 Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 115MB peak: 117MB)
 
 @W: FX474 |User-specified initial value defined for some sequential elements which can prevent optimum synthesis results from being achieved. 
-@A: FX681 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_tx.v":81:2:81:7|Initial value on register bit_count[2:0] is non-zero which can prevent the register from being packed into a block RAM or DSP.
+@A: FX681 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_tx.v":82:2:82:7|Initial value on register bit_count[2:0] is non-zero which can prevent the register from being packed into a block RAM or DSP.
 @W: BN132 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_rx.v":332:2:332:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.frame_num[0] because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.addr[0]. To keep the instance, apply constraint syn_preserve=1 on the instance.
 @W: BN132 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_rx.v":332:2:332:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.frame_num[1] because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.addr[1]. To keep the instance, apply constraint syn_preserve=1 on the instance.
 @W: BN132 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_rx.v":332:2:332:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.frame_num[2] because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.addr[2]. To keep the instance, apply constraint syn_preserve=1 on the instance.
@@ -38,7 +38,6 @@ Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h
 @N: MO111 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":15:9:15:20|Tristate driver out_ep_stall (in view: work.usb_serial_ctrl_ep(verilog)) on net out_ep_stall (in view: work.usb_serial_ctrl_ep(verilog)) has its enable tied to GND.
 @N: MO111 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":28:9:28:19|Tristate driver in_ep_stall (in view: work.usb_spi_bridge_ep(verilog)) on net in_ep_stall (in view: work.usb_spi_bridge_ep(verilog)) has its enable tied to GND.
 @N: MO111 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":15:9:15:20|Tristate driver out_ep_stall (in view: work.usb_spi_bridge_ep(verilog)) on net out_ep_stall (in view: work.usb_spi_bridge_ep(verilog)) has its enable tied to GND.
-@N: MO111 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v":17:9:17:14|Tristate driver pin_26 (in view: work.TinyFPGA_EX(verilog)) on net pin_26 (in view: work.TinyFPGA_EX(verilog)) has its enable tied to GND.
 @N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":151:4:151:7|Removing sequential instance output_pin_values_1[0] (in view: work.usb_spi_bridge_ep(verilog)) of type view:PrimLib.latr(prim) because it does not drive other instances.
 @N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":151:4:151:7|Removing sequential instance output_pin_values_1[1] (in view: work.usb_spi_bridge_ep(verilog)) of type view:PrimLib.latr(prim) because it does not drive other instances.
 @N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":151:4:151:7|Removing sequential instance output_pin_values_1[2] (in view: work.usb_spi_bridge_ep(verilog)) of type view:PrimLib.latr(prim) because it does not drive other instances.
@@ -108,7 +107,7 @@ Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h
 ICG Latch Removal Summary:
 Number of ICG latches removed:	0
 Number of ICG latches not removed:	0
-syn_allowed_resources : blockrams=56  set on top level netlist TinyFPGA_EX
+syn_allowed_resources : blockrams=108  set on top level netlist TinyFPGA_EX
 
 Finished netlist restructuring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 143MB peak: 145MB)
 
@@ -127,7 +126,7 @@ usb_pll_inst|CLKOP_inferred_clock                                            4.2
 =============================================================================================================================================================================================
 
 @W: MT531 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":282:4:282:7|Found signal identified as System clock which controls 1 sequential elements including tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.out_ep_acked_1[0].  Using this clock, which has no specified timing constraint, can prevent conversion of gated or generated clocks and can adversely impact design performance. 
-@W: MT529 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v":80:2:80:7|Found inferred clock TinyFPGA_EX|pin_clk which controls 10 sequential elements including initiate_boot. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 
+@W: MT529 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v":79:2:79:7|Found inferred clock TinyFPGA_EX|pin_clk which controls 10 sequential elements including initiate_boot. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 
 @W: MT529 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\edge_detect.v":8:2:8:7|Found inferred clock usb_pll_inst|CLKOP_inferred_clock which controls 527 sequential elements including tinyfpga_bootloader_inst.ctrl_ep_inst.detect_pkt_start.in_q. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 
 
 Finished Pre Mapping Phase.
@@ -142,34 +141,34 @@ original code -> new code
    000011 -> 001000
    000100 -> 010000
    000101 -> 100000
-Encoding state machine \.ep_state_2_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
+Encoding state machine genblk1\[2\]\.ep_state_2_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
 original code -> new code
    00 -> 00
    01 -> 01
    10 -> 10
    11 -> 11
-@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|There are no possible illegal states for state machine \.ep_state_2_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
-Encoding state machine \.ep_state_1_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":221:6:221:11|There are no possible illegal states for state machine genblk1\[2\]\.ep_state_2_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+Encoding state machine genblk1\[1\]\.ep_state_1_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
 original code -> new code
    00 -> 00
    01 -> 01
    10 -> 10
    11 -> 11
-@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|There are no possible illegal states for state machine \.ep_state_1_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
-Encoding state machine \.ep_state_0_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":221:6:221:11|There are no possible illegal states for state machine genblk1\[1\]\.ep_state_1_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+Encoding state machine genblk1\[0\]\.ep_state_0_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
 original code -> new code
    00 -> 00
    01 -> 01
    10 -> 10
    11 -> 11
-@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|There are no possible illegal states for state machine \.ep_state_0_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":221:6:221:11|There are no possible illegal states for state machine genblk1\[0\]\.ep_state_0_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
 Encoding state machine in_xfr_state[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
 original code -> new code
    00 -> 00
    01 -> 01
    10 -> 10
    11 -> 11
-@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":346:2:346:7|There are no possible illegal states for state machine in_xfr_state[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":347:2:347:7|There are no possible illegal states for state machine in_xfr_state[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
 Encoding state machine genblk1\[1\]\.ep_state_1_[3:0] (in view: work.usb_fs_out_pe_2_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
 original code -> new code
    00 -> 00
@@ -201,6 +200,6 @@ Pre-mapping successful!
 At Mapper Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 60MB peak: 145MB)
 
 Process took 0h:00m:01s realtime, 0h:00m:01s cputime
-# Sat Feb 24 20:07:11 2018
+# Tue Mar 06 15:29:24 2018
 
 ###########################################################]

@@ -1,7 +1,7 @@
 # Synopsys Constraint Checker, version maplat, Build 1612R, built Dec  5 2016
 # Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
 
-# Written on Mon Feb 19 19:17:09 2018
+# Written on Tue Mar 06 11:35:25 2018
 
 
 ##### DESIGN INFO #######################################################
@@ -26,8 +26,6 @@ Clock Relationships
 
 Starting                                                                     Ending                                                                       |     rise to rise     |     fall to fall     |     rise to fall     |     fall to rise                     
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-System                                                                       System                                                                       |     No paths         |     No paths         |     No paths         |     0.026                            
-System                                                                       usb_pll_inst|CLKOP_inferred_clock                                            |     No paths         |     No paths         |     No paths         |     240.282                          
 TinyFPGA_EX|pin_clk                                                          TinyFPGA_EX|pin_clk                                                          |     1.078            |     No paths         |     No paths         |     No paths                         
 usb_pll_inst|CLKOP_inferred_clock                                            System                                                                       |     240.282          |     No paths         |     No paths         |     No paths                         
 usb_pll_inst|CLKOP_inferred_clock                                            TinyFPGA_EX|pin_clk                                                          |     Diff grp         |     No paths         |     No paths         |     No paths                         
@@ -42,7 +40,6 @@ usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s|in_xfr_state_derived_clock[1]     usb
 Unconstrained Start/End Points
 ******************************
 
-p:pin_26
 p:pin_cs
 p:pin_io2
 p:pin_io3

@@ -8,16 +8,14 @@
 
 `define assert(msg, signal, value) \
         if ((signal) !== value) begin \
-            $display("ERROR (%m): %s. signal != value", msg); \
-            $display("    signal: %x", signal); \
-            $display("    value: %x", value); \
-            `finish_and_return(1); \
+            $display("%d ERROR (%m): %s. signal != value", $time, msg); \
+            $display("    actual:   %x", signal); \
+            $display("    expected: %x", value); \
         end
 
 `define assert_true(msg, signal) \
         if (!(signal)) begin \
-            $display("ERROR (%m): %s. (signal) == FALSE", msg); \
-            `finish_and_return(1); \
+            $display("%d ERROR (%m): %s. (signal) == FALSE", $time, msg); \
         end
 
 module top_tb;

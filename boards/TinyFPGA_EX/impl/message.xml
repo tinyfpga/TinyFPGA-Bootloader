@@ -41,35 +41,35 @@
         <Message>
             <ID>1103808</ID>
             <Severity>Warning</Severity>
-            <Dynamic>diamond_impl.prf(10): Semantic error in &quot;LOCATE COMP &quot;pin_io3&quot; SITE &quot;N18&quot; ;&quot;: </Dynamic>
+            <Dynamic>diamond_impl.prf(9): Semantic error in &quot;LOCATE COMP &quot;pin_io3&quot; SITE &quot;N18&quot; ;&quot;: </Dynamic>
             <Dynamic>pin_io3</Dynamic>
             <Dynamic>N18</Dynamic>
         </Message>
         <Message>
             <ID>1103808</ID>
             <Severity>Warning</Severity>
-            <Dynamic>diamond_impl.prf(11): Semantic error in &quot;LOCATE COMP &quot;pin_io2&quot; SITE &quot;R18&quot; ;&quot;: </Dynamic>
+            <Dynamic>diamond_impl.prf(10): Semantic error in &quot;LOCATE COMP &quot;pin_io2&quot; SITE &quot;R18&quot; ;&quot;: </Dynamic>
             <Dynamic>pin_io2</Dynamic>
             <Dynamic>R18</Dynamic>
         </Message>
         <Message>
             <ID>1103808</ID>
             <Severity>Warning</Severity>
-            <Dynamic>diamond_impl.prf(12): Semantic error in &quot;LOCATE COMP &quot;pin_mosi&quot; SITE &quot;U18&quot; ;&quot;: </Dynamic>
+            <Dynamic>diamond_impl.prf(11): Semantic error in &quot;LOCATE COMP &quot;pin_mosi&quot; SITE &quot;U18&quot; ;&quot;: </Dynamic>
             <Dynamic>pin_mosi</Dynamic>
             <Dynamic>U18</Dynamic>
         </Message>
         <Message>
             <ID>1103808</ID>
             <Severity>Warning</Severity>
-            <Dynamic>diamond_impl.prf(13): Semantic error in &quot;LOCATE COMP &quot;pin_cs&quot; SITE &quot;U17&quot; ;&quot;: </Dynamic>
+            <Dynamic>diamond_impl.prf(12): Semantic error in &quot;LOCATE COMP &quot;pin_cs&quot; SITE &quot;U17&quot; ;&quot;: </Dynamic>
             <Dynamic>pin_cs</Dynamic>
             <Dynamic>U17</Dynamic>
         </Message>
         <Message>
             <ID>1103808</ID>
             <Severity>Warning</Severity>
-            <Dynamic>diamond_impl.prf(14): Semantic error in &quot;LOCATE COMP &quot;pin_miso&quot; SITE &quot;T18&quot; ;&quot;: </Dynamic>
+            <Dynamic>diamond_impl.prf(13): Semantic error in &quot;LOCATE COMP &quot;pin_miso&quot; SITE &quot;T18&quot; ;&quot;: </Dynamic>
             <Dynamic>pin_miso</Dynamic>
             <Dynamic>T18</Dynamic>
         </Message>
@@ -203,22 +203,12 @@
         <Message>
             <ID>1121028</ID>
             <Severity>Warning</Severity>
-            <Dynamic>NUM_OUT_EPS</Dynamic>
-        </Message>
-        <Message>
-            <ID>1121028</ID>
-            <Severity>Warning</Severity>
             <Dynamic>NUM_IN_EPS</Dynamic>
         </Message>
         <Message>
             <ID>1121028</ID>
             <Severity>Warning</Severity>
             <Dynamic>NUM_IN_EPS</Dynamic>
-        </Message>
-        <Message>
-            <ID>1121028</ID>
-            <Severity>Warning</Severity>
-            <Dynamic>NUM_OUT_EPS</Dynamic>
         </Message>
         <Message>
             <ID>1121028</ID>
@@ -1083,132 +1073,132 @@
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL169 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:225:2:225:7|Pruning unused register raw_setup_data[5][9:0]. Make sure that there are no unused intermediate registers.</Dynamic>
+            <Dynamic>CL169 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:224:2:224:7|Pruning unused register raw_setup_data[5][9:0]. Make sure that there are no unused intermediate registers.</Dynamic>
             <Navigation>CL169</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning unused register raw_setup_data[5][9:0]. Make sure that there are no unused intermediate registers.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL169 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:225:2:225:7|Pruning unused register raw_setup_data[4][9:0]. Make sure that there are no unused intermediate registers.</Dynamic>
+            <Dynamic>CL169 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:224:2:224:7|Pruning unused register raw_setup_data[4][9:0]. Make sure that there are no unused intermediate registers.</Dynamic>
             <Navigation>CL169</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning unused register raw_setup_data[4][9:0]. Make sure that there are no unused intermediate registers.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL271 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[7][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
+            <Dynamic>CL271 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:224:2:224:7|Pruning unused bits 9 to 8 of raw_setup_data[7][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
             <Navigation>CL271</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning unused bits 9 to 8 of raw_setup_data[7][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL271 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[6][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
+            <Dynamic>CL271 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:224:2:224:7|Pruning unused bits 9 to 8 of raw_setup_data[6][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
             <Navigation>CL271</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning unused bits 9 to 8 of raw_setup_data[6][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL271 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[3][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
+            <Dynamic>CL271 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:224:2:224:7|Pruning unused bits 9 to 8 of raw_setup_data[3][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
             <Navigation>CL271</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning unused bits 9 to 8 of raw_setup_data[3][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL271 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:225:2:225:7|Pruning unused bits 9 to 7 of raw_setup_data[2][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
+            <Dynamic>CL271 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:224:2:224:7|Pruning unused bits 9 to 7 of raw_setup_data[2][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
             <Navigation>CL271</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning unused bits 9 to 7 of raw_setup_data[2][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL271 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[1][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
+            <Dynamic>CL271 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:224:2:224:7|Pruning unused bits 9 to 8 of raw_setup_data[1][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
             <Navigation>CL271</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning unused bits 9 to 8 of raw_setup_data[1][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL271 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[0][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
+            <Dynamic>CL271 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:224:2:224:7|Pruning unused bits 9 to 8 of raw_setup_data[0][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
             <Navigation>CL271</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning unused bits 9 to 8 of raw_setup_data[0][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL271 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:225:2:225:7|Pruning unused bits 6 to 0 of raw_setup_data[0][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
+            <Dynamic>CL271 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:224:2:224:7|Pruning unused bits 6 to 0 of raw_setup_data[0][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
             <Navigation>CL271</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning unused bits 6 to 0 of raw_setup_data[0][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL260 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:225:2:225:7|Pruning register bit 5 of rom_length[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Dynamic>
+            <Dynamic>CL260 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:224:2:224:7|Pruning register bit 5 of rom_length[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Dynamic>
             <Navigation>CL260</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning register bit 5 of rom_length[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL260 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:225:2:225:7|Pruning register bit 3 of rom_length[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Dynamic>
+            <Dynamic>CL260 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:224:2:224:7|Pruning register bit 3 of rom_length[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Dynamic>
             <Navigation>CL260</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning register bit 3 of rom_length[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Navigation>
         </Message>
@@ -2019,36 +2009,36 @@
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CG532 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v&quot;:97:2:97:8|Within an initial block, only Verilog force statements and memory $readmemh/$readmemb initialization statements are recognized, and all other content is ignored.</Dynamic>
+            <Dynamic>CG532 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v&quot;:100:2:100:8|Within an initial block, only Verilog force statements and memory $readmemh/$readmemb initialization statements are recognized, and all other content is ignored.</Dynamic>
             <Navigation>CG532</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v</Navigation>
-            <Navigation>97</Navigation>
+            <Navigation>100</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>97</Navigation>
+            <Navigation>100</Navigation>
             <Navigation>8</Navigation>
             <Navigation>Within an initial block, only Verilog force statements and memory $readmemh/$readmemb initialization statements are recognized, and all other content is ignored.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v&quot;:283:4:283:7|Latch generated from always block for signal tx_pid[3:0]; possible missing assignment in an if or case statement.</Dynamic>
+            <Dynamic>CL118 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v&quot;:284:4:284:7|Latch generated from always block for signal tx_pid[3:0]; possible missing assignment in an if or case statement.</Dynamic>
             <Navigation>CL118</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v</Navigation>
-            <Navigation>283</Navigation>
+            <Navigation>284</Navigation>
             <Navigation>4</Navigation>
-            <Navigation>283</Navigation>
+            <Navigation>284</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Latch generated from always block for signal tx_pid[3:0]; possible missing assignment in an if or case statement.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL279 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v&quot;:346:2:346:7|Pruning register bits 3 to 2 of current_endp[3:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
+            <Dynamic>CL279 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v&quot;:347:2:347:7|Pruning register bits 3 to 2 of current_endp[3:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Dynamic>
             <Navigation>CL279</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v</Navigation>
-            <Navigation>346</Navigation>
+            <Navigation>347</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>346</Navigation>
+            <Navigation>347</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning register bits 3 to 2 of current_endp[3:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</Navigation>
         </Message>
@@ -2103,12 +2093,12 @@
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL260 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v&quot;:81:2:81:7|Pruning register bit 7 of se0_shift_reg[7:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Dynamic>
+            <Dynamic>CL260 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v&quot;:82:2:82:7|Pruning register bit 7 of se0_shift_reg[7:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Dynamic>
             <Navigation>CL260</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v</Navigation>
-            <Navigation>81</Navigation>
+            <Navigation>82</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>81</Navigation>
+            <Navigation>82</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning register bit 7 of se0_shift_reg[7:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Navigation>
         </Message>
@@ -2163,72 +2153,48 @@
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CG360 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v&quot;:17:9:17:14|Removing wire pin_26, as there is no assignment to it.</Dynamic>
-            <Navigation>CG360</Navigation>
-            <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v</Navigation>
-            <Navigation>17</Navigation>
-            <Navigation>9</Navigation>
-            <Navigation>17</Navigation>
-            <Navigation>14</Navigation>
-            <Navigation>Removing wire pin_26, as there is no assignment to it.</Navigation>
-        </Message>
-        <Message>
-            <ID>2019991</ID>
-            <Severity>Warning</Severity>
-            <Dynamic>CL157 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v&quot;:17:9:17:14|*Output pin_26 has undriven bits; assigning undriven bits to 0.  Simulation mismatch possible. Assign all bits of the output.</Dynamic>
-            <Navigation>CL157</Navigation>
-            <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v</Navigation>
-            <Navigation>17</Navigation>
-            <Navigation>9</Navigation>
-            <Navigation>17</Navigation>
-            <Navigation>14</Navigation>
-            <Navigation>*Output pin_26 has undriven bits; assigning undriven bits to 0.  Simulation mismatch possible. Assign all bits of the output.</Navigation>
-        </Message>
-        <Message>
-            <ID>2019991</ID>
-            <Severity>Warning</Severity>
-            <Dynamic>CL260 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v&quot;:81:2:81:7|Pruning register bit 6 of se0_shift_reg[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Dynamic>
+            <Dynamic>CL260 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v&quot;:82:2:82:7|Pruning register bit 6 of se0_shift_reg[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Dynamic>
             <Navigation>CL260</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v</Navigation>
-            <Navigation>81</Navigation>
+            <Navigation>82</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>81</Navigation>
+            <Navigation>82</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning register bit 6 of se0_shift_reg[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL260 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v&quot;:81:2:81:7|Pruning register bit 5 of se0_shift_reg[5:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Dynamic>
+            <Dynamic>CL260 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v&quot;:82:2:82:7|Pruning register bit 5 of se0_shift_reg[5:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Dynamic>
             <Navigation>CL260</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v</Navigation>
-            <Navigation>81</Navigation>
+            <Navigation>82</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>81</Navigation>
+            <Navigation>82</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning register bit 5 of se0_shift_reg[5:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL260 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v&quot;:81:2:81:7|Pruning register bit 4 of se0_shift_reg[4:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Dynamic>
+            <Dynamic>CL260 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v&quot;:82:2:82:7|Pruning register bit 4 of se0_shift_reg[4:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Dynamic>
             <Navigation>CL260</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v</Navigation>
-            <Navigation>81</Navigation>
+            <Navigation>82</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>81</Navigation>
+            <Navigation>82</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning register bit 4 of se0_shift_reg[4:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL260 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v&quot;:81:2:81:7|Pruning register bit 3 of se0_shift_reg[3:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Dynamic>
+            <Dynamic>CL260 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v&quot;:82:2:82:7|Pruning register bit 3 of se0_shift_reg[3:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Dynamic>
             <Navigation>CL260</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v</Navigation>
-            <Navigation>81</Navigation>
+            <Navigation>82</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>81</Navigation>
+            <Navigation>82</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning register bit 3 of se0_shift_reg[3:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Navigation>
         </Message>
@@ -2247,12 +2213,12 @@
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL249 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v&quot;:346:2:346:7|Initial value is not supported on state machine in_xfr_state</Dynamic>
+            <Dynamic>CL249 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v&quot;:347:2:347:7|Initial value is not supported on state machine in_xfr_state</Dynamic>
             <Navigation>CL249</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v</Navigation>
-            <Navigation>346</Navigation>
+            <Navigation>347</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>346</Navigation>
+            <Navigation>347</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Initial value is not supported on state machine in_xfr_state</Navigation>
         </Message>
@@ -2283,24 +2249,24 @@
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL260 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:225:2:225:7|Pruning register bit 7 of bytes_sent[7:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Dynamic>
+            <Dynamic>CL260 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:224:2:224:7|Pruning register bit 7 of bytes_sent[7:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Dynamic>
             <Navigation>CL260</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>225</Navigation>
+            <Navigation>224</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Pruning register bit 7 of bytes_sent[7:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>CL249 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:217:2:217:7|Initial value is not supported on state machine ctrl_xfr_state</Dynamic>
+            <Dynamic>CL249 :&quot;C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v&quot;:216:2:216:7|Initial value is not supported on state machine ctrl_xfr_state</Dynamic>
             <Navigation>CL249</Navigation>
             <Navigation>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v</Navigation>
-            <Navigation>217</Navigation>
+            <Navigation>216</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>217</Navigation>
+            <Navigation>216</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Initial value is not supported on state machine ctrl_xfr_state</Navigation>
         </Message>
@@ -2458,12 +2424,12 @@
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>MT529 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v&quot;:80:2:80:7|Found inferred clock TinyFPGA_EX|pin_clk which controls 10 sequential elements including initiate_boot. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance.</Dynamic>
+            <Dynamic>MT529 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v&quot;:79:2:79:7|Found inferred clock TinyFPGA_EX|pin_clk which controls 10 sequential elements including initiate_boot. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance.</Dynamic>
             <Navigation>MT529</Navigation>
             <Navigation>c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v</Navigation>
-            <Navigation>80</Navigation>
+            <Navigation>79</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>80</Navigation>
+            <Navigation>79</Navigation>
             <Navigation>7</Navigation>
             <Navigation>Found inferred clock TinyFPGA_EX|pin_clk which controls 10 sequential elements including initiate_boot. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. </Navigation>
         </Message>
@@ -2494,26 +2460,26 @@
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>BN132 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v&quot;:260:2:260:7|Removing black box instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_8 because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_10. To keep the instance, apply constraint syn_preserve=1 on the instance.</Dynamic>
+            <Dynamic>BN132 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v&quot;:261:2:261:7|Removing black box instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_9 because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_7. To keep the instance, apply constraint syn_preserve=1 on the instance.</Dynamic>
             <Navigation>BN132</Navigation>
             <Navigation>c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v</Navigation>
-            <Navigation>260</Navigation>
+            <Navigation>261</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>260</Navigation>
+            <Navigation>261</Navigation>
             <Navigation>7</Navigation>
-            <Navigation>Removing black box instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_8 because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_10. To keep the instance, apply constraint syn_preserve=1 on the instance.</Navigation>
+            <Navigation>Removing black box instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_9 because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_7. To keep the instance, apply constraint syn_preserve=1 on the instance.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>BN132 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v&quot;:260:2:260:7|Removing black box instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_9 because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_7. To keep the instance, apply constraint syn_preserve=1 on the instance.</Dynamic>
+            <Dynamic>BN132 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v&quot;:261:2:261:7|Removing black box instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_8 because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_10. To keep the instance, apply constraint syn_preserve=1 on the instance.</Dynamic>
             <Navigation>BN132</Navigation>
             <Navigation>c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v</Navigation>
-            <Navigation>260</Navigation>
+            <Navigation>261</Navigation>
             <Navigation>2</Navigation>
-            <Navigation>260</Navigation>
+            <Navigation>261</Navigation>
             <Navigation>7</Navigation>
-            <Navigation>Removing black box instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_9 because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_7. To keep the instance, apply constraint syn_preserve=1 on the instance.</Navigation>
+            <Navigation>Removing black box instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_8 because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_10. To keep the instance, apply constraint syn_preserve=1 on the instance.</Navigation>
         </Message>
         <Message>
             <ID>2019993</ID>
@@ -2537,48 +2503,48 @@
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>MO160 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v&quot;:220:6:220:11|Register bit tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.\.ep_state_2_[1] (in view view:work.TinyFPGA_EX(verilog)) is always 0. To keep the instance, apply syn_preserve=1 on the instance.</Dynamic>
+            <Dynamic>MO160 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v&quot;:221:6:221:11|Register bit tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.genblk1\[2\]\.ep_state_2_[1] (in view view:work.TinyFPGA_EX(verilog)) is always 0. To keep the instance, apply syn_preserve=1 on the instance.</Dynamic>
             <Navigation>MO160</Navigation>
             <Navigation>c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v</Navigation>
-            <Navigation>220</Navigation>
+            <Navigation>221</Navigation>
             <Navigation>6</Navigation>
-            <Navigation>220</Navigation>
+            <Navigation>221</Navigation>
             <Navigation>11</Navigation>
-            <Navigation>Register bit tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.\.ep_state_2_[1] (in view view:work.TinyFPGA_EX(verilog)) is always 0. To keep the instance, apply syn_preserve=1 on the instance.</Navigation>
+            <Navigation>Register bit tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.genblk1\[2\]\.ep_state_2_[1] (in view view:work.TinyFPGA_EX(verilog)) is always 0. To keep the instance, apply syn_preserve=1 on the instance.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>MO129 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v&quot;:220:6:220:11|Sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst..ep_state_2_[0] is reduced to a combinational gate by constant propagation.</Dynamic>
+            <Dynamic>MO129 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v&quot;:221:6:221:11|Sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.genblk1[2].ep_state_2_[0] is reduced to a combinational gate by constant propagation.</Dynamic>
             <Navigation>MO129</Navigation>
             <Navigation>c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v</Navigation>
-            <Navigation>220</Navigation>
+            <Navigation>221</Navigation>
             <Navigation>6</Navigation>
-            <Navigation>220</Navigation>
+            <Navigation>221</Navigation>
             <Navigation>11</Navigation>
-            <Navigation>Sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst..ep_state_2_[0] is reduced to a combinational gate by constant propagation.</Navigation>
+            <Navigation>Sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.genblk1[2].ep_state_2_[0] is reduced to a combinational gate by constant propagation.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>MO197 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v&quot;:220:6:220:11|Removing FSM register tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.\.ep_state_2_[0] (in view view:work.TinyFPGA_EX(verilog)) because its output is a constant.</Dynamic>
+            <Dynamic>MO197 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v&quot;:221:6:221:11|Removing FSM register tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.genblk1\[2\]\.ep_state_2_[0] (in view view:work.TinyFPGA_EX(verilog)) because its output is a constant.</Dynamic>
             <Navigation>MO197</Navigation>
             <Navigation>c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v</Navigation>
-            <Navigation>220</Navigation>
+            <Navigation>221</Navigation>
             <Navigation>6</Navigation>
-            <Navigation>220</Navigation>
+            <Navigation>221</Navigation>
             <Navigation>11</Navigation>
-            <Navigation>Removing FSM register tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.\.ep_state_2_[0] (in view view:work.TinyFPGA_EX(verilog)) because its output is a constant.</Navigation>
+            <Navigation>Removing FSM register tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.genblk1\[2\]\.ep_state_2_[0] (in view view:work.TinyFPGA_EX(verilog)) because its output is a constant.</Navigation>
         </Message>
         <Message>
             <ID>2019991</ID>
             <Severity>Warning</Severity>
-            <Dynamic>MT246 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v&quot;:94:10:94:21|Blackbox USRMCLK is missing a user supplied timing model. This may have a negative effect on timing analysis and optimizations (Quality of Results)</Dynamic>
+            <Dynamic>MT246 :&quot;c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v&quot;:93:10:93:21|Blackbox USRMCLK is missing a user supplied timing model. This may have a negative effect on timing analysis and optimizations (Quality of Results)</Dynamic>
             <Navigation>MT246</Navigation>
             <Navigation>c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v</Navigation>
-            <Navigation>94</Navigation>
+            <Navigation>93</Navigation>
             <Navigation>10</Navigation>
-            <Navigation>94</Navigation>
+            <Navigation>93</Navigation>
             <Navigation>21</Navigation>
             <Navigation>Blackbox USRMCLK is missing a user supplied timing model. This may have a negative effect on timing analysis and optimizations (Quality of Results) </Navigation>
         </Message>

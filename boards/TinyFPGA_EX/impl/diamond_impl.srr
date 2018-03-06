@@ -3,7 +3,7 @@
 #OS: Windows 8 6.2
 #Hostname: DESKTOP-V34NFE6
 
-# Sat Feb 24 20:07:08 2018
+# Tue Mar 06 15:29:22 2018
 
 #Implementation: impl
 
@@ -37,9 +37,9 @@ Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys softwa
 @I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v" (library work)
 @I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\source\usb_pll_inst.v" (library work)
 Verilog syntax check successful!
-File C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v changed - recompiling
-File C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_rx.v changed - recompiling
-File C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v changed - recompiling
+
+Compiler output is up to date.  No re-compile necessary
+
 Selecting top level module TinyFPGA_EX
 @N: CG364 :"C:\lscc\diamond\3.9_x64\synpbase\lib\lucent\ecp5u.v":757:7:757:9|Synthesizing module VHI in library work.
 
@@ -57,19 +57,19 @@ Selecting top level module TinyFPGA_EX
 @N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":1:7:1:24|Synthesizing module usb_serial_ctrl_ep in library work.
 
 @W: CG360 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":15:9:15:20|Removing wire out_ep_stall, as there is no assignment to it.
-@W: CL169 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused register raw_setup_data[5][9:0]. Make sure that there are no unused intermediate registers.
-@W: CL169 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused register raw_setup_data[4][9:0]. Make sure that there are no unused intermediate registers.
-@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[7][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
-@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[6][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
-@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[3][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
-@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 7 of raw_setup_data[2][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
-@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[1][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
-@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[0][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
-@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 6 to 0 of raw_setup_data[0][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Register bit rom_length[3] is always 0.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Register bit rom_length[5] is always 0.
-@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning register bit 5 of rom_length[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
-@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning register bit 3 of rom_length[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@W: CL169 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused register raw_setup_data[5][9:0]. Make sure that there are no unused intermediate registers.
+@W: CL169 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused register raw_setup_data[4][9:0]. Make sure that there are no unused intermediate registers.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused bits 9 to 8 of raw_setup_data[7][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused bits 9 to 8 of raw_setup_data[6][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused bits 9 to 8 of raw_setup_data[3][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused bits 9 to 7 of raw_setup_data[2][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused bits 9 to 8 of raw_setup_data[1][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused bits 9 to 8 of raw_setup_data[0][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused bits 6 to 0 of raw_setup_data[0][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Register bit rom_length[3] is always 0.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Register bit rom_length[5] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning register bit 5 of rom_length[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning register bit 3 of rom_length[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
 @N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":1:7:1:23|Synthesizing module usb_spi_bridge_ep in library work.
 
 @W: CG360 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":15:9:15:20|Removing wire out_ep_stall, as there is no assignment to it.
@@ -163,12 +163,12 @@ Selecting top level module TinyFPGA_EX
 	WAIT_ACK=32'b00000000000000000000000000000011
    Generated name = usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s
 
-@W: CG532 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":97:2:97:8|Within an initial block, only Verilog force statements and memory $readmemh/$readmemb initialization statements are recognized, and all other content is ignored.
-@N: CL134 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":260:2:260:7|Found RAM in_data_buffer, depth=96, width=8
-@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":283:4:283:7|Latch generated from always block for signal tx_pid[3:0]; possible missing assignment in an if or case statement.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":346:2:346:7|Register bit current_endp[2] is always 0.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":346:2:346:7|Register bit current_endp[3] is always 0.
-@W: CL279 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":346:2:346:7|Pruning register bits 3 to 2 of current_endp[3:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CG532 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":100:2:100:8|Within an initial block, only Verilog force statements and memory $readmemh/$readmemb initialization statements are recognized, and all other content is ignored.
+@N: CL134 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":261:2:261:7|Found RAM in_data_buffer, depth=96, width=8
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":284:4:284:7|Latch generated from always block for signal tx_pid[3:0]; possible missing assignment in an if or case statement.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":347:2:347:7|Register bit current_endp[2] is always 0.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":347:2:347:7|Register bit current_endp[3] is always 0.
+@W: CL279 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":347:2:347:7|Pruning register bits 3 to 2 of current_endp[3:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
 @N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":2:7:2:19|Synthesizing module usb_fs_out_pe in library work.
 
 	NUM_OUT_EPS=5'b00010
@@ -197,8 +197,8 @@ Selecting top level module TinyFPGA_EX
 
 @N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":1:7:1:15|Synthesizing module usb_fs_tx in library work.
 
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Register bit se0_shift_reg[7] is always 0.
-@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Pruning register bit 7 of se0_shift_reg[7:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Register bit se0_shift_reg[7] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Pruning register bit 7 of se0_shift_reg[7:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
 @N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_pe.v":1:7:1:15|Synthesizing module usb_fs_pe in library work.
 
 	NUM_OUT_EPS=5'b00010
@@ -215,18 +215,16 @@ Selecting top level module TinyFPGA_EX
 
 @N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v":1:7:1:17|Synthesizing module TinyFPGA_EX in library work.
 
-@W: CG360 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v":17:9:17:14|Removing wire pin_26, as there is no assignment to it.
-@W: CL157 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v":17:9:17:14|*Output pin_26 has undriven bits; assigning undriven bits to 0.  Simulation mismatch possible. Assign all bits of the output.
-@N: CL135 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":52:2:52:7|Found sequential shift bitstuff_qqqq with address depth of 4 words and data bit width of 1.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Register bit se0_shift_reg[6] is always 0.
-@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Pruning register bit 6 of se0_shift_reg[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Register bit se0_shift_reg[5] is always 0.
-@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Pruning register bit 5 of se0_shift_reg[5:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Register bit se0_shift_reg[4] is always 0.
-@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Pruning register bit 4 of se0_shift_reg[4:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
-@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Trying to extract state machine for register pkt_state.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Register bit se0_shift_reg[3] is always 0.
-@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Pruning register bit 3 of se0_shift_reg[3:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL135 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":61:2:61:7|Found sequential shift bitstuff_qqqq with address depth of 4 words and data bit width of 1.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Register bit se0_shift_reg[6] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Pruning register bit 6 of se0_shift_reg[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Register bit se0_shift_reg[5] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Pruning register bit 5 of se0_shift_reg[5:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Register bit se0_shift_reg[4] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Pruning register bit 4 of se0_shift_reg[4:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Trying to extract state machine for register pkt_state.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Register bit se0_shift_reg[3] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Pruning register bit 3 of se0_shift_reg[3:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":5:8:5:12|Input reset is unused.
 @N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_rx.v":81:2:81:7|Trying to extract state machine for register line_state.
 @N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":218:6:218:11|Trying to extract state machine for register genblk1[1].ep_state_1_.
@@ -254,35 +252,35 @@ State machine has 4 reachable states with original encodings of:
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":10:8:10:17|Input bit_strobe is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":36:15:36:26|Input rx_frame_num is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":49:8:49:17|Input tx_pkt_end is unused.
-@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":220:6:220:11|Trying to extract state machine for register .ep_state_2_.
-Extracted state machine for register .ep_state_2_
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":221:6:221:11|Trying to extract state machine for register genblk1[2].ep_state_2_.
+Extracted state machine for register genblk1[2].ep_state_2_
 State machine has 4 reachable states with original encodings of:
    00
    01
    10
    11
-@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":220:6:220:11|Trying to extract state machine for register .ep_state_1_.
-Extracted state machine for register .ep_state_1_
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":221:6:221:11|Trying to extract state machine for register genblk1[1].ep_state_1_.
+Extracted state machine for register genblk1[1].ep_state_1_
 State machine has 4 reachable states with original encodings of:
    00
    01
    10
    11
-@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":220:6:220:11|Trying to extract state machine for register .ep_state_0_.
-Extracted state machine for register .ep_state_0_
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":221:6:221:11|Trying to extract state machine for register genblk1[0].ep_state_0_.
+Extracted state machine for register genblk1[0].ep_state_0_
 State machine has 4 reachable states with original encodings of:
    00
    01
    10
    11
-@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":346:2:346:7|Trying to extract state machine for register in_xfr_state.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":347:2:347:7|Trying to extract state machine for register in_xfr_state.
 Extracted state machine for register in_xfr_state
 State machine has 4 reachable states with original encodings of:
    00
    01
    10
    11
-@W: CL249 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":346:2:346:7|Initial value is not supported on state machine in_xfr_state
+@W: CL249 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":347:2:347:7|Initial value is not supported on state machine in_xfr_state
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":28:8:28:19|Input rx_pkt_start is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":36:15:36:26|Input rx_frame_num is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":45:8:45:17|Input tx_pkt_end is unused.
@@ -294,9 +292,9 @@ State machine has 4 reachable states with original encodings of:
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":12:8:12:19|Input out_ep_setup is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":16:8:16:19|Input out_ep_acked is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":29:8:29:18|Input in_ep_acked is unused.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Register bit bytes_sent[7] is always 0.
-@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning register bit 7 of bytes_sent[7:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
-@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":217:2:217:7|Trying to extract state machine for register ctrl_xfr_state.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Register bit bytes_sent[7] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning register bit 7 of bytes_sent[7:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":216:2:216:7|Trying to extract state machine for register ctrl_xfr_state.
 Extracted state machine for register ctrl_xfr_state
 State machine has 6 reachable states with original encodings of:
    000000
@@ -305,52 +303,50 @@ State machine has 6 reachable states with original encodings of:
    000011
    000100
    000101
-@W: CL249 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":217:2:217:7|Initial value is not supported on state machine ctrl_xfr_state
+@W: CL249 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":216:2:216:7|Initial value is not supported on state machine ctrl_xfr_state
 @W: CL157 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":15:9:15:20|*Output out_ep_stall has undriven bits; assigning undriven bits to 0.  Simulation mismatch possible. Assign all bits of the output.
 
-At c_ver Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 79MB peak: 82MB)
+At c_ver Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 72MB peak: 73MB)
 
 Process took 0h:00m:01s realtime, 0h:00m:01s cputime
 
 Process completed successfully.
-# Sat Feb 24 20:07:09 2018
+# Tue Mar 06 15:29:23 2018
 
 ###########################################################]
 Synopsys Netlist Linker, version comp2016q3p1, Build 141R, built Dec  5 2016
 @N|Running in 64-bit mode
-File C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synwork\layer0.srs changed - recompiling
+
+Linker output is up to date. No re-linking necessary
+
 
 At syn_nfilter Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 69MB peak: 70MB)
 
 Process took 0h:00m:01s realtime, 0h:00m:01s cputime
 
 Process completed successfully.
-# Sat Feb 24 20:07:09 2018
+# Tue Mar 06 15:29:23 2018
 
 ###########################################################]
 @END
 
-At c_hdl Exit (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 3MB peak: 4MB)
+At c_hdl Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 3MB peak: 4MB)
 
 Process took 0h:00m:01s realtime, 0h:00m:01s cputime
 
 Process completed successfully.
-# Sat Feb 24 20:07:09 2018
+# Tue Mar 06 15:29:23 2018
 
 ###########################################################]
-Synopsys Netlist Linker, version comp2016q3p1, Build 141R, built Dec  5 2016
-@N|Running in 64-bit mode
-File C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synwork\diamond_impl_comp.srs changed - recompiling
 
-At syn_nfilter Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 70MB peak: 70MB)
+@A: multi_srs_gen output is up to date. No run necessary.
+To force a re-synthesis, select [Resynthesize All] in menu [Run].
+Click link to view previous log file.
+Multi-srs Generator Report
+@R:"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synlog\diamond_impl_multi_srs_gen.srr"
+Pre-mapping Report
 
-Process took 0h:00m:01s realtime, 0h:00m:01s cputime
-
-Process completed successfully.
-# Sat Feb 24 20:07:10 2018
-
-###########################################################]
-# Sat Feb 24 20:07:10 2018
+# Tue Mar 06 15:29:23 2018
 
 Synopsys Lattice Technology Pre-mapping, Version maplat, Build 1612R, Built Dec  5 2016 10:33:02
 Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
@@ -364,10 +360,10 @@ Printing clock  summary report in "C:\Users\lvale\Documents\TinyFPGA\repos\TinyF
 @N: MF248 |Running in 64-bit mode.
 @N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
 
-Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 103MB peak: 106MB)
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 104MB peak: 106MB)
 
 
-Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 103MB peak: 106MB)
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 104MB peak: 106MB)
 
 
 Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 114MB peak: 115MB)
@@ -376,7 +372,7 @@ Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00
 Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 115MB peak: 117MB)
 
 @W: FX474 |User-specified initial value defined for some sequential elements which can prevent optimum synthesis results from being achieved. 
-@A: FX681 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_tx.v":81:2:81:7|Initial value on register bit_count[2:0] is non-zero which can prevent the register from being packed into a block RAM or DSP.
+@A: FX681 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_tx.v":82:2:82:7|Initial value on register bit_count[2:0] is non-zero which can prevent the register from being packed into a block RAM or DSP.
 @W: BN132 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_rx.v":332:2:332:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.frame_num[0] because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.addr[0]. To keep the instance, apply constraint syn_preserve=1 on the instance.
 @W: BN132 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_rx.v":332:2:332:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.frame_num[1] because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.addr[1]. To keep the instance, apply constraint syn_preserve=1 on the instance.
 @W: BN132 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_rx.v":332:2:332:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.frame_num[2] because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.addr[2]. To keep the instance, apply constraint syn_preserve=1 on the instance.
@@ -390,7 +386,6 @@ Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h
 @N: MO111 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":15:9:15:20|Tristate driver out_ep_stall (in view: work.usb_serial_ctrl_ep(verilog)) on net out_ep_stall (in view: work.usb_serial_ctrl_ep(verilog)) has its enable tied to GND.
 @N: MO111 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":28:9:28:19|Tristate driver in_ep_stall (in view: work.usb_spi_bridge_ep(verilog)) on net in_ep_stall (in view: work.usb_spi_bridge_ep(verilog)) has its enable tied to GND.
 @N: MO111 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":15:9:15:20|Tristate driver out_ep_stall (in view: work.usb_spi_bridge_ep(verilog)) on net out_ep_stall (in view: work.usb_spi_bridge_ep(verilog)) has its enable tied to GND.
-@N: MO111 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v":17:9:17:14|Tristate driver pin_26 (in view: work.TinyFPGA_EX(verilog)) on net pin_26 (in view: work.TinyFPGA_EX(verilog)) has its enable tied to GND.
 @N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":151:4:151:7|Removing sequential instance output_pin_values_1[0] (in view: work.usb_spi_bridge_ep(verilog)) of type view:PrimLib.latr(prim) because it does not drive other instances.
 @N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":151:4:151:7|Removing sequential instance output_pin_values_1[1] (in view: work.usb_spi_bridge_ep(verilog)) of type view:PrimLib.latr(prim) because it does not drive other instances.
 @N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":151:4:151:7|Removing sequential instance output_pin_values_1[2] (in view: work.usb_spi_bridge_ep(verilog)) of type view:PrimLib.latr(prim) because it does not drive other instances.
@@ -460,7 +455,7 @@ Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h
 ICG Latch Removal Summary:
 Number of ICG latches removed:	0
 Number of ICG latches not removed:	0
-syn_allowed_resources : blockrams=56  set on top level netlist TinyFPGA_EX
+syn_allowed_resources : blockrams=108  set on top level netlist TinyFPGA_EX
 
 Finished netlist restructuring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 143MB peak: 145MB)
 
@@ -479,7 +474,7 @@ usb_pll_inst|CLKOP_inferred_clock                                            4.2
 =============================================================================================================================================================================================
 
 @W: MT531 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":282:4:282:7|Found signal identified as System clock which controls 1 sequential elements including tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.out_ep_acked_1[0].  Using this clock, which has no specified timing constraint, can prevent conversion of gated or generated clocks and can adversely impact design performance. 
-@W: MT529 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v":80:2:80:7|Found inferred clock TinyFPGA_EX|pin_clk which controls 10 sequential elements including initiate_boot. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 
+@W: MT529 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v":79:2:79:7|Found inferred clock TinyFPGA_EX|pin_clk which controls 10 sequential elements including initiate_boot. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 
 @W: MT529 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\edge_detect.v":8:2:8:7|Found inferred clock usb_pll_inst|CLKOP_inferred_clock which controls 527 sequential elements including tinyfpga_bootloader_inst.ctrl_ep_inst.detect_pkt_start.in_q. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 
 
 Finished Pre Mapping Phase.
@@ -494,34 +489,34 @@ original code -> new code
    000011 -> 001000
    000100 -> 010000
    000101 -> 100000
-Encoding state machine \.ep_state_2_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
+Encoding state machine genblk1\[2\]\.ep_state_2_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
 original code -> new code
    00 -> 00
    01 -> 01
    10 -> 10
    11 -> 11
-@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|There are no possible illegal states for state machine \.ep_state_2_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
-Encoding state machine \.ep_state_1_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":221:6:221:11|There are no possible illegal states for state machine genblk1\[2\]\.ep_state_2_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+Encoding state machine genblk1\[1\]\.ep_state_1_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
 original code -> new code
    00 -> 00
    01 -> 01
    10 -> 10
    11 -> 11
-@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|There are no possible illegal states for state machine \.ep_state_1_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
-Encoding state machine \.ep_state_0_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":221:6:221:11|There are no possible illegal states for state machine genblk1\[1\]\.ep_state_1_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+Encoding state machine genblk1\[0\]\.ep_state_0_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
 original code -> new code
    00 -> 00
    01 -> 01
    10 -> 10
    11 -> 11
-@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|There are no possible illegal states for state machine \.ep_state_0_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":221:6:221:11|There are no possible illegal states for state machine genblk1\[0\]\.ep_state_0_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
 Encoding state machine in_xfr_state[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
 original code -> new code
    00 -> 00
    01 -> 01
    10 -> 10
    11 -> 11
-@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":346:2:346:7|There are no possible illegal states for state machine in_xfr_state[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":347:2:347:7|There are no possible illegal states for state machine in_xfr_state[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
 Encoding state machine genblk1\[1\]\.ep_state_1_[3:0] (in view: work.usb_fs_out_pe_2_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
 original code -> new code
    00 -> 00
@@ -553,10 +548,12 @@ Pre-mapping successful!
 At Mapper Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 60MB peak: 145MB)
 
 Process took 0h:00m:01s realtime, 0h:00m:01s cputime
-# Sat Feb 24 20:07:11 2018
+# Tue Mar 06 15:29:24 2018
 
 ###########################################################]
-# Sat Feb 24 20:07:11 2018
+Map & Optimize Report
+
+# Tue Mar 06 15:29:24 2018
 
 Synopsys Lattice Technology Mapper, Version maplat, Build 1612R, Built Dec  5 2016 10:33:02
 Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
@@ -588,7 +585,6 @@ Starting Optimization and Mapping (Real Time elapsed 0h:00m:00s; CPU Time elapse
 @N: MO111 :|Tristate driver ctrl_out_ep_stall_t (in view: work.tinyfpga_bootloader(verilog)) on net ctrl_out_ep_stall (in view: work.tinyfpga_bootloader(verilog)) has its enable tied to GND.
 @N: MO111 :|Tristate driver serial_out_ep_stall_t (in view: work.tinyfpga_bootloader(verilog)) on net serial_out_ep_stall (in view: work.tinyfpga_bootloader(verilog)) has its enable tied to GND.
 @N: MO111 :|Tristate driver serial_in_ep_stall_t (in view: work.tinyfpga_bootloader(verilog)) on net serial_in_ep_stall (in view: work.tinyfpga_bootloader(verilog)) has its enable tied to GND.
-@N: MO111 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v":17:9:17:14|Tristate driver pin_26 (in view: work.TinyFPGA_EX(verilog)) on net pin_26 (in view: work.TinyFPGA_EX(verilog)) has its enable tied to GND.
 @W: BN132 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\edge_detect.v":8:2:8:7|Removing sequential instance tinyfpga_bootloader_inst.ctrl_ep_inst.detect_pkt_start.in_q because it is equivalent to instance tinyfpga_bootloader_inst.ctrl_ep_inst.detect_pkt_end.in_q. To keep the instance, apply constraint syn_preserve=1 on the instance.
 
 Available hyper_sources - for debug and ip models
@@ -629,7 +625,7 @@ Available hyper_sources - for debug and ip models
 
 Finished RTL optimizations (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 141MB peak: 144MB)
 
-@N: MO231 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v":80:2:80:7|Found counter in view:work.TinyFPGA_EX(verilog) instance boot_delay[8:0] 
+@N: MO231 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v":79:2:79:7|Found counter in view:work.TinyFPGA_EX(verilog) instance boot_delay[8:0] 
 @N: MO231 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\tinyfpga_bootloader.v":87:2:87:7|Found counter in view:work.tinyfpga_bootloader(verilog) instance pwm_cnt[7:0] 
 Encoding state machine ctrl_xfr_state[5:0] (in view: work.usb_serial_ctrl_ep(verilog))
 original code -> new code
@@ -639,38 +635,38 @@ original code -> new code
    000011 -> 001000
    000100 -> 010000
    000101 -> 100000
-@N: MO231 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Found counter in view:work.usb_serial_ctrl_ep(verilog) instance rom_addr[6:0] 
+@N: MO231 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Found counter in view:work.usb_serial_ctrl_ep(verilog) instance rom_addr[6:0] 
 @N: MO231 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":256:2:256:7|Found counter in view:work.usb_spi_bridge_ep(verilog) instance data_out_length[15:0] 
 @N: MO231 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":256:2:256:7|Found counter in view:work.usb_spi_bridge_ep(verilog) instance data_in_length[15:0] 
-Encoding state machine \.ep_state_2_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
+Encoding state machine genblk1\[2\]\.ep_state_2_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
 original code -> new code
    00 -> 00
    01 -> 01
    10 -> 10
    11 -> 11
-@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|There are no possible illegal states for state machine \.ep_state_2_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
-Encoding state machine \.ep_state_1_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":221:6:221:11|There are no possible illegal states for state machine genblk1\[2\]\.ep_state_2_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+Encoding state machine genblk1\[1\]\.ep_state_1_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
 original code -> new code
    00 -> 00
    01 -> 01
    10 -> 10
    11 -> 11
-@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|There are no possible illegal states for state machine \.ep_state_1_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
-Encoding state machine \.ep_state_0_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":221:6:221:11|There are no possible illegal states for state machine genblk1\[1\]\.ep_state_1_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+Encoding state machine genblk1\[0\]\.ep_state_0_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
 original code -> new code
    00 -> 00
    01 -> 01
    10 -> 10
    11 -> 11
-@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|There are no possible illegal states for state machine \.ep_state_0_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":221:6:221:11|There are no possible illegal states for state machine genblk1\[0\]\.ep_state_0_[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
 Encoding state machine in_xfr_state[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
 original code -> new code
    00 -> 00
    01 -> 01
    10 -> 10
    11 -> 11
-@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":346:2:346:7|There are no possible illegal states for state machine in_xfr_state[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
-@N: MF179 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":121:4:121:24|Found 7 by 7 bit equality operator ('==') un1_dev_addr (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
+@N: MO225 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":347:2:347:7|There are no possible illegal states for state machine in_xfr_state[3:0] (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog)); safe FSM implementation is not required.
+@N: MF179 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":124:4:124:24|Found 7 by 7 bit equality operator ('==') un1_dev_addr (in view: work.usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
 Encoding state machine genblk1\[1\]\.ep_state_1_[3:0] (in view: work.usb_fs_out_pe_2_32s_0s_1s_2s_3s_0s_1s_2s_3s(verilog))
 original code -> new code
    00 -> 00
@@ -697,87 +693,96 @@ original code -> new code
 Starting factoring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 145MB peak: 145MB)
 
 
-Finished factoring (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 157MB peak: 158MB)
+Finished factoring (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 156MB peak: 157MB)
 
-@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":218:6:218:11|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.genblk1\[1\]\.ep_state_1_[0] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
 @N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":218:6:218:11|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.genblk1\[0\]\.ep_state_0_[1] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
 @N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":218:6:218:11|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.genblk1\[0\]\.ep_state_0_[0] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
-@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":218:6:218:11|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.genblk1\[1\]\.ep_state_1_[1] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
 @N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":354:2:354:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.out_xfr_state[1] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
 @N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":354:2:354:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.out_xfr_state[0] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
 @N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":354:2:354:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.current_endp[0] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
 @N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":354:2:354:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.nak_out_transfer (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
-@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":346:2:346:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_xfr_state[1] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
-@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":346:2:346:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_xfr_state[0] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":347:2:347:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_xfr_state[1] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":347:2:347:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_xfr_state[0] (in view: work.TinyFPGA_EX(verilog)) because it does not drive other instances.
 
 Finished gated-clock and generated-clock conversion (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 152MB peak: 158MB)
 
-@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":283:4:283:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.tx_pid[2] (in view: work.TinyFPGA_EX(verilog)) of type view:PrimLib.dffr(prim) because it does not drive other instances.
-@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":283:4:283:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.tx_pid[1] (in view: work.TinyFPGA_EX(verilog)) of type view:PrimLib.dffr(prim) because it does not drive other instances.
-@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":283:4:283:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.tx_pid[0] (in view: work.TinyFPGA_EX(verilog)) of type view:PrimLib.dffr(prim) because it does not drive other instances.
-@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":283:4:283:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.tx_pid[3] (in view: work.TinyFPGA_EX(verilog)) of type view:PrimLib.dffr(prim) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":284:4:284:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.tx_pid[3] (in view: work.TinyFPGA_EX(verilog)) of type view:PrimLib.dffr(prim) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":284:4:284:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.tx_pid[2] (in view: work.TinyFPGA_EX(verilog)) of type view:PrimLib.dffr(prim) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":284:4:284:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.tx_pid[1] (in view: work.TinyFPGA_EX(verilog)) of type view:PrimLib.dffr(prim) because it does not drive other instances.
+@N: BN362 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":284:4:284:7|Removing sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.tx_pid[0] (in view: work.TinyFPGA_EX(verilog)) of type view:PrimLib.dffr(prim) because it does not drive other instances.
 
-Finished generic timing optimizations - Pass 1 (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 154MB peak: 158MB)
-
-
-Starting Early Timing Optimization (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 155MB peak: 158MB)
+Finished generic timing optimizations - Pass 1 (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 152MB peak: 158MB)
 
 
-Finished Early Timing Optimization (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 155MB peak: 158MB)
+Starting Early Timing Optimization (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 153MB peak: 158MB)
 
 
-Finished generic timing optimizations - Pass 2 (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:01s; Memory used current: 155MB peak: 158MB)
+Finished Early Timing Optimization (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 153MB peak: 158MB)
 
-@N: FO126 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":260:2:260:7|Generating RAM tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer[7:0]
+
+Finished generic timing optimizations - Pass 2 (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 153MB peak: 158MB)
+
+@N: FO126 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":261:2:261:7|Generating RAM tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer[7:0]
 @N: FO126 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":354:2:354:7|Generating RAM tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.out_data_buffer[7:0]
-@N: FX214 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":339:4:339:7|Generating ROM tinyfpga_bootloader_inst.ctrl_ep_inst.in_ep_data_1[7:0] (in view: work.TinyFPGA_EX(verilog)).
-@W: BN132 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":260:2:260:7|Removing black box instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_8 because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_10. To keep the instance, apply constraint syn_preserve=1 on the instance.
-@W: BN132 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":260:2:260:7|Removing black box instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_9 because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_7. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@N: FX214 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":338:4:338:7|Generating ROM tinyfpga_bootloader_inst.ctrl_ep_inst.in_ep_data_1[7:0] (in view: work.TinyFPGA_EX(verilog)).
+@W: BN132 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":261:2:261:7|Removing black box instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_9 because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_7. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: BN132 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":261:2:261:7|Removing black box instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_8 because it is equivalent to instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.in_data_buffer_ram_10. To keep the instance, apply constraint syn_preserve=1 on the instance.
 
-Finished preparing to map (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:01s; Memory used current: 155MB peak: 158MB)
+Finished preparing to map (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 152MB peak: 158MB)
 
 
-Finished technology mapping (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 173MB peak: 175MB)
+Finished technology mapping (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 178MB peak: 180MB)
 
 Pass		 CPU time		Worst Slack		Luts / Registers
 ------------------------------------------------------------
-   1		0h:00m:02s		    -2.58ns		 820 /       503
-   2		0h:00m:02s		    -2.58ns		 814 /       503
-@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":136:4:136:7|Replicating instance tinyfpga_bootloader_inst.ctrl_ep_inst.status_stage_end_iv (in view: work.TinyFPGA_EX(verilog)) with 17 loads 1 time to improve timing.
+   1		0h:00m:02s		    -2.36ns		 827 /       504
+   2		0h:00m:02s		    -2.36ns		 823 /       504
+   3		0h:00m:02s		    -2.36ns		 825 /       504
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":135:4:135:7|Replicating instance tinyfpga_bootloader_inst.ctrl_ep_inst.status_stage_end_iv (in view: work.TinyFPGA_EX(verilog)) with 15 loads 1 time to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Replicating instance tinyfpga_bootloader_inst.ctrl_ep_inst.bytes_sent[0] (in view: work.TinyFPGA_EX(verilog)) with 6 loads 1 time to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Replicating instance tinyfpga_bootloader_inst.ctrl_ep_inst.bytes_sent[2] (in view: work.TinyFPGA_EX(verilog)) with 6 loads 1 time to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Replicating instance tinyfpga_bootloader_inst.ctrl_ep_inst.bytes_sent[1] (in view: work.TinyFPGA_EX(verilog)) with 6 loads 1 time to improve timing.
 @N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":354:2:354:7|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.ep_put_addr\[0\][1] (in view: work.TinyFPGA_EX(verilog)) with 7 loads 1 time to improve timing.
 @N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":354:2:354:7|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.ep_put_addr\[0\][2] (in view: work.TinyFPGA_EX(verilog)) with 5 loads 1 time to improve timing.
-@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":346:2:346:7|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp[0] (in view: work.TinyFPGA_EX(verilog)) with 31 loads 2 times to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_rx.v":277:2:277:7|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.crc16[15] (in view: work.TinyFPGA_EX(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Replicating instance tinyfpga_bootloader_inst.ctrl_ep_inst.bytes_sent[4] (in view: work.TinyFPGA_EX(verilog)) with 5 loads 1 time to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Replicating instance tinyfpga_bootloader_inst.ctrl_ep_inst.bytes_sent[3] (in view: work.TinyFPGA_EX(verilog)) with 6 loads 1 time to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_rx.v":240:2:240:7|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.full_pid[1] (in view: work.TinyFPGA_EX(verilog)) with 22 loads 2 times to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_rx.v":240:2:240:7|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.full_pid[2] (in view: work.TinyFPGA_EX(verilog)) with 24 loads 2 times to improve timing.
 @N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":354:2:354:7|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.ep_put_addr\[0\][3] (in view: work.TinyFPGA_EX(verilog)) with 4 loads 1 time to improve timing.
-@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Replicating instance tinyfpga_bootloader_inst.ctrl_ep_inst.bytes_sent[0] (in view: work.TinyFPGA_EX(verilog)) with 6 loads 1 time to improve timing.
-@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Replicating instance tinyfpga_bootloader_inst.ctrl_ep_inst.bytes_sent[1] (in view: work.TinyFPGA_EX(verilog)) with 6 loads 1 time to improve timing.
-@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Replicating instance tinyfpga_bootloader_inst.ctrl_ep_inst.bytes_sent[2] (in view: work.TinyFPGA_EX(verilog)) with 5 loads 1 time to improve timing.
-@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":346:2:346:7|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp[1] (in view: work.TinyFPGA_EX(verilog)) with 32 loads 3 times to improve timing.
-@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_rx.v":240:2:240:7|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.full_pid[4] (in view: work.TinyFPGA_EX(verilog)) with 18 loads 1 time to improve timing.
-@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":256:2:256:7|Replicating instance tinyfpga_bootloader_inst.usb_spi_bridge_ep_inst.cmd_state[0] (in view: work.TinyFPGA_EX(verilog)) with 34 loads 2 times to improve timing.
-@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_spi_bridge_ep.v":256:2:256:7|Replicating instance tinyfpga_bootloader_inst.usb_spi_bridge_ep_inst.cmd_state[2] (in view: work.TinyFPGA_EX(verilog)) with 31 loads 1 time to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_rx.v":240:2:240:7|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.full_pid[4] (in view: work.TinyFPGA_EX(verilog)) with 15 loads 1 time to improve timing.
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":347:2:347:7|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp[0] (in view: work.TinyFPGA_EX(verilog)) with 33 loads 3 times to improve timing.
 Timing driven replication report
-Added 15 Registers via timing driven replication
-Added 13 LUTs via timing driven replication
+Added 17 Registers via timing driven replication
+Added 15 LUTs via timing driven replication
 
-   3		0h:00m:02s		    -1.68ns		 861 /       518
-   4		0h:00m:02s		    -1.64ns		 863 /       518
+   4		0h:00m:03s		    -1.92ns		 861 /       521
+   5		0h:00m:03s		    -1.81ns		 862 /       521
+   6		0h:00m:03s		    -1.60ns		 864 /       521
+   7		0h:00m:03s		    -1.60ns		 866 /       521
+   8		0h:00m:03s		    -1.49ns		 867 /       521
+   9		0h:00m:03s		    -1.43ns		 868 /       521
+  10		0h:00m:03s		    -1.43ns		 870 /       521
+  11		0h:00m:03s		    -1.43ns		 871 /       521
+@N: FX271 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":347:2:347:7|Replicating instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp[1] (in view: work.TinyFPGA_EX(verilog)) with 32 loads 3 times to improve timing.
+Added 3 Registers via timing driven replication
+Added 3 LUTs via timing driven replication
 
 
-   5		0h:00m:02s		    -1.18ns		 877 /       518
-   6		0h:00m:02s		    -1.10ns		 879 /       518
-   7		0h:00m:02s		    -1.06ns		 882 /       518
+  12		0h:00m:03s		    -1.43ns		 873 /       524
+  13		0h:00m:03s		    -1.36ns		 875 /       524
+  14		0h:00m:03s		    -1.28ns		 876 /       524
 
-Finished technology timing optimizations and critical path resynthesis (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:02s; Memory used current: 173MB peak: 175MB)
+Finished technology timing optimizations and critical path resynthesis (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:03s; Memory used current: 179MB peak: 180MB)
 
 @W: FX474 |User-specified initial value defined for some sequential elements which can prevent optimum synthesis results from being achieved. 
 @N: FX164 |The option to pack registers in the IOB has not been specified. Please set syn_useioff attribute.  
 @W: MO129 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_out_pe.v":282:4:282:7|Sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.out_ep_acked_1[0] is reduced to a combinational gate by constant propagation.
-@N: MO111 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v":17:9:17:14|Tristate driver pin_26_obuft.un1[0] (in view: work.TinyFPGA_EX(verilog)) on net pin_26 (in view: work.TinyFPGA_EX(verilog)) has its enable tied to GND.
-@W: MO160 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|Register bit tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.\.ep_state_2_[1] (in view view:work.TinyFPGA_EX(verilog)) is always 0. To keep the instance, apply syn_preserve=1 on the instance.
-@W: MO129 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|Sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst..ep_state_2_[0] is reduced to a combinational gate by constant propagation.
-@W: MO197 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":220:6:220:11|Removing FSM register tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.\.ep_state_2_[0] (in view view:work.TinyFPGA_EX(verilog)) because its output is a constant.
+@W: MO160 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":221:6:221:11|Register bit tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.genblk1\[2\]\.ep_state_2_[1] (in view view:work.TinyFPGA_EX(verilog)) is always 0. To keep the instance, apply syn_preserve=1 on the instance.
+@W: MO129 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":221:6:221:11|Sequential instance tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.genblk1[2].ep_state_2_[0] is reduced to a combinational gate by constant propagation.
+@W: MO197 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\common\usb_fs_in_pe.v":221:6:221:11|Removing FSM register tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.genblk1\[2\]\.ep_state_2_[0] (in view view:work.TinyFPGA_EX(verilog)) because its output is a constant.
 
-Finished restoring hierarchy (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:03s; Memory used current: 173MB peak: 175MB)
+Finished restoring hierarchy (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:03s; Memory used current: 179MB peak: 181MB)
 
 @N: MT611 :|Automatically generated clock usb_pll_inst|CLKOP_inferred_clock is not used and is being removed
 @N: MT617 :|Automatically generated clock usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s|in_xfr_state_derived_clock[1] has lost its master clock usb_pll_inst|CLKOP_inferred_clock and is being removed
@@ -790,8 +795,8 @@ Finished restoring hierarchy (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:
 #### START OF CLOCK OPTIMIZATION REPORT #####[
 
 1 non-gated/non-generated clock tree(s) driving 10 clock pin(s) of sequential element(s)
-1 gated/generated clock tree(s) driving 499 clock pin(s) of sequential element(s)
-0 instances converted, 499 sequential instances remain driven by gated/generated clocks
+1 gated/generated clock tree(s) driving 505 clock pin(s) of sequential element(s)
+0 instances converted, 505 sequential instances remain driven by gated/generated clocks
 
 =========================== Non-Gated/Non-Generated Clocks ============================
 Clock Tree ID     Driving Element     Drive Element Type     Fanout     Sample Instance
@@ -801,36 +806,36 @@ Clock Tree ID     Driving Element     Drive Element Type     Fanout     Sample I
 ================================================================================================================= Gated/Generated Clocks =================================================================================================================
 Clock Tree ID     Driving Element                 Drive Element Type     Fanout     Sample Instance                         Explanation                                                                                                                   
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-@K:CKID0001       usb_pll_inst_inst.PLLInst_0     EHXPLLL                499        tinyfpga_bootloader_inst.count_down     Gating structure creates improper gating logic. See the Gated Clocks description in the user guide for conversion requirements
+@K:CKID0001       usb_pll_inst_inst.PLLInst_0     EHXPLLL                505        tinyfpga_bootloader_inst.count_down     Gating structure creates improper gating logic. See the Gated Clocks description in the user guide for conversion requirements
 ==========================================================================================================================================================================================================================================================
 
 
 ##### END OF CLOCK OPTIMIZATION REPORT ######]
 
 
-Start Writing Netlists (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:03s; Memory used current: 138MB peak: 175MB)
+Start Writing Netlists (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:03s; Memory used current: 143MB peak: 181MB)
 
 Writing Analyst data base C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synwork\diamond_impl_m.srm
 
-Finished Writing Netlist Databases (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:03s; Memory used current: 173MB peak: 175MB)
+Finished Writing Netlist Databases (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:04s; Memory used current: 177MB peak: 181MB)
 
 Writing EDIF Netlist and constraint files
 @N: FX1056 |Writing EDF file: C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\diamond_impl.edi
 L-2016.09L
 @N: BW106 |Synplicity Constraint File capacitance units using default value of 1pF 
 
-Finished Writing EDIF Netlist and constraint files (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:03s; Memory used current: 177MB peak: 179MB)
+Finished Writing EDIF Netlist and constraint files (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:04s; Memory used current: 182MB peak: 184MB)
 
 
-Start final timing analysis (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:04s; Memory used current: 174MB peak: 179MB)
+Start final timing analysis (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:04s; Memory used current: 179MB peak: 184MB)
 
-@W: MT246 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v":94:10:94:21|Blackbox USRMCLK is missing a user supplied timing model. This may have a negative effect on timing analysis and optimizations (Quality of Results) 
+@W: MT246 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\bootloader.v":93:10:93:21|Blackbox USRMCLK is missing a user supplied timing model. This may have a negative effect on timing analysis and optimizations (Quality of Results) 
 @W: MT246 :"c:\users\lvale\documents\tinyfpga\repos\tinyfpga-bootloader\boards\tinyfpga_ex\impl\source\usb_pll_inst.v":54:12:54:20|Blackbox EHXPLLL is missing a user supplied timing model. This may have a negative effect on timing analysis and optimizations (Quality of Results) 
 @W: MT420 |Found inferred clock TinyFPGA_EX|pin_clk with period 2.28ns. Please declare a user-defined clock on object "p:pin_clk"
 
 
 ##### START OF TIMING REPORT #####[
-# Timing Report written on Sat Feb 24 20:07:16 2018
+# Timing Report written on Tue Mar 06 15:29:29 2018
 #
 
 
@@ -849,13 +854,13 @@ Performance Summary
 *******************
 
 
-Worst slack in design: -0.992
+Worst slack in design: -0.994
 
                         Requested     Estimated     Requested     Estimated                Clock        Clock                
 Starting Clock          Frequency     Frequency     Period        Period        Slack      Type         Group                
 -----------------------------------------------------------------------------------------------------------------------------
 TinyFPGA_EX|pin_clk     437.8 MHz     372.1 MHz     2.284         2.688         -0.403     inferred     Autoconstr_clkgroup_0
-System                  177.9 MHz     151.3 MHz     5.620         6.612         -0.992     system       system_clkgroup      
+System                  177.5 MHz     150.9 MHz     5.633         6.627         -0.994     system       system_clkgroup      
 =============================================================================================================================
 
 
@@ -869,8 +874,8 @@ Clocks                                    |    rise  to  rise    |    fall  to  
 ---------------------------------------------------------------------------------------------------------------------------------
 Starting             Ending               |  constraint  slack   |  constraint  slack  |  constraint  slack  |  constraint  slack
 ---------------------------------------------------------------------------------------------------------------------------------
-System               System               |  5.620       -0.992  |  No paths    -      |  No paths    -      |  No paths    -    
-System               TinyFPGA_EX|pin_clk  |  2.284       -0.033  |  No paths    -      |  No paths    -      |  No paths    -    
+System               System               |  5.633       -0.994  |  No paths    -      |  No paths    -      |  No paths    -    
+System               TinyFPGA_EX|pin_clk  |  2.284       -0.109  |  No paths    -      |  No paths    -      |  No paths    -    
 TinyFPGA_EX|pin_clk  TinyFPGA_EX|pin_clk  |  2.284       -0.403  |  No paths    -      |  No paths    -      |  No paths    -    
 =================================================================================================================================
  Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
@@ -927,7 +932,7 @@ boot_delay[4]     TinyFPGA_EX|pin_clk     FD1P3AX     D       boot_delay_s[4]   
 boot_delay[1]     TinyFPGA_EX|pin_clk     FD1P3AX     D       boot_delay_s[1]     2.230        -0.220
 boot_delay[2]     TinyFPGA_EX|pin_clk     FD1P3AX     D       boot_delay_s[2]     2.230        -0.220
 boot_delay[0]     TinyFPGA_EX|pin_clk     FD1P3AX     D       boot_delay_s[0]     2.230        0.600 
-initiate_boot     TinyFPGA_EX|pin_clk     FD1S3AX     D       N_13763_0           2.230        0.792 
+initiate_boot     TinyFPGA_EX|pin_clk     FD1S3AX     D       N_14603_0           2.230        0.792 
 =====================================================================================================
 
 
@@ -1142,37 +1147,37 @@ Starting Points with Worst Slack
 Instance                                                                           Reference     Type        Pin     Net                      Time        Slack 
                                                                                    Clock                                                                        
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[1]     System        FD1S3AX     Q       current_endp_fast[1]     1.015       -0.992
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[0]     System        FD1S3AX     Q       current_endp_fast[0]     1.027       -0.840
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.ep_get_addr\[0\][0]      System        FD1P3IX     Q       ep_get_addr\[0\][0]      0.853       -0.830
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.ep_get_addr\[2\][0]      System        FD1P3IX     Q       ep_get_addr\[2\][0]      0.853       -0.830
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.line_history[1]             System        FD1P3AX     Q       line_history[1]          0.985       -0.796
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.line_history[3]             System        FD1P3AX     Q       line_history[3]          0.985       -0.796
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.endp[0]                     System        FD1P3AX     Q       rx_endp[0]               1.078       -0.718
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_rx_inst.endp[1]                     System        FD1P3AX     Q       rx_endp[1]               1.051       -0.691
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.ep_get_addr\[0\][4]      System        FD1P3IX     Q       ep_get_addr\[0\][4]      0.853       -0.666
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.ep_get_addr\[1\][4]      System        FD1P3IX     Q       ep_get_addr\[1\][4]      0.853       -0.666
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[0]     System        FD1S3AX     Q       current_endp_fast[0]     0.955       -0.994
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.ep_get_addr\[0\][0]      System        FD1P3IX     Q       ep_get_addr\[0\][0]      0.853       -0.892
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.ep_get_addr\[1\][0]      System        FD1P3IX     Q       ep_get_addr\[1\][0]      0.853       -0.892
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_0_rep1      System        FD1S3AX     Q       current_endp_0_rep1      0.985       -0.861
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.ep_get_addr\[0\][1]      System        FD1P3IX     Q       ep_get_addr\[0\][1]      0.853       -0.732
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.ep_get_addr\[1\][1]      System        FD1P3IX     Q       ep_get_addr\[1\][1]      0.853       -0.732
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.ep_get_addr\[0\][2]      System        FD1P3IX     Q       ep_get_addr\[0\][2]      0.853       -0.729
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.ep_get_addr\[1\][2]      System        FD1P3IX     Q       ep_get_addr\[1\][2]      0.853       -0.729
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.ep_get_addr\[0\][4]      System        FD1P3IX     Q       ep_get_addr\[0\][4]      0.853       -0.683
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.ep_get_addr\[1\][4]      System        FD1P3IX     Q       ep_get_addr\[1\][4]      0.853       -0.683
 ================================================================================================================================================================
 
 
 Ending Points with Worst Slack
 ******************************
 
-                                                                                                 Starting                                                   Required           
-Instance                                                                                         Reference     Type        Pin     Net                      Time         Slack 
-                                                                                                 Clock                                                                         
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[0]                         System        FD1S3AX     D       data_shift_reg_15[0]     5.566        -0.992
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[1]                         System        FD1S3AX     D       data_shift_reg_15[1]     5.566        -0.992
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[2]                         System        FD1S3AX     D       data_shift_reg_15[2]     5.566        -0.992
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[3]                         System        FD1S3AX     D       data_shift_reg_15[3]     5.566        -0.992
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[4]                         System        FD1S3AX     D       data_shift_reg_15[4]     5.566        -0.992
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[6]                         System        FD1S3AX     D       data_shift_reg_15[6]     5.566        -0.992
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.genblk1\[0\]\.ep_get_addr\[0\][0]     System        FD1S3IX     CD      ep_get_addr_next_0_2     5.539        -0.796
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.genblk1\[0\]\.ep_get_addr\[0\][1]     System        FD1S3IX     CD      ep_get_addr_next_0_2     5.539        -0.796
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.genblk1\[0\]\.ep_get_addr\[0\][2]     System        FD1S3IX     CD      ep_get_addr_next_0_2     5.539        -0.796
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_out_pe_inst.genblk1\[0\]\.ep_get_addr\[0\][3]     System        FD1S3IX     CD      ep_get_addr_next_0_2     5.539        -0.796
-===============================================================================================================================================================================
+                                                                             Starting                                                   Required           
+Instance                                                                     Reference     Type        Pin     Net                      Time         Slack 
+                                                                             Clock                                                                         
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[1]     System        FD1S3AX     D       data_shift_reg_15[1]     5.579        -0.994
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[2]     System        FD1S3AX     D       data_shift_reg_15[2]     5.579        -0.994
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[3]     System        FD1S3AX     D       data_shift_reg_15[3]     5.579        -0.994
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[4]     System        FD1S3AX     D       data_shift_reg_15[4]     5.579        -0.994
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[5]     System        FD1S3AX     D       data_shift_reg_15[5]     5.579        -0.994
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[6]     System        FD1S3AX     D       data_shift_reg_15[6]     5.579        -0.994
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[0]     System        FD1S3AX     D       data_shift_reg_15[0]     5.579        -0.591
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[7]     System        FD1S3AX     D       data_shift_reg_15[7]     5.579        -0.591
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state[1]          System        FD1P3AX     D       pkt_state_cnst[1]        5.579        -0.531
+tinyfpga_bootloader_inst.usb_spi_bridge_ep_inst.spi_state[2]                 System        FD1S3AX     D       spi_state_next[2]        5.579        -0.503
+===========================================================================================================================================================
 
 
 
@@ -1181,288 +1186,288 @@ Worst Path Information
 
 
 Path information for path number 1: 
-      Requested Period:                      5.620
+      Requested Period:                      5.633
     - Setup time:                            0.054
     + Clock delay at ending point:           0.000 (ideal)
     + Estimated clock delay at ending point: 0.000
-    = Required time:                         5.566
+    = Required time:                         5.579
 
-    - Propagation time:                      6.558
+    - Propagation time:                      6.572
     - Clock delay at starting point:         0.000 (ideal)
     - Estimated clock delay at start point:  -0.000
-    = Slack (critical) :                     -0.992
+    = Slack (critical) :                     -0.994
 
     Number of logic level(s):                10
-    Starting point:                          tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[1] / Q
-    Ending point:                            tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[0] / D
-    The start point is clocked by            System [rising] on pin CK
-    The end   point is clocked by            System [rising] on pin CK
-
-Instance / Net                                                                                        Pin      Pin               Arrival     No. of    
-Name                                                                                     Type         Name     Dir     Delay     Time        Fan Out(s)
--------------------------------------------------------------------------------------------------------------------------------------------------------
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[1]           FD1S3AX      Q        Out     1.015     1.015       -         
-current_endp_fast[1]                                                                     Net          -        -       -         -           6         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2_1[0]     ORCALUT4     A        In      0.000     1.015       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2_1[0]     ORCALUT4     Z        Out     0.660     1.675       -         
-un16_ep_get_addr_i_m2_1[0]                                                               Net          -        -       -         -           2         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2[0]       ORCALUT4     D        In      0.000     1.675       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2[0]       ORCALUT4     Z        Out     0.822     2.497       -         
-un16_ep_get_addr_i_m2[0]                                                                 Net          -        -       -         -           15        
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0      CCU2C        C1       In      0.000     2.497       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0      CCU2C        COUT     Out     0.900     3.397       -         
-more_data_to_send_cry_0                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0      CCU2C        CIN      In      0.000     3.397       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0      CCU2C        COUT     Out     0.061     3.458       -         
-more_data_to_send_cry_2                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0      CCU2C        CIN      In      0.000     3.458       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0      CCU2C        COUT     Out     0.061     3.519       -         
-more_data_to_send_cry_4                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0      CCU2C        CIN      In      0.000     3.519       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0      CCU2C        S1       Out     0.860     4.378       -         
-more_data_to_send                                                                        Net          -        -       -         -           6         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_cnst_0_a5_0[2]          ORCALUT4     A        In      0.000     4.378       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_cnst_0_a5_0[2]          ORCALUT4     Z        Out     0.780     5.159       -         
-N_401                                                                                    Net          -        -       -         -           7         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_am[0]           ORCALUT4     B        In      0.000     5.159       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_am[0]           ORCALUT4     Z        Out     0.606     5.765       -         
-data_shift_reg_11_am[0]                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[0]              PFUMX        BLUT     In      0.000     5.765       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[0]              PFUMX        Z        Out     0.403     6.168       -         
-data_shift_reg_11[0]                                                                     Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_15_u[0]            ORCALUT4     D        In      0.000     6.168       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_15_u[0]            ORCALUT4     Z        Out     0.390     6.558       -         
-data_shift_reg_15[0]                                                                     Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[0]                 FD1S3AX      D        In      0.000     6.558       -         
-=======================================================================================================================================================
-
-
-Path information for path number 2: 
-      Requested Period:                      5.620
-    - Setup time:                            0.054
-    + Clock delay at ending point:           0.000 (ideal)
-    + Estimated clock delay at ending point: 0.000
-    = Required time:                         5.566
-
-    - Propagation time:                      6.558
-    - Clock delay at starting point:         0.000 (ideal)
-    - Estimated clock delay at start point:  -0.000
-    = Slack (critical) :                     -0.992
-
-    Number of logic level(s):                10
-    Starting point:                          tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[1] / Q
-    Ending point:                            tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[3] / D
-    The start point is clocked by            System [rising] on pin CK
-    The end   point is clocked by            System [rising] on pin CK
-
-Instance / Net                                                                                        Pin      Pin               Arrival     No. of    
-Name                                                                                     Type         Name     Dir     Delay     Time        Fan Out(s)
--------------------------------------------------------------------------------------------------------------------------------------------------------
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[1]           FD1S3AX      Q        Out     1.015     1.015       -         
-current_endp_fast[1]                                                                     Net          -        -       -         -           6         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2_1[0]     ORCALUT4     A        In      0.000     1.015       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2_1[0]     ORCALUT4     Z        Out     0.660     1.675       -         
-un16_ep_get_addr_i_m2_1[0]                                                               Net          -        -       -         -           2         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2[0]       ORCALUT4     D        In      0.000     1.675       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2[0]       ORCALUT4     Z        Out     0.822     2.497       -         
-un16_ep_get_addr_i_m2[0]                                                                 Net          -        -       -         -           15        
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0      CCU2C        C1       In      0.000     2.497       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0      CCU2C        COUT     Out     0.900     3.397       -         
-more_data_to_send_cry_0                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0      CCU2C        CIN      In      0.000     3.397       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0      CCU2C        COUT     Out     0.061     3.458       -         
-more_data_to_send_cry_2                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0      CCU2C        CIN      In      0.000     3.458       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0      CCU2C        COUT     Out     0.061     3.519       -         
-more_data_to_send_cry_4                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0      CCU2C        CIN      In      0.000     3.519       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0      CCU2C        S1       Out     0.860     4.378       -         
-more_data_to_send                                                                        Net          -        -       -         -           6         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_cnst_0_a5_0[2]          ORCALUT4     A        In      0.000     4.378       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_cnst_0_a5_0[2]          ORCALUT4     Z        Out     0.780     5.159       -         
-N_401                                                                                    Net          -        -       -         -           7         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_am[3]           ORCALUT4     B        In      0.000     5.159       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_am[3]           ORCALUT4     Z        Out     0.606     5.765       -         
-data_shift_reg_11_am[3]                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[3]              PFUMX        BLUT     In      0.000     5.765       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[3]              PFUMX        Z        Out     0.403     6.168       -         
-data_shift_reg_11[3]                                                                     Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[3]             ORCALUT4     D        In      0.000     6.168       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[3]             ORCALUT4     Z        Out     0.390     6.558       -         
-data_shift_reg_15[3]                                                                     Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[3]                 FD1S3AX      D        In      0.000     6.558       -         
-=======================================================================================================================================================
-
-
-Path information for path number 3: 
-      Requested Period:                      5.620
-    - Setup time:                            0.054
-    + Clock delay at ending point:           0.000 (ideal)
-    + Estimated clock delay at ending point: 0.000
-    = Required time:                         5.566
-
-    - Propagation time:                      6.558
-    - Clock delay at starting point:         0.000 (ideal)
-    - Estimated clock delay at start point:  -0.000
-    = Slack (critical) :                     -0.992
-
-    Number of logic level(s):                10
-    Starting point:                          tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[1] / Q
-    Ending point:                            tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[6] / D
-    The start point is clocked by            System [rising] on pin CK
-    The end   point is clocked by            System [rising] on pin CK
-
-Instance / Net                                                                                        Pin      Pin               Arrival     No. of    
-Name                                                                                     Type         Name     Dir     Delay     Time        Fan Out(s)
--------------------------------------------------------------------------------------------------------------------------------------------------------
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[1]           FD1S3AX      Q        Out     1.015     1.015       -         
-current_endp_fast[1]                                                                     Net          -        -       -         -           6         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2_1[0]     ORCALUT4     A        In      0.000     1.015       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2_1[0]     ORCALUT4     Z        Out     0.660     1.675       -         
-un16_ep_get_addr_i_m2_1[0]                                                               Net          -        -       -         -           2         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2[0]       ORCALUT4     D        In      0.000     1.675       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2[0]       ORCALUT4     Z        Out     0.822     2.497       -         
-un16_ep_get_addr_i_m2[0]                                                                 Net          -        -       -         -           15        
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0      CCU2C        C1       In      0.000     2.497       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0      CCU2C        COUT     Out     0.900     3.397       -         
-more_data_to_send_cry_0                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0      CCU2C        CIN      In      0.000     3.397       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0      CCU2C        COUT     Out     0.061     3.458       -         
-more_data_to_send_cry_2                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0      CCU2C        CIN      In      0.000     3.458       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0      CCU2C        COUT     Out     0.061     3.519       -         
-more_data_to_send_cry_4                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0      CCU2C        CIN      In      0.000     3.519       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0      CCU2C        S1       Out     0.860     4.378       -         
-more_data_to_send                                                                        Net          -        -       -         -           6         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_cnst_0_a5_0[2]          ORCALUT4     A        In      0.000     4.378       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_cnst_0_a5_0[2]          ORCALUT4     Z        Out     0.780     5.159       -         
-N_401                                                                                    Net          -        -       -         -           7         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_am[6]           ORCALUT4     B        In      0.000     5.159       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_am[6]           ORCALUT4     Z        Out     0.606     5.765       -         
-data_shift_reg_11_am[6]                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[6]              PFUMX        BLUT     In      0.000     5.765       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[6]              PFUMX        Z        Out     0.403     6.168       -         
-data_shift_reg_11[6]                                                                     Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[6]             ORCALUT4     D        In      0.000     6.168       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[6]             ORCALUT4     Z        Out     0.390     6.558       -         
-data_shift_reg_15[6]                                                                     Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[6]                 FD1S3AX      D        In      0.000     6.558       -         
-=======================================================================================================================================================
-
-
-Path information for path number 4: 
-      Requested Period:                      5.620
-    - Setup time:                            0.054
-    + Clock delay at ending point:           0.000 (ideal)
-    + Estimated clock delay at ending point: 0.000
-    = Required time:                         5.566
-
-    - Propagation time:                      6.558
-    - Clock delay at starting point:         0.000 (ideal)
-    - Estimated clock delay at start point:  -0.000
-    = Slack (critical) :                     -0.992
-
-    Number of logic level(s):                10
-    Starting point:                          tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[1] / Q
+    Starting point:                          tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[0] / Q
     Ending point:                            tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[1] / D
     The start point is clocked by            System [rising] on pin CK
     The end   point is clocked by            System [rising] on pin CK
 
-Instance / Net                                                                                        Pin      Pin               Arrival     No. of    
-Name                                                                                     Type         Name     Dir     Delay     Time        Fan Out(s)
--------------------------------------------------------------------------------------------------------------------------------------------------------
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[1]           FD1S3AX      Q        Out     1.015     1.015       -         
-current_endp_fast[1]                                                                     Net          -        -       -         -           6         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2_1[0]     ORCALUT4     A        In      0.000     1.015       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2_1[0]     ORCALUT4     Z        Out     0.660     1.675       -         
-un16_ep_get_addr_i_m2_1[0]                                                               Net          -        -       -         -           2         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2[0]       ORCALUT4     D        In      0.000     1.675       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2[0]       ORCALUT4     Z        Out     0.822     2.497       -         
-un16_ep_get_addr_i_m2[0]                                                                 Net          -        -       -         -           15        
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0      CCU2C        C1       In      0.000     2.497       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0      CCU2C        COUT     Out     0.900     3.397       -         
-more_data_to_send_cry_0                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0      CCU2C        CIN      In      0.000     3.397       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0      CCU2C        COUT     Out     0.061     3.458       -         
-more_data_to_send_cry_2                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0      CCU2C        CIN      In      0.000     3.458       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0      CCU2C        COUT     Out     0.061     3.519       -         
-more_data_to_send_cry_4                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0      CCU2C        CIN      In      0.000     3.519       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0      CCU2C        S1       Out     0.860     4.378       -         
-more_data_to_send                                                                        Net          -        -       -         -           6         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_cnst_0_a5_0[2]          ORCALUT4     A        In      0.000     4.378       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_cnst_0_a5_0[2]          ORCALUT4     Z        Out     0.780     5.159       -         
-N_401                                                                                    Net          -        -       -         -           7         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_am[1]           ORCALUT4     B        In      0.000     5.159       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_am[1]           ORCALUT4     Z        Out     0.606     5.765       -         
-data_shift_reg_11_am[1]                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[1]              PFUMX        BLUT     In      0.000     5.765       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[1]              PFUMX        Z        Out     0.403     6.168       -         
-data_shift_reg_11[1]                                                                     Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[1]             ORCALUT4     D        In      0.000     6.168       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[1]             ORCALUT4     Z        Out     0.390     6.558       -         
-data_shift_reg_15[1]                                                                     Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[1]                 FD1S3AX      D        In      0.000     6.558       -         
-=======================================================================================================================================================
+Instance / Net                                                                                       Pin      Pin               Arrival     No. of    
+Name                                                                                    Type         Name     Dir     Delay     Time        Fan Out(s)
+------------------------------------------------------------------------------------------------------------------------------------------------------
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[0]          FD1S3AX      Q        Out     0.955     0.955       -         
+current_endp_fast[0]                                                                    Net          -        -       -         -           3         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_0[0]         ORCALUT4     A        In      0.000     0.955       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_0[0]         ORCALUT4     Z        Out     0.708     1.663       -         
+N_165                                                                                   Net          -        -       -         -           3         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr[0]           ORCALUT4     A        In      0.000     1.663       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr[0]           ORCALUT4     Z        Out     0.819     2.482       -         
+un16_ep_get_addr[0]                                                                     Net          -        -       -         -           14        
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0     CCU2C        C1       In      0.000     2.482       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0     CCU2C        COUT     Out     0.900     3.382       -         
+more_data_to_send_cry_0                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0     CCU2C        CIN      In      0.000     3.382       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0     CCU2C        COUT     Out     0.061     3.443       -         
+more_data_to_send_cry_2                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0     CCU2C        CIN      In      0.000     3.443       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0     CCU2C        COUT     Out     0.061     3.504       -         
+more_data_to_send_cry_4                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0     CCU2C        CIN      In      0.000     3.504       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0     CCU2C        S1       Out     0.872     4.375       -         
+more_data_to_send                                                                       Net          -        -       -         -           7         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_RNIPEMH1[0]            ORCALUT4     C        In      0.000     4.375       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_RNIPEMH1[0]            ORCALUT4     Z        Out     0.798     5.173       -         
+data_shift_reg_1_sqmuxa                                                                 Net          -        -       -         -           9         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_bm[1]          ORCALUT4     C        In      0.000     5.173       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_bm[1]          ORCALUT4     Z        Out     0.606     5.779       -         
+data_shift_reg_11_bm[1]                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[1]             PFUMX        ALUT     In      0.000     5.779       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[1]             PFUMX        Z        Out     0.403     6.183       -         
+data_shift_reg_11[1]                                                                    Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[1]            ORCALUT4     D        In      0.000     6.183       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[1]            ORCALUT4     Z        Out     0.390     6.572       -         
+data_shift_reg_15[1]                                                                    Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[1]                FD1S3AX      D        In      0.000     6.572       -         
+======================================================================================================================================================
 
 
-Path information for path number 5: 
-      Requested Period:                      5.620
+Path information for path number 2: 
+      Requested Period:                      5.633
     - Setup time:                            0.054
     + Clock delay at ending point:           0.000 (ideal)
     + Estimated clock delay at ending point: 0.000
-    = Required time:                         5.566
+    = Required time:                         5.579
 
-    - Propagation time:                      6.558
+    - Propagation time:                      6.572
     - Clock delay at starting point:         0.000 (ideal)
     - Estimated clock delay at start point:  -0.000
-    = Slack (critical) :                     -0.992
+    = Slack (critical) :                     -0.994
 
     Number of logic level(s):                10
-    Starting point:                          tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[1] / Q
-    Ending point:                            tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[2] / D
+    Starting point:                          tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[0] / Q
+    Ending point:                            tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[6] / D
     The start point is clocked by            System [rising] on pin CK
     The end   point is clocked by            System [rising] on pin CK
 
-Instance / Net                                                                                        Pin      Pin               Arrival     No. of    
-Name                                                                                     Type         Name     Dir     Delay     Time        Fan Out(s)
--------------------------------------------------------------------------------------------------------------------------------------------------------
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[1]           FD1S3AX      Q        Out     1.015     1.015       -         
-current_endp_fast[1]                                                                     Net          -        -       -         -           6         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2_1[0]     ORCALUT4     A        In      0.000     1.015       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2_1[0]     ORCALUT4     Z        Out     0.660     1.675       -         
-un16_ep_get_addr_i_m2_1[0]                                                               Net          -        -       -         -           2         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2[0]       ORCALUT4     D        In      0.000     1.675       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_i_m2[0]       ORCALUT4     Z        Out     0.822     2.497       -         
-un16_ep_get_addr_i_m2[0]                                                                 Net          -        -       -         -           15        
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0      CCU2C        C1       In      0.000     2.497       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0      CCU2C        COUT     Out     0.900     3.397       -         
-more_data_to_send_cry_0                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0      CCU2C        CIN      In      0.000     3.397       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0      CCU2C        COUT     Out     0.061     3.458       -         
-more_data_to_send_cry_2                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0      CCU2C        CIN      In      0.000     3.458       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0      CCU2C        COUT     Out     0.061     3.519       -         
-more_data_to_send_cry_4                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0      CCU2C        CIN      In      0.000     3.519       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0      CCU2C        S1       Out     0.860     4.378       -         
-more_data_to_send                                                                        Net          -        -       -         -           6         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_cnst_0_a5_0[2]          ORCALUT4     A        In      0.000     4.378       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_cnst_0_a5_0[2]          ORCALUT4     Z        Out     0.780     5.159       -         
-N_401                                                                                    Net          -        -       -         -           7         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_am[2]           ORCALUT4     B        In      0.000     5.159       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_am[2]           ORCALUT4     Z        Out     0.606     5.765       -         
-data_shift_reg_11_am[2]                                                                  Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[2]              PFUMX        BLUT     In      0.000     5.765       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[2]              PFUMX        Z        Out     0.403     6.168       -         
-data_shift_reg_11[2]                                                                     Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[2]             ORCALUT4     D        In      0.000     6.168       -         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[2]             ORCALUT4     Z        Out     0.390     6.558       -         
-data_shift_reg_15[2]                                                                     Net          -        -       -         -           1         
-tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[2]                 FD1S3AX      D        In      0.000     6.558       -         
-=======================================================================================================================================================
+Instance / Net                                                                                       Pin      Pin               Arrival     No. of    
+Name                                                                                    Type         Name     Dir     Delay     Time        Fan Out(s)
+------------------------------------------------------------------------------------------------------------------------------------------------------
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[0]          FD1S3AX      Q        Out     0.955     0.955       -         
+current_endp_fast[0]                                                                    Net          -        -       -         -           3         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_0[0]         ORCALUT4     A        In      0.000     0.955       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_0[0]         ORCALUT4     Z        Out     0.708     1.663       -         
+N_165                                                                                   Net          -        -       -         -           3         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr[0]           ORCALUT4     A        In      0.000     1.663       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr[0]           ORCALUT4     Z        Out     0.819     2.482       -         
+un16_ep_get_addr[0]                                                                     Net          -        -       -         -           14        
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0     CCU2C        C1       In      0.000     2.482       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0     CCU2C        COUT     Out     0.900     3.382       -         
+more_data_to_send_cry_0                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0     CCU2C        CIN      In      0.000     3.382       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0     CCU2C        COUT     Out     0.061     3.443       -         
+more_data_to_send_cry_2                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0     CCU2C        CIN      In      0.000     3.443       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0     CCU2C        COUT     Out     0.061     3.504       -         
+more_data_to_send_cry_4                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0     CCU2C        CIN      In      0.000     3.504       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0     CCU2C        S1       Out     0.872     4.375       -         
+more_data_to_send                                                                       Net          -        -       -         -           7         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_RNIPEMH1[0]            ORCALUT4     C        In      0.000     4.375       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_RNIPEMH1[0]            ORCALUT4     Z        Out     0.798     5.173       -         
+data_shift_reg_1_sqmuxa                                                                 Net          -        -       -         -           9         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_bm[6]          ORCALUT4     C        In      0.000     5.173       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_bm[6]          ORCALUT4     Z        Out     0.606     5.779       -         
+data_shift_reg_11_bm[6]                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[6]             PFUMX        ALUT     In      0.000     5.779       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[6]             PFUMX        Z        Out     0.403     6.183       -         
+data_shift_reg_11[6]                                                                    Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[6]            ORCALUT4     D        In      0.000     6.183       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[6]            ORCALUT4     Z        Out     0.390     6.572       -         
+data_shift_reg_15[6]                                                                    Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[6]                FD1S3AX      D        In      0.000     6.572       -         
+======================================================================================================================================================
+
+
+Path information for path number 3: 
+      Requested Period:                      5.633
+    - Setup time:                            0.054
+    + Clock delay at ending point:           0.000 (ideal)
+    + Estimated clock delay at ending point: 0.000
+    = Required time:                         5.579
+
+    - Propagation time:                      6.572
+    - Clock delay at starting point:         0.000 (ideal)
+    - Estimated clock delay at start point:  -0.000
+    = Slack (critical) :                     -0.994
+
+    Number of logic level(s):                10
+    Starting point:                          tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[0] / Q
+    Ending point:                            tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[5] / D
+    The start point is clocked by            System [rising] on pin CK
+    The end   point is clocked by            System [rising] on pin CK
+
+Instance / Net                                                                                       Pin      Pin               Arrival     No. of    
+Name                                                                                    Type         Name     Dir     Delay     Time        Fan Out(s)
+------------------------------------------------------------------------------------------------------------------------------------------------------
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[0]          FD1S3AX      Q        Out     0.955     0.955       -         
+current_endp_fast[0]                                                                    Net          -        -       -         -           3         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_0[0]         ORCALUT4     A        In      0.000     0.955       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_0[0]         ORCALUT4     Z        Out     0.708     1.663       -         
+N_165                                                                                   Net          -        -       -         -           3         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr[0]           ORCALUT4     A        In      0.000     1.663       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr[0]           ORCALUT4     Z        Out     0.819     2.482       -         
+un16_ep_get_addr[0]                                                                     Net          -        -       -         -           14        
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0     CCU2C        C1       In      0.000     2.482       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0     CCU2C        COUT     Out     0.900     3.382       -         
+more_data_to_send_cry_0                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0     CCU2C        CIN      In      0.000     3.382       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0     CCU2C        COUT     Out     0.061     3.443       -         
+more_data_to_send_cry_2                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0     CCU2C        CIN      In      0.000     3.443       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0     CCU2C        COUT     Out     0.061     3.504       -         
+more_data_to_send_cry_4                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0     CCU2C        CIN      In      0.000     3.504       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0     CCU2C        S1       Out     0.872     4.375       -         
+more_data_to_send                                                                       Net          -        -       -         -           7         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_RNIPEMH1[0]            ORCALUT4     C        In      0.000     4.375       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_RNIPEMH1[0]            ORCALUT4     Z        Out     0.798     5.173       -         
+data_shift_reg_1_sqmuxa                                                                 Net          -        -       -         -           9         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_bm[5]          ORCALUT4     C        In      0.000     5.173       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_bm[5]          ORCALUT4     Z        Out     0.606     5.779       -         
+data_shift_reg_11_bm[5]                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[5]             PFUMX        ALUT     In      0.000     5.779       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[5]             PFUMX        Z        Out     0.403     6.183       -         
+data_shift_reg_11[5]                                                                    Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[5]            ORCALUT4     D        In      0.000     6.183       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[5]            ORCALUT4     Z        Out     0.390     6.572       -         
+data_shift_reg_15[5]                                                                    Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[5]                FD1S3AX      D        In      0.000     6.572       -         
+======================================================================================================================================================
+
+
+Path information for path number 4: 
+      Requested Period:                      5.633
+    - Setup time:                            0.054
+    + Clock delay at ending point:           0.000 (ideal)
+    + Estimated clock delay at ending point: 0.000
+    = Required time:                         5.579
+
+    - Propagation time:                      6.572
+    - Clock delay at starting point:         0.000 (ideal)
+    - Estimated clock delay at start point:  -0.000
+    = Slack (critical) :                     -0.994
+
+    Number of logic level(s):                10
+    Starting point:                          tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[0] / Q
+    Ending point:                            tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[4] / D
+    The start point is clocked by            System [rising] on pin CK
+    The end   point is clocked by            System [rising] on pin CK
+
+Instance / Net                                                                                       Pin      Pin               Arrival     No. of    
+Name                                                                                    Type         Name     Dir     Delay     Time        Fan Out(s)
+------------------------------------------------------------------------------------------------------------------------------------------------------
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[0]          FD1S3AX      Q        Out     0.955     0.955       -         
+current_endp_fast[0]                                                                    Net          -        -       -         -           3         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_0[0]         ORCALUT4     A        In      0.000     0.955       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_0[0]         ORCALUT4     Z        Out     0.708     1.663       -         
+N_165                                                                                   Net          -        -       -         -           3         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr[0]           ORCALUT4     A        In      0.000     1.663       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr[0]           ORCALUT4     Z        Out     0.819     2.482       -         
+un16_ep_get_addr[0]                                                                     Net          -        -       -         -           14        
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0     CCU2C        C1       In      0.000     2.482       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0     CCU2C        COUT     Out     0.900     3.382       -         
+more_data_to_send_cry_0                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0     CCU2C        CIN      In      0.000     3.382       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0     CCU2C        COUT     Out     0.061     3.443       -         
+more_data_to_send_cry_2                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0     CCU2C        CIN      In      0.000     3.443       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0     CCU2C        COUT     Out     0.061     3.504       -         
+more_data_to_send_cry_4                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0     CCU2C        CIN      In      0.000     3.504       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0     CCU2C        S1       Out     0.872     4.375       -         
+more_data_to_send                                                                       Net          -        -       -         -           7         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_RNIPEMH1[0]            ORCALUT4     C        In      0.000     4.375       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_RNIPEMH1[0]            ORCALUT4     Z        Out     0.798     5.173       -         
+data_shift_reg_1_sqmuxa                                                                 Net          -        -       -         -           9         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_bm[4]          ORCALUT4     C        In      0.000     5.173       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_bm[4]          ORCALUT4     Z        Out     0.606     5.779       -         
+data_shift_reg_11_bm[4]                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[4]             PFUMX        ALUT     In      0.000     5.779       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[4]             PFUMX        Z        Out     0.403     6.183       -         
+data_shift_reg_11[4]                                                                    Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[4]            ORCALUT4     D        In      0.000     6.183       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[4]            ORCALUT4     Z        Out     0.390     6.572       -         
+data_shift_reg_15[4]                                                                    Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[4]                FD1S3AX      D        In      0.000     6.572       -         
+======================================================================================================================================================
+
+
+Path information for path number 5: 
+      Requested Period:                      5.633
+    - Setup time:                            0.054
+    + Clock delay at ending point:           0.000 (ideal)
+    + Estimated clock delay at ending point: 0.000
+    = Required time:                         5.579
+
+    - Propagation time:                      6.572
+    - Clock delay at starting point:         0.000 (ideal)
+    - Estimated clock delay at start point:  -0.000
+    = Slack (critical) :                     -0.994
+
+    Number of logic level(s):                10
+    Starting point:                          tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[0] / Q
+    Ending point:                            tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[3] / D
+    The start point is clocked by            System [rising] on pin CK
+    The end   point is clocked by            System [rising] on pin CK
+
+Instance / Net                                                                                       Pin      Pin               Arrival     No. of    
+Name                                                                                    Type         Name     Dir     Delay     Time        Fan Out(s)
+------------------------------------------------------------------------------------------------------------------------------------------------------
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.current_endp_fast[0]          FD1S3AX      Q        Out     0.955     0.955       -         
+current_endp_fast[0]                                                                    Net          -        -       -         -           3         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_0[0]         ORCALUT4     A        In      0.000     0.955       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr_0[0]         ORCALUT4     Z        Out     0.708     1.663       -         
+N_165                                                                                   Net          -        -       -         -           3         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr[0]           ORCALUT4     A        In      0.000     1.663       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.un16_ep_get_addr[0]           ORCALUT4     Z        Out     0.819     2.482       -         
+un16_ep_get_addr[0]                                                                     Net          -        -       -         -           14        
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0     CCU2C        C1       In      0.000     2.482       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_0_0     CCU2C        COUT     Out     0.900     3.382       -         
+more_data_to_send_cry_0                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0     CCU2C        CIN      In      0.000     3.382       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_1_0     CCU2C        COUT     Out     0.061     3.443       -         
+more_data_to_send_cry_2                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0     CCU2C        CIN      In      0.000     3.443       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_3_0     CCU2C        COUT     Out     0.061     3.504       -         
+more_data_to_send_cry_4                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0     CCU2C        CIN      In      0.000     3.504       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_in_pe_inst.more_data_to_send_cry_5_0     CCU2C        S1       Out     0.872     4.375       -         
+more_data_to_send                                                                       Net          -        -       -         -           7         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_RNIPEMH1[0]            ORCALUT4     C        In      0.000     4.375       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.pkt_state_RNIPEMH1[0]            ORCALUT4     Z        Out     0.798     5.173       -         
+data_shift_reg_1_sqmuxa                                                                 Net          -        -       -         -           9         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_bm[3]          ORCALUT4     C        In      0.000     5.173       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11_bm[3]          ORCALUT4     Z        Out     0.606     5.779       -         
+data_shift_reg_11_bm[3]                                                                 Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[3]             PFUMX        ALUT     In      0.000     5.779       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_11[3]             PFUMX        Z        Out     0.403     6.183       -         
+data_shift_reg_11[3]                                                                    Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[3]            ORCALUT4     D        In      0.000     6.183       -         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg_RNO[3]            ORCALUT4     Z        Out     0.390     6.572       -         
+data_shift_reg_15[3]                                                                    Net          -        -       -         -           1         
+tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[3]                FD1S3AX      D        In      0.000     6.572       -         
+======================================================================================================================================================
 
 
 
@@ -1471,18 +1476,18 @@ tinyfpga_bootloader_inst.usb_fs_pe_inst.usb_fs_tx_inst.data_shift_reg[2]        
 Timing exceptions that could not be applied
 None
 
-Finished final timing analysis (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:04s; Memory used current: 174MB peak: 179MB)
+Finished final timing analysis (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:04s; Memory used current: 179MB peak: 184MB)
 
 
-Finished timing report (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:04s; Memory used current: 174MB peak: 179MB)
+Finished timing report (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:04s; Memory used current: 179MB peak: 184MB)
 
 ---------------------------------------
 Resource Usage Report
-Part: lfe5u_25f-6
+Part: lfe5u_45f-6
 
-Register bits: 491 of 24288 (2%)
+Register bits: 497 of 43848 (1%)
 PIC Latch:       0
-I/O cells:       12
+I/O cells:       11
 
 
 Details:
@@ -1490,34 +1495,33 @@ BB:             2
 CCU2C:          100
 DPR16X4C:       18
 EHXPLLL:        1
-FD1P3AX:        243
+FD1P3AX:        248
 FD1P3IX:        18
 FD1P3JX:        8
-FD1S3AX:        133
+FD1S3AX:        131
 FD1S3AY:        1
-FD1S3IX:        84
-FD1S3JX:        2
+FD1S3IX:        86
+FD1S3JX:        3
 GSR:            1
 IB:             2
 IFS1P3DX:       1
-INV:            5
+INV:            4
 OB:             7
-OBZ:            1
 OFS1P3DX:       1
-ORCALUT4:       846
-PFUMX:          34
+ORCALUT4:       840
+PFUMX:          28
 PUR:            1
 ROM16X1A:       2
 ROM32X1A:       4
 ROM64X1A:       8
 USRMCLK:        1
-VHI:            13
+VHI:            11
 VLO:            3
 Mapper successful!
 
-At Mapper Exit (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:04s; Memory used current: 39MB peak: 179MB)
+At Mapper Exit (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:04s; Memory used current: 38MB peak: 184MB)
 
 Process took 0h:00m:04s realtime, 0h:00m:04s cputime
-# Sat Feb 24 20:07:16 2018
+# Tue Mar 06 15:29:29 2018
 
 ###########################################################]

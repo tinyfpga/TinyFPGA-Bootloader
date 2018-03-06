@@ -1,7 +1,7 @@
 #--  Synopsys, Inc.
 #--  Version L-2016.09L
 #--  Project file C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\impl_syn.prj
-#--  Written on Mon Feb 19 19:16:47 2018
+#--  Written on Mon Mar 05 23:49:34 2018
 
 
 #project files
@@ -19,7 +19,7 @@ add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/c
 add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/common/usb_reset_det.v"
 add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/common/usb_serial_ctrl_ep.v"
 add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/common/usb_spi_bridge_ep.v"
-add_file -verilog "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/boards/TinyFPGA_EX/impl/source/usb_pll_inst.v"
+add_file -verilog "source/usb_pll_inst.v"
 
 
 

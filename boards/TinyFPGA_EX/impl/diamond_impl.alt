@@ -1,11 +1,10 @@
 NOTE Copyright (C), 1992-2010, Lattice Semiconductor Corporation *
 NOTE All Rights Reserved *
-NOTE DATE CREATED: Sat Feb 24 20:07:39 2018 *
+NOTE DATE CREATED: Tue Mar 06 15:29:54 2018 *
 NOTE DESIGN NAME: TinyFPGA_EX *
-NOTE DEVICE NAME: LFE5U-25F-6CSFBGA285 *
+NOTE DEVICE NAME: LFE5U-45F-6CSFBGA285 *
 NOTE PIN ASSIGNMENTS *
 NOTE PINS pin_usbp : F16 : inout *
-NOTE PINS pin_26 : A4 : out *
 NOTE PINS pin_pu : F15 : out *
 NOTE PINS pin_clk : B18 : in *
 NOTE PINS pin_programn : A6 : out *

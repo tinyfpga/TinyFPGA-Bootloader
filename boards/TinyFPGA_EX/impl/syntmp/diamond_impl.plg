@@ -1,16 +1,15 @@
-@P:  Worst Slack : -0.992
+@P:  Worst Slack : -0.994
 @P:  TinyFPGA_EX|pin_clk - Estimated Frequency : 372.1 MHz
 @P:  TinyFPGA_EX|pin_clk - Requested Frequency : 437.8 MHz
 @P:  TinyFPGA_EX|pin_clk - Estimated Period : 2.688
 @P:  TinyFPGA_EX|pin_clk - Requested Period : 2.284
 @P:  TinyFPGA_EX|pin_clk - Slack : -0.403
-@P:  System - Estimated Frequency : 151.3 MHz
-@P:  System - Requested Frequency : 177.9 MHz
-@P:  System - Estimated Period : 6.612
-@P:  System - Requested Period : 5.620
-@P:  System - Slack : -0.992
-@P:  Total Area : 851.0
-@P:  Total Area : 0.0
+@P:  System - Estimated Frequency : 150.9 MHz
+@P:  System - Requested Frequency : 177.5 MHz
+@P:  System - Estimated Period : 6.627
+@P:  System - Requested Period : 5.633
+@P:  System - Slack : -0.994
+@P:  Total Area : 844.0
 @P:  Total Area : 0.0
 @P:  Total Area : 0.0
 @P:  Total Area : 0.0

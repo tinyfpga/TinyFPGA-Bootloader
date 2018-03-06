@@ -5,17 +5,17 @@ Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
 Copyright (c) 2001 Agere Systems   All rights reserved.
 Copyright (c) 2002-2017 Lattice Semiconductor Corporation,  All rights reserved.
 
-Command: bitgen -w -g CfgMode:Disable -g RamCfg:Reset -g DisableUES:FALSE -g ES:No -e -s C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/boards/TinyFPGA_EX/diamond.sec -k C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/boards/TinyFPGA_EX/diamond.bek -gui diamond_impl.ncd diamond_impl.prf 
+Command: bitgen -w -g CfgMode:Disable -g RamCfg:Reset -g DisableUES:FALSE -g ES:No -e -s C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/boards/TinyFPGA_EX/diamond.sec -k C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/boards/TinyFPGA_EX/diamond.bek -gui -msgset C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/boards/TinyFPGA_EX/promote.xml diamond_impl.ncd diamond_impl.prf 
 
 Loading design for application Bitgen from file diamond_impl.ncd.
 Design name: TinyFPGA_EX
 NCD version: 3.3
 Vendor:      LATTICE
-Device:      LFE5U-25F
+Device:      LFE5U-45F
 Package:     CSFBGA285
 Performance: 6
-Loading device for application Bitgen from file 'sa5p25.nph' in environment: C:/lscc/diamond/3.9_x64/ispfpga.
-Package Status:                     Preliminary    Version 1.35.
+Loading device for application Bitgen from file 'sa5p45.nph' in environment: C:/lscc/diamond/3.9_x64/ispfpga.
+Package Status:                     Preliminary    Version 1.50.
 Performance Hardware Data Status:   Final          Version 50.1.
 
 Running DRC.

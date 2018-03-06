@@ -23,16 +23,19 @@
     send_usb_data1(0, 0);
     expect_usb_ack();
     
+    $display("LOCATION: %s:%d", `__FILE__, `__LINE__);
 
     ///////////////////////////////////
     send_usb_port_reset();
     #1000000;
 
 
+    $display("    %s:%d", `__FILE__, `__LINE__);
     ///////////////////////////////////
     send_usb_address_device(8'h00, 8'h1e);
 
 
+    $display("    %s:%d", `__FILE__, `__LINE__);
     ///////////////////////////////////
     // setup stage
     send_usb_setup(30, 0); 
@@ -52,6 +55,7 @@
     expect_usb_ack();
 
 
+    $display("    %s:%d", `__FILE__, `__LINE__);
     ///////////////////////////////////
     // setup stage
     send_usb_setup(30, 0); 
@@ -85,6 +89,7 @@
     expect_usb_ack();
 
 
+    $display("    %s:%d", `__FILE__, `__LINE__);
     ///////////////////////////////////
     // setup stage
     send_usb_setup(30, 0); 
@@ -101,6 +106,7 @@
     //send_usb_data1(0, 0);
     //expect_usb_ack();
 
+    $display("    %s:%d", `__FILE__, `__LINE__);
 
     ///////////////////////////////////
     // setup stage
@@ -121,6 +127,7 @@
     expect_usb_ack();
 
 
+    $display("    %s:%d", `__FILE__, `__LINE__);
     ///////////////////////////////////
     // setup stage
     send_usb_setup(30, 0); 
@@ -138,6 +145,7 @@
     expect_usb_ack();
 
 
+    $display("    %s:%d", `__FILE__, `__LINE__);
     ///////////////////////////////////
     // setup stage
     send_usb_setup(30, 0); 
@@ -170,6 +178,7 @@
     send_usb_data1(0, 0);
     expect_usb_ack();
 
+    $display("    %s:%d", `__FILE__, `__LINE__);
 
     ///////////////////////////////////
     // setup stage
@@ -203,19 +212,27 @@
     send_usb_data1(0, 0);
     expect_usb_ack();
 
+    $display("    %s:%d", `__FILE__, `__LINE__);
 
     ///////////////////////////////////
     // setup stage
     send_usb_setup(30, 0); 
+    $display("    %s:%d", `__FILE__, `__LINE__);
     send_usb_data0({8'h00, 8'h00, 8'h00, 8'h00, 8'h00, 8'h01, 8'h09, 8'h00}, 64);
+    $display("    %s:%d", `__FILE__, `__LINE__);
     expect_usb_ack();
+
+    $display("    %s:%d", `__FILE__, `__LINE__);
 
     // status stage
     send_usb_in(30, 0);
+    $display("    %s:%d", `__FILE__, `__LINE__);
     expect_usb_data1(0, 0);
+    $display("    %s:%d", `__FILE__, `__LINE__);
     send_usb_ack();
 
 
+    $display("    %s:%d", `__FILE__, `__LINE__);
     ///////////////////////////////////
     // setup stage
     send_usb_setup(30, 0); 
@@ -233,6 +250,7 @@
     expect_usb_ack();
 
 
+    $display("    %s:%d", `__FILE__, `__LINE__);
     ///////////////////////////////////
     // setup stage
     send_usb_setup(30, 0); 
@@ -244,6 +262,7 @@
     expect_usb_data1(0, 0);
     send_usb_ack();
 
+    $display("    %s:%d", `__FILE__, `__LINE__);
 
     ///////////////////////////////////
     // setup stage
@@ -261,6 +280,7 @@
     expect_usb_data1(0, 0);
     send_usb_ack();
 
+    $display("    %s:%d", `__FILE__, `__LINE__);
 
     ///////////////////////////////////
     // setup stage

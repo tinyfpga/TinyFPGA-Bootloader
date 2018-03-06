@@ -13,7 +13,7 @@ The file contains the job information from mapper to be displayed as part of the
 </job_status>
 <job_info>
 <info name="Notes">
-<data>93</data>
+<data>92</data>
 <report_link name="more">
 <data>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synlog\report\diamond_impl_fpga_mapper_notes.txt</data>
 </report_link>
@@ -37,10 +37,10 @@ The file contains the job information from mapper to be displayed as part of the
 <data>0h:00m:04s</data>
 </info>
 <info name="Peak Memory">
-<data>179MB</data>
+<data>184MB</data>
 </info>
 <info name="Date &amp; Time">
-<data type="timestamp">1519531636</data>
+<data type="timestamp">1520378969</data>
 </info>
 </job_info>
 </job_run_status>

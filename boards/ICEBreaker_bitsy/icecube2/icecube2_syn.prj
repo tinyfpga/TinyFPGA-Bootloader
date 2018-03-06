@@ -1,26 +1,26 @@
 #--  Synopsys, Inc.
 #--  Version L-2016.09L+ice40
 #--  Project file C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\ICEBreaker_bitsy\icecube2\icecube2_syn.prj
-#--  Written on Mon Feb 19 15:12:10 2018
+#--  Written on Tue Feb 27 22:41:06 2018
 
 
 #project files
+add_file -verilog "../bootloader.v"
+add_file -verilog "../../../common/edge_detect.v"
+add_file -verilog "../../../common/tinyfpga_bootloader.v"
+add_file -verilog "../../../common/usb_fs_in_arb.v"
+add_file -verilog "../../../common/usb_fs_in_pe.v"
+add_file -verilog "../../../common/usb_fs_out_arb.v"
+add_file -verilog "../../../common/usb_fs_out_pe.v"
+add_file -verilog "../../../common/usb_fs_pe.v"
+add_file -verilog "../../../common/usb_fs_rx.v"
+add_file -verilog "../../../common/usb_fs_tx.v"
+add_file -verilog "../../../common/usb_fs_tx_mux.v"
+add_file -verilog "../../../common/usb_serial_ctrl_ep.v"
+add_file -verilog "../../../common/usb_spi_bridge_ep.v"
 
 
 
-add_file -verilog -lib work "../bootloader.v" 
-add_file -verilog -lib work "../../../common/edge_detect.v" 
-add_file -verilog -lib work "../../../common/tinyfpga_bootloader.v" 
-add_file -verilog -lib work "../../../common/usb_fs_in_arb.v" 
-add_file -verilog -lib work "../../../common/usb_fs_in_pe.v" 
-add_file -verilog -lib work "../../../common/usb_fs_out_arb.v" 
-add_file -verilog -lib work "../../../common/usb_fs_out_pe.v" 
-add_file -verilog -lib work "../../../common/usb_fs_pe.v" 
-add_file -verilog -lib work "../../../common/usb_fs_rx.v" 
-add_file -verilog -lib work "../../../common/usb_fs_tx.v" 
-add_file -verilog -lib work "../../../common/usb_fs_tx_mux.v" 
-add_file -verilog -lib work "../../../common/usb_serial_ctrl_ep.v" 
-add_file -verilog -lib work "../../../common/usb_spi_bridge_ep.v" 
 #implementation: "icecube2_Implmnt"
 impl -add icecube2_Implmnt -type fpga
 
@@ -34,7 +34,7 @@ set_option -project_relative_includes 1
 set_option -technology SBTiCE40UP
 set_option -part iCE40UP5K
 set_option -package SG48
-set_option -speed_grade 
+set_option -speed_grade ""
 set_option -part_companion ""
 
 #compilation/mapping options
@@ -43,7 +43,7 @@ set_option -part_companion ""
 set_option -distributed_compile 0
 
 # mapper_without_write_options
-set_option -frequency 4
+set_option -frequency auto
 set_option -srs_instrumentation 1
 
 # mapper_options
@@ -78,5 +78,4 @@ set_option -write_apr_constraint 1
 
 #set result format/file last
 project -result_file "icecube2_Implmnt/icecube2.edf"
-impl -active icecube2_Implmnt
-project -run synthesis -clean
+impl -active "icecube2_Implmnt"

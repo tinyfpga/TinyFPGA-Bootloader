@@ -13,8 +13,7 @@ module TinyFPGA_EX (
   output pin_io2,
   output pin_io3,
   
-  output pin_programn,
-  output pin_26
+  output pin_programn
 );
 
   ////////////////////////////////////////////////////////////////////////////////

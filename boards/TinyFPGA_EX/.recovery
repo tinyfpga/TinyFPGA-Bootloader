@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<BaliProject version="3.2" title="diamond" device="LFE5U-25F-6MG285C" default_implementation="impl">
+<BaliProject version="3.2" title="diamond" device="LFE5U-45F-6MG285C" default_implementation="impl">
     <Options/>
     <Implementation title="impl" dir="impl" description="impl" synthesis="synplify" default_strategy="Strategy1">
         <Options def_top="usb_reset_det" top="TinyFPGA_EX"/>

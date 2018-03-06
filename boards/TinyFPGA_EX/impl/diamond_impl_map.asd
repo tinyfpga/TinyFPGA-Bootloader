@@ -1,17 +1,17 @@
 [ActiveSupport MAP]
-Device = LFE5U-25F;
+Device = LFE5U-45F;
 Package = CSFBGA285;
 Performance = 6;
-LUTS_avail = 24288;
-LUTS_used = 1197;
-FF_avail = 24406;
-FF_used = 491;
+LUTS_avail = 43848;
+LUTS_used = 1189;
+FF_avail = 43966;
+FF_used = 497;
 INPUT_LVCMOS33 = 2;
-OUTPUT_LVCMOS33 = 8;
+OUTPUT_LVCMOS33 = 7;
 BIDI_LVCMOS33 = 2;
 IO_avail = 118;
-IO_used = 12;
-EBR_avail = 56;
+IO_used = 11;
+EBR_avail = 108;
 EBR_used = 0;
 ;
 ; start of DSP statistics
@@ -21,11 +21,11 @@ ALU54B = 0;
 ALU24B = 0;
 PRADD18A = 0;
 PRADD9A = 0;
-DSP_MULT_avail = 56;
+DSP_MULT_avail = 144;
 DSP_MULT_used = 0;
-DSP_ALU_avail = 28;
+DSP_ALU_avail = 72;
 DSP_ALU_used = 0;
-DSP_PRADD_avail = 56;
+DSP_PRADD_avail = 144;
 DSP_PRADD_used = 0;
 ; end of DSP statistics
 ;

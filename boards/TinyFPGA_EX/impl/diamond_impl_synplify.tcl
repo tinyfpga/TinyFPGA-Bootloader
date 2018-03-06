@@ -3,7 +3,7 @@
 
 #device options
 set_option -technology ECP5U
-set_option -part LFE5U_25F
+set_option -part LFE5U_45F
 set_option -package MG285C
 set_option -speed_grade -6
 

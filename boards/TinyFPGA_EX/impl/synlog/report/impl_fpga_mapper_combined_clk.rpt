@@ -6,8 +6,8 @@
 #### START OF CLOCK OPTIMIZATION REPORT #####[
 
 1 non-gated/non-generated clock tree(s) driving 10 clock pin(s) of sequential element(s)
-1 gated/generated clock tree(s) driving 506 clock pin(s) of sequential element(s)
-0 instances converted, 506 sequential instances remain driven by gated/generated clocks
+1 gated/generated clock tree(s) driving 498 clock pin(s) of sequential element(s)
+0 instances converted, 498 sequential instances remain driven by gated/generated clocks
 
 =========================== Non-Gated/Non-Generated Clocks ============================
 Clock Tree ID     Driving Element     Drive Element Type     Fanout     Sample Instance
@@ -17,7 +17,7 @@ Clock Tree ID     Driving Element     Drive Element Type     Fanout     Sample I
 ================================================================================================================= Gated/Generated Clocks =================================================================================================================
 Clock Tree ID     Driving Element                 Drive Element Type     Fanout     Sample Instance                         Explanation                                                                                                                   
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-@K:CKID0001       usb_pll_inst_inst.PLLInst_0     EHXPLLL                506        tinyfpga_bootloader_inst.count_down     Gating structure creates improper gating logic. See the Gated Clocks description in the user guide for conversion requirements
+@K:CKID0001       usb_pll_inst_inst.PLLInst_0     EHXPLLL                498        tinyfpga_bootloader_inst.count_down     Gating structure creates improper gating logic. See the Gated Clocks description in the user guide for conversion requirements
 ==========================================================================================================================================================================================================================================================
 
 

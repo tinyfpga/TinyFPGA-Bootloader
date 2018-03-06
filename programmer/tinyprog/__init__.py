@@ -4,6 +4,7 @@ import json
 import jsonmerge
 import re
 from intelhex import IntelHex
+from tqdm import tqdm
 
 
 
@@ -165,15 +166,17 @@ class TinyProg(object):
         return self.cmd(0x48, addr=page << 8, data='\x00', read_len=255)
 
 
-    def read(self, addr, length):
+    def read(self, addr, length, disable_progress=True):
         data = ''
-        while length > 0:
-            read_length = min(255, length)
-            data += self.cmd(0x0b, addr, '\x00', read_len=read_length)
-            self.progress(read_length)
-            addr += read_length
-            length -= read_length
-        return data
+        with tqdm(desc="    Reading", unit="B", unit_scale=True, total=length, disable=disable_progress) as pbar:
+            while length > 0:
+                read_length = min(255, length)
+                data += self.cmd(0x0b, addr, '\x00', read_len=read_length)
+                self.progress(read_length)
+                addr += read_length
+                length -= read_length
+                pbar.update(read_length)
+            return data
 
 
     def write_enable(self):
@@ -200,54 +203,56 @@ class TinyProg(object):
         self.wait_while_busy()
 
 
-    def erase(self, addr, length):
+    def erase(self, addr, length, disable_progress=True):
         possible_lengths = (1, 4 * 1024, 32 * 1024, 64 * 1024)
 
-        while length > 0:
-            erase_length = max(p for p in possible_lengths
-                               if p <= length and addr % p == 0)
+        with tqdm(desc="    Erasing", unit="B", unit_scale=True, total=length, disable=disable_progress) as pbar:
+            while length > 0:
+                erase_length = max(p for p in possible_lengths
+                                   if p <= length and addr % p == 0)
 
-            if erase_length == 1:
-                # there are no opcode to erase that much
-                # either we want to erase up to multiple of 0x1000
-                # or we want to erase up to length
+                if erase_length == 1:
+                    # there are no opcode to erase that much
+                    # either we want to erase up to multiple of 0x1000
+                    # or we want to erase up to length
 
-                # start_addr                            end_addr
-                # v                                     v
-                # +------------------+------------------+----------------+
-                # |       keep       |      erase       |      keep      |
-                # +------------------+------------------+----------------+
-                #  <- start_length -> <- erase_length -> <- end_length ->
+                    # start_addr                            end_addr
+                    # v                                     v
+                    # +------------------+------------------+----------------+
+                    # |       keep       |      erase       |      keep      |
+                    # +------------------+------------------+----------------+
+                    #  <- start_length -> <- erase_length -> <- end_length ->
 
-                start_addr = addr & 0xfff000
-                start_length = addr & 0xfff
-                erase_length = min(0x1000 - start_length, length)
-                end_addr = start_addr + start_length + erase_length
-                end_length = start_addr + 0x1000 - end_addr
+                    start_addr = addr & 0xfff000
+                    start_length = addr & 0xfff
+                    erase_length = min(0x1000 - start_length, length)
+                    end_addr = start_addr + start_length + erase_length
+                    end_length = start_addr + 0x1000 - end_addr
 
-                # read data we need to restore later
-                if start_length:
-                    start_read_data = self.read(start_addr, start_length)
-                if end_length:
-                    end_read_data = self.read(end_addr, end_length)
+                    # read data we need to restore later
+                    if start_length:
+                        start_read_data = self.read(start_addr, start_length)
+                    if end_length:
+                        end_read_data = self.read(end_addr, end_length)
 
-                # erase the block
-                self._erase(start_addr, 0x1000)
+                    # erase the block
+                    self._erase(start_addr, 0x1000)
 
-                # restore data
-                if start_length:
-                    self.write(start_addr, start_read_data)
-                if end_length:
-                    self.write(end_addr, end_read_data)
+                    # restore data
+                    if start_length:
+                        self.write(start_addr, start_read_data)
+                    if end_length:
+                        self.write(end_addr, end_read_data)
 
-            else:
-                # there is an opcode to erase that much data
-                self.progress(erase_length)
-                self._erase(addr, erase_length)
+                else:
+                    # there is an opcode to erase that much data
+                    self.progress(erase_length)
+                    self._erase(addr, erase_length)
 
-            # update
-            length -= erase_length
-            addr += erase_length
+                # update
+                length -= erase_length
+                addr += erase_length
+                pbar.update(erase_length)
 
 
     # don't use this directly, use the public "write" function instead
@@ -258,27 +263,24 @@ class TinyProg(object):
         self.progress(len(data))
 
 
-    def write(self, addr, data):
+    def write(self, addr, data, disable_progress=True):
         offset = 0
-        while offset < len(data):
-            dist_to_256_byte_boundary = 256 - (addr & 0xff)
-            write_length = min(256, len(data) - offset, dist_to_256_byte_boundary)
-            write_data = data[offset : offset+write_length]
+        with tqdm(desc="    Writing", unit="B", unit_scale=True, total=len(data), disable=disable_progress) as pbar:
+            while offset < len(data):
+                dist_to_256_byte_boundary = 256 - (addr & 0xff)
+                write_length = min(256, len(data) - offset, dist_to_256_byte_boundary)
+                write_data = data[offset : offset+write_length]
             
-            self._write(addr, write_data)
-            offset += write_length
-            addr += write_length
+                self._write(addr, write_data)
+                offset += write_length
+                addr += write_length
+                pbar.update(write_length)
 
 
     def program(self, addr, data):
-        self.progress("Erasing designated flash pages")
-        self.erase(addr, len(data))
-
-        self.progress("Writing bitstream")
-        self.write(addr, data)
-
-        self.progress("Verifying bitstream")
-        read_back = self.read(addr, len(data))
+        self.erase(addr, len(data), disable_progress=False)
+        self.write(addr, data, disable_progress=False)
+        read_back = self.read(addr, len(data), disable_progress=False)
 
         if read_back == data:
             self.progress("Success!")

@@ -13,13 +13,13 @@ The file contains the job information from mapper to be displayed as part of the
 </job_status>
 <job_info>
 <info name="Notes">
-<data>94</data>
+<data>85</data>
 <report_link name="more">
 <data>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synlog\report\impl_fpga_mapper_notes.txt</data>
 </report_link>
 </info>
 <info name="Warnings">
-<data>12</data>
+<data>9</data>
 <report_link name="more">
 <data>C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synlog\report\impl_fpga_mapper_warnings.txt</data>
 </report_link>
@@ -31,16 +31,16 @@ The file contains the job information from mapper to be displayed as part of the
 </report_link>
 </info>
 <info name="CPU Time">
-<data>0h:00m:04s</data>
+<data>0h:00m:05s</data>
 </info>
 <info name="Real Time">
-<data>0h:00m:04s</data>
+<data>0h:00m:05s</data>
 </info>
 <info name="Peak Memory">
-<data>186MB</data>
+<data>184MB</data>
 </info>
 <info name="Date &amp; Time">
-<data type="timestamp">1519096634</data>
+<data type="timestamp">1520364931</data>
 </info>
 </job_info>
 </job_run_status>

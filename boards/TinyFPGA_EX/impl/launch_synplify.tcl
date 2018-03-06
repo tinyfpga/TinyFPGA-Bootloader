@@ -1,6 +1,6 @@
 #-- Lattice Semiconductor Corporation Ltd.
 #-- Synplify OEM project file C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/boards/TinyFPGA_EX/impl/launch_synplify.tcl
-#-- Written on Mon Feb 19 19:16:46 2018
+#-- Written on Mon Mar  5 23:49:33 2018
 
 project -close
 set filename "C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/boards/TinyFPGA_EX/impl/impl_syn.prj"

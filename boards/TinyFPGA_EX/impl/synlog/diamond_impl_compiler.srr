@@ -28,9 +28,9 @@ Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys softwa
 @I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v" (library work)
 @I::"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\source\usb_pll_inst.v" (library work)
 Verilog syntax check successful!
-File C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v changed - recompiling
-File C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_rx.v changed - recompiling
-File C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v changed - recompiling
+
+Compiler output is up to date.  No re-compile necessary
+
 Selecting top level module TinyFPGA_EX
 @N: CG364 :"C:\lscc\diamond\3.9_x64\synpbase\lib\lucent\ecp5u.v":757:7:757:9|Synthesizing module VHI in library work.
 
@@ -48,19 +48,19 @@ Selecting top level module TinyFPGA_EX
 @N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":1:7:1:24|Synthesizing module usb_serial_ctrl_ep in library work.
 
 @W: CG360 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":15:9:15:20|Removing wire out_ep_stall, as there is no assignment to it.
-@W: CL169 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused register raw_setup_data[5][9:0]. Make sure that there are no unused intermediate registers.
-@W: CL169 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused register raw_setup_data[4][9:0]. Make sure that there are no unused intermediate registers.
-@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[7][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
-@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[6][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
-@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[3][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
-@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 7 of raw_setup_data[2][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
-@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[1][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
-@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 9 to 8 of raw_setup_data[0][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
-@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning unused bits 6 to 0 of raw_setup_data[0][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Register bit rom_length[3] is always 0.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Register bit rom_length[5] is always 0.
-@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning register bit 5 of rom_length[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
-@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning register bit 3 of rom_length[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@W: CL169 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused register raw_setup_data[5][9:0]. Make sure that there are no unused intermediate registers.
+@W: CL169 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused register raw_setup_data[4][9:0]. Make sure that there are no unused intermediate registers.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused bits 9 to 8 of raw_setup_data[7][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused bits 9 to 8 of raw_setup_data[6][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused bits 9 to 8 of raw_setup_data[3][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused bits 9 to 7 of raw_setup_data[2][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused bits 9 to 8 of raw_setup_data[1][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused bits 9 to 8 of raw_setup_data[0][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL271 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning unused bits 6 to 0 of raw_setup_data[0][9:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Register bit rom_length[3] is always 0.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Register bit rom_length[5] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning register bit 5 of rom_length[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning register bit 3 of rom_length[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
 @N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":1:7:1:23|Synthesizing module usb_spi_bridge_ep in library work.
 
 @W: CG360 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":15:9:15:20|Removing wire out_ep_stall, as there is no assignment to it.
@@ -154,12 +154,12 @@ Selecting top level module TinyFPGA_EX
 	WAIT_ACK=32'b00000000000000000000000000000011
    Generated name = usb_fs_in_pe_3_32s_0s_1s_2s_3s_0s_1s_2s_3s
 
-@W: CG532 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":97:2:97:8|Within an initial block, only Verilog force statements and memory $readmemh/$readmemb initialization statements are recognized, and all other content is ignored.
-@N: CL134 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":260:2:260:7|Found RAM in_data_buffer, depth=96, width=8
-@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":283:4:283:7|Latch generated from always block for signal tx_pid[3:0]; possible missing assignment in an if or case statement.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":346:2:346:7|Register bit current_endp[2] is always 0.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":346:2:346:7|Register bit current_endp[3] is always 0.
-@W: CL279 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":346:2:346:7|Pruning register bits 3 to 2 of current_endp[3:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CG532 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":100:2:100:8|Within an initial block, only Verilog force statements and memory $readmemh/$readmemb initialization statements are recognized, and all other content is ignored.
+@N: CL134 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":261:2:261:7|Found RAM in_data_buffer, depth=96, width=8
+@W: CL118 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":284:4:284:7|Latch generated from always block for signal tx_pid[3:0]; possible missing assignment in an if or case statement.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":347:2:347:7|Register bit current_endp[2] is always 0.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":347:2:347:7|Register bit current_endp[3] is always 0.
+@W: CL279 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":347:2:347:7|Pruning register bits 3 to 2 of current_endp[3:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
 @N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":2:7:2:19|Synthesizing module usb_fs_out_pe in library work.
 
 	NUM_OUT_EPS=5'b00010
@@ -188,8 +188,8 @@ Selecting top level module TinyFPGA_EX
 
 @N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":1:7:1:15|Synthesizing module usb_fs_tx in library work.
 
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Register bit se0_shift_reg[7] is always 0.
-@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Pruning register bit 7 of se0_shift_reg[7:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Register bit se0_shift_reg[7] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Pruning register bit 7 of se0_shift_reg[7:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
 @N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_pe.v":1:7:1:15|Synthesizing module usb_fs_pe in library work.
 
 	NUM_OUT_EPS=5'b00010
@@ -206,18 +206,16 @@ Selecting top level module TinyFPGA_EX
 
 @N: CG364 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v":1:7:1:17|Synthesizing module TinyFPGA_EX in library work.
 
-@W: CG360 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v":17:9:17:14|Removing wire pin_26, as there is no assignment to it.
-@W: CL157 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\bootloader.v":17:9:17:14|*Output pin_26 has undriven bits; assigning undriven bits to 0.  Simulation mismatch possible. Assign all bits of the output.
-@N: CL135 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":52:2:52:7|Found sequential shift bitstuff_qqqq with address depth of 4 words and data bit width of 1.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Register bit se0_shift_reg[6] is always 0.
-@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Pruning register bit 6 of se0_shift_reg[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Register bit se0_shift_reg[5] is always 0.
-@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Pruning register bit 5 of se0_shift_reg[5:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Register bit se0_shift_reg[4] is always 0.
-@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Pruning register bit 4 of se0_shift_reg[4:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
-@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Trying to extract state machine for register pkt_state.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Register bit se0_shift_reg[3] is always 0.
-@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":81:2:81:7|Pruning register bit 3 of se0_shift_reg[3:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL135 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":61:2:61:7|Found sequential shift bitstuff_qqqq with address depth of 4 words and data bit width of 1.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Register bit se0_shift_reg[6] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Pruning register bit 6 of se0_shift_reg[6:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Register bit se0_shift_reg[5] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Pruning register bit 5 of se0_shift_reg[5:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Register bit se0_shift_reg[4] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Pruning register bit 4 of se0_shift_reg[4:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Trying to extract state machine for register pkt_state.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Register bit se0_shift_reg[3] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":82:2:82:7|Pruning register bit 3 of se0_shift_reg[3:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_tx.v":5:8:5:12|Input reset is unused.
 @N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_rx.v":81:2:81:7|Trying to extract state machine for register line_state.
 @N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":218:6:218:11|Trying to extract state machine for register genblk1[1].ep_state_1_.
@@ -245,35 +243,35 @@ State machine has 4 reachable states with original encodings of:
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":10:8:10:17|Input bit_strobe is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":36:15:36:26|Input rx_frame_num is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_out_pe.v":49:8:49:17|Input tx_pkt_end is unused.
-@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":220:6:220:11|Trying to extract state machine for register .ep_state_2_.
-Extracted state machine for register .ep_state_2_
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":221:6:221:11|Trying to extract state machine for register genblk1[2].ep_state_2_.
+Extracted state machine for register genblk1[2].ep_state_2_
 State machine has 4 reachable states with original encodings of:
    00
    01
    10
    11
-@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":220:6:220:11|Trying to extract state machine for register .ep_state_1_.
-Extracted state machine for register .ep_state_1_
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":221:6:221:11|Trying to extract state machine for register genblk1[1].ep_state_1_.
+Extracted state machine for register genblk1[1].ep_state_1_
 State machine has 4 reachable states with original encodings of:
    00
    01
    10
    11
-@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":220:6:220:11|Trying to extract state machine for register .ep_state_0_.
-Extracted state machine for register .ep_state_0_
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":221:6:221:11|Trying to extract state machine for register genblk1[0].ep_state_0_.
+Extracted state machine for register genblk1[0].ep_state_0_
 State machine has 4 reachable states with original encodings of:
    00
    01
    10
    11
-@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":346:2:346:7|Trying to extract state machine for register in_xfr_state.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":347:2:347:7|Trying to extract state machine for register in_xfr_state.
 Extracted state machine for register in_xfr_state
 State machine has 4 reachable states with original encodings of:
    00
    01
    10
    11
-@W: CL249 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":346:2:346:7|Initial value is not supported on state machine in_xfr_state
+@W: CL249 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":347:2:347:7|Initial value is not supported on state machine in_xfr_state
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":28:8:28:19|Input rx_pkt_start is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":36:15:36:26|Input rx_frame_num is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_fs_in_pe.v":45:8:45:17|Input tx_pkt_end is unused.
@@ -285,9 +283,9 @@ State machine has 4 reachable states with original encodings of:
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":12:8:12:19|Input out_ep_setup is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":16:8:16:19|Input out_ep_acked is unused.
 @N: CL159 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_spi_bridge_ep.v":29:8:29:18|Input in_ep_acked is unused.
-@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Register bit bytes_sent[7] is always 0.
-@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":225:2:225:7|Pruning register bit 7 of bytes_sent[7:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
-@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":217:2:217:7|Trying to extract state machine for register ctrl_xfr_state.
+@N: CL189 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Register bit bytes_sent[7] is always 0.
+@W: CL260 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":224:2:224:7|Pruning register bit 7 of bytes_sent[7:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL201 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":216:2:216:7|Trying to extract state machine for register ctrl_xfr_state.
 Extracted state machine for register ctrl_xfr_state
 State machine has 6 reachable states with original encodings of:
    000000
@@ -296,36 +294,38 @@ State machine has 6 reachable states with original encodings of:
    000011
    000100
    000101
-@W: CL249 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":217:2:217:7|Initial value is not supported on state machine ctrl_xfr_state
+@W: CL249 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":216:2:216:7|Initial value is not supported on state machine ctrl_xfr_state
 @W: CL157 :"C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\common\usb_serial_ctrl_ep.v":15:9:15:20|*Output out_ep_stall has undriven bits; assigning undriven bits to 0.  Simulation mismatch possible. Assign all bits of the output.
 
-At c_ver Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 79MB peak: 82MB)
+At c_ver Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 72MB peak: 73MB)
 
 Process took 0h:00m:01s realtime, 0h:00m:01s cputime
 
 Process completed successfully.
-# Sat Feb 24 20:07:09 2018
+# Tue Mar 06 15:29:23 2018
 
 ###########################################################]
 Synopsys Netlist Linker, version comp2016q3p1, Build 141R, built Dec  5 2016
 @N|Running in 64-bit mode
-File C:\Users\lvale\Documents\TinyFPGA\repos\TinyFPGA-Bootloader\boards\TinyFPGA_EX\impl\synwork\layer0.srs changed - recompiling
+
+Linker output is up to date. No re-linking necessary
+
 
 At syn_nfilter Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 69MB peak: 70MB)
 
 Process took 0h:00m:01s realtime, 0h:00m:01s cputime
 
 Process completed successfully.
-# Sat Feb 24 20:07:09 2018
+# Tue Mar 06 15:29:23 2018
 
 ###########################################################]
 @END
 
-At c_hdl Exit (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 3MB peak: 4MB)
+At c_hdl Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 3MB peak: 4MB)
 
 Process took 0h:00m:01s realtime, 0h:00m:01s cputime
 
 Process completed successfully.
-# Sat Feb 24 20:07:09 2018
+# Tue Mar 06 15:29:23 2018
 
 ###########################################################]

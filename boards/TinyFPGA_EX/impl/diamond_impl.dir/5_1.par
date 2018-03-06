@@ -1,9 +1,9 @@
 
 Lattice Place and Route Report for Design "diamond_impl_map.ncd"
-Sat Feb 24 20:07:21 2018
+Tue Mar 06 15:29:32 2018
 
 PAR: Place And Route Diamond (64-bit) 3.9.0.99.2.
-Command Line: par -w -l 5 -i 6 -t 1 -c 0 -e 0 -gui -exp parUseNBR=1:parCDP=auto:parCDR=1:parPathBased=OFF diamond_impl_map.ncd diamond_impl.dir/5_1.ncd diamond_impl.prf
+Command Line: par -w -l 5 -i 6 -t 1 -c 0 -e 0 -gui -msgset C:/Users/lvale/Documents/TinyFPGA/repos/TinyFPGA-Bootloader/boards/TinyFPGA_EX/promote.xml -exp parUseNBR=1:parCDP=auto:parCDR=1:parPathBased=OFF diamond_impl_map.ncd diamond_impl.dir/5_1.ncd diamond_impl.prf
 Preference file: diamond_impl.prf.
 Placement level-cost: 5-1.
 Routing Iterations: 6
@@ -12,57 +12,57 @@ Loading design for application par from file diamond_impl_map.ncd.
 Design name: TinyFPGA_EX
 NCD version: 3.3
 Vendor:      LATTICE
-Device:      LFE5U-25F
+Device:      LFE5U-45F
 Package:     CSFBGA285
 Performance: 6
-Loading device for application par from file 'sa5p25.nph' in environment: C:/lscc/diamond/3.9_x64/ispfpga.
-Package Status:                     Preliminary    Version 1.35.
+Loading device for application par from file 'sa5p45.nph' in environment: C:/lscc/diamond/3.9_x64/ispfpga.
+Package Status:                     Preliminary    Version 1.50.
 Performance Hardware Data Status:   Final          Version 50.1.
 License checked out.
 
 
 Ignore Preference Error(s):  True
-WARNING - par: diamond_impl.prf(10): Semantic error in "LOCATE COMP "pin_io3" SITE "N18" ;": The signal "pin_io3" has been assigned to PIN "N18", which is a dual function pin. This pin will be used during the configuration of the device. The pin can be used for logic after configuration. External logic may be needed to avoid contention on this pin.
-WARNING - par: diamond_impl.prf(11): Semantic error in "LOCATE COMP "pin_io2" SITE "R18" ;": The signal "pin_io2" has been assigned to PIN "R18", which is a dual function pin. This pin will be used during the configuration of the device. The pin can be used for logic after configuration. External logic may be needed to avoid contention on this pin.
-WARNING - par: diamond_impl.prf(12): Semantic error in "LOCATE COMP "pin_mosi" SITE "U18" ;": The signal "pin_mosi" has been assigned to PIN "U18", which is a dual function pin. This pin will be used during the configuration of the device. The pin can be used for logic after configuration. External logic may be needed to avoid contention on this pin.
-WARNING - par: diamond_impl.prf(13): Semantic error in "LOCATE COMP "pin_cs" SITE "U17" ;": The signal "pin_cs" has been assigned to PIN "U17", which is a dual function pin. This pin will be used during the configuration of the device. The pin can be used for logic after configuration. External logic may be needed to avoid contention on this pin.
-WARNING - par: diamond_impl.prf(14): Semantic error in "LOCATE COMP "pin_miso" SITE "T18" ;": The signal "pin_miso" has been assigned to PIN "T18", which is a dual function pin. This pin will be used during the configuration of the device. The pin can be used for logic after configuration. External logic may be needed to avoid contention on this pin.
+WARNING - par: diamond_impl.prf(9): Semantic error in "LOCATE COMP "pin_io3" SITE "N18" ;": The signal "pin_io3" has been assigned to PIN "N18", which is a dual function pin. This pin will be used during the configuration of the device. The pin can be used for logic after configuration. External logic may be needed to avoid contention on this pin.
+WARNING - par: diamond_impl.prf(10): Semantic error in "LOCATE COMP "pin_io2" SITE "R18" ;": The signal "pin_io2" has been assigned to PIN "R18", which is a dual function pin. This pin will be used during the configuration of the device. The pin can be used for logic after configuration. External logic may be needed to avoid contention on this pin.
+WARNING - par: diamond_impl.prf(11): Semantic error in "LOCATE COMP "pin_mosi" SITE "U18" ;": The signal "pin_mosi" has been assigned to PIN "U18", which is a dual function pin. This pin will be used during the configuration of the device. The pin can be used for logic after configuration. External logic may be needed to avoid contention on this pin.
+WARNING - par: diamond_impl.prf(12): Semantic error in "LOCATE COMP "pin_cs" SITE "U17" ;": The signal "pin_cs" has been assigned to PIN "U17", which is a dual function pin. This pin will be used during the configuration of the device. The pin can be used for logic after configuration. External logic may be needed to avoid contention on this pin.
+WARNING - par: diamond_impl.prf(13): Semantic error in "LOCATE COMP "pin_miso" SITE "T18" ;": The signal "pin_miso" has been assigned to PIN "T18", which is a dual function pin. This pin will be used during the configuration of the device. The pin can be used for logic after configuration. External logic may be needed to avoid contention on this pin.
 Device utilization summary:
 
-   PIO (prelim)      12/197           6% used
-                     12/118          10% bonded
-   IOLOGIC            2/199           1% used
+   PIO (prelim)      11/245           4% used
+                     11/118           9% bonded
+   IOLOGIC            2/245          <1% used
 
-   SLICE            707/12144         5% used
+   SLICE            704/21924         3% used
 
-   PLL                1/2            50% used
+   PLL                1/4            25% used
    CCLK               1/1           100% used
 
 
-Number of Signals: 1760
-Number of Connections: 5171
+Number of Signals: 1763
+Number of Connections: 5115
 
 Pin Constraint Summary:
-   12 out of 12 pins locked (100% locked).
+   11 out of 11 pins locked (100% locked).
 
 The following 2 signals are selected to use the primary clock routing resources:
-    clk_48mhz (driver: usb_pll_inst_inst/PLLInst_0, clk/ce/sr load #: 327/0/0)
+    clk_48mhz (driver: usb_pll_inst_inst/PLLInst_0, clk/ce/sr load #: 333/0/0)
     pin_clk_c (driver: pin_clk, clk/ce/sr load #: 7/0/0)
 
 
 No signal is selected as Global Set/Reset.
 Starting Placer Phase 0.
-..........
+...........
 Finished Placer Phase 0.  REAL time: 3 secs 
 
 Starting Placer Phase 1.
 ......................
-Placer score = 219995.
+Placer score = 247084.
 Finished Placer Phase 1.  REAL time: 9 secs 
 
 Starting Placer Phase 2.
 .
-Placer score =  217732
+Placer score =  241618
 Finished Placer Phase 2.  REAL time: 9 secs 
 
 
@@ -71,28 +71,29 @@ Finished Placer Phase 2.  REAL time: 9 secs
 Global Clock Resources:
   CLK_PIN    : 1 out of 12 (8%)
   GR_PCLK    : 0 out of 8 (0%)
-  PLL        : 1 out of 2 (50%)
+  PLL        : 1 out of 4 (25%)
   DCS        : 0 out of 2 (0%)
   DCC        : 0 out of 60 (0%)
   CLKDIV     : 0 out of 4 (0%)
 
 Quadrant TL Clocks:
+  PRIMARY "clk_48mhz" from CLKOP on comp "usb_pll_inst_inst/PLLInst_0" on PLL site "PLL_TL0", CLK/CE/SR load = 1
+  PRIMARY "pin_clk_c" from comp "pin_clk" on CLK_PIN site "B18 (PL32C)", CLK/CE/SR load = 1
+
+  PRIMARY  : 2 out of 16 (12%)
+
+Quadrant TR Clocks:
 
   PRIMARY  : 0 out of 16 (0%)
 
-Quadrant TR Clocks:
-  PRIMARY "clk_48mhz" from CLKOP on comp "usb_pll_inst_inst/PLLInst_0" on PLL site "PLL_BL0", CLK/CE/SR load = 20
-
-  PRIMARY  : 1 out of 16 (6%)
-
 Quadrant BL Clocks:
-  PRIMARY "clk_48mhz" from CLKOP on comp "usb_pll_inst_inst/PLLInst_0" on PLL site "PLL_BL0", CLK/CE/SR load = 212
-  PRIMARY "pin_clk_c" from comp "pin_clk" on CLK_PIN site "B18 (PL23C)", CLK/CE/SR load = 7
+  PRIMARY "clk_48mhz" from CLKOP on comp "usb_pll_inst_inst/PLLInst_0" on PLL site "PLL_TL0", CLK/CE/SR load = 268
+  PRIMARY "pin_clk_c" from comp "pin_clk" on CLK_PIN site "B18 (PL32C)", CLK/CE/SR load = 6
 
   PRIMARY  : 2 out of 16 (12%)
 
 Quadrant BR Clocks:
-  PRIMARY "clk_48mhz" from CLKOP on comp "usb_pll_inst_inst/PLLInst_0" on PLL site "PLL_BL0", CLK/CE/SR load = 95
+  PRIMARY "clk_48mhz" from CLKOP on comp "usb_pll_inst_inst/PLLInst_0" on PLL site "PLL_TL0", CLK/CE/SR load = 64
 
   PRIMARY  : 1 out of 16 (6%)
 
@@ -106,9 +107,9 @@ Edge Clocks:
 
 +
 I/O Usage Summary (final):
-   12 out of 197 (6.1%) PIO sites used.
-   12 out of 118 (10.2%) bonded PIO sites used.
-   Number of PIO comps: 12; differential: 0.
+   11 out of 245 (4.5%) PIO sites used.
+   11 out of 118 (9.3%) bonded PIO sites used.
+   Number of PIO comps: 11; differential: 0.
    Number of Vref pins used: 0.
 
 I/O Bank Usage Summary:
@@ -117,7 +118,7 @@ I/O Bank Usage Summary:
 +----------+---------------+------------+------------+------------+
 | 0        | 0 / 6 (  0%)  | 3.3V       | -          | -          |
 | 1        | 0 / 6 (  0%)  | 3.3V       | -          | -          |
-| 2        | 3 / 21 ( 14%) | 3.3V       | -          | -          |
+| 2        | 2 / 21 (  9%) | 3.3V       | -          | -          |
 | 3        | 0 / 28 (  0%) | 1.8V       | -          | -          |
 | 6        | 3 / 26 ( 11%) | 3.3V       | -          | -          |
 | 7        | 1 / 18 (  5%) | 3.3V       | -          | -          |
@@ -128,12 +129,12 @@ Total placer CPU time: 9 secs
 
 Dumping design to file diamond_impl.dir/5_1.ncd.
 
-0 connections routed; 5171 unrouted.
+0 connections routed; 5115 unrouted.
 Starting router resource preassignment
 
-Completed router resource preassignment. Real time: 12 secs 
+Completed router resource preassignment. Real time: 14 secs 
 
-Start NBR router at 20:07:33 02/24/18
+Start NBR router at 15:29:46 03/06/18
 
 *****************************************************************
 Info: NBR allows conflicts(one node used by more than one signal)
@@ -148,50 +149,47 @@ Note: NBR uses a different method to calculate timing slacks. The
       your design.                                               
 *****************************************************************
 
-Start NBR special constraint process at 20:07:33 02/24/18
+Start NBR special constraint process at 15:29:46 03/06/18
 
-Start NBR section for initial routing at 20:07:33 02/24/18
+Start NBR section for initial routing at 15:29:46 03/06/18
 Level 1, iteration 1
-0(0.00%) conflict; 4132(79.91%) untouched conns; 0 (nbr) score; 
-Estimated worst slack/total negative slack<setup>: 9.590ns/0.000ns; real time: 12 secs 
+1(0.00%) conflict; 4057(79.32%) untouched conns; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 9.829ns/0.000ns; real time: 14 secs 
 Level 2, iteration 1
-0(0.00%) conflict; 4109(79.46%) untouched conns; 0 (nbr) score; 
-Estimated worst slack/total negative slack<setup>: 9.711ns/0.000ns; real time: 13 secs 
-Level 3, iteration 1
-1(0.00%) conflict; 4095(79.19%) untouched conns; 0 (nbr) score; 
-Estimated worst slack/total negative slack<setup>: 9.847ns/0.000ns; real time: 13 secs 
+3(0.00%) conflicts; 4046(79.10%) untouched conns; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 10.270ns/0.000ns; real time: 14 secs 
 Level 4, iteration 1
-104(0.01%) conflicts; 0(0.00%) untouched conn; 0 (nbr) score; 
-Estimated worst slack/total negative slack<setup>: 10.956ns/0.000ns; real time: 13 secs 
+107(0.01%) conflicts; 0(0.00%) untouched conn; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 9.943ns/0.000ns; real time: 15 secs 
 
 Info: Initial congestion level at 75% usage is 0
 Info: Initial congestion area  at 75% usage is 0 (0.00%)
 
-Start NBR section for normal routing at 20:07:34 02/24/18
+Start NBR section for normal routing at 15:29:47 03/06/18
 Level 4, iteration 1
-46(0.00%) conflicts; 0(0.00%) untouched conn; 0 (nbr) score; 
-Estimated worst slack/total negative slack<setup>: 10.956ns/0.000ns; real time: 13 secs 
+52(0.00%) conflicts; 0(0.00%) untouched conn; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 10.041ns/0.000ns; real time: 15 secs 
 Level 4, iteration 2
-12(0.00%) conflicts; 0(0.00%) untouched conn; 0 (nbr) score; 
-Estimated worst slack/total negative slack<setup>: 10.848ns/0.000ns; real time: 13 secs 
+20(0.00%) conflicts; 0(0.00%) untouched conn; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 10.051ns/0.000ns; real time: 15 secs 
 Level 4, iteration 3
-4(0.00%) conflicts; 0(0.00%) untouched conn; 0 (nbr) score; 
-Estimated worst slack/total negative slack<setup>: 10.848ns/0.000ns; real time: 13 secs 
+5(0.00%) conflicts; 0(0.00%) untouched conn; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 10.051ns/0.000ns; real time: 15 secs 
 Level 4, iteration 4
 1(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; 
-Estimated worst slack/total negative slack<setup>: 10.848ns/0.000ns; real time: 13 secs 
+Estimated worst slack/total negative slack<setup>: 10.051ns/0.000ns; real time: 15 secs 
 Level 4, iteration 5
 0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; 
-Estimated worst slack/total negative slack<setup>: 10.848ns/0.000ns; real time: 13 secs 
+Estimated worst slack/total negative slack<setup>: 10.049ns/0.000ns; real time: 15 secs 
 
-Start NBR section for setup/hold timing optimization with effort level 3 at 20:07:34 02/24/18
+Start NBR section for setup/hold timing optimization with effort level 3 at 15:29:47 03/06/18
 
-Start NBR section for re-routing at 20:07:35 02/24/18
+Start NBR section for re-routing at 15:29:47 03/06/18
 Level 4, iteration 1
 0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; 
-Estimated worst slack/total negative slack<setup>: 10.848ns/0.000ns; real time: 14 secs 
+Estimated worst slack/total negative slack<setup>: 10.049ns/0.000ns; real time: 15 secs 
 
-Start NBR section for post-routing at 20:07:35 02/24/18
+Start NBR section for post-routing at 15:29:47 03/06/18
 
 End NBR router with 0 unrouted connection
 
@@ -199,17 +197,17 @@ NBR Summary
 -----------
   Number of unrouted connections : 0 (0.00%)
   Number of connections with timing violations : 0 (0.00%)
-  Estimated worst slack<setup> : 10.848ns
+  Estimated worst slack<setup> : 10.049ns
   Timing score<setup> : 0
 -----------
 Notes: The timing info is calculated for SETUP only and all PAR_ADJs are ignored.
 
 
 
-Total CPU time 14 secs 
-Total REAL time: 15 secs 
+Total CPU time 16 secs 
+Total REAL time: 16 secs 
 Completely routed.
-End of route.  5171 routed (100.00%); 0 unrouted.
+End of route.  5115 routed (100.00%); 0 unrouted.
 
 Hold time timing score: 0, hold timing errors: 0
 
@@ -223,14 +221,14 @@ All signals are completely routed.
 
 PAR_SUMMARY::Run status = completed
 PAR_SUMMARY::Number of unrouted conns = 0
-PAR_SUMMARY::Worst  slack<setup/<ns>> = 10.848
+PAR_SUMMARY::Worst  slack<setup/<ns>> = 10.049
 PAR_SUMMARY::Timing score<setup/<ns>> = 0.000
-PAR_SUMMARY::Worst  slack<hold /<ns>> = 0.195
+PAR_SUMMARY::Worst  slack<hold /<ns>> = 0.092
 PAR_SUMMARY::Timing score<hold /<ns>> = 0.000
 PAR_SUMMARY::Number of errors = 0
 
-Total CPU  time to completion: 14 secs 
-Total REAL time to completion: 15 secs 
+Total CPU  time to completion: 16 secs 
+Total REAL time to completion: 17 secs 
 
 par done!
 
