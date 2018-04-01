@@ -18,8 +18,8 @@ def main():
                              "bootloader and load the user configuration")
     parser.add_argument("-c", "--com", type=str, help="serial port name")
     parser.add_argument("-i", "--id", type=str, help="FPGA board ID")
-    parser.add_argument("-d", "--device", type=str, default="1209:2100",
-                        help="device id (vendor:product); default is (1209:2100)")
+    parser.add_argument("-d", "--device", type=str, default="1d50:fb9a",
+                        help="device id (vendor:product); default is (1d50:fb9a)")
     parser.add_argument("-a", "--addr", type=int,
                         help="force the address to write the bitstream to")
     parser.add_argument("-m", "--meta", action="store_true",
