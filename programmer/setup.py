@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 setup(
   name = 'tinyprog',
   packages = find_packages(),
-  install_requires = ['pyserial'],
+  install_requires = ['pyserial', 'jsonmerge', 'intelhex'],
   version = '1.0.0',
   description = 'Programmer for FPGA boards using the TinyFPGA USB Bootloader (http://tinyfpga.com)',
   author = 'Luke Valenty',
