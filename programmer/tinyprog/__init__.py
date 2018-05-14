@@ -5,10 +5,10 @@ import jsonmerge
 import re
 from intelhex import IntelHex
 from tqdm import tqdm
+from functools import reduce
 
 
-
-byte_mirror_table = bytearray([
+bit_reverse_table = bytearray([
     0x00, 0x80, 0x40, 0xC0, 0x20, 0xA0, 0x60, 0xE0, 0x10, 0x90, 0x50, 0xD0, 0x30, 0xB0, 0x70, 0xF0,
     0x08, 0x88, 0x48, 0xC8, 0x28, 0xA8, 0x68, 0xE8, 0x18, 0x98, 0x58, 0xD8, 0x38, 0xB8, 0x78, 0xF8,
     0x04, 0x84, 0x44, 0xC4, 0x24, 0xA4, 0x64, 0xE4, 0x14, 0x94, 0x54, 0xD4, 0x34, 0xB4, 0x74, 0xF4,
@@ -63,7 +63,7 @@ class TinyMeta(object):
         if isinstance(meta, list):
             return [self._resolve_pointers(v) for v in meta]
 
-        if isinstance(meta, (str, unicode)):
+        if isinstance(meta, (str, bytes)):
             m = re.search(r"^\s*@\s*0x(?P<addr>[A-Fa-f0-9]+)\s*\+\s*(?P<len>\d+)\s*$", meta)
             if m:
                 data = self.prog.read(int(m.group("addr"), 16), int(m.group("len")))
@@ -75,7 +75,11 @@ class TinyMeta(object):
 
 
     def _read_metadata(self):
-        meta_roots = [self._parse_json(self.prog.read_security_register_page(p).replace("\x00", "").replace("\xff", "")) for p in [1, 2, 3]]
+        import math
+        meta_roots = (
+            [self._parse_json(self.prog.read_security_register_page(p).replace(b"\x00", b"").replace(b"\xff", b"")) for p in [1, 2, 3]] +
+            [self._parse_json(self.prog.read(int(math.pow(2, p) - (4 * 1024)), (4 * 1024)).replace(b"\x00", b"").replace(b"\xff", b"")) for p in [17, 18, 19, 20, 21, 22, 23, 24]]
+        )
         meta_roots = [root for root in meta_roots if root is not None]
         if len(meta_roots) > 0:
             meta = reduce(jsonmerge.merge, meta_roots)
@@ -88,6 +92,9 @@ class TinyMeta(object):
 
     def userimage_addr_range(self):
         return self._get_addr_range(u"userimage")
+
+    def userdata_addr_range(self):
+        return self._get_addr_range(u"userdata")
 
     def _get_addr_range(self, name):
         addr_str = self.root[u"bootmeta"][u"addrmap"][name]
@@ -110,26 +117,41 @@ class TinyProg(object):
         else:
             self.progress = progress
 
+        self.wake()
+        flash_id = self.read_id()
+
+        # temporary hack, should have better database as well as SFPD reading
+        if flash_id in ['\x9D\x60\x16']:
+            # ISSI
+            self.security_page_bit_offset = 4
+            self.security_page_write_cmd = 0x62
+            self.security_page_read_cmd = 0x68
+            self.security_page_erase_cmd = 0x64
+    
+        else:
+            # Adesto
+            self.security_page_bit_offset = 0
+            self.security_page_write_cmd = 0x42
+            self.security_page_read_cmd = 0x48
+            self.security_page_erase_cmd = 0x44
+
         self.meta = TinyMeta(self)
 
 
     def is_bootloader_active(self):
         self.wake()
         devid = self.read_id()
-        if devid not in ['\xff\xff\xff']:
+        if devid not in [b'\xff\xff\xff']:
             return True
         return False
 
 
-    def cmd(self, opcode, addr=None, data='', read_len=0):
-        assert isinstance(data, str)
-        addr = '' if addr is None else struct.pack('>I', addr)[1:]
-        write_string = chr(opcode) + addr + data
-        cmd_write_string = '\x01{}{}'.format(
-            struct.pack('<HH', len(write_string), read_len),
-            write_string,
-        )
-        self.ser.write(cmd_write_string)
+    def cmd(self, opcode, addr=None, data=b'', read_len=0):
+        assert isinstance(data, bytes)
+        addr = b'' if addr is None else struct.pack('>I', addr)[1:]
+        write_string = bytearray([opcode]) + addr + data
+        cmd_write_string = b'\x01' + struct.pack('<HH', len(write_string), read_len) + write_string
+        self.ser.write(bytearray(cmd_write_string))
         self.ser.flush()
         return self.ser.read(read_len)
 
@@ -152,26 +174,26 @@ class TinyProg(object):
 
     def erase_security_register_page(self, page):
         self.write_enable()
-        self.cmd(0x44, page << 8)
+        self.cmd(self.security_page_erase_cmd, page << (8 + self.security_page_bit_offset))
         self.wait_while_busy()
 
 
     def program_security_register_page(self, page, data):
         self.write_enable()
-        self.cmd(0x42, page << 8, data)
+        self.cmd(self.security_page_write_cmd, page << (8 + self.security_page_bit_offset), data)
         self.wait_while_busy()
 
 
     def read_security_register_page(self, page):
-        return self.cmd(0x48, addr=page << 8, data='\x00', read_len=255)
+        return self.cmd(self.security_page_read_cmd, addr=page << (8 + self.security_page_bit_offset), data=b'\x00', read_len=255)
 
 
     def read(self, addr, length, disable_progress=True):
-        data = ''
+        data = b''
         with tqdm(desc="    Reading", unit="B", unit_scale=True, total=length, disable=disable_progress) as pbar:
             while length > 0:
                 read_length = min(255, length)
-                data += self.cmd(0x0b, addr, '\x00', read_len=read_length)
+                data += self.cmd(0x0b, addr, b'\x00', read_len=read_length)
                 self.progress(read_length)
                 addr += read_length
                 length -= read_length
@@ -291,7 +313,7 @@ class TinyProg(object):
 
 
     def boot(self):
-        self.ser.write("\x00")
+        self.ser.write(bytearray(0x00))
         self.ser.flush()
 
 
@@ -317,9 +339,6 @@ class TinyProg(object):
 
     def program_bitstream(self, addr, bitstream):
         self.progress("Waking up SPI flash")
+        self.wake()
         self.progress(str(len(bitstream)) + " bytes to program")
-        if self.program(addr, bitstream):
-            self.boot()
-            return True
-
-        return False
+        return self.program(addr, bitstream)
