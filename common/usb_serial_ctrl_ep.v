@@ -337,6 +337,7 @@ module usb_serial_ctrl_ep (
   `define CDC_ACM_ENDPOINT 2 
   `define CDC_RX_ENDPOINT 1
   `define CDC_TX_ENDPOINT 1
+	
 
   always @* begin
     case (rom_addr)
@@ -349,10 +350,12 @@ module usb_serial_ctrl_ep (
       'h005 : in_ep_data <= 'h00; // bDeviceSubClass (Abstract Control Model)
       'h006 : in_ep_data <= 'h00; // bDeviceProtocol (No class specific protocol required)
       'h007 : in_ep_data <= 32; // bMaxPacketSize0
-      'h008 : in_ep_data <= 'h50; // idVendor[0]
+
+      'h008 : in_ep_data <= 'h50; // idVendor[0] http://wiki.openmoko.org/wiki/USB_Product_IDs
       'h009 : in_ep_data <= 'h1d; // idVendor[1]
       'h00A : in_ep_data <= 'h30; // idProduct[0]
       'h00B : in_ep_data <= 'h61; // idProduct[1]
+      
       'h00C : in_ep_data <= 0; // bcdDevice[0]
       'h00D : in_ep_data <= 0; // bcdDevice[1]
       'h00E : in_ep_data <= 0; // iManufacturer
