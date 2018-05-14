@@ -124,6 +124,7 @@ module usb_fs_pe #(
   ) usb_fs_in_pe_inst (
     .clk(clk),
     .reset(reset),
+    .reset_ep({NUM_IN_EPS{1'b0}}),
     .dev_addr(dev_addr),
 
     // endpoint interface 
@@ -157,6 +158,7 @@ module usb_fs_pe #(
   ) usb_fs_out_pe_inst (
     .clk(clk),
     .reset(reset),
+    .reset_ep({NUM_OUT_EPS{1'b0}}),
     .dev_addr(dev_addr),
 
     // endpoint interface 

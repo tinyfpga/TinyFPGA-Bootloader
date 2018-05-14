@@ -7,7 +7,6 @@ module usb_fs_out_pe #(
   input reset,
   input [NUM_OUT_EPS-1:0] reset_ep, 
   input [6:0] dev_addr,
-  input bit_strobe,
 
   ////////////////////
   // endpoint interface 
@@ -52,25 +51,25 @@ module usb_fs_out_pe #(
   ////////////////////////////////////////////////////////////////////////////////
   // endpoint state machine
   ////////////////////////////////////////////////////////////////////////////////
-  reg [1:0] ep_state [NUM_OUT_EPS - 1:0];
-  reg [1:0] ep_state_next [NUM_OUT_EPS - 1:0];
-
   localparam READY_FOR_PKT = 0;
   localparam PUTTING_PKT = 1;
   localparam GETTING_PKT = 2;
   localparam STALL = 3;
+  
+  reg [1:0] ep_state [NUM_OUT_EPS - 1:0];
+  reg [1:0] ep_state_next [NUM_OUT_EPS - 1:0];
 
 
   ////////////////////////////////////////////////////////////////////////////////
   // out transfer state machine
   ////////////////////////////////////////////////////////////////////////////////
-  reg [1:0] out_xfr_state = 0;
-  reg [1:0] out_xfr_state_next;
-
   localparam IDLE = 0;
   localparam RCVD_OUT = 1;
   localparam RCVD_DATA_START = 2; 
   localparam RCVD_DATA_END = 3; 
+  
+  reg [1:0] out_xfr_state = IDLE;
+  reg [1:0] out_xfr_state_next;
 
   reg out_xfr_start = 0;
   reg new_pkt_end = 0;
@@ -138,7 +137,7 @@ module usb_fs_out_pe #(
     rx_pkt_valid &&
     rx_pid[2:0] != 3'b011;
 
-  reg last_data_toggle = 0;
+  //reg last_data_toggle = 0;
 
   wire bad_data_toggle =
     data_packet_received &&
@@ -359,7 +358,7 @@ module usb_fs_out_pe #(
 
       if (out_xfr_start) begin
         current_endp <= rx_endp;
-        last_data_toggle <= setup_token_received ? 0 : data_toggle[rx_endp];
+        //last_data_toggle <= setup_token_received ? 0 : data_toggle[rx_endp];
       end
 
       if (new_pkt_end) begin

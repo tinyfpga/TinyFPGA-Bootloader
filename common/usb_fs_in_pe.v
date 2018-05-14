@@ -76,13 +76,14 @@ module usb_fs_in_pe #(
   ////////////////////////////////////////////////////////////////////////////////
   // in transfer state machine
   ////////////////////////////////////////////////////////////////////////////////
-  reg [1:0] in_xfr_state = 0;
-  reg [1:0] in_xfr_state_next;
-
   localparam IDLE = 0;
   localparam RCVD_IN = 1;
   localparam SEND_DATA = 2; 
   localparam WAIT_ACK = 3; 
+  
+  reg [1:0] in_xfr_state = IDLE;
+  reg [1:0] in_xfr_state_next;
+
 
   reg in_xfr_start = 0;
   reg in_xfr_end = 0;

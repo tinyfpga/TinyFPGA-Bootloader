@@ -29,8 +29,6 @@ module usb_serial_ctrl_ep (
   input in_ep_acked
 );
   
-  reg [5:0] ctrl_xfr_state = 0;
-  reg [5:0] ctrl_xfr_state_next = 0;
 
   localparam IDLE = 0;
   localparam SETUP = 1;
@@ -38,6 +36,11 @@ module usb_serial_ctrl_ep (
   localparam DATA_OUT = 3;
   localparam STATUS_IN = 4;
   localparam STATUS_OUT = 5;
+  
+  reg [5:0] ctrl_xfr_state = IDLE;
+  reg [5:0] ctrl_xfr_state_next;
+ 
+ 
  
   reg setup_stage_end = 0;
   reg data_stage_end = 0;
@@ -81,6 +84,7 @@ module usb_serial_ctrl_ep (
     .out(pkt_end)
   );
 
+  assign out_ep_stall = 1'b0;
 
   wire setup_pkt_start = pkt_start && out_ep_setup;
 
@@ -345,10 +349,10 @@ module usb_serial_ctrl_ep (
       'h005 : in_ep_data <= 'h00; // bDeviceSubClass (Abstract Control Model)
       'h006 : in_ep_data <= 'h00; // bDeviceProtocol (No class specific protocol required)
       'h007 : in_ep_data <= 32; // bMaxPacketSize0
-      'h008 : in_ep_data <= 'h09; // idVendor[0]
-      'h009 : in_ep_data <= 'h12; // idVendor[1]
-      'h00A : in_ep_data <= 'h00; // idProduct[0]
-      'h00B : in_ep_data <= 'h21; // idProduct[1]
+      'h008 : in_ep_data <= 'h50; // idVendor[0]
+      'h009 : in_ep_data <= 'h1d; // idVendor[1]
+      'h00A : in_ep_data <= 'h30; // idProduct[0]
+      'h00B : in_ep_data <= 'h61; // idProduct[1]
       'h00C : in_ep_data <= 0; // bcdDevice[0]
       'h00D : in_ep_data <= 0; // bcdDevice[1]
       'h00E : in_ep_data <= 0; // iManufacturer

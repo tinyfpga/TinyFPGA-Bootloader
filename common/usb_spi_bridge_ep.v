@@ -41,15 +41,12 @@ module usb_spi_bridge_ep (
   ////////////////////
   // warm boot interface
   ////////////////////
-  output reg boot_to_user_design = 0,
-
-
-  ////////////////////
-  // output pin interface for test
-  ////////////////////
-  output reg [31:0] output_pin_values = 0,
-  output reg [31:0] output_pin_enables = 0
+  output reg boot_to_user_design = 0
 );
+
+
+  assign out_ep_stall = 1'b0;
+  assign in_ep_stall = 1'b0;
 
   wire spi_byte_out_xfr_ready = out_ep_grant && out_ep_data_avail;
   wire spi_byte_in_xfr_ready = in_ep_grant && in_ep_data_free;
@@ -157,16 +154,6 @@ module usb_spi_bridge_ep (
         end else if (out_data_valid && out_ep_data == 8'h1) begin  
           cmd_state_next <= CMD_SAVE_DOL_LO;    
   
-        end else if (out_data_valid && out_ep_data[7]) begin
-          // out_ep_data[6] // output pin value
-          // out_ep_data[5] // output pin enable
-          // out_ep_data[4:0] // output pin id 
-
-          output_pin_values[out_ep_data[4:0]] <= out_ep_data[6];
-          output_pin_enables[out_ep_data[4:0]] <= out_ep_data[5];
-
-          cmd_state_next <= CMD_IDLE;
-
         end else begin
           cmd_state_next <= CMD_IDLE;
         end

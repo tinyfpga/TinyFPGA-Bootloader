@@ -56,16 +56,6 @@ module tinyfpga_bootloader (
     end
   end
   
-  reg [9:0] ms_cnt = 0;
-  wire ms_rst = (ms_cnt == 1000);
-  always @(posedge clk_48mhz) begin
-    if (ms_rst) begin
-      ms_cnt <= 0;
-    end else if (us_rst) begin
-      ms_cnt <= ms_cnt + 1'b1;
-    end
-  end
-  
   reg count_down = 0;
   always @(posedge clk_48mhz) begin
     if (us_rst) begin
@@ -143,9 +133,6 @@ module tinyfpga_bootloader (
 
   wire boot_to_user_design;
 
-  wire [31:0] output_pin_values;
-  wire [31:0] output_pin_enables;
-
   assign boot = host_presence_timeout || boot_to_user_design;
 
   usb_serial_ctrl_ep ctrl_ep_inst (
@@ -206,11 +193,7 @@ module tinyfpga_bootloader (
     .spi_miso(spi_miso),
 
     // warm boot interface
-    .boot_to_user_design(boot_to_user_design),
-
-    // output pin interface for test
-    .output_pin_values(output_pin_values),
-    .output_pin_enables(output_pin_enables)
+    .boot_to_user_design(boot_to_user_design)
   );
 
   wire nak_in_ep_grant;
