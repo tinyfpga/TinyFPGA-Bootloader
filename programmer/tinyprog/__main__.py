@@ -82,7 +82,8 @@ def main():
         print("    Only one board with active bootloader, using it.")
         active_port = active_boards[0]
     else:
-        print("    Please choose a board with the -c or -i option.")
+        print("    Please choose a board with the -c or -i option.  Using first board in list.")
+        active_port = active_boards[0]
 
     # list boards
     if args.list or active_port is None:
