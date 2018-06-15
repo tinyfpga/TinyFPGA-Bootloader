@@ -82,7 +82,8 @@ def main():
         print("    Only one board with active bootloader, using it.")
         active_port = active_boards[0]
     else:
-        print("    Please choose a board with the -c or -i option.")
+        print("    Please choose a board with the -c or -i option.  Using first board in list.")
+        active_port = active_boards[0]
 
     # list boards
     if args.list or active_port is None:
@@ -118,9 +119,12 @@ def main():
                 print("    Programming " + active_port + " with " + args.program)
 
                 bitstream = fpga.slurp(args.program)
-                addr = fpga.meta.userimage_addr_range()[0]
+                
                 if args.addr is not None:
                     addr = parse_int(args.addr)
+                else:
+                    addr = fpga.meta.userimage_addr_range()[0]
+
                 if addr < 0:
                     print("    Negative write addr: {}".format(addr))
                     sys.exit(1)
@@ -136,9 +140,12 @@ def main():
                 print("    Programming " + active_port + " with " + args.program_userdata)
 
                 bitstream = fpga.slurp(args.program_userdata)
-                addr = fpga.meta.userdata_addr_range()[0]
+
                 if args.addr is not None:
                     addr = parse_int(args.addr)
+                else:
+                    addr = fpga.meta.userimage_addr_range()[0]
+
                 if addr < 0:
                     print("    Negative write addr: {}".format(addr))
                     sys.exit(1)

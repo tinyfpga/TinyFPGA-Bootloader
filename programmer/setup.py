@@ -8,13 +8,20 @@ setup(
     'intelhex>=2.2.1,<3',
     'tqdm>=4.19.5,<5'
   ],
-  version = '1.0.0',
+  version = '1.0.3',
   description = 'Programmer for FPGA boards using the TinyFPGA USB Bootloader (http://tinyfpga.com)',
   author = 'Luke Valenty',
   author_email = 'luke@tinyfpga.com',
   url = 'https://github.com/tinyfpga/TinyFPGA-Bootloader/', 
   keywords = ['fpga', 'tinyfpga', 'programmer'], 
-  classifiers = [],
+  classifiers=[
+    'Development Status :: 5 - Production/Stable',
+    'Environment :: Console',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
+    'Programming Language :: Python :: 2',
+    'Programming Language :: Python :: 3'
+  ],
   entry_points = {
     'console_scripts': [
         'tinyprog = tinyprog.__main__:main'    

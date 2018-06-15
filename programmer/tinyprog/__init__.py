@@ -313,7 +313,7 @@ class TinyProg(object):
 
 
     def boot(self):
-        self.ser.write(bytearray(0x00))
+        self.ser.write(b"\x00")
         self.ser.flush()
 
 
