@@ -8,7 +8,7 @@ setup(
     'intelhex>=2.2.1,<3',
     'tqdm>=4.19.5,<5'
   ],
-  version = '1.0.3',
+  version = '1.0.5',
   description = 'Programmer for FPGA boards using the TinyFPGA USB Bootloader (http://tinyfpga.com)',
   author = 'Luke Valenty',
   author_email = 'luke@tinyfpga.com',

@@ -1,5 +1,39 @@
+def check_for_wrong_tinyfpga_bx_vidpid():
+    """
+    Some of the TinyFPGA BX boards have the wrong USB VID:PID.  This function
+    looks for such boards and fixes them.
+    """
+
+    import sys
+    import argparse
+    import serial
+    from serial.tools.list_ports import comports
+    from tinyprog import TinyProg
+    
+    old_boards = [p[0] for p in comports() if "1209:2100" in p[2].lower()]
+    
+    # for each oldboard
+    for port in old_boards:
+        with serial.Serial(port, timeout=1.0, writeTimeout=1.0) as ser:
+            p = TinyProg(ser)
+            m = p.meta.root
+            if m[u"boardmeta"][u"name"] == u"TinyFPGA BX":
+                print("Fixing TinyFPGA BX board with wrong USB VID:PID...")
+
+                # download the image (https://github.com/tinyfpga/TinyFPGA-Bootloader/releases/download/1.0.1/tinyfpga_bx_fw.bin)
+                import urllib2
+                tinyfpga_bx_fw_url = "https://github.com/tinyfpga/TinyFPGA-Bootloader/releases/download/1.0.1/tinyfpga_bx_fw.bin"
+                tinyfpga_bx_fw_bitstream = urllib2.urlopen(tinyfpga_bx_fw_url).read()
+
+                # program the image and reboot
+                if p.program_bitstream(0, tinyfpga_bx_fw_bitstream):
+                    p.boot()
+                    print("Fixed!")
+                else:
+                    print("ERROR: Unable to fix!")
 
     
+
 
 def main():
     import sys
@@ -7,6 +41,8 @@ def main():
     import serial
     from serial.tools.list_ports import comports
     from tinyprog import TinyProg
+
+    check_for_wrong_tinyfpga_bx_vidpid()
 
     def parse_int(str_value):
         str_value = str_value.strip().lower()
@@ -144,7 +180,7 @@ def main():
                 if args.addr is not None:
                     addr = parse_int(args.addr)
                 else:
-                    addr = fpga.meta.userimage_addr_range()[0]
+                    addr = fpga.meta.userdata_addr_range()[0]
 
                 if addr < 0:
                     print("    Negative write addr: {}".format(addr))
