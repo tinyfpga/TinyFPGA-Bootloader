@@ -72,9 +72,7 @@ module bootloader_ulx3s (
   assign usb_n_rx = usb_tx_en ? 1'b0 : usb_fpga_dn;
 
   assign wifi_gpio0 = btn[0];
-  assign led[7] = btn[0];
-  assign reset = btn[1];
-  assign led[6] = btn[1];
+  assign reset = ~btn[0];
   assign led[5] = boot;
   assign led[0] = pin_led;
 
