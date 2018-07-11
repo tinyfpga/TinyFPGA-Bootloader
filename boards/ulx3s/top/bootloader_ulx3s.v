@@ -1,8 +1,8 @@
 module bootloader_ulx3s (
   input  clk_25mhz,
 
-  inout  usb_fpga_p,
-  inout  usb_fpga_n,
+  inout  usb_fpga_dp,
+  inout  usb_fpga_dn,
 
   output [7:0] led,
 
@@ -24,13 +24,13 @@ module bootloader_ulx3s (
   ////////////////////////////////////////////////////////////////////////////////
   wire clk_200mhz;
   clk_25M_200M clk_200M_inst (
-    .CLKI(clk_25moz),
+    .CLKI(clk_25mhz),
     .CLKOP(clk_200mhz)
   );
 
   wire clk_48mhz;
   clk_200M_48M clk_48M_inst (
-    .CLKI(clk_200moz),
+    .CLKI(clk_200mhz),
     .CLKOP(clk_48mhz)
   );
 
@@ -66,10 +66,10 @@ module bootloader_ulx3s (
     .boot(boot)
   );
 
-  assign usb_fpga_p = usb_tx_en ? usb_p_tx : 1'bz;
-  assign usb_fpga_n = usb_tx_en ? usb_n_tx : 1'bz;
-  assign usb_p_rx = usb_tx_en ? 1'b1 : usb_fpga_p;
-  assign usb_n_rx = usb_tx_en ? 1'b0 : usb_fpga_n;
+  assign usb_fpga_dp = usb_tx_en ? usb_p_tx : 1'bz;
+  assign usb_fpga_dn = usb_tx_en ? usb_n_tx : 1'bz;
+  assign usb_p_rx = usb_tx_en ? 1'b1 : usb_fpga_dp;
+  assign usb_n_rx = usb_tx_en ? 1'b0 : usb_fpga_dn;
 
   assign wifi_gpio0 = btn[0];
   assign led[7] = btn[0];
