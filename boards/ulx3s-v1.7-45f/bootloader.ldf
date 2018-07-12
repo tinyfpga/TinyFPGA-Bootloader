@@ -15,6 +15,9 @@
         <Source name="clocks/clk_200M_48M.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
+        <Source name="clocks/ecp5_flash_clk.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
         <Source name="../../common/edge_detect.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
