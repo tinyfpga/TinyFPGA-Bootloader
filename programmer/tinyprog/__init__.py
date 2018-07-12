@@ -119,6 +119,7 @@ class TinyProg(object):
 
         self.wake()
         flash_id = self.read_id()
+        print("FLASH_ID:", [elem.encode("hex") for elem in flash_id])
 
         # temporary hack, should have better database as well as SFPD reading
         if flash_id in ['\x9D\x60\x16']:
@@ -161,11 +162,11 @@ class TinyProg(object):
 
 
     def wake(self):
-        self.cmd(0xab)
+        self.cmd(0xab, read_len=4)
 
 
     def read_id(self):
-        return self.cmd(0x9f, read_len=3)
+        return self.cmd(0xab, read_len=4)
 
 
     def read_sts(self):
