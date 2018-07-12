@@ -122,15 +122,24 @@ class TinyProg(object):
         print("FLASH_ID:", [elem.encode("hex") for elem in flash_id])
 
         # temporary hack, should have better database as well as SFPD reading
-        if flash_id in ['\x9D\x60\x16']:
+        if flash_id in ['\x15']:
             # ISSI
+            print("ISSI, MICRON")
             self.security_page_bit_offset = 4
             self.security_page_write_cmd = 0x62
             self.security_page_read_cmd = 0x68
             self.security_page_erase_cmd = 0x64
     
+        elif flash_id in ['\x16']:
+            # Adesto, Spansion
+            print("ADESTO, SPANSION")
+            self.security_page_bit_offset = 0
+            self.security_page_write_cmd = 0x42
+            self.security_page_read_cmd = 0x48
+            self.security_page_erase_cmd = 0x44
+
         else:
-            # Adesto
+            print("UNKNOWN FLASH ID")
             self.security_page_bit_offset = 0
             self.security_page_write_cmd = 0x42
             self.security_page_read_cmd = 0x48
@@ -166,7 +175,7 @@ class TinyProg(object):
 
 
     def read_id(self):
-        return self.cmd(0xab, read_len=4)
+        return self.cmd(0xab, data=b'\x00\x00\x00', read_len=1)
 
 
     def read_sts(self):
