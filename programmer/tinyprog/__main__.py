@@ -1,3 +1,4 @@
+
 def check_for_wrong_tinyfpga_bx_vidpid():
     """
     Some of the TinyFPGA BX boards have the wrong USB VID:PID.  This function
@@ -9,6 +10,7 @@ def check_for_wrong_tinyfpga_bx_vidpid():
     import serial
     from serial.tools.list_ports import comports
     from tinyprog import TinyProg
+    from six.moves.urllib.request import urlopen
     
     old_boards = [p[0] for p in comports() if "1209:2100" in p[2].lower()]
     
@@ -20,10 +22,10 @@ def check_for_wrong_tinyfpga_bx_vidpid():
             if m[u"boardmeta"][u"name"] == u"TinyFPGA BX":
                 print("Fixing TinyFPGA BX board with wrong USB VID:PID...")
 
-                # download the image (https://github.com/tinyfpga/TinyFPGA-Bootloader/releases/download/1.0.1/tinyfpga_bx_fw.bin)
-                import urllib2
+                # download the image 
+                
                 tinyfpga_bx_fw_url = "https://github.com/tinyfpga/TinyFPGA-Bootloader/releases/download/1.0.1/tinyfpga_bx_fw.bin"
-                tinyfpga_bx_fw_bitstream = urllib2.urlopen(tinyfpga_bx_fw_url).read()
+                tinyfpga_bx_fw_bitstream = urlopen(tinyfpga_bx_fw_url).read()
 
                 # program the image and reboot
                 if p.program_bitstream(0, tinyfpga_bx_fw_bitstream):
@@ -42,7 +44,7 @@ def main():
     from serial.tools.list_ports import comports
     from tinyprog import TinyProg
 
-    check_for_wrong_tinyfpga_bx_vidpid()
+    #check_for_wrong_tinyfpga_bx_vidpid()
 
     def parse_int(str_value):
         str_value = str_value.strip().lower()
@@ -78,7 +80,7 @@ def main():
         print("    Invalid device id, use format vendor:product")
         sys.exit(1)
     device = '{}:{}'.format(device[:4], device[4:])
-    active_boards = [p[0] for p in comports() if device in p[2].lower()]
+    active_boards = [p[0] for p in comports() if ((device in p[2].lower()) or ("1209:2100" in p[2].lower()))]
 
     if args.meta:
         meta = []
