@@ -9,13 +9,14 @@ If it doesn't work, try another USB board or another type of SPI FLASH chip.
 
 # First time use
 
-Plug out US2 port, compile and load tinyfpga bootloader bitstream to FPGA SRAM
+Plug out US2 port, compile and load tinyfpga bootloader bitstream and
+upload to FPGA SRAM over US1 port using FleaFPGA-JTAG application:
 
     cd boards/ulx3s-v1.7-45f
     make clean; make; make program_flea
 
 LED0 will start to fade ON/OFF. When LED5 is ON plug US2 port. LED5 should
-stay OFF after plugging and /dev/ttyACM0 usb-serial port should appear.
+go OFF after plugging to US2 and /dev/ttyACM0 usb-serial port should appear.
 
 Compile and install "tinyprog" application (slightly modified to work with
 FLASH chips found on ULX3S and not to enter boot mode after upload)
