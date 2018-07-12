@@ -1,4 +1,81 @@
+# The TinyFPGA USB Bootloader for ULX3S
+
+Ported to work for ULX3S boards with FPGA Lattice ECP5 (45k LUT) and FLASH chips
+ISSI IS25LP032D (4 MB) and SPANSION S25FL164K (8 MB).
+
+The USB-serial-SPI bridge core may have compatibility or reliability problems
+which manifest as unsuccessful uploads for some USB ports and some FLASH chips.
+If it doesn't work, try another USB board or another type of SPI FLASH chip.
+
+# First time use
+
+Plug out US2 port, compile and load tinyfpga bootloader bitstream to FPGA SRAM
+
+    cd boards/ulx3s-v1.7-45f
+    make clean; make; make program_flea
+
+LED0 will start to fade ON/OFF. When LED5 is ON plug US2 port. LED5 should
+stay OFF after plugging and /dev/ttyACM0 usb-serial port should appear.
+
+Compile and install "tinyprog" application (slightly modified to work with
+FLASH chips found on ULX3S and not to enter boot mode after upload)
+
+    cd programmer
+    python setuo.py build
+    python setup.py install
+
+Initialize board metadata (at last 4KB of the FLASH is written json content
+from a file with .bin filename extension)
+
+    cd programmer/initialize
+    ./initialize.sh
+
+Successful upload will look like this:
+
+    TinyProg CLI
+    ------------
+    Using device id 1d50:6130
+    Only one board with active bootloader, using it.
+    ('FLASH_ID:', ['15'])
+    ISSI, MICRON
+    Programming /dev/ttyACM0 with boardmeta.bin
+    Programming at addr 7ff000
+    Waking up SPI flash
+    2607 bytes to program
+    Erasing: 100%|███████████████████████████████████████████████████████████████████| 2.61k/2.61k [00:00<00:00, 37.4kB/s]
+    Writing: 100%|███████████████████████████████████████████████████████████████████| 2.61k/2.61k [00:00<00:00, 82.0kB/s]
+    Reading: 100%|████████████████████████████████████████████████████████████████████| 2.61k/2.61k [00:00<00:00, 365kB/s]
+    Success!
+
+Check that it now recognizes the board:
+
+    tinyprog -l
+    TinyProg CLI
+    ------------
+    Using device id 1d50:6130
+    Only one board with active bootloader, using it.
+    Boards with active bootloaders:
+    ('FLASH_ID:', ['15'])
+    ISSI, MICRON
+
+        /dev/ttyACM0: ULX3S 1.7
+            UUID: 0123456789
+            FPGA: LFE5U-45F-6BG381C
+
+Write compiled binary bitstream for FLASH address 0 (start of the flash).
+Bitstream file should have .bit or .bin extension (probably .hex and .mcs
+files may work too)
+
+    tinyprog -a 0 -p tinyfpga_45k.bit
+
+Re-plug US1 and US2 and it should boot the tinyfpga bootloader from FLASH.
+
+TODO: how to setup protected bootloader.
+
+Original README follows:
+
 # The TinyFPGA USB Bootloader
+
 The TinyFPGA USB Bootloader is an open source IP for programming FPGAs without extra USB interface chips.  It implements a USB virtual serial port to SPI flash bridge on the FPGA fabric itself.  For FPGAs that support loading multiple configurations it is possible for the bootloader to be completely unloaded from the FPGA before the user configuration is loaded in.  
 
 From the host computer's perspective, the bootloader looks like a serial port.  This method was chosen because programming with serial ports is generally easier to understand than other USB-specific protocols.  Commands to boot into the user configuration or access the SPI flash are all transfered over this interface.  Using this serial interface, a programmer application on the host computer can issue commands to the SPI flash directly through the bootloader.  All of the details about programming the SPI flash are handled by the programmer application.
