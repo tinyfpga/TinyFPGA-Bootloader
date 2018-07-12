@@ -25,8 +25,8 @@ FLASH chips found on ULX3S and not to enter boot mode after upload)
     python setuo.py build
     python setup.py install
 
-Initialize board metadata. Starting from last 4KB of the FLASH write json content
-prepared in a file with .bin filename extension
+Initialize board metadata. Starting from last 4KB of the FLASH write json
+content in a file with .bin filename extension
 
     cd programmer/initialize
     ./initialize.sh
