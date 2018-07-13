@@ -78,7 +78,7 @@ class TinyMeta(object):
         import math
         meta_roots = (
             [self._parse_json(self.prog.read_security_register_page(p).replace(b"\x00", b"").replace(b"\xff", b"")) for p in [1, 2, 3]] +
-            [self._parse_json(self.prog.read(int(math.pow(2, p) - (4 * 1024)), (4 * 1024)).replace(b"\x00", b"").replace(b"\xff", b"")) for p in [17, 18, 19, 20, 21, 22, 23, 24]]
+            [self._parse_json(self.prog.read(int(math.pow(2, p) - (4 * 1024)), (4 * 1024-256)).replace(b"\x00", b"").replace(b"\xff", b"")) for p in [17, 18, 19, 20, 21, 22, 23, 24]]
         )
         meta_roots = [root for root in meta_roots if root is not None]
         if len(meta_roots) > 0:
