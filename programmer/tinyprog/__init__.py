@@ -203,11 +203,14 @@ class TinyProg(object):
         with tqdm(desc="    Reading", unit="B", unit_scale=True, total=length, disable=disable_progress) as pbar:
             while length > 0:
                 read_length = min(255, length)
-                data += self.cmd(0x0b, addr, b'\x00', read_len=read_length)
-                self.progress(read_length)
-                addr += read_length
-                length -= read_length
-                pbar.update(read_length)
+                read_payload = self.cmd(0x0b, addr, b'\x00', read_len=read_length)
+                payload_length = len(read_payload)
+                if payload_length == read_length:
+                  data += read_payload
+                  self.progress(payload_length)
+                  addr += payload_length
+                  length -= payload_length
+                  pbar.update(payload_length)
             return data
 
 
