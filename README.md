@@ -43,7 +43,6 @@ Successful upload will look like this:
     Programming at addr 7ff000
     Waking up SPI flash
     2607 bytes to program
-    Erasing: 100%|███████████████████████████████████████████████████████████████████| 2.61k/2.61k [00:00<00:00, 37.4kB/s]
     Writing: 100%|███████████████████████████████████████████████████████████████████| 2.61k/2.61k [00:00<00:00, 82.0kB/s]
     Reading: 100%|████████████████████████████████████████████████████████████████████| 2.61k/2.61k [00:00<00:00, 365kB/s]
     Success!
@@ -64,10 +63,9 @@ Check that it now recognizes the board:
             FPGA: LFE5U-45F-6BG381C
 
 Write compiled binary bitstream for FLASH address 0 (start of the flash).
-Bitstream file should have .bit or .bin extension (probably .hex and .mcs
-files may work too)
+Bitstream file should have .bit or .bin extension.
 
-    tinyprog -a 0 -p tinyfpga_45k.bit
+    tinyprog -p tinyfpga_45k.bit
 
 Re-plug US1 and US2 and it should boot the tinyfpga bootloader from FLASH.
 
