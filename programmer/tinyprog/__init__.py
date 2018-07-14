@@ -311,10 +311,91 @@ class TinyProg(object):
                 addr += write_length
                 pbar.update(write_length)
 
-
+    # erase, write and verify
+    # in case of problems this method is unreliable
+    # any errors will just detected as failure
+    # without retrying
     def program(self, addr, data):
         self.erase(addr, len(data), disable_progress=False)
         self.write(addr, data, disable_progress=False)
+        read_back = self.read(addr, len(data), disable_progress=False)
+
+        if read_back == data:
+            self.progress("Success!")
+            return True
+        else:
+            self.progress("Failure!")
+            return False
+
+    # for each sector: erase,program,verify
+    # this programming is much more reliable than previous program()
+    # because each written sector will be verified and in case of
+    # error, retried several times
+    def program_sectors(self, addr, data, retry=10):
+        possible_lengths = (1, 4 * 1024, 32 * 1024, 64 * 1024)
+        retries_remaining = retry
+        length = len(data)
+        write_addr = addr
+        offset = 0
+        with tqdm(desc="    Writing", unit="B", unit_scale=True, total=length, disable=False) as pbar:
+            while length > 0 and retries_remaining > 0:
+                erase_length = max(p for p in possible_lengths
+                                   if p <= length and write_addr % p == 0)
+
+                if erase_length == 1:
+                    # there are no opcode to erase that much
+                    # either we want to erase up to multiple of 0x1000
+                    # or we want to erase up to length
+
+                    # start_addr                            end_addr
+                    # v                                     v
+                    # +------------------+------------------+----------------+
+                    # |       keep       |      erase       |      keep      |
+                    # +------------------+------------------+----------------+
+                    #  <- start_length -> <- erase_length -> <- end_length ->
+
+                    start_addr = write_addr & 0xfff000
+                    start_length = write_addr & 0xfff
+                    erase_length = min(0x1000 - start_length, length)
+                    end_addr = start_addr + start_length + erase_length
+                    end_length = start_addr + 0x1000 - end_addr
+
+                    # read data we need to restore later
+                    if start_length:
+                        start_read_data = self.read(start_addr, start_length)
+                    if end_length:
+                        end_read_data = self.read(end_addr, end_length)
+
+                    # erase the block
+                    self._erase(start_addr, 0x1000)
+
+                    # restore data
+                    if start_length:
+                        self.write(start_addr, start_read_data)
+                    if end_length:
+                        self.write(end_addr, end_read_data)
+
+                else:
+                    # there is an opcode to erase that much data
+                    self.progress(erase_length)
+                    self._erase(write_addr, erase_length)
+
+                # write part of the data into erased place
+                write_data = data[offset : offset + erase_length]
+                self.write(write_addr, write_data)
+                read_back = self.read(write_addr, erase_length)
+
+                # update
+                if read_back == write_data:
+                  length -= erase_length
+                  write_addr += erase_length
+                  offset += erase_length
+                  retries_remaining = retry
+                  pbar.update(erase_length)
+                else:
+                  retries_remaining -= 1
+
+        # final check: read everying once again
         read_back = self.read(addr, len(data), disable_progress=False)
 
         if read_back == data:
@@ -354,4 +435,5 @@ class TinyProg(object):
         self.progress("Waking up SPI flash")
         self.wake()
         self.progress(str(len(bitstream)) + " bytes to program")
-        return self.program(addr, bitstream)
+        # return self.program(addr, bitstream)
+        return self.program_sectors(addr, bitstream)
