@@ -1,4 +1,0 @@
-joe tinyprog/__init__.py
-
-        print("FLASH ID")
-        print([elem.encode("hex") for elem in flash_id])
