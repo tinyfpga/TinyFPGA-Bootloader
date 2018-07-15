@@ -6,7 +6,8 @@ import re
 from intelhex import IntelHex
 from tqdm import tqdm
 from functools import reduce
-
+import six
+from serial.serialutil import writeTimeoutError
 
 bit_reverse_table = bytearray([
     0x00, 0x80, 0x40, 0xC0, 0x20, 0xA0, 0x60, 0xE0, 0x10, 0x90, 0x50, 0xD0, 0x30, 0xB0, 0x70, 0xF0,
@@ -313,8 +314,14 @@ class TinyProg(object):
 
 
     def boot(self):
-        self.ser.write(b"\x00")
-        self.ser.flush()
+        try:
+            self.ser.write(b"\x00")
+            self.ser.flush()
+        except writeTimeoutError:
+            # we might get a writeTimeoutError and that's OK.  Sometimes the
+            # bootloader will reboot before it finishes sending out the USB ACK
+            # for the boot command data packet.
+            pass
 
 
     def slurp(self, filename):
@@ -324,7 +331,7 @@ class TinyProg(object):
 
         elif filename.endswith('.hex'):
             with open(filename, 'rb') as f:
-                return ''.join(chr(int(i, 16)) for i in f.read().split())
+                return bytes("".join(chr(int(i, 16)) for i in f.read().split()))
 
         elif filename.endswith('.mcs'):
             ih = IntelHex()
