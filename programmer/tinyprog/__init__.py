@@ -488,4 +488,4 @@ class TinyProg(object):
         self.progress(str(len(bitstream)) + " bytes to program")
         # return self.program(addr, bitstream)
         return self.program_sectors(addr, bitstream)
-          return self.verify_sectors(addr, bitstream)
+        # return self.verify_sectors(addr, bitstream)
