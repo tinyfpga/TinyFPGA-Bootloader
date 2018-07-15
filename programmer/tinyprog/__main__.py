@@ -136,15 +136,17 @@ def perform_bootloader_update(port):
             return False
 
     sys.stdout.write("    Waiting for stage one to reconnect...")
-    
+    sys.stdout.flush()
+
     new_port = None
 
     for x in range(20):
         time.sleep(1)
         sys.stdout.write(".")
+        sys.stdout.flush()
         new_port = get_port_by_uuid("1d50:6130", uuid)
         if new_port is not None:
-            print("    Connected!")
+            print("connected!")
             break
     
     with serial.Serial(new_port, timeout=1.0, writeTimeout=1.0) as ser:
