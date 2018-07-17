@@ -7,7 +7,7 @@ from intelhex import IntelHex
 from tqdm import tqdm
 from functools import reduce
 import six
-from serial.serialutil import writeTimeoutError
+from serial.serialutil import SerialTimeoutException, writeTimeoutError
 
 bit_reverse_table = bytearray([
     0x00, 0x80, 0x40, 0xC0, 0x20, 0xA0, 0x60, 0xE0, 0x10, 0x90, 0x50, 0xD0, 0x30, 0xB0, 0x70, 0xF0,
@@ -52,7 +52,7 @@ class TinyMeta(object):
 
     def _parse_json(self, data):
         try:
-            return json.loads(data)
+            return json.loads(bytes(data).decode("utf-8"))
         except:
             return None
 
@@ -68,7 +68,7 @@ class TinyMeta(object):
             m = re.search(r"^\s*@\s*0x(?P<addr>[A-Fa-f0-9]+)\s*\+\s*(?P<len>\d+)\s*$", meta)
             if m:
                 data = self.prog.read(int(m.group("addr"), 16), int(m.group("len")))
-                return json.loads(data)
+                return json.loads(bytes(data).decode("utf-8"))
             else:
                 return meta
 
@@ -317,7 +317,7 @@ class TinyProg(object):
         try:
             self.ser.write(b"\x00")
             self.ser.flush()
-        except writeTimeoutError:
+        except SerialTimeoutException as e:
             # we might get a writeTimeoutError and that's OK.  Sometimes the
             # bootloader will reboot before it finishes sending out the USB ACK
             # for the boot command data packet.
