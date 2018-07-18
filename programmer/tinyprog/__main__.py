@@ -1,4 +1,5 @@
-from tinyprog import TinyProg, get_ports, use_libusb
+from tinyprog import TinyProg, get_ports
+import tinyprog
 from six.moves.urllib.request import urlopen
 from six.moves import input
 import sys
@@ -208,7 +209,7 @@ def main():
         sys.exit(1)
     device = '{}:{}'.format(device[:4], device[4:])
 
-    use_libusb = args.libusb
+    tinyprog.use_libusb = args.libusb
 
     active_boards = get_ports(device) + get_ports("1209:2100")
 
