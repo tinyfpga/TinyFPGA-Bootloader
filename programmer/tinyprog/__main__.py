@@ -1,10 +1,8 @@
-from serial.tools.list_ports import comports
-from tinyprog import TinyProg
+from tinyprog import TinyProg, get_ports, use_libusb
 from six.moves.urllib.request import urlopen
 from six.moves import input
 import sys
 import argparse
-import serial
 import json
 from packaging import version
 import time
@@ -44,15 +42,15 @@ def query_user(question, default="no"):
                              "(or 'y' or 'n').\n")
 
 
-
 def get_port_by_uuid(device, uuid):
-    boards = [p[0] for p in comports() if ((device in p[2].lower()) or ("1209:2100" in p[2].lower()))]
-    for port in boards:
+    ports = get_ports(device) + get_ports("1209:2100")
+    for port in ports:
         try:
-            with serial.Serial(port, timeout=1.0, writeTimeout=1.0) as ser:
-                p = TinyProg(ser)
+            with port:
+                p = TinyProg(port)
                 if p.meta.uuid().startswith(uuid):
                     return port
+
         except:
             pass
     return None
@@ -71,33 +69,24 @@ def check_for_wrong_tinyfpga_bx_vidpid():
     Some of the TinyFPGA BX boards have the wrong USB VID:PID.  This function
     looks for such boards.
     """
-    has_boards_to_fix = False
-    success = True
-
     boards_needing_update = []
 
-    old_boards = [p[0] for p in comports() if "1209:2100" in p[2].lower()]
-
-    # for each oldboard
-    for port in old_boards:
-        with serial.Serial(port, timeout=1.0, writeTimeout=1.0) as ser:
-            p = TinyProg(ser)
+    ports = get_ports("1209:2100")
+    for port in ports:
+        with port:
+            p = TinyProg(port)
             m = p.meta.root
             if m[u"boardmeta"][u"name"] == u"TinyFPGA BX":
                 boards_needing_update.append(port)
 
     return boards_needing_update
-   
-
-
-
 
 
 def perform_bootloader_update(port):
     uuid = None
 
-    with serial.Serial(port, timeout=1.0, writeTimeout=1.0) as ser:
-        p = TinyProg(ser)
+    with port:
+        p = TinyProg(port)
         m = p.meta.root
 
         uuid = m[u"boardmeta"][u"uuid"]
@@ -149,9 +138,8 @@ def perform_bootloader_update(port):
             print("connected!")
             break
     
-    with serial.Serial(new_port, timeout=1.0, writeTimeout=1.0) as ser:
-        p = TinyProg(ser)
-        m = p.meta.root
+    with new_port:
+        p = TinyProg(new_port)
 
         ####################
         # STAGE TWO 
@@ -178,7 +166,6 @@ def print_board(port, m):
     else:
         print("")
         print("        %s: No metadata" % (port))
-
 
 
 def main():
@@ -210,6 +197,8 @@ def main():
                         help="dump out the metadata for all connected boards in JSON")
     parser.add_argument("--update-bootloader", action="store_true",
                         help="check for new bootloader and update eligible connected boards")
+    parser.add_argument("--libusb", action="store_true",
+                        help="try using libusb to connect to boards without a serial driver attached")
 
     args = parser.parse_args()
 
@@ -218,15 +207,18 @@ def main():
         print("    Invalid device id, use format vendor:product")
         sys.exit(1)
     device = '{}:{}'.format(device[:4], device[4:])
-    active_boards = [p[0] for p in comports() if ((device in p[2].lower()) or ("1209:2100" in p[2].lower()))]
+
+    use_libusb = args.libusb
+
+    active_boards = get_ports(device) + get_ports("1209:2100")
 
     if args.meta:
         meta = []
         for port in active_boards:
-            with serial.Serial(port, timeout=1.0, writeTimeout=1.0) as ser:
-                p = TinyProg(ser)
+            with port:
+                p = TinyProg(port)
                 m = p.meta.root
-                m["port"] = port
+                m["port"] = str(port)
                 meta.append(m)
         print(json.dumps(meta, indent=2))
         sys.exit(0)
@@ -264,15 +256,14 @@ def main():
     if args.list or active_port is None:
         print("    Boards with active bootloaders:")
         for port in active_boards:
-            with serial.Serial(port, timeout=1.0, writeTimeout=1.0) as ser:
-                p = TinyProg(ser)
+            with port:
+                p = TinyProg(port)
                 m = p.meta.root
                 print_board(port, m)
 
         if len(active_boards) == 0:
             print("        No active bootloaders found.  Check USB connections")
             print("        and press reset button to activate bootloader.")
-
 
     if args.update_bootloader:
         boards_needing_update = (
@@ -285,9 +276,6 @@ def main():
         else:
             for port in boards_needing_update:
                 perform_bootloader_update(port)
-        
-
-
 
     # program the flash memory
     if (args.program is not None) or (args.program_userdata is not None):
@@ -295,11 +283,11 @@ def main():
             if isinstance(info, str):
                 print("    " + info)
 
-        with serial.Serial(active_port, timeout=1.0, writeTimeout=1.0) as ser:
-            fpga = TinyProg(ser, progress)
+        with active_port:
+            fpga = TinyProg(active_port, progress)
 
             if args.program is not None:
-                print("    Programming " + active_port + " with " + args.program)
+                print("    Programming " + str(active_port) + " with " + args.program)
 
                 bitstream = fpga.slurp(args.program)
                 
@@ -340,14 +328,18 @@ def main():
                     sys.exit(1)
 
             fpga.boot()
+            print("")
             sys.exit(0)
 
     # boot the FPGA
     if args.boot:
         print("    Booting " + active_port)
-        with serial.Serial(active_port, timeout=1.0, writeTimeout=1.0) as ser:
-            fpga = TinyProg(ser)
+        with active_port:
+            fpga = TinyProg(active_port)
             fpga.boot()
+
+    print("")
+
 
 if __name__ == '__main__':
     main()
