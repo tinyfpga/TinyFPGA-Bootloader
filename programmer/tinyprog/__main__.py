@@ -334,7 +334,7 @@ def main():
 
     # boot the FPGA
     if args.boot:
-        print("    Booting " + active_port)
+        print("    Booting " + str(active_port))
         with active_port:
             fpga = TinyProg(active_port)
             fpga.boot()

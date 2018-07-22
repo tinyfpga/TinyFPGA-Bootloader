@@ -116,8 +116,8 @@ bit_reverse_table = bytearray([
 ])
 
 
-def _mirror_byte(byte):
-    return bit_reverse_table[byte]
+def _mirror_byte(b):
+    return bit_reverse_table[ord(b)]
 
 
 def _mirror_each_byte(data):
@@ -200,9 +200,9 @@ class TinyProg(object):
 
         self.wake()
         flash_id = self.read_id()
-
+        flash_id = [ord(b) for b in flash_id]
         # temporary hack, should have better database as well as SFPD reading
-        if flash_id in ['\x9D\x60\x16']:
+        if flash_id[0:2] == [0x9D, 0x60]:
             # ISSI
             self.security_page_bit_offset = 4
             self.security_page_write_cmd = 0x62
