@@ -12,6 +12,7 @@ import serial
 import platform
 
 use_libusb = False
+use_pyserial = False
 
 def get_ports(device_id):
     """
@@ -34,7 +35,7 @@ def get_ports(device_id):
         ]
 
     # MacOS is not playing nicely with the serial drivers for the bootloader
-    if platform.system() != "Darwin":
+    if platform.system() != "Darwin" or use_pyserial:
         # get serial ports first
         ports += [SerialPort(p[0]) for p in comports() if device_id in p[2].lower()]
 

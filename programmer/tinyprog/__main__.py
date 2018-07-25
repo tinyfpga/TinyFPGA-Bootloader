@@ -200,6 +200,8 @@ def main():
                         help="check for new bootloader and update eligible connected boards")
     parser.add_argument("--libusb", action="store_true",
                         help="try using libusb to connect to boards without a serial driver attached")
+    parser.add_argument("--pyserial", action="store_true",
+                        help="use pyserial to connect to boards")
 
     args = parser.parse_args()
 
@@ -210,6 +212,7 @@ def main():
     device = '{}:{}'.format(device[:4], device[4:])
 
     tinyprog.use_libusb = args.libusb
+    tinyprog.use_pyserial = args.pyserial
 
     active_boards = get_ports(device) + get_ports("1209:2100")
 
@@ -282,13 +285,13 @@ def main():
     if (args.program is not None) or (args.program_userdata is not None):
         def progress(info):
             if isinstance(info, str):
-                print("    " + info)
+                print("    " + str(info))
 
         with active_port:
             fpga = TinyProg(active_port, progress)
 
             if args.program is not None:
-                print("    Programming " + str(active_port) + " with " + args.program)
+                print("    Programming " + str(active_port) + " with " + str(args.program))
 
                 bitstream = fpga.slurp(args.program)
                 
@@ -309,7 +312,7 @@ def main():
     
             # program user flash area
             if args.program_userdata is not None:
-                print("    Programming " + active_port + " with " + args.program_userdata)
+                print("    Programming " + str(active_port) + " with " + str(args.program_userdata))
 
                 bitstream = fpga.slurp(args.program_userdata)
 
