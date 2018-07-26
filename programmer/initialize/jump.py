@@ -58,7 +58,7 @@ def uint32(n):
   if reverse_bits:
     n = reverse_Bits(n, 32)
   if reverse_bytes:
-    return struct.pack(">L", n)
+    return struct.pack("<L", n)
   else:
     return struct.pack(">L", n)
 
