@@ -161,7 +161,7 @@ class TinyMeta(object):
         import math
         meta_roots = (
             [self._parse_json(self.prog.read_security_register_page(p).replace(b"\x00", b"").replace(b"\xff", b"")) for p in [1, 2, 3]] +
-            [self._parse_json(self.prog.read(int(math.pow(2, p) - (4 * 1024)), (4 * 1024)).replace(b"\x00", b"").replace(b"\xff", b"")) for p in [17, 18, 19, 20, 21, 22, 23, 24]]
+            [self._parse_json(self.prog.read(int(math.pow(2, p) - (4 * 1024)), (4 * 1024) - 256).replace(b"\x00", b"").replace(b"\xff", b"")) for p in [17, 18, 19, 20, 21, 22, 23, 24]]
         )
         meta_roots = [root for root in meta_roots if root is not None]
         if len(meta_roots) > 0:
@@ -266,11 +266,14 @@ class TinyProg(object):
         with tqdm(desc="    Reading", unit="B", unit_scale=True, total=length, disable=disable_progress) as pbar:
             while length > 0:
                 read_length = min(255, length)
-                data += self.cmd(0x0b, addr, b'\x00', read_len=read_length)
-                self.progress(read_length)
-                addr += read_length
-                length -= read_length
-                pbar.update(read_length)
+                read_payload = self.cmd(0x0b, addr, b'\x00', read_len=read_length)
+                payload_length = len(read_payload)
+                if payload_length > 0:
+                  data += read_payload
+                  self.progress(payload_length)
+                  addr += payload_length
+                  length -= payload_length
+                  pbar.update(payload_length)
             return data
 
     def write_enable(self):
@@ -376,6 +379,84 @@ class TinyProg(object):
             self.progress("Failure!")
             return False
 
+    # for each sector: erase,program,verify
+    # this programming is much more reliable than previous program()
+    # because each written sector will be verified and in case of
+    # error, retried several times
+    def program_sectors(self, addr, data, retry=10):
+        possible_lengths = (1, 4 * 1024, 32 * 1024, 64 * 1024)
+        retries_remaining = retry
+        length = len(data)
+        offset = 0
+        write_addr = addr + offset
+        with tqdm(desc="    Writing", unit="B", unit_scale=True, total=length, disable=False) as pbar:
+            while length > 0 and retries_remaining > 0:
+                erase_length = max(p for p in possible_lengths
+                                   if p <= length and write_addr % p == 0)
+
+                if erase_length == 1:
+                    # there are no opcode to erase that much
+                    # either we want to erase up to multiple of 0x1000
+                    # or we want to erase up to length
+
+                    # start_addr                            end_addr
+                    # v                                     v
+                    # +------------------+------------------+----------------+
+                    # |       keep       |      erase       |      keep      |
+                    # +------------------+------------------+----------------+
+                    #  <- start_length -> <- erase_length -> <- end_length ->
+
+                    start_addr = write_addr & 0xfff000
+                    start_length = write_addr & 0xfff
+                    erase_length = min(0x1000 - start_length, length)
+                    end_addr = start_addr + start_length + erase_length
+                    end_length = start_addr + 0x1000 - end_addr
+
+                    # read data we need to restore later
+                    if start_length:
+                        start_read_data = self.read(start_addr, start_length)
+                    if end_length:
+                        end_read_data = self.read(end_addr, end_length)
+
+                    # erase the block
+                    self._erase(start_addr, 0x1000)
+
+                    # restore data
+                    if start_length:
+                        self.write(start_addr, start_read_data)
+                    if end_length:
+                        self.write(end_addr, end_read_data)
+
+                else:
+                    # there is an opcode to erase that much data
+                    self.progress(erase_length)
+                    self._erase(write_addr, erase_length)
+
+                # write part of the data into erased place
+                write_data = data[offset : offset + erase_length]
+                self.write(write_addr, write_data)
+                # at last sector len 3890 bytes read will get stuck
+                read_back = self.read(write_addr, erase_length)
+
+                # update
+                if read_back == write_data:
+                  length -= erase_length
+                  write_addr += erase_length
+                  offset += erase_length
+                  retries_remaining = retry
+                  pbar.update(erase_length)
+                else:
+                  retries_remaining -= 1
+
+        read_back = self.read(addr, len(data), disable_progress=False)
+
+        if read_back == data:
+            self.progress("Success!")
+            return True
+        else:
+            self.progress("Failure!")
+            return False
+
     def boot(self):
         try:
             self.ser.write(b"\x00")
@@ -385,6 +466,60 @@ class TinyProg(object):
             # bootloader will reboot before it finishes sending out the USB ACK
             # for the boot command data packet.
             pass
+
+    # similar to program_sectors
+    def verify_sectors(self, addr, data, retry=10):
+        possible_lengths = (1, 4 * 1024, 32 * 1024, 64 * 1024)
+        retries_remaining = retry
+        length = len(data)
+        offset = 0
+        write_addr = addr + offset
+        with tqdm(desc="  Verifying", unit="B", unit_scale=True, total=length, disable=False) as pbar:
+            while length > 0 and retries_remaining > 0:
+                erase_length = max(p for p in possible_lengths
+                                   if p <= length and write_addr % p == 0)
+                if erase_length == 1:
+                    # there are no opcode to erase that much
+                    # either we want to erase up to multiple of 0x1000
+                    # or we want to erase up to length
+
+                    # start_addr                            end_addr
+                    # v                                     v
+                    # +------------------+------------------+----------------+
+                    # |       keep       |      erase       |      keep      |
+                    # +------------------+------------------+----------------+
+                    #  <- start_length -> <- erase_length -> <- end_length ->
+
+                    start_addr = write_addr & 0xfff000
+                    start_length = write_addr & 0xfff
+                    erase_length = min(0x1000 - start_length, length)
+                    end_addr = start_addr + start_length + erase_length
+                    end_length = start_addr + 0x1000 - end_addr
+
+                self.progress(erase_length)
+
+                write_data = data[offset : offset + erase_length]
+                # read_back = self.read(write_addr, erase_length)
+                read_back = write_data
+
+                # update
+                if read_back == write_data:
+                  length -= erase_length
+                  write_addr += erase_length
+                  offset += erase_length
+                  retries_remaining = retry
+                  pbar.update(erase_length)
+                else:
+                  retries_remaining -= 1
+
+        verify_read = self.read(addr, len(data), disable_progress=False)
+
+        if verify_read == data:
+            self.progress("Success!")
+            return True
+        else:
+            self.progress("Failure!")
+            return False
 
     def slurp(self, filename):
         if filename.endswith('.bit') or filename.endswith('.bin'):
@@ -409,4 +544,4 @@ class TinyProg(object):
         self.progress("Waking up SPI flash")
         self.wake()
         self.progress(str(len(bitstream)) + " bytes to program")
-        return self.program(addr, bitstream)
+        return self.program_sectors(addr, bitstream)

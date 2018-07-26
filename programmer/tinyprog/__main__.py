@@ -331,7 +331,7 @@ def main():
                 if not fpga.program_bitstream(addr, bitstream):
                     sys.exit(1)
 
-            fpga.boot()
+            # fpga.boot()
             print("")
             sys.exit(0)
 
