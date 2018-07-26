@@ -74,7 +74,11 @@ module tinyfpga_bootloader (
       end
     end
   end
-  always @(posedge clk_48mhz) pwm_cnt <= pwm_cnt + 1'b1; 
+  always @(posedge clk_48mhz)
+    if (reset) 
+      pwm_cnt <= 0;
+    else
+      pwm_cnt <= pwm_cnt + 1'b1; 
   assign led = led_pwm > pwm_cnt;  
 
 
