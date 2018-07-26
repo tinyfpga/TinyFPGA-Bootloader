@@ -14,6 +14,12 @@ import platform
 use_libusb = False
 use_pyserial = False
 
+def to_int(value):
+    try:
+        return ord(value)
+    except:
+        return int(value)
+
 def get_ports(device_id):
     """
     Return ports for all devices with the given device_id.
@@ -118,7 +124,7 @@ bit_reverse_table = bytearray([
 
 
 def _mirror_byte(b):
-    return bit_reverse_table[ord(b)]
+    return bit_reverse_table[to_int(b)]
 
 
 def _mirror_each_byte(data):
@@ -190,6 +196,7 @@ class TinyMeta(object):
         return str(self.root[u"boardmeta"][u"uuid"])
 
 
+
 class TinyProg(object):
     def __init__(self, ser, progress=None):
         self.ser = ser
@@ -201,7 +208,7 @@ class TinyProg(object):
 
         self.wake()
         flash_id = self.read_id()
-        flash_id = [ord(b) for b in flash_id]
+        flash_id = [to_int(b) for b in flash_id]
         # temporary hack, should have better database as well as SFPD reading
         if flash_id[0:2] == [0x9D, 0x60]:
             # ISSI
@@ -280,7 +287,7 @@ class TinyProg(object):
         self.cmd(0x04)
 
     def wait_while_busy(self):
-        while ord(self.read_sts()) & 1:
+        while to_int(self.read_sts()) & 1:
             pass
 
     def _erase(self, addr, length):

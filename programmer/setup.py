@@ -11,7 +11,7 @@ setup(
         'packaging',
         'pyusb'
     ],
-    version = '1.0.12',
+    version = '1.0.18',
     description = 'Programmer for FPGA boards using the TinyFPGA USB Bootloader (http://tinyfpga.com)',
     author = 'Luke Valenty',
     author_email = 'luke@tinyfpga.com',

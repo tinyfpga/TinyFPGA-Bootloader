@@ -237,7 +237,7 @@ def main():
     # find port to use
     active_port = None
     if args.com is not None:
-        active_port = args.com
+        active_port = tinyprog.SerialPort(args.com)
 
     elif args.id is not None:
         active_port = get_port_by_uuid(device, args.id)
