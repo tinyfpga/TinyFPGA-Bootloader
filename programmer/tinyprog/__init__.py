@@ -1,11 +1,106 @@
 import struct
-import time
 import json
 import jsonmerge
 import re
 from intelhex import IntelHex
 from tqdm import tqdm
 from functools import reduce
+import six
+from serial.serialutil import SerialTimeoutException
+from serial.tools.list_ports import comports
+import serial
+import platform
+
+use_libusb = False
+use_pyserial = False
+
+def to_int(value):
+    try:
+        return ord(value)
+    except:
+        return int(value)
+
+def get_ports(device_id):
+    """
+    Return ports for all devices with the given device_id.
+
+    :param device_id: USB VID and PID.
+    :return: List of port objects.
+    """
+
+    ports = []
+
+    if platform.system() == "Darwin" or use_libusb:
+        import usb
+        vid, pid = [int(x, 16) for x in device_id.split(":")]
+
+        ports += [
+            UsbPort(d)
+            for d in usb.core.find(idVendor=vid, idProduct=pid, find_all=True)
+            if not d.is_kernel_driver_active(1)
+        ]
+
+    # MacOS is not playing nicely with the serial drivers for the bootloader
+    if platform.system() != "Darwin" or use_pyserial:
+        # get serial ports first
+        ports += [SerialPort(p[0]) for p in comports() if device_id in p[2].lower()]
+
+    return ports
+
+
+class SerialPort(object):
+    def __init__(self, port_name):
+        self.port_name = port_name
+        self.ser = None
+
+    def __str__(self):
+        return self.port_name
+
+    def __enter__(self):
+        self.ser = serial.Serial(self.port_name, timeout=1.0, writeTimeout=1.0).__enter__()
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.ser.__exit__(exc_type, exc_val, exc_tb)
+
+    def write(self, data):
+        self.ser.write(data)
+
+    def flush(self):
+        self.ser.flush()
+
+    def read(self, length):
+        return self.ser.read(length)
+
+
+class UsbPort(object):
+    def __init__(self, device):
+        self.device = device
+        usb_interface = device.configurations()[0].interfaces()[1]
+        self.OUT = usb_interface.endpoints()[0]
+        self.IN = usb_interface.endpoints()[1]
+
+    def __str__(self):
+        return "USB %d.%d" % (self.device.bus, self.device.port_number)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        pass
+
+    def write(self, data):
+        self.OUT.write(data)
+
+    def flush(self):
+        # i don't think there's a comparable function on pyusb endpoints
+        pass
+
+    def read(self, length):
+        if length > 0:
+            data = self.IN.read(length)
+            return bytearray(data)
+        else:
+            return ""
 
 
 bit_reverse_table = bytearray([
@@ -28,10 +123,8 @@ bit_reverse_table = bytearray([
 ])
 
 
-
-def _mirror_byte(byte):
-    return bit_reverse_table[byte]
-
+def _mirror_byte(b):
+    return bit_reverse_table[to_int(b)]
 
 
 def _mirror_each_byte(data):
@@ -41,20 +134,17 @@ def _mirror_each_byte(data):
     return mirrored_data
 
 
-
 class TinyMeta(object):
     def __init__(self, prog):
         self.prog = prog
         prog.wake()
         self.root = self._read_metadata()
 
-
     def _parse_json(self, data):
         try:
-            return json.loads(data)
+            return json.loads(bytes(data).decode("utf-8"))
         except:
             return None
-
 
     def _resolve_pointers(self, meta):
         if isinstance(meta, dict):
@@ -67,12 +157,11 @@ class TinyMeta(object):
             m = re.search(r"^\s*@\s*0x(?P<addr>[A-Fa-f0-9]+)\s*\+\s*(?P<len>\d+)\s*$", meta)
             if m:
                 data = self.prog.read(int(m.group("addr"), 16), int(m.group("len")))
-                return json.loads(data)
+                return json.loads(bytes(data).decode("utf-8"))
             else:
                 return meta
 
         return meta
-
 
     def _read_metadata(self):
         import math
@@ -85,7 +174,6 @@ class TinyMeta(object):
             meta = reduce(jsonmerge.merge, meta_roots)
             return self._resolve_pointers(meta)
         return None
-
 
     def bootloader_addr_range(self):
         return self._get_addr_range(u"bootloader")
@@ -100,12 +188,13 @@ class TinyMeta(object):
         addr_str = self.root[u"bootmeta"][u"addrmap"][name]
         m = re.search(r"^\s*0x(?P<start>[A-Fa-f0-9]+)\s*-\s*0x(?P<end>[A-Fa-f0-9]+)\s*$", addr_str)
         if m:
-            return (int(m.group("start"), 16), int(m.group("end"), 16))
+            return int(m.group("start"), 16), int(m.group("end"), 16)
         else:
             return None
 
     def uuid(self):
         return str(self.root[u"boardmeta"][u"uuid"])
+
 
 
 class TinyProg(object):
@@ -119,9 +208,9 @@ class TinyProg(object):
 
         self.wake()
         flash_id = self.read_id()
-
+        flash_id = [to_int(b) for b in flash_id]
         # temporary hack, should have better database as well as SFPD reading
-        if flash_id in ['\x9D\x60\x16']:
+        if flash_id[0:2] == [0x9D, 0x60]:
             # ISSI
             self.security_page_bit_offset = 4
             self.security_page_write_cmd = 0x62
@@ -137,7 +226,6 @@ class TinyProg(object):
 
         self.meta = TinyMeta(self)
 
-
     def is_bootloader_active(self):
         self.wake()
         devid = self.read_id()
@@ -145,9 +233,9 @@ class TinyProg(object):
             return True
         return False
 
-
     def cmd(self, opcode, addr=None, data=b'', read_len=0):
-        assert isinstance(data, bytes)
+        #print("type of data is %s" % type(data))
+        #assert isinstance(data, bytes)
         addr = b'' if addr is None else struct.pack('>I', addr)[1:]
         write_string = bytearray([opcode]) + addr + data
         cmd_write_string = b'\x01' + struct.pack('<HH', len(write_string), read_len) + write_string
@@ -155,38 +243,30 @@ class TinyProg(object):
         self.ser.flush()
         return self.ser.read(read_len)
 
-
     def sleep(self):
         self.cmd(0xb9)
-
 
     def wake(self):
         self.cmd(0xab)
 
-
     def read_id(self):
         return self.cmd(0x9f, read_len=3)
 
-
     def read_sts(self):
         return self.cmd(0x05, read_len=1)
-
 
     def erase_security_register_page(self, page):
         self.write_enable()
         self.cmd(self.security_page_erase_cmd, page << (8 + self.security_page_bit_offset))
         self.wait_while_busy()
 
-
     def program_security_register_page(self, page, data):
         self.write_enable()
         self.cmd(self.security_page_write_cmd, page << (8 + self.security_page_bit_offset), data)
         self.wait_while_busy()
 
-
     def read_security_register_page(self, page):
         return self.cmd(self.security_page_read_cmd, addr=page << (8 + self.security_page_bit_offset), data=b'\x00', read_len=255)
-
 
     def read(self, addr, length, disable_progress=True):
         data = b''
@@ -200,19 +280,15 @@ class TinyProg(object):
                 pbar.update(read_length)
             return data
 
-
     def write_enable(self):
         self.cmd(0x06)
-
 
     def write_disable(self):
         self.cmd(0x04)
 
-
     def wait_while_busy(self):
-        while ord(self.read_sts()) & 1:
+        while to_int(self.read_sts()) & 1:
             pass
-
 
     def _erase(self, addr, length):
         opcode = {
@@ -223,7 +299,6 @@ class TinyProg(object):
         self.write_enable()
         self.cmd(opcode, addr)
         self.wait_while_busy()
-
 
     def erase(self, addr, length, disable_progress=True):
         possible_lengths = (1, 4 * 1024, 32 * 1024, 64 * 1024)
@@ -276,14 +351,12 @@ class TinyProg(object):
                 addr += erase_length
                 pbar.update(erase_length)
 
-
     # don't use this directly, use the public "write" function instead
     def _write(self, addr, data):
         self.write_enable()
         self.cmd(0x02, addr, data)
         self.wait_while_busy()
         self.progress(len(data))
-
 
     def write(self, addr, data, disable_progress=True):
         offset = 0
@@ -298,7 +371,6 @@ class TinyProg(object):
                 addr += write_length
                 pbar.update(write_length)
 
-
     def program(self, addr, data):
         self.erase(addr, len(data), disable_progress=False)
         self.write(addr, data, disable_progress=False)
@@ -311,11 +383,15 @@ class TinyProg(object):
             self.progress("Failure!")
             return False
 
-
     def boot(self):
-        self.ser.write(b"\x00")
-        self.ser.flush()
-
+        try:
+            self.ser.write(b"\x00")
+            self.ser.flush()
+        except SerialTimeoutException as e:
+            # we might get a writeTimeoutError and that's OK.  Sometimes the
+            # bootloader will reboot before it finishes sending out the USB ACK
+            # for the boot command data packet.
+            pass
 
     def slurp(self, filename):
         if filename.endswith('.bit') or filename.endswith('.bin'):
@@ -324,7 +400,7 @@ class TinyProg(object):
 
         elif filename.endswith('.hex'):
             with open(filename, 'rb') as f:
-                return ''.join(chr(int(i, 16)) for i in f.read().split())
+                return bytes("".join(chr(int(i, 16)) for i in f.read().split()))
 
         elif filename.endswith('.mcs'):
             ih = IntelHex()
@@ -335,7 +411,6 @@ class TinyProg(object):
 
         else:
             raise ValueError('Unknown bitstream extension')
-
 
     def program_bitstream(self, addr, bitstream):
         self.progress("Waking up SPI flash")
