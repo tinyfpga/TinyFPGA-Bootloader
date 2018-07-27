@@ -35,6 +35,10 @@ all: $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
 $(PROJECT)/$(PROJECT)_$(PROJECT).bit:
 	echo prj_project open ${PROJ_FILE} \; prj_run Export -task Bitgen | ${DIAMONDC}
 
+# same file with different name required for multiboot to work
+$(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit: $(PROJECT)/$(PROJECT)_$(PROJECT).bit
+	cp $< $@
+
 $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.vme: $(PROJECT)/$(PROJECT)_$(PROJECT).bit
 	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_45f_sram.xcf -nocompress -noheader -of $@
 
@@ -47,18 +51,21 @@ $(PROJECT)/$(PROJECT)_$(PROJECT)_flash_micron_32mbit.vme: $(PROJECT)/$(PROJECT)_
 $(PROJECT)/$(PROJECT)_$(PROJECT)_flash_spansion_64mbit.vme: $(PROJECT)/$(PROJECT)_$(PROJECT).mcs
 	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_45f_flash_spansion_64mbit.xcf -nocompress -noheader -of $@
 
-$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_32mbit.mcs: $(PROJECT)/$(PROJECT)_$(PROJECT).bit
+$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_32mbit.mcs: $(PROJECT)/$(PROJECT)_$(PROJECT).bit $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit
 	LANG=C ${DDTCMD} -dev $(FPGA_DEVICE) -oft -advanced -format int -flashsize 32 -header  \
-	-if $< -golden $< -multi 1 -altfile $< -address 0x200000 -next prim -of $@
-# user image example: -altfile /tmp/f32c.bit, loaded after pulling PROGRAMN to GND
+	-if $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
+	-golden $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
+	-multi 1 -altfile $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit -address 0x200000 -next prim -of $@
 
 $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_32mbit.vme: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_32mbit.mcs
 	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_45f_multiboot_micron_32mbit.xcf -nocompress -noheader -of $@
 
-$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_spansion_64mbit.mcs: $(PROJECT)/$(PROJECT)_$(PROJECT).bit
+$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_spansion_64mbit.mcs: $(PROJECT)/$(PROJECT)_$(PROJECT).bit $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit
+	dd if=/dev/zero of=/tmp/zero.bit bs=1k count=300
 	LANG=C ${DDTCMD} -dev $(FPGA_DEVICE) -oft -advanced -format int -flashsize 64 -header  \
-	-if $< -golden $< -multi 1 -altfile $< -address 0x200000 -next prim -of $@
-# user image example: -altfile /tmp/f32c.bit, loaded after pulling PROGRAMN to GND
+	-if $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
+	-golden $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
+	-multi 1 -altfile $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit -address 0x200000 -next prim -of $@
 
 $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_spansion_64mbit.vme: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_spansion_64mbit.mcs
 	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_45f_multiboot_spansion_64mbit.xcf -nocompress -noheader -of $@
