@@ -297,55 +297,7 @@ class TinyProg(object):
         self.wait_while_busy()
 
     def erase(self, addr, length, disable_progress=True):
-        possible_lengths = (1, 4 * 1024, 32 * 1024, 64 * 1024)
-
-        with tqdm(desc="    Erasing", unit="B", unit_scale=True, total=length, disable=disable_progress) as pbar:
-            while length > 0:
-                erase_length = max(p for p in possible_lengths
-                                   if p <= length and addr % p == 0)
-
-                if erase_length == 1:
-                    # there are no opcode to erase that much
-                    # either we want to erase up to multiple of 0x1000
-                    # or we want to erase up to length
-
-                    # start_addr                            end_addr
-                    # v                                     v
-                    # +------------------+------------------+----------------+
-                    # |       keep       |      erase       |      keep      |
-                    # +------------------+------------------+----------------+
-                    #  <- start_length -> <- erase_length -> <- end_length ->
-
-                    start_addr = addr & 0xfff000
-                    start_length = addr & 0xfff
-                    erase_length = min(0x1000 - start_length, length)
-                    end_addr = start_addr + start_length + erase_length
-                    end_length = start_addr + 0x1000 - end_addr
-
-                    # read data we need to restore later
-                    if start_length:
-                        start_read_data = self.read(start_addr, start_length)
-                    if end_length:
-                        end_read_data = self.read(end_addr, end_length)
-
-                    # erase the block
-                    self._erase(start_addr, 0x1000)
-
-                    # restore data
-                    if start_length:
-                        self.write(start_addr, start_read_data)
-                    if end_length:
-                        self.write(end_addr, end_read_data)
-
-                else:
-                    # there is an opcode to erase that much data
-                    self.progress(erase_length)
-                    self._erase(addr, erase_length)
-
-                # update
-                length -= erase_length
-                addr += erase_length
-                pbar.update(erase_length)
+        return self.program_sectors(addr, length, disable_progress)
 
     # don't use this directly, use the public "write" function instead
     def _write(self, addr, data):
@@ -383,13 +335,23 @@ class TinyProg(object):
     # this programming is much more reliable than previous program()
     # because each written sector will be verified and in case of
     # error, retried several times
-    def program_sectors(self, addr, data, retry=10):
+    # if integer value is passed to data, this will erase that much bytes
+    def program_sectors(self, addr, data, disable_progress=True, verify_only=False, retry=10):
         possible_lengths = (1, 4 * 1024, 32 * 1024, 64 * 1024)
         retries_remaining = retry
-        length = len(data)
+        data_enable = False
+        description = "    Erasing"
+        try:
+          if len(data) > 0:
+            length = len(data)
+            description = "    Writing"
+            data_enable = True
+        except:
+          length = data # probably integer = number of bytes to erase
         offset = 0
         write_addr = addr + offset
-        with tqdm(desc="    Writing", unit="B", unit_scale=True, total=length, disable=False) as pbar:
+        if verify_only == False:
+          with tqdm(desc=description, unit="B", unit_scale=True, total=length, disable=disable_progress) as pbar:
             while length > 0 and retries_remaining > 0:
                 erase_length = max(p for p in possible_lengths
                                    if p <= length and write_addr % p == 0)
@@ -432,30 +394,36 @@ class TinyProg(object):
                     self.progress(erase_length)
                     self._erase(write_addr, erase_length)
 
-                # write part of the data into erased place
-                write_data = data[offset : offset + erase_length]
-                self.write(write_addr, write_data)
-                # at last sector len 3890 bytes read will get stuck
-                read_back = self.read(write_addr, erase_length)
+                if data_enable:
+                    # write part of the data into erased place
+                    write_data = data[offset : offset + erase_length]
+                    self.write(write_addr, write_data)
+                    read_back = self.read(write_addr, erase_length)
+                else:
+                    # forces retry compare to succeed
+                    # todo: compare erased sector against 0xFF
+                    write_data = None
+                    read_back = None
 
                 # update
                 if read_back == write_data:
-                  length -= erase_length
-                  write_addr += erase_length
-                  offset += erase_length
-                  retries_remaining = retry
-                  pbar.update(erase_length)
+                    length -= erase_length
+                    write_addr += erase_length
+                    offset += erase_length
+                    retries_remaining = retry
+                    pbar.update(erase_length)
                 else:
-                  retries_remaining -= 1
+                    retries_remaining -= 1
 
-        read_back = self.read(addr, len(data), disable_progress=False)
+        if data_enable:
+            read_back = self.read(addr, len(data), disable_progress=disable_progress)
 
-        if read_back == data:
-            self.progress("Success!")
-            return True
-        else:
-            self.progress("Failure!")
-            return False
+            if read_back == data:
+                self.progress("Success!")
+                return True
+            else:
+                self.progress("Failure!")
+                return False
 
     def boot(self):
         try:
@@ -466,60 +434,6 @@ class TinyProg(object):
             # bootloader will reboot before it finishes sending out the USB ACK
             # for the boot command data packet.
             pass
-
-    # similar to program_sectors
-    def verify_sectors(self, addr, data, retry=10):
-        possible_lengths = (1, 4 * 1024, 32 * 1024, 64 * 1024)
-        retries_remaining = retry
-        length = len(data)
-        offset = 0
-        write_addr = addr + offset
-        with tqdm(desc="  Verifying", unit="B", unit_scale=True, total=length, disable=False) as pbar:
-            while length > 0 and retries_remaining > 0:
-                erase_length = max(p for p in possible_lengths
-                                   if p <= length and write_addr % p == 0)
-                if erase_length == 1:
-                    # there are no opcode to erase that much
-                    # either we want to erase up to multiple of 0x1000
-                    # or we want to erase up to length
-
-                    # start_addr                            end_addr
-                    # v                                     v
-                    # +------------------+------------------+----------------+
-                    # |       keep       |      erase       |      keep      |
-                    # +------------------+------------------+----------------+
-                    #  <- start_length -> <- erase_length -> <- end_length ->
-
-                    start_addr = write_addr & 0xfff000
-                    start_length = write_addr & 0xfff
-                    erase_length = min(0x1000 - start_length, length)
-                    end_addr = start_addr + start_length + erase_length
-                    end_length = start_addr + 0x1000 - end_addr
-
-                self.progress(erase_length)
-
-                write_data = data[offset : offset + erase_length]
-                # read_back = self.read(write_addr, erase_length)
-                read_back = write_data
-
-                # update
-                if read_back == write_data:
-                  length -= erase_length
-                  write_addr += erase_length
-                  offset += erase_length
-                  retries_remaining = retry
-                  pbar.update(erase_length)
-                else:
-                  retries_remaining -= 1
-
-        verify_read = self.read(addr, len(data), disable_progress=False)
-
-        if verify_read == data:
-            self.progress("Success!")
-            return True
-        else:
-            self.progress("Failure!")
-            return False
 
     def slurp(self, filename):
         if filename.endswith('.bit') or filename.endswith('.bin'):
@@ -544,4 +458,4 @@ class TinyProg(object):
         self.progress("Waking up SPI flash")
         self.wake()
         self.progress(str(len(bitstream)) + " bytes to program")
-        return self.program_sectors(addr, bitstream)
+        return self.program_sectors(addr, bitstream, disable_progress=False)
