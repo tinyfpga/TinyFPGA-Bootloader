@@ -188,6 +188,8 @@ def main():
     parser.add_argument("-b", "--boot", action="store_true",
                         help="command the FPGA board to exit the "
                              "bootloader and load the user configuration")
+    parser.add_argument("--no-boot", action="store_true",
+                        help="don't boot after programing")
     parser.add_argument("-c", "--com", type=str, help="serial port name")
     parser.add_argument("-i", "--id", type=str, help="FPGA board ID")
     parser.add_argument("-d", "--device", type=str, default="1d50:6130",
@@ -331,7 +333,8 @@ def main():
                 if not fpga.program_bitstream(addr, bitstream):
                     sys.exit(1)
 
-            fpga.boot()
+            if not args.no_boot:
+                fpga.boot()
             print("")
             sys.exit(0)
 
@@ -340,7 +343,6 @@ def main():
         print("    Booting " + str(active_port))
         with active_port:
             fpga = TinyProg(active_port)
-            fpga.boot()
 
     print("")
 
