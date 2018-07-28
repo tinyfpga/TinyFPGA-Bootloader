@@ -29,9 +29,11 @@ module bootloader_ulx3s (
   );
 
   wire clk_48mhz;
+  wire clk_ready;
   clk_200M_48M clk_48M_inst (
     .CLKI(clk_200mhz),
-    .CLKOP(clk_48mhz)
+    .CLKOP(clk_48mhz),
+    .LOCK(clk_ready)
   );
   
   ////////////////////////////////////////////////////////////////////////////////
@@ -41,7 +43,7 @@ module bootloader_ulx3s (
   ////////
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
-  wire reset;
+  reg reset = 1'b1;
   wire usb_p_tx;
   wire usb_n_tx;
   wire usb_p_rx;
@@ -68,8 +70,8 @@ module bootloader_ulx3s (
     .boot(boot)
   );
 
-  assign usb_fpga_dp = usb_tx_en ? usb_p_tx : 1'bz;
-  assign usb_fpga_dn = usb_tx_en ? usb_n_tx : 1'bz;
+  assign usb_fpga_dp = reset ? 1'b0 : (usb_tx_en ? usb_p_tx : 1'bz);
+  assign usb_fpga_dn = reset ? 1'b0 : (usb_tx_en ? usb_n_tx : 1'bz);
   assign usb_p_rx = usb_tx_en ? 1'b1 : usb_fpga_dp;
   assign usb_n_rx = usb_tx_en ? 1'b0 : usb_fpga_dn;
 
@@ -95,8 +97,12 @@ module bootloader_ulx3s (
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
   assign wifi_gpio0 = btn[0];
-  assign reset = ~btn[0];
   assign led[5] = boot;
   assign led[0] = pin_led;
+  
+  always @(posedge clk_48mhz)
+  begin
+    reset <= btn[1] | ~clk_ready;
+  end
 
 endmodule
