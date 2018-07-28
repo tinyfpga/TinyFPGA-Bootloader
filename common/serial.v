@@ -11,7 +11,7 @@ module width_adapter #(
 
   output data_out_put,
   input data_out_free,
-  output [OUTPUT_WIDTH-1:0] data_out,
+  output [OUTPUT_WIDTH-1:0] data_out
 );
 
   generate
