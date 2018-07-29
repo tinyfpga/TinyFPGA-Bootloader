@@ -21,9 +21,6 @@
         <Source name="../../common/edge_detect.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
-        <Source name="../../common/serial.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
         <Source name="../../common/usb_fs_in_arb.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
@@ -52,9 +49,6 @@
             <Options/>
         </Source>
         <Source name="../../common/usb_asp_ctrl_ep.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../common/usb_spi_bridge_ep.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
     </Implementation>
