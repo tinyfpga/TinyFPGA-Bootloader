@@ -1,4 +1,4 @@
-module bootloader_hid_ulx3s (
+module bootloader_asp_ulx3s (
   input  clk_25mhz,
 
   inout  usb_fpga_dp,

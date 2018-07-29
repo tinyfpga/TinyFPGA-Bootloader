@@ -2,9 +2,9 @@
 <BaliProject version="3.2" title="project" device="LFE5U-45F-6BG381C" default_implementation="project">
     <Options/>
     <Implementation title="project" dir="project" description="project" synthesis="synplify" default_strategy="Strategy1">
-        <Options def_top="bootloader_hid_ulx3s" top="bootloader_hid_ulx3s"/>
-        <Source name="top/bootloader_hid_ulx3s.v" type="Verilog" type_short="Verilog">
-            <Options top_module="bootloader_hid_ulx3s"/>
+        <Options def_top="bootloader_asp_ulx3s" top="bootloader_asp_ulx3s"/>
+        <Source name="top/bootloader_asp_ulx3s.v" type="Verilog" type_short="Verilog">
+            <Options top_module="bootloader_asp_ulx3s"/>
         </Source>
         <Source name="constraints/ulx3s_v17patch.lpf" type="Logic Preference" type_short="LPF">
             <Options/>
@@ -51,7 +51,7 @@
         <Source name="../../common/usb_reset_det.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
-        <Source name="../../common/usb_hid_ctrl_ep.v" type="Verilog" type_short="Verilog">
+        <Source name="../../common/usb_asp_ctrl_ep.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
         <Source name="../../common/usb_spi_bridge_ep.v" type="Verilog" type_short="Verilog">
