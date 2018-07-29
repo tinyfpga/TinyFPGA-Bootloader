@@ -124,8 +124,8 @@ module usb_asp_ctrl_ep (
 
   reg [6:0] rom_addr = 0;
 
-  reg [4:0] out_addr = 0; // 5 bits -> range 0-31
   reg [7:0] out_buf [0:31]; // PC out transfer should be received here (32 byte max)
+  reg vendorspec = 1'b0;
 
   reg save_dev_addr = 0;
   reg [6:0] new_dev_addr = 0;
@@ -242,6 +242,7 @@ module usb_asp_ctrl_ep (
     if (setup_stage_end) begin
     case (bmRequestType[6:5]) // 2 bits describing request type
       0 : begin // 0: standard request
+      vendorspec <= 1'b0; // not vendor-specific
       case (bRequest)
         'h06 : begin
           // GET_DESCRIPTOR
@@ -317,25 +318,26 @@ module usb_asp_ctrl_ep (
       endcase
       end // end 0: standard request
       default begin // 2: vendor specific request (also would handle 1 or 3)
+        vendorspec <= 1'b1; // this is vendor-specific request
         // debug_led <= wValue[7:0];
         rom_addr <= 0;
         rom_length <= wLength;
         bytes_sent <= 0;
-        out_addr <= 0;
       end // end 2: vendor specific request
     endcase
     end
 
-    if (ctrl_xfr_state == DATA_IN && more_data_to_send && in_ep_grant && in_ep_data_free) begin
+    if ( (ctrl_xfr_state == DATA_IN) && more_data_to_send && in_ep_grant && in_ep_data_free) begin
       rom_addr <= rom_addr + 1;
       bytes_sent <= bytes_sent + 1;
     end
 
-    if (ctrl_xfr_state == DATA_OUT && out_ep_data_valid && ~out_ep_setup) begin
-      if (out_addr == 31) begin
+    if ( (ctrl_xfr_state == DATA_OUT) && out_ep_data_valid && ~out_ep_setup) begin
+      if (rom_addr == 31) begin
         debug_led <= out_ep_data;
       end
-      out_addr <= out_addr + 1;
+      out_buf[rom_addr] <= out_ep_data;
+      rom_addr <= rom_addr + 1;
     end
 
     if (status_stage_end) begin
@@ -360,9 +362,9 @@ module usb_asp_ctrl_ep (
     end
   end
 
-  wire [7:0] descriptor_rom [0:35];
-  assign in_ep_data = descriptor_rom[rom_addr];
+  assign in_ep_data = (vendorspec ? out_buf[rom_addr[4:0]] : descriptor_rom[rom_addr]);
 
+  wire [7:0] descriptor_rom [0:35];
     assign descriptor_rom[0] = 18; // bLength
       assign descriptor_rom[1] = 1; // bDescriptorType
       assign descriptor_rom[2] = 'h00; // bcdUSB[0]
