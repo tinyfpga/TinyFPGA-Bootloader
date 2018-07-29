@@ -124,8 +124,8 @@ module usb_asp_ctrl_ep (
 
   reg [6:0] rom_addr = 0;
 
-  reg [5:0] out_addr = 0;
-  reg [7:0] out_buf [0:63]; // PC out transfer should be received here
+  reg [4:0] out_addr = 0; // 5 bits -> range 0-31
+  reg [7:0] out_buf [0:31]; // PC out transfer should be received here (32 byte max)
 
   reg save_dev_addr = 0;
   reg [6:0] new_dev_addr = 0;
