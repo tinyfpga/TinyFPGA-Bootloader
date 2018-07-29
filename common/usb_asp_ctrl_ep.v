@@ -352,20 +352,20 @@ module usb_asp_ctrl_ep (
     end
     
     // as out_buf_addr > spi_length
-    if (spi_bytes_sent < spi_length)
+    if (spi_bytes_sent != spi_length)
     begin
-      if (out_buf_addr > spi_bytes_sent && spi_bit_counter[3] == 1'b1)
+      if (out_buf_addr != spi_bytes_sent && spi_bit_counter[3] == 1)
       begin
         spi_bit_counter <= 0;
       end
       else
       begin
-        if (spi_bit_counter[3] == 0)
+        if (spi_bit_counter[3] == 0) // spi_bit_counter < 8
         begin
-          if (spi_bit_counter == 7)
+          if (spi_bit_counter == 7) // byte completed
           begin
             in_buf[spi_bytes_sent] <= ~out_buf[spi_bytes_sent];
-            spi_bytes_sent <= spi_bytes_sent+1;
+            spi_bytes_sent <= spi_bytes_sent + 1;
           end
           spi_bit_counter <= spi_bit_counter + 1;
         end
