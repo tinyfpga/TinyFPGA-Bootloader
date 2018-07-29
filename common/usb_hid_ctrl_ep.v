@@ -255,16 +255,16 @@ module usb_hid_ctrl_ep (
             2 : begin
               // CONFIGURATION
               rom_addr    <= 18; 
-              rom_length  <= 67;
+              rom_length  <= 18;
             end 
-            
+
             6 : begin
               // DEVICE_QUALIFIER
               in_ep_stall <= 1;
               rom_addr   <= 0;
               rom_length <= 0;
             end
-            
+
           endcase
         end
 
@@ -317,7 +317,7 @@ module usb_hid_ctrl_ep (
       endcase
       end // end 0: standard request
       default begin // 2: vendor specific request (also would handle 1 or 3)
-        debug_led <= wValue[7:0];
+        // debug_led <= wValue[7:0];
         out_addr <= 0;
       end // end 2: vendor specific request
     endcase
@@ -363,7 +363,7 @@ module usb_hid_ctrl_ep (
   `define CDC_TX_ENDPOINT 1
 	
 
-  wire [7:0] descriptor_rom [0:91];
+  wire [7:0] descriptor_rom [0:35];
   assign in_ep_data = descriptor_rom[rom_addr];
 
     assign descriptor_rom[0] = 18; // bLength
@@ -380,8 +380,8 @@ module usb_hid_ctrl_ep (
       assign descriptor_rom[10] = 'hdc; // idProduct[0]
       assign descriptor_rom[11] = 'h05; // idProduct[1]
       
-      assign descriptor_rom[12] = 0; // bcdDevice[0]
-      assign descriptor_rom[13] = 0; // bcdDevice[1]
+      assign descriptor_rom[12] = 0; // bcdDevice[0] version minor
+      assign descriptor_rom[13] = 0; // bcdDevice[1] version major
       assign descriptor_rom[14] = 0; // iManufacturer
       assign descriptor_rom[15] = 0; // iProduct
       assign descriptor_rom[16] = 0; // iSerialNumber
@@ -390,98 +390,23 @@ module usb_hid_ctrl_ep (
       // configuration descriptor
       assign descriptor_rom[18] = 9; // bLength
       assign descriptor_rom[19] = 2; // bDescriptorType
-      assign descriptor_rom[20] = (9+9+5+5+4+5+7+9+7+7); // wTotalLength[0] 
+      assign descriptor_rom[20] = 18; // wTotalLength[0] 
       assign descriptor_rom[21] = 0; // wTotalLength[1]
-      assign descriptor_rom[22] = 2; // bNumInterfaces
+      assign descriptor_rom[22] = 1; // bNumInterfaces (must have at least 1 interface)
       assign descriptor_rom[23] = 1; // bConfigurationValue
       assign descriptor_rom[24] = 0; // iConfiguration
       assign descriptor_rom[25] = 'hC0; // bmAttributes
-      assign descriptor_rom[26] = 60; // bMaxPower
+      assign descriptor_rom[26] = 250; // bMaxPower
       
       // interface descriptor, USB spec 9.6.5, page 267-269, Table 9-12
       assign descriptor_rom[27] = 9; // bLength
       assign descriptor_rom[28] = 4; // bDescriptorType
       assign descriptor_rom[29] = 0; // bInterfaceNumber
       assign descriptor_rom[30] = 0; // bAlternateSetting
-      assign descriptor_rom[31] = 1; // bNumEndpoints
-      assign descriptor_rom[32] = 2; // bInterfaceClass (Communications Device Class)
-      assign descriptor_rom[33] = 2; // bInterfaceSubClass (Abstract Control Model)
-      assign descriptor_rom[34] = 1; // bInterfaceProtocol (AT Commands: V.250 etc)
+      assign descriptor_rom[31] = 0; // bNumEndpoints
+      assign descriptor_rom[32] = 0; // bInterfaceClass
+      assign descriptor_rom[33] = 0; // bInterfaceSubClass
+      assign descriptor_rom[34] = 0; // bInterfaceProtocol
       assign descriptor_rom[35] = 0; // iInterface
-
-      // CDC Header Functional Descriptor, CDC Spec 5.2.3.1, Table 26
-      assign descriptor_rom[36] = 5; // bFunctionLength
-	    assign descriptor_rom[37] = 'h24; // bDescriptorType
-	    assign descriptor_rom[38] = 'h00; // bDescriptorSubtype
-	    assign descriptor_rom[39] = 'h10; 
-      assign descriptor_rom[40] = 'h01;	// bcdCDC
-
-	    // Call Management Functional Descriptor, CDC Spec 5.2.3.2, Table 27
-	    assign descriptor_rom[41] = 5;					// bFunctionLength
-	    assign descriptor_rom[42] = 'h24;					// bDescriptorType
-	    assign descriptor_rom[43] = 'h01;					// bDescriptorSubtype
-	    assign descriptor_rom[44] = 'h00;					// bmCapabilities
-	    assign descriptor_rom[45] = 1;					// bDataInterface
-
-	    // Abstract Control Management Functional Descriptor, CDC Spec 5.2.3.3, Table 28
-	    assign descriptor_rom[46] = 4;					// bFunctionLength
-	    assign descriptor_rom[47] = 'h24;					// bDescriptorType
-	    assign descriptor_rom[48] = 'h02;					// bDescriptorSubtype
-	    assign descriptor_rom[49] = 'h06;					// bmCapabilities
-
-	    // Union Functional Descriptor, CDC Spec 5.2.3.8, Table 33
-    	assign descriptor_rom[50] = 5;					// bFunctionLength
-    	assign descriptor_rom[51] = 'h24;					// bDescriptorType
-    	assign descriptor_rom[52] = 'h06;					// bDescriptorSubtype
-    	assign descriptor_rom[53] = 0;					// bMasterInterface
-    	assign descriptor_rom[54] = 1;					// bSlaveInterface0
-
-    	// endpoint descriptor, USB spec 9.6.6, page 269-271, Table 9-13
-    	assign descriptor_rom[55] = 7; // bLength
-    	assign descriptor_rom[56] = 5; // bDescriptorType
-    	assign descriptor_rom[57] = `CDC_ACM_ENDPOINT | 'h80; // bEndpointAddress
-    	assign descriptor_rom[58] = 'h03; // bmAttributes (0x03=intr)
-    	assign descriptor_rom[59] = 8; // wMaxPacketSize[0]
-      assign descriptor_rom[60] = 0; // wMaxPacketSize[1]
-    	assign descriptor_rom[61] = 64; // bInterval
-
-    	// interface descriptor, USB spec 9.6.5, page 267-269, Table 9-12
-    	assign descriptor_rom[62] = 9; // bLength
-    	assign descriptor_rom[63] = 4; // bDescriptorType
-    	assign descriptor_rom[64] = 1; // bInterfaceNumber
-    	assign descriptor_rom[65] = 0; // bAlternateSetting
-    	assign descriptor_rom[66] = 2; // bNumEndpoints
-    	assign descriptor_rom[67] = 'h0A; // bInterfaceClass
-    	assign descriptor_rom[68] = 'h00; // bInterfaceSubClass
-    	assign descriptor_rom[69] = 'h00; // bInterfaceProtocol
-    	assign descriptor_rom[70] = 0; // iInterface
-
-    	// endpoint descriptor, USB spec 9.6.6, page 269-271, Table 9-13
-    	assign descriptor_rom[71] = 7; // bLength
-    	assign descriptor_rom[72] = 5; // bDescriptorType
-    	assign descriptor_rom[73] = `CDC_RX_ENDPOINT; // bEndpointAddress
-    	assign descriptor_rom[74] = 'h02; // bmAttributes (0x02=bulk)
-    	assign descriptor_rom[75] = 32; // wMaxPacketSize[0]
-      assign descriptor_rom[76] = 0; // wMaxPacketSize[1]
-    	assign descriptor_rom[77] = 0; // bInterval
-
-    	// endpoint descriptor, USB spec 9.6.6, page 269-271, Table 9-13
-    	assign descriptor_rom[78] = 7; // bLength
-    	assign descriptor_rom[79] = 5; // bDescriptorType
-    	assign descriptor_rom[80] = `CDC_TX_ENDPOINT | 'h80; // bEndpointAddress
-    	assign descriptor_rom[81] = 'h02; // bmAttributes (0x02=bulk)
-
-    	assign descriptor_rom[82] = 32; // wMaxPacketSize[0]
-      assign descriptor_rom[83] = 0; // wMaxPacketSize[1]
-    	assign descriptor_rom[84] = 0; // bInterval
-
-      // LINE_CODING
-      assign descriptor_rom[85] = 'h80; // dwDTERate[0]
-      assign descriptor_rom[86] = 'h25; // dwDTERate[1]
-      assign descriptor_rom[87] = 'h00; // dwDTERate[2]
-      assign descriptor_rom[88] = 'h00; // dwDTERate[3]
-      assign descriptor_rom[89] = 1; // bCharFormat (1 stop bit)
-      assign descriptor_rom[90] = 0; // bParityType (None)
-      assign descriptor_rom[91] = 8; // bDataBits (8 bits)
 
 endmodule
