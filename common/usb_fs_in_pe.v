@@ -1,7 +1,7 @@
 // The IN Protocol Engine sends data to the host.
 module usb_fs_in_pe #(
   parameter NUM_IN_EPS = 11,
-  parameter MAX_IN_PACKET_SIZE = 64
+  parameter MAX_IN_PACKET_SIZE = 32
 ) (
   input clk, 
   input reset, 

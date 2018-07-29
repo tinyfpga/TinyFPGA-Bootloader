@@ -124,8 +124,8 @@ module usb_asp_ctrl_ep (
 
   reg [6:0] rom_addr = 0;
 
-  reg [3:0] out_addr = 0;
-  reg [7:0] out_buf [0:15]; // PC out transfer should be received here
+  reg [5:0] out_addr = 0;
+  reg [7:0] out_buf [0:63]; // PC out transfer should be received here
 
   reg save_dev_addr = 0;
   reg [6:0] new_dev_addr = 0;
@@ -329,7 +329,7 @@ module usb_asp_ctrl_ep (
     end
 
     if (ctrl_xfr_state == DATA_OUT && out_ep_data_valid && ~out_ep_setup) begin
-      if (out_addr == 0) begin
+      if (out_addr == 31) begin
         debug_led <= out_ep_data;
       end
       out_addr <= out_addr + 1;
@@ -367,7 +367,7 @@ module usb_asp_ctrl_ep (
       assign descriptor_rom[4] = 'hFF; // bDeviceClass (Communications Device Class)
       assign descriptor_rom[5] = 'h00; // bDeviceSubClass (Abstract Control Model)
       assign descriptor_rom[6] = 'h00; // bDeviceProtocol (No class specific protocol required)
-      assign descriptor_rom[7] = 64; // bMaxPacketSize0
+      assign descriptor_rom[7] = 32; // bMaxPacketSize0
 
       assign descriptor_rom[8] = 'hc0; // idVendor[0] VOTI
       assign descriptor_rom[9] = 'h16; // idVendor[1]

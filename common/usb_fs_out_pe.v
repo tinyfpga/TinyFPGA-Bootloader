@@ -1,7 +1,7 @@
 // The OUT Protocol Engine receives data from the host.
 module usb_fs_out_pe #(
   parameter NUM_OUT_EPS = 1,
-  parameter MAX_OUT_PACKET_SIZE = 64
+  parameter MAX_OUT_PACKET_SIZE = 32
 ) (
   input clk,
   input reset,
