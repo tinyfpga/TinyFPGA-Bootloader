@@ -357,12 +357,6 @@ module usb_hid_ctrl_ep (
     end
   end
 
-
-  `define CDC_ACM_ENDPOINT 2 
-  `define CDC_RX_ENDPOINT 1
-  `define CDC_TX_ENDPOINT 1
-	
-
   wire [7:0] descriptor_rom [0:35];
   assign in_ep_data = descriptor_rom[rom_addr];
 
@@ -373,14 +367,14 @@ module usb_hid_ctrl_ep (
       assign descriptor_rom[4] = 'hFF; // bDeviceClass (Communications Device Class)
       assign descriptor_rom[5] = 'h00; // bDeviceSubClass (Abstract Control Model)
       assign descriptor_rom[6] = 'h00; // bDeviceProtocol (No class specific protocol required)
-      assign descriptor_rom[7] = 32; // bMaxPacketSize0
+      assign descriptor_rom[7] = 64; // bMaxPacketSize0
 
       assign descriptor_rom[8] = 'hc0; // idVendor[0] VOTI
       assign descriptor_rom[9] = 'h16; // idVendor[1]
       assign descriptor_rom[10] = 'hdc; // idProduct[0]
       assign descriptor_rom[11] = 'h05; // idProduct[1]
       
-      assign descriptor_rom[12] = 0; // bcdDevice[0] version minor
+      assign descriptor_rom[12] = 1; // bcdDevice[0] version minor
       assign descriptor_rom[13] = 0; // bcdDevice[1] version major
       assign descriptor_rom[14] = 0; // iManufacturer
       assign descriptor_rom[15] = 0; // iProduct
