@@ -67,13 +67,16 @@ module usb_asp_ctrl_ep (
   reg [3:0] spi_bit_counter = 8; // 0-8
   reg vendorspec = 1'b0;
   // help with assembling the SPI byte
-  reg [7:0] spi_miso_byte; // SPI output buffer circular-shifted (same as input?)
+  reg [7:0] spi_miso_byte; // host input, device output
   wire [7:0] spi_miso_byte_next;
   assign spi_miso_byte_next = {spi_miso_byte[6:0], spi_miso}; // input with shifting, MSB enters shift-register first
-  assign spi_mosi = spi_mosi_byte[7]; // output: MSB SPI bit gets shifted out first
-  reg [7:0] spi_mosi_byte; // SPI output buffer circular-shifted (same as input?)
+  reg [7:0] spi_mosi_byte; // host output, device input
   wire [7:0] spi_mosi_byte_next;
   assign spi_mosi_byte_next = {spi_mosi_byte[6:0], 1'b0}; // input with shifting, MSB enters shift-register first
+  assign spi_mosi = spi_mosi_byte[7]; // output: MSB SPI bit gets shifted out first
+
+  
+  reg [20:0] superslow;
 
 
   // the default control endpoint gets assigned the device address
@@ -342,13 +345,19 @@ module usb_asp_ctrl_ep (
       default begin // 2: vendor specific request (also would handle 1 or 3)
         vendorspec <= 1'b1; // this is vendor-specific request
         // debug_led <= wValue[7:0];
-        rom_addr <= 0;
-        rom_length <= wLength;
-        bytes_sent <= 0;
+        if (in_data_stage)
+        begin
+          rom_addr <= 0;
+          rom_length <= wLength;
+          bytes_sent <= 0;
+        end
         // for OUT
-        spi_length <= wLength;
-        spi_bytes_sent <= 0;
-        out_buf_addr <= 0;
+        if (out_data_stage)
+        begin
+          out_buf_addr <= 0;
+          spi_length <= wLength;
+          spi_bytes_sent <= 0;
+        end
       end // end 2: vendor specific request
     endcase
     end
@@ -366,6 +375,8 @@ module usb_asp_ctrl_ep (
       out_buf_addr <= out_buf_addr + 1;
     end
     
+    superslow <= superslow + 1;
+    if (superslow == 0)
     if (spi_bytes_sent == spi_length)
     begin // nothing to send
       spi_clk <= 1; // clock inactive
@@ -374,22 +385,35 @@ module usb_asp_ctrl_ep (
     else // spi_bytes_sent != spi_length
     begin
       spi_csn <= 0; // enable chip
-      if (out_buf_addr != spi_bytes_sent && spi_bit_counter[3] == 1)
+      if (out_buf_addr != spi_bytes_sent && spi_bit_counter[3] == 1 && spi_bit_counter != 15)
       begin
-        spi_mosi_byte <= out_buf[spi_bytes_sent];
-        spi_bit_counter <= 0;
-        // spi_clk <= 1;
+        spi_mosi_byte[7:0] <= out_buf[spi_bytes_sent];
+        spi_bit_counter <= 15;
+        spi_clk <= 1;
       end
       else
       begin
+        if (spi_bit_counter == 15)
+        begin // initial dummy clock cycle
+          if (spi_clk == 1)
+          begin
+            spi_clk <= 0;
+          end
+          if (spi_clk == 0)
+          begin
+            spi_bit_counter <= 0;
+            spi_clk <= 1;
+          end          
+        end        
         if (spi_bit_counter[3] == 0) // spi_bit_counter < 8
         begin
-          if (spi_clk)
-          begin // clock=1: send data to SPI chip
+          if (spi_clk == 1)
+          begin // clock=0: send data to SPI chip
             spi_mosi_byte <= spi_mosi_byte_next; // shift output to SPI chip
+            spi_clk <= 0;
           end
-          else
-          begin // clock=0: read data from SPI chip
+          if (spi_clk == 0)
+          begin // clock=1: read data from SPI chip
             spi_miso_byte <= spi_miso_byte_next; // shift input from SPI chip
             if (spi_bit_counter == 7) // byte completed
             begin
@@ -398,8 +422,8 @@ module usb_asp_ctrl_ep (
               spi_bytes_sent <= spi_bytes_sent + 1;
             end
             spi_bit_counter <= spi_bit_counter + 1;
+            spi_clk <= 1;
           end
-          spi_clk <= ~spi_clk;
         end
       end
     end
