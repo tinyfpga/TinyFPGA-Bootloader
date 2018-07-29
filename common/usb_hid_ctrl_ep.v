@@ -124,6 +124,9 @@ module usb_hid_ctrl_ep (
 
   reg [6:0] rom_addr = 0;
 
+  reg [3:0] out_addr = 0;
+  reg [7:0] out_buf [0:15]; // PC out transfer should be received here
+
   reg save_dev_addr = 0;
   reg [6:0] new_dev_addr = 0;
 
@@ -183,11 +186,12 @@ module usb_hid_ctrl_ep (
       end
 
       DATA_OUT : begin
-        if (out_ep_acked) begin
+        // if (out_ep_acked) begin
+        if (pkt_end) begin
           ctrl_xfr_state_next <= STATUS_IN;
           send_zero_length_data_pkt <= 1;
           data_stage_end <= 1;
-          
+
         end else begin
           ctrl_xfr_state_next <= DATA_OUT;
         end
@@ -246,7 +250,6 @@ module usb_hid_ctrl_ep (
               // DEVICE
               rom_addr    <= 0; 
               rom_length  <= 18;
-              debug_led <= 8'b11000011;
             end 
 
             2 : begin
@@ -315,6 +318,7 @@ module usb_hid_ctrl_ep (
       end // end 0: standard request
       default begin // 2: vendor specific request (also would handle 1 or 3)
         debug_led <= wValue[7:0];
+        out_addr <= 0;
       end // end 2: vendor specific request
     endcase
     end
@@ -322,6 +326,13 @@ module usb_hid_ctrl_ep (
     if (ctrl_xfr_state == DATA_IN && more_data_to_send && in_ep_grant && in_ep_data_free) begin
       rom_addr <= rom_addr + 1;
       bytes_sent <= bytes_sent + 1;
+    end
+
+    if (ctrl_xfr_state == DATA_OUT && out_ep_data_valid && ~out_ep_setup) begin
+      if (out_addr == 0) begin
+        debug_led <= out_ep_data;
+      end
+      out_addr <= out_addr + 1;
     end
 
     if (status_stage_end) begin
