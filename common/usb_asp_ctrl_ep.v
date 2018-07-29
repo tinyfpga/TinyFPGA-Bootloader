@@ -366,17 +366,19 @@ module usb_asp_ctrl_ep (
       out_buf_addr <= out_buf_addr + 1;
     end
     
-    // as out_buf_addr > spi_length
-    
-    
-    if (spi_bytes_sent != spi_length)
+    if (spi_bytes_sent == spi_length)
+    begin // nothing to send
+      spi_clk <= 1; // clock inactive
+      spi_csn <= 1; // disable chip
+    end
+    else // spi_bytes_sent != spi_length
     begin
       spi_csn <= 0; // enable chip
       if (out_buf_addr != spi_bytes_sent && spi_bit_counter[3] == 1)
       begin
         spi_mosi_byte <= out_buf[spi_bytes_sent];
         spi_bit_counter <= 0;
-        spi_clk <= 1;
+        // spi_clk <= 1;
       end
       else
       begin
@@ -388,9 +390,9 @@ module usb_asp_ctrl_ep (
           end
           else
           begin // clock=0: read data from SPI chip
+            spi_miso_byte <= spi_miso_byte_next; // shift input from SPI chip
             if (spi_bit_counter == 7) // byte completed
             begin
-              spi_miso_byte <= spi_miso_byte_next;
               // in_buf[spi_bytes_sent] <= ~out_buf[spi_bytes_sent]; // debug: invert all what we received
               in_buf[spi_bytes_sent] <= spi_miso_byte_next;
               spi_bytes_sent <= spi_bytes_sent + 1;
@@ -400,11 +402,6 @@ module usb_asp_ctrl_ep (
           spi_clk <= ~spi_clk;
         end
       end
-    end
-    else // nothing to send: spi_bytes_sent != spi_length
-        spi_clk <= 1; // clock inactive
-        spi_csn <= 1; // disable chip
-    begin
     end
     
 
