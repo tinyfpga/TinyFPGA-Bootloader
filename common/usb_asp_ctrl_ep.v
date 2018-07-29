@@ -50,6 +50,16 @@ module usb_asp_ctrl_ep (
   reg send_zero_length_data_pkt = 0;
 
 
+  /////////////////////////
+  /// SPI BUFFERING
+  /////////////////////////
+  reg [7:0] out_buf [0:31]; // PC out transfer should be received here (32 byte max)
+  reg [7:0] in_buf [0:31]; // PC in transfer when PC reads back buffered SPI response (32 byte max)
+  reg [5:0] out_buf_addr, spi_length, spi_bytes_sent; // 0-32 bit address for the buffer
+  reg [3:0] spi_bit_counter = 8; // 0-8
+  reg vendorspec = 1'b0;
+
+
 
   // the default control endpoint gets assigned the device address
   reg [6:0] dev_addr_i = 0;
@@ -123,9 +133,6 @@ module usb_asp_ctrl_ep (
 
 
   reg [6:0] rom_addr = 0;
-
-  reg [7:0] out_buf [0:31]; // PC out transfer should be received here (32 byte max)
-  reg vendorspec = 1'b0;
 
   reg save_dev_addr = 0;
   reg [6:0] new_dev_addr = 0;
@@ -323,6 +330,10 @@ module usb_asp_ctrl_ep (
         rom_addr <= 0;
         rom_length <= wLength;
         bytes_sent <= 0;
+        // for OUT
+        spi_length <= wLength;
+        spi_bytes_sent <= 0;
+        out_buf_addr <= 0;
       end // end 2: vendor specific request
     endcase
     end
@@ -336,9 +347,31 @@ module usb_asp_ctrl_ep (
       if (rom_addr == 31) begin
         debug_led <= out_ep_data;
       end
-      out_buf[rom_addr] <= out_ep_data;
-      rom_addr <= rom_addr + 1;
+      out_buf[out_buf_addr] <= out_ep_data;
+      out_buf_addr <= out_buf_addr + 1;
     end
+    
+    // as out_buf_addr > spi_length
+    if (spi_bytes_sent < spi_length)
+    begin
+      if (out_buf_addr > spi_bytes_sent && spi_bit_counter[3] == 1'b1)
+      begin
+        spi_bit_counter <= 0;
+      end
+      else
+      begin
+        if (spi_bit_counter[3] == 0)
+        begin
+          if (spi_bit_counter == 7)
+          begin
+            in_buf[spi_bytes_sent] <= ~out_buf[spi_bytes_sent];
+            spi_bytes_sent <= spi_bytes_sent+1;
+          end
+          spi_bit_counter <= spi_bit_counter + 1;
+        end
+      end
+    end
+    
 
     if (status_stage_end) begin
       setup_data_addr <= 0;      
@@ -362,7 +395,7 @@ module usb_asp_ctrl_ep (
     end
   end
 
-  assign in_ep_data = (vendorspec ? out_buf[rom_addr[4:0]] : descriptor_rom[rom_addr]);
+  assign in_ep_data = (vendorspec ? in_buf[rom_addr[4:0]] : descriptor_rom[rom_addr]);
 
   wire [7:0] descriptor_rom [0:35];
     assign descriptor_rom[0] = 18; // bLength
