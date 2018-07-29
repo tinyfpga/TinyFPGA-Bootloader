@@ -8,8 +8,8 @@ module usb_asp_ctrl_ep (
   ////////////////////
   // spi chip
   ////////////////////
-  output spi_miso,
-  input spi_mosi,
+  input spi_miso,
+  output spi_mosi,
   output reg spi_clk = 1,
   output reg spi_csn = 1,
 
@@ -391,8 +391,8 @@ module usb_asp_ctrl_ep (
             if (spi_bit_counter == 7) // byte completed
             begin
               spi_miso_byte <= spi_miso_byte_next;
-              in_buf[spi_bytes_sent] <= ~out_buf[spi_bytes_sent]; // debug: invert all what we received
-              // in_buf[spi_bytes_sent] <= spi_miso_byte_next;
+              // in_buf[spi_bytes_sent] <= ~out_buf[spi_bytes_sent]; // debug: invert all what we received
+              in_buf[spi_bytes_sent] <= spi_miso_byte_next;
               spi_bytes_sent <= spi_bytes_sent + 1;
             end
             spi_bit_counter <= spi_bit_counter + 1;

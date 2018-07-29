@@ -146,6 +146,12 @@ module usbasp_bootloader (
 
     // debug led
     .debug_led(debug_led),
+    
+    // SPI chip interface
+    .spi_csn(spi_cs),
+    .spi_clk(spi_sck),
+    .spi_mosi(spi_mosi),
+    .spi_miso(spi_miso),
 
     // out endpoint interface 
     .out_ep_req(ctrl_out_ep_req),
