@@ -318,6 +318,9 @@ module usb_asp_ctrl_ep (
       end // end 0: standard request
       default begin // 2: vendor specific request (also would handle 1 or 3)
         // debug_led <= wValue[7:0];
+        rom_addr <= 0;
+        rom_length <= wLength;
+        bytes_sent <= 0;
         out_addr <= 0;
       end // end 2: vendor specific request
     endcase
