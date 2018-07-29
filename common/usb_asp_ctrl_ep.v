@@ -64,7 +64,7 @@ module usb_asp_ctrl_ep (
   reg [7:0] out_buf [0:31]; // PC out transfer should be received here (32 byte max)
   reg [7:0] in_buf [0:31]; // PC in transfer when PC reads back buffered SPI response (32 byte max)
   reg [5:0] out_buf_addr, spi_length, spi_bytes_sent; // 0-32 bit address for the buffer
-  reg [3:0] spi_bit_counter = 8; // 0-8
+  reg [3:0] spi_bit_counter = 15; // 0-15
   reg vendorspec = 1'b0;
   // help with assembling the SPI byte
   reg [7:0] spi_miso_byte; // host input, device output
@@ -76,7 +76,7 @@ module usb_asp_ctrl_ep (
   assign spi_mosi = spi_mosi_byte[7]; // output: MSB SPI bit gets shifted out first
 
   
-  reg [20:0] superslow;
+  reg [15:0] superslow;
 
 
   // the default control endpoint gets assigned the device address
@@ -381,52 +381,40 @@ module usb_asp_ctrl_ep (
     begin // nothing to send
       spi_clk <= 1; // clock inactive
       spi_csn <= 1; // disable chip
+      spi_bit_counter <= 15;
     end
     else // spi_bytes_sent != spi_length
     begin
       spi_csn <= 0; // enable chip
-      if (out_buf_addr != spi_bytes_sent && spi_bit_counter[3] == 1 && spi_bit_counter != 15)
+      if (spi_bit_counter == 15 && out_buf_addr != spi_bytes_sent)
       begin
-        spi_mosi_byte[7:0] <= out_buf[spi_bytes_sent];
-        spi_bit_counter <= 15;
-        spi_clk <= 1;
+        spi_bit_counter <= 0;
       end
-      else
-      begin
-        if (spi_bit_counter == 15)
-        begin // initial dummy clock cycle
-          if (spi_clk == 1)
-          begin
-            spi_clk <= 0;
-          end
-          if (spi_clk == 0)
-          begin
-            spi_bit_counter <= 0;
-            spi_clk <= 1;
-          end          
-        end        
-        if (spi_bit_counter[3] == 0) // spi_bit_counter < 8
+
+      if (out_buf_addr != spi_bytes_sent && spi_bit_counter[3] == 0)
         begin
           if (spi_clk == 1)
           begin // clock=0: send data to SPI chip
-            spi_mosi_byte <= spi_mosi_byte_next; // shift output to SPI chip
+            if (spi_bit_counter[2:0] == 0)
+              spi_mosi_byte <= out_buf[spi_bytes_sent];
+            else
+              spi_mosi_byte <= spi_mosi_byte_next; // shift output to SPI chip
             spi_clk <= 0;
           end
           if (spi_clk == 0)
           begin // clock=1: read data from SPI chip
             spi_miso_byte <= spi_miso_byte_next; // shift input from SPI chip
-            if (spi_bit_counter == 7) // byte completed
+            if (spi_bit_counter[2:0] == 7) // byte completed
             begin
               // in_buf[spi_bytes_sent] <= ~out_buf[spi_bytes_sent]; // debug: invert all what we received
               in_buf[spi_bytes_sent] <= spi_miso_byte_next;
               spi_bytes_sent <= spi_bytes_sent + 1;
             end
-            spi_bit_counter <= spi_bit_counter + 1;
+            spi_bit_counter[2:0] <= spi_bit_counter[2:0] + 1;
             spi_clk <= 1;
           end
-        end
-      end
-    end
+        end // spi bit counter < 8
+    end // spi_bytes_sent != spi_length
     
 
     if (status_stage_end) begin
