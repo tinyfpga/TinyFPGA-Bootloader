@@ -76,7 +76,7 @@ module usb_asp_ctrl_ep (
   assign spi_mosi = spi_mosi_byte[7]; // output: MSB SPI bit gets shifted out first
 
   
-  reg [15:0] superslow;
+  reg [1:0] superslow;
 
 
   // the default control endpoint gets assigned the device address
@@ -375,8 +375,8 @@ module usb_asp_ctrl_ep (
       out_buf_addr <= out_buf_addr + 1;
     end
     
-    superslow <= superslow + 1;
-    if (superslow == 0)
+    //superslow <= superslow + 1;
+    //if (superslow == 0)
     if (spi_bytes_sent == spi_length)
     begin // nothing to send
       spi_clk <= 1; // clock inactive
