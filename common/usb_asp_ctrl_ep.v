@@ -348,6 +348,7 @@ module usb_asp_ctrl_ep (
       default begin // 2: vendor specific request (also would handle 1 or 3)
         vendorspec <= 1'b1; // this is vendor-specific request
         // debug_led <= wValue[7:0];
+        spi_continue <= wValue[0];
         if (in_data_stage)
         begin
           rom_addr <= 0;
@@ -356,7 +357,6 @@ module usb_asp_ctrl_ep (
         end
         if (out_data_stage)
         begin
-          spi_continue <= wValue[0];
           out_buf_addr <= 0;
           spi_length <= wLength;
           spi_bytes_sent <= 0;
