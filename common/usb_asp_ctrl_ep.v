@@ -63,11 +63,11 @@ module usb_asp_ctrl_ep (
   /////////////////////////
   reg [7:0] out_buf [0:31]; // PC out transfer should be received here (32 byte max)
   reg [7:0] in_buf [0:31]; // PC in transfer when PC reads back buffered SPI response (32 byte max)
-  reg [5:0] out_buf_addr; // 0-32 address for the buffer
+  reg [5:0] out_buf_addr = 0; // 0-32 address for the buffer
   reg [5:0] spi_length = 0; // 0-32 number of bytes to be sent by OUT
   reg [5:0] spi_bytes_sent = 0; // 0-32 bit current number of bytes sent by OUT
   reg [3:0] spi_bit_counter = 15; // 0-15
-  reg vendorspec = 1'b0;
+  reg send_in_buf = 0;
   reg spi_continue = 0; // 0:normal packet (reset start, closed end) 1:packet continued (open start, open end)
   
   // help with assembling the SPI byte
@@ -272,7 +272,7 @@ module usb_asp_ctrl_ep (
     if (setup_stage_end) begin
     case (bmRequestType[6:5]) // 2 bits describing request type
       0: begin // 0: standard request
-      vendorspec <= 1'b0; // not vendor-specific
+      send_in_buf <= 0; // not vendor-specific
       case (bRequest)
         'h06 : begin
           // GET_DESCRIPTOR
@@ -347,28 +347,39 @@ module usb_asp_ctrl_ep (
         end
       endcase
       end // end 0: standard request
+
       2: begin // 2: vendor specific request (also would handle 1 or 3)
-        vendorspec <= 1'b1; // this is vendor-specific request
         case (bRequest)
           0: begin // write or read SPI data block
             spi_continue <= wValue[0];
             if (in_data_stage)
             begin
-              rom_addr <= 0;
-              rom_length <= wLength;
+              send_in_buf <= 1; // this is vendor-specific request, send data from RAM buffer, not descriptor ROM
+              rom_addr <= 0; // misnomer: rom_addr here addresses RAM buffer actually
+              rom_length <= wLength; // misnomer: rom_length is actually RAM bytes to be sent
               bytes_sent <= 0;
             end
             if (out_data_stage)
             begin
+              send_in_buf <= 0;
               out_buf_addr <= 0;
               spi_length <= wLength;
               spi_bytes_sent <= 0;
               if (spi_bytes_sent != spi_length)
-                debug_led[7] <= ~debug_led[7]; // indicate overrun, new packet arrived before SPI finished
+                debug_led <= debug_led + 1; // indicate overrun, new packet arrived before SPI finished
             end
           end // end bRequest 0
           
-          1: begin // read SPI state (did it finish?)
+          1: begin // read SPI state (0:free 1:busy) IN request
+            // choose ROM location which is not likely to change
+            // because it will send data from ROM, not buffer
+            send_in_buf <= 0;
+            if (spi_bytes_sent == spi_length)
+              rom_addr <= 5; // must point to 0 in ROM descriptor
+            else
+              rom_addr <= 1; // must point to 1 in ROM descriptor
+            rom_length <= 1;
+            bytes_sent <= 0;
           end
 
           default begin // catch all other bRequest != 0
@@ -398,7 +409,7 @@ module usb_asp_ctrl_ep (
       begin
         spi_clk <= 1; // clock inactive
         spi_csn <= 1; // disable chip
-        spi_bit_counter <= 15;
+        spi_bit_counter <= 15; // skip first clock cycle
       end
     end
     else // spi_bytes_sent != spi_length
@@ -406,32 +417,26 @@ module usb_asp_ctrl_ep (
       spi_csn <= 0; // enable chip
       if(out_buf_addr != spi_bytes_sent) // more spi data
       begin
-        if (spi_bit_counter == 15)
-        begin
-          spi_bit_counter <= 0; // skip one cycle, flash needs small delay to start listening
-        end
-
-        if (spi_bit_counter[3] == 0)
+        if (spi_bit_counter[3])
+          spi_bit_counter <= 0; // skip one cycle, flash needs small delay from csn=0 to clk
+        else // spi_bit_counter < 8
         begin
           if (spi_clk == 1)
           begin // clock=0: send data to SPI chip
             if (spi_bit_counter[2:0] == 0)
-              spi_mosi_byte <= out_buf[spi_bytes_sent];
+              spi_mosi_byte <= out_buf[spi_bytes_sent]; // new byte from buffer
             else
-              spi_mosi_byte <= spi_mosi_byte_next; // shift output to SPI chip
-            // spi_clk <= 0;
+              spi_mosi_byte <= spi_mosi_byte_next; // shift bit output to SPI chip
           end
           if (spi_clk == 0)
           begin // clock=1: read data from SPI chip
             spi_miso_byte <= spi_miso_byte_next; // shift input from SPI chip
             if (spi_bit_counter[2:0] == 7) // byte completed
             begin
-              // in_buf[spi_bytes_sent] <= ~out_buf[spi_bytes_sent]; // debug: invert all what we received
-              in_buf[spi_bytes_sent] <= spi_miso_byte_next;
+              in_buf[spi_bytes_sent] <= spi_miso_byte_next; // complete byte to IN buffer, later sent
               spi_bytes_sent <= spi_bytes_sent + 1;
             end
             spi_bit_counter[2:0] <= spi_bit_counter[2:0] + 1;
-            // spi_clk <= 1;
           end
           spi_clk <= ~spi_clk;
         end // spi bit counter < 8
@@ -458,19 +463,24 @@ module usb_asp_ctrl_ep (
       dev_addr_i <= 0;
       setup_data_addr <= 0;
       save_dev_addr <= 0;
-    end
+      send_in_buf <= 0;
+      out_buf_addr <= 0;
+      spi_length <= 0;
+      spi_bytes_sent <= 0;
+      debug_led <= 0;
+  end
   end
 
-  assign in_ep_data = (vendorspec ? in_buf[rom_addr[4:0]] : descriptor_rom[rom_addr]);
+  assign in_ep_data = (send_in_buf ? in_buf[rom_addr[4:0]] : descriptor_rom[rom_addr]);
 
   wire [7:0] descriptor_rom [0:35];
     assign descriptor_rom[0] = 18; // bLength
       assign descriptor_rom[1] = 1; // bDescriptorType
       assign descriptor_rom[2] = 'h00; // bcdUSB[0]
       assign descriptor_rom[3] = 'h02; // bcdUSB[1]
-      assign descriptor_rom[4] = 'hFF; // bDeviceClass (Communications Device Class)
-      assign descriptor_rom[5] = 'h00; // bDeviceSubClass (Abstract Control Model)
-      assign descriptor_rom[6] = 'h00; // bDeviceProtocol (No class specific protocol required)
+      assign descriptor_rom[4] = 'hFF; // bDeviceClass
+      assign descriptor_rom[5] = 'h00; // bDeviceSubClass
+      assign descriptor_rom[6] = 'h00; // bDeviceProtocol
       assign descriptor_rom[7] = 32; // bMaxPacketSize0
 
       assign descriptor_rom[8] = 'hc0; // idVendor[0] VOTI
