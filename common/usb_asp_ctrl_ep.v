@@ -66,6 +66,8 @@ module usb_asp_ctrl_ep (
   reg [5:0] out_buf_addr, spi_length, spi_bytes_sent; // 0-32 bit address for the buffer
   reg [3:0] spi_bit_counter = 15; // 0-15
   reg vendorspec = 1'b0;
+  reg spi_continue = 0; // 0:normal packet (reset start, closed end) 1:packet continued (open start, open end)
+  
   // help with assembling the SPI byte
   reg [7:0] spi_miso_byte; // host input, device output
   wire [7:0] spi_miso_byte_next;
@@ -75,6 +77,7 @@ module usb_asp_ctrl_ep (
   assign spi_mosi_byte_next = {spi_mosi_byte[6:0], 1'b0}; // input with shifting, MSB enters shift-register first
   assign spi_mosi = spi_mosi_byte[7]; // output: MSB SPI bit gets shifted out first
 
+  wire more_data_out;
   
   reg [1:0] superslow;
 
@@ -351,9 +354,9 @@ module usb_asp_ctrl_ep (
           rom_length <= wLength;
           bytes_sent <= 0;
         end
-        // for OUT
         if (out_data_stage)
         begin
+          spi_continue <= wValue[0];
           out_buf_addr <= 0;
           spi_length <= wLength;
           spi_bytes_sent <= 0;
@@ -374,24 +377,29 @@ module usb_asp_ctrl_ep (
       out_buf[out_buf_addr] <= out_ep_data;
       out_buf_addr <= out_buf_addr + 1;
     end
-    
+
     //superslow <= superslow + 1;
     //if (superslow == 0)
     if (spi_bytes_sent == spi_length)
     begin // nothing to send
-      spi_clk <= 1; // clock inactive
-      spi_csn <= 1; // disable chip
-      spi_bit_counter <= 15;
+      if (spi_continue == 0)
+      begin
+        spi_clk <= 1; // clock inactive
+        spi_csn <= 1; // disable chip
+        spi_bit_counter <= 15;
+      end
     end
     else // spi_bytes_sent != spi_length
     begin
       spi_csn <= 0; // enable chip
-      if (spi_bit_counter == 15 && out_buf_addr != spi_bytes_sent)
+      if(out_buf_addr != spi_bytes_sent) // more spi data
       begin
-        spi_bit_counter <= 0;
-      end
+        if (spi_bit_counter == 15)
+        begin
+          spi_bit_counter <= 0; // skip one cycle
+        end
 
-      if (out_buf_addr != spi_bytes_sent && spi_bit_counter[3] == 0)
+        if (spi_bit_counter[3] == 0)
         begin
           if (spi_clk == 1)
           begin // clock=0: send data to SPI chip
@@ -399,7 +407,7 @@ module usb_asp_ctrl_ep (
               spi_mosi_byte <= out_buf[spi_bytes_sent];
             else
               spi_mosi_byte <= spi_mosi_byte_next; // shift output to SPI chip
-            spi_clk <= 0;
+            // spi_clk <= 0;
           end
           if (spi_clk == 0)
           begin // clock=1: read data from SPI chip
@@ -411,9 +419,11 @@ module usb_asp_ctrl_ep (
               spi_bytes_sent <= spi_bytes_sent + 1;
             end
             spi_bit_counter[2:0] <= spi_bit_counter[2:0] + 1;
-            spi_clk <= 1;
+            // spi_clk <= 1;
           end
+          spi_clk <= ~spi_clk;
         end // spi bit counter < 8
+      end // more_spi_data
     end // spi_bytes_sent != spi_length
     
 
