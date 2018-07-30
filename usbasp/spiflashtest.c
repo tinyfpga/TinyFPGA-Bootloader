@@ -106,6 +106,8 @@ int flash_read(uint8_t *data, size_t addr, size_t length)
   return 0; // 0 on success
 }
 
+
+
 // read from addr, length bytes and write to file
 int read_to_file(char *filename, size_t addr, size_t length)
 {
@@ -149,6 +151,36 @@ int read_to_file(char *filename, size_t addr, size_t length)
   }
   close(file_descriptor);
   return 0;
+}
+
+
+int read_flash_id(uint8_t *id, size_t len)
+{
+  uint8_t buf[32];
+  buf[0] = 0xAB;
+  buf[1] = 0x00;
+  buf[2] = 0x00;
+  buf[3] = 0x00;
+  for(int i = 4; i < 32; i++)
+    buf[i] = 0x00;
+  uint16_t datalen = 32;
+  uint8_t data1 = 0; // currently no use
+  uint8_t bRequest = 0; // currently no use
+  uint16_t wIndex = 0; // currently no use
+  uint16_t wValue = 0; // wValue: 0-no continuation, 1-continuation
+  uint16_t timeout_ms = 100; // 10 ms waiting for response
+
+  int response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_OUT|LIBUSB_REQUEST_TYPE_VENDOR|data1),
+      bRequest, wValue, wIndex, buf, datalen, timeout_ms);
+  if(response < 0)
+    return response;
+
+  response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_IN|LIBUSB_REQUEST_TYPE_VENDOR|data1),
+      bRequest, wValue, wIndex, buf, datalen, timeout_ms);
+
+  memcpy(id, buf+4, len); // copy buffer
+  
+  return response;
 }
 
 
@@ -287,9 +319,15 @@ int main(void)
 
   if(open_usb_device(0x16C0, 0x05DC) < 0)
     return -1;
-        
-  send_one_packet();
-  send_one_packet();
+
+  //send_one_packet();
+  //send_one_packet();
+  
+  uint8_t id[1];
+  for(int i = 0; i < 3; i++)
+    read_flash_id(id, 1);
+  printf("FLASH ID: 0x%02X\n", id[0]);
+
   //usleep(1000000);
   test_read();
   
