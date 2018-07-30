@@ -63,13 +63,15 @@ module usb_asp_ctrl_ep (
   /////////////////////////
   reg [7:0] out_buf [0:63]; // PC out transfer should be received here (64 byte max)
   reg [7:0] in_buf [0:31]; // PC in transfer when PC reads back buffered SPI response (32 byte max)
-  reg [5:0] out_buf_addr_usb = 0; // 0-32 address for the buffer
-  reg [5:0] out_buf_addr_spi = 0; // 0-32 address for the buffer for SPI sender
+  reg [5:0] out_buf_addr_usb = 0; // 0-63 address for the buffer for USB acceptor
+  reg [5:0] out_buf_addr_spi = 0; // 0-63 address for the buffer for SPI sender
   reg [5:0] spi_length = 0; // 0-32 number of bytes to be sent by OUT
   reg [5:0] spi_bytes_sent = 0; // 0-32 bit current number of bytes sent by OUT
   reg [3:0] spi_bit_counter = 10; // 0-15
   reg send_in_buf = 0;
   reg spi_continue = 0; // 0:normal packet (reset start, closed end) 1:packet continued (open start, open end)
+
+  reg [25:0] superslow; // so slow that LEDs are visible
   
   // help with assembling the SPI byte
   reg [7:0] spi_miso_byte; // host input, device output
@@ -81,9 +83,6 @@ module usb_asp_ctrl_ep (
   assign spi_mosi = spi_mosi_byte[7]; // output: MSB SPI bit gets shifted out first
 
   wire more_data_out;
-  
-  reg [15:0] superslow;
-
 
   // the default control endpoint gets assigned the device address
   reg [6:0] dev_addr_i = 0;
@@ -166,7 +165,7 @@ module usb_asp_ctrl_ep (
   ////////////////////////////////////////////////////////////////////////////////
 
 
-  always @* begin
+  always @(negedge clk) begin
     setup_stage_end <= 0;
     data_stage_end <= 0;
     status_stage_end <= 0;
@@ -293,7 +292,6 @@ module usb_asp_ctrl_ep (
             6 : begin
               // DEVICE_QUALIFIER
               in_ep_stall <= 1;
-              rom_addr   <= 0;
               rom_length <= 0;
             end
 
@@ -302,7 +300,6 @@ module usb_asp_ctrl_ep (
 
         'h05 : begin
           // SET_ADDRESS
-          rom_addr   <= 0;
           rom_length <= 0;
 
           // we need to save the address after the status stage ends
@@ -314,36 +311,10 @@ module usb_asp_ctrl_ep (
 
         'h09 : begin
           // SET_CONFIGURATION
-          rom_addr   <= 0;
-          rom_length <= 0;
-        end
-
-        'h20 : begin
-          // SET_LINE_CODING
-          rom_addr   <= 0;
-          rom_length <= 0;
-        end
-
-        'h21 : begin
-          // GET_LINE_CODING
-          rom_addr   <= 85;
-          rom_length <= 7;
-        end
-
-        'h22 : begin
-          // SET_CONTROL_LINE_STATE
-          rom_addr   <= 0;
-          rom_length <= 0;
-        end
-
-        'h23 : begin
-          // SEND_BREAK
-          rom_addr   <= 0;
           rom_length <= 0;
         end
 
         default begin
-          rom_addr   <= 0;
           rom_length <= 0;
         end
       endcase
@@ -415,7 +386,7 @@ module usb_asp_ctrl_ep (
       begin
         spi_clk <= 1; // clock inactive
         spi_csn <= 1; // disable chip
-        spi_bit_counter <= 10; // skip first few clock cycles
+        spi_bit_counter <= 12; // skip first few clock cycles
       end
     end
     else // spi_bytes_sent != spi_length
@@ -454,7 +425,6 @@ module usb_asp_ctrl_ep (
     if (status_stage_end) begin
       setup_data_addr <= 0;      
       bytes_sent <= 0;
-      rom_addr <= 0;
       rom_length <= 0;
 
       if (save_dev_addr) begin
@@ -465,7 +435,6 @@ module usb_asp_ctrl_ep (
 
     if (reset) begin
       bytes_sent <= 0;
-      rom_addr <= 0;
       rom_length <= 0;
       dev_addr_i <= 0;
       setup_data_addr <= 0;
@@ -474,7 +443,7 @@ module usb_asp_ctrl_ep (
       spi_length <= 0;
       spi_bytes_sent <= 0;
       debug_led <= 0;
-  end
+    end
   end
 
   assign in_ep_data = (send_in_buf ? in_buf[rom_addr[4:0]] : descriptor_rom[rom_addr]);
