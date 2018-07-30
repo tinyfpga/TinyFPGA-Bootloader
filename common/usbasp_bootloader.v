@@ -82,8 +82,6 @@ module usbasp_bootloader (
       pwm_cnt <= pwm_cnt + 1'b1; 
   assign led = led_pwm > pwm_cnt;  
 
-
-
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
   ////////
@@ -174,13 +172,9 @@ module usbasp_bootloader (
     .in_ep_acked(ctrl_in_ep_acked)
   );
 
-  wire nak_in_ep_grant;
-  wire nak_in_ep_data_free;
-  wire nak_in_ep_acked;
-
   usb_fs_pe #(
     .NUM_OUT_EPS(5'd1),
-    .NUM_IN_EPS(5'd2)
+    .NUM_IN_EPS(5'd1)
   ) usb_fs_pe_inst (
     .clk(clk_48mhz),
     .reset(reset),
@@ -204,14 +198,14 @@ module usbasp_bootloader (
     .out_ep_acked({ctrl_out_ep_acked}),
 
     // in endpoint interfaces 
-    .in_ep_req({1'b0, ctrl_in_ep_req}),
-    .in_ep_grant({nak_in_ep_grant, ctrl_in_ep_grant}),
-    .in_ep_data_free({nak_in_ep_data_free, ctrl_in_ep_data_free}),
-    .in_ep_data_put({1'b0, ctrl_in_ep_data_put}),
-    .in_ep_data({8'b0, ctrl_in_ep_data[7:0]}),
-    .in_ep_data_done({1'b0, ctrl_in_ep_data_done}),
-    .in_ep_stall({1'b0, ctrl_in_ep_stall}),
-    .in_ep_acked({nak_in_ep_acked, ctrl_in_ep_acked}),
+    .in_ep_req({ctrl_in_ep_req}),
+    .in_ep_grant({ctrl_in_ep_grant}),
+    .in_ep_data_free({ctrl_in_ep_data_free}),
+    .in_ep_data_put({ctrl_in_ep_data_put}),
+    .in_ep_data({ctrl_in_ep_data[7:0]}),
+    .in_ep_data_done({ctrl_in_ep_data_done}),
+    .in_ep_stall({ctrl_in_ep_stall}),
+    .in_ep_acked({ctrl_in_ep_acked}),
 
     // sof interface
     .sof_valid(sof_valid),
