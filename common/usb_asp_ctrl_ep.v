@@ -63,7 +63,9 @@ module usb_asp_ctrl_ep (
   /////////////////////////
   reg [7:0] out_buf [0:31]; // PC out transfer should be received here (32 byte max)
   reg [7:0] in_buf [0:31]; // PC in transfer when PC reads back buffered SPI response (32 byte max)
-  reg [5:0] out_buf_addr, spi_length, spi_bytes_sent; // 0-32 bit address for the buffer
+  reg [5:0] out_buf_addr; // 0-32 address for the buffer
+  reg [5:0] spi_length = 0; // 0-32 number of bytes to be sent by OUT
+  reg [5:0] spi_bytes_sent = 0; // 0-32 bit current number of bytes sent by OUT
   reg [3:0] spi_bit_counter = 15; // 0-15
   reg vendorspec = 1'b0;
   reg spi_continue = 0; // 0:normal packet (reset start, closed end) 1:packet continued (open start, open end)
@@ -269,7 +271,7 @@ module usb_asp_ctrl_ep (
 
     if (setup_stage_end) begin
     case (bmRequestType[6:5]) // 2 bits describing request type
-      0 : begin // 0: standard request
+      0: begin // 0: standard request
       vendorspec <= 1'b0; // not vendor-specific
       case (bRequest)
         'h06 : begin
@@ -345,11 +347,10 @@ module usb_asp_ctrl_ep (
         end
       endcase
       end // end 0: standard request
-      default begin // 2: vendor specific request (also would handle 1 or 3)
+      2: begin // 2: vendor specific request (also would handle 1 or 3)
         vendorspec <= 1'b1; // this is vendor-specific request
         case (bRequest)
-          0: begin // write or read block
-            // debug_led <= wValue[7:0];
+          0: begin // write or read SPI data block
             spi_continue <= wValue[0];
             if (in_data_stage)
             begin
@@ -362,6 +363,8 @@ module usb_asp_ctrl_ep (
               out_buf_addr <= 0;
               spi_length <= wLength;
               spi_bytes_sent <= 0;
+              if (spi_bytes_sent != spi_length)
+                debug_led[7] <= ~debug_led[7]; // indicate overrun, new packet arrived before SPI finished
             end
           end // end bRequest 0
           
@@ -372,6 +375,8 @@ module usb_asp_ctrl_ep (
           end
         endcase
       end // end 2: vendor specific request
+      default begin // default 1,3: unhandled
+      end // end defaul
     endcase
     end
 
@@ -381,9 +386,6 @@ module usb_asp_ctrl_ep (
     end
 
     if ( (ctrl_xfr_state == DATA_OUT) && out_ep_data_valid && ~out_ep_setup) begin
-      if (rom_addr == 31) begin
-        debug_led <= out_ep_data;
-      end
       out_buf[out_buf_addr] <= out_ep_data;
       out_buf_addr <= out_buf_addr + 1;
     end
@@ -406,7 +408,7 @@ module usb_asp_ctrl_ep (
       begin
         if (spi_bit_counter == 15)
         begin
-          spi_bit_counter <= 0; // skip one cycle
+          spi_bit_counter <= 0; // skip one cycle, flash needs small delay to start listening
         end
 
         if (spi_bit_counter[3] == 0)
