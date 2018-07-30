@@ -347,20 +347,30 @@ module usb_asp_ctrl_ep (
       end // end 0: standard request
       default begin // 2: vendor specific request (also would handle 1 or 3)
         vendorspec <= 1'b1; // this is vendor-specific request
-        // debug_led <= wValue[7:0];
-        spi_continue <= wValue[0];
-        if (in_data_stage)
-        begin
-          rom_addr <= 0;
-          rom_length <= wLength;
-          bytes_sent <= 0;
-        end
-        if (out_data_stage)
-        begin
-          out_buf_addr <= 0;
-          spi_length <= wLength;
-          spi_bytes_sent <= 0;
-        end
+        case (bRequest)
+          0: begin // write or read block
+            // debug_led <= wValue[7:0];
+            spi_continue <= wValue[0];
+            if (in_data_stage)
+            begin
+              rom_addr <= 0;
+              rom_length <= wLength;
+              bytes_sent <= 0;
+            end
+            if (out_data_stage)
+            begin
+              out_buf_addr <= 0;
+              spi_length <= wLength;
+              spi_bytes_sent <= 0;
+            end
+          end // end bRequest 0
+          
+          1: begin // read SPI state (did it finish?)
+          end
+
+          default begin // catch all other bRequest != 0
+          end
+        endcase
       end // end 2: vendor specific request
     endcase
     end
@@ -496,3 +506,9 @@ module usb_asp_ctrl_ep (
       assign descriptor_rom[35] = 0; // iInterface
 
 endmodule
+
+/* TODO
+[ ] duplicate packets sometimes recived (did SPI finish before new packet came')
+[ ] lsusb -vvv -d shows descriptor and vailts, try to dump traffic with wireshark
+[ ] overrun signal
+*/
