@@ -124,7 +124,7 @@ module usb_asp_ctrl_ep (
 
   wire setup_pkt_start = pkt_start && out_ep_setup;
 
-  wire has_data_stage = wLength != 16'b0000000000000000;
+  wire has_data_stage = wLength != 0;
 
   wire out_data_stage;
   assign out_data_stage = has_data_stage && !bmRequestType[7];
@@ -376,13 +376,16 @@ module usb_asp_ctrl_ep (
           1: begin // read SPI state (0:free 1:busy) IN request
             // choose ROM location which is not likely to change
             // because it will send data from ROM, not buffer
-            send_in_buf <= 0;
-            if (spi_bytes_sent == spi_length)
-              rom_addr <= 5; // must point to 0 in ROM descriptor
-            else
-              rom_addr <= 1; // must point to 1 in ROM descriptor
-            rom_length <= 1;
-            bytes_sent <= 0;
+            if (in_data_stage)
+            begin
+              send_in_buf <= 0;
+              if (spi_bytes_sent == spi_length)
+                rom_addr <= 5; // must point to 0 in ROM descriptor
+              else
+                rom_addr <= 1; // must point to 1 in ROM descriptor
+              rom_length <= 1;
+              bytes_sent <= 0;
+            end
           end
 
           default begin // catch all other bRequest != 0
