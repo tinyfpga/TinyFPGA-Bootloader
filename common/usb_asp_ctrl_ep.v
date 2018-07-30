@@ -349,7 +349,7 @@ module usb_asp_ctrl_ep (
       endcase
       end // end 0: standard request
 
-      2: begin // 2: vendor specific request (also would handle 1 or 3)
+      2: begin // 2: vendor specific request
         case (bRequest)
           0: begin // write or read SPI data block
             spi_continue <= wValue[0];
@@ -415,7 +415,7 @@ module usb_asp_ctrl_ep (
       begin
         spi_clk <= 1; // clock inactive
         spi_csn <= 1; // disable chip
-        spi_bit_counter <= 10; // skip first few clock cycle
+        spi_bit_counter <= 10; // skip first few clock cycles
       end
     end
     else // spi_bytes_sent != spi_length
@@ -482,8 +482,8 @@ module usb_asp_ctrl_ep (
   wire [7:0] descriptor_rom [0:35];
     assign descriptor_rom[0] = 18; // bLength
       assign descriptor_rom[1] = 1; // bDescriptorType
-      assign descriptor_rom[2] = 'h00; // bcdUSB[0]
-      assign descriptor_rom[3] = 'h02; // bcdUSB[1]
+      assign descriptor_rom[2] = 'h10; // bcdUSB[0]
+      assign descriptor_rom[3] = 'h01; // bcdUSB[1]
       assign descriptor_rom[4] = 'hFF; // bDeviceClass
       assign descriptor_rom[5] = 'h00; // bDeviceSubClass
       assign descriptor_rom[6] = 'h00; // bDeviceProtocol
@@ -528,5 +528,6 @@ endmodule
 /* TODO
 [ ] duplicate packets sometimes recived (did SPI finish before new packet came')
 [ ] lsusb -vvv -d shows descriptor and vailts, try to dump traffic with wireshark
+[ ] lsusb -vvv -d will make lisbusb fail
 [ ] overrun signal - problem: SPI often stalls
 */
