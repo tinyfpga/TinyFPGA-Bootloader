@@ -61,12 +61,13 @@ module usb_asp_ctrl_ep (
   /////////////////////////
   /// SPI BUFFERING
   /////////////////////////
-  reg [7:0] out_buf [0:31]; // PC out transfer should be received here (32 byte max)
+  reg [7:0] out_buf [0:63]; // PC out transfer should be received here (64 byte max)
   reg [7:0] in_buf [0:31]; // PC in transfer when PC reads back buffered SPI response (32 byte max)
-  reg [5:0] out_buf_addr = 0; // 0-32 address for the buffer
+  reg [5:0] out_buf_addr_usb = 0; // 0-32 address for the buffer
+  reg [5:0] out_buf_addr_spi = 0; // 0-32 address for the buffer for SPI sender
   reg [5:0] spi_length = 0; // 0-32 number of bytes to be sent by OUT
   reg [5:0] spi_bytes_sent = 0; // 0-32 bit current number of bytes sent by OUT
-  reg [3:0] spi_bit_counter = 15; // 0-15
+  reg [3:0] spi_bit_counter = 10; // 0-15
   reg send_in_buf = 0;
   reg spi_continue = 0; // 0:normal packet (reset start, closed end) 1:packet continued (open start, open end)
   
@@ -81,7 +82,7 @@ module usb_asp_ctrl_ep (
 
   wire more_data_out;
   
-  reg [1:0] superslow;
+  reg [15:0] superslow;
 
 
   // the default control endpoint gets assigned the device address
@@ -362,7 +363,7 @@ module usb_asp_ctrl_ep (
             if (out_data_stage)
             begin
               send_in_buf <= 0;
-              out_buf_addr <= 0;
+              // out_buf_addr_usb <= 0;
               spi_length <= wLength;
               spi_bytes_sent <= 0;
               if (spi_bytes_sent != spi_length)
@@ -397,34 +398,34 @@ module usb_asp_ctrl_ep (
     end
 
     if ( (ctrl_xfr_state == DATA_OUT) && out_ep_data_valid && ~out_ep_setup) begin
-      out_buf[out_buf_addr] <= out_ep_data;
-      out_buf_addr <= out_buf_addr + 1;
+      out_buf[out_buf_addr_usb] <= out_ep_data;
+      out_buf_addr_usb <= out_buf_addr_usb + 1;
     end
 
-    //superslow <= superslow + 1;
-    //if (superslow == 0)
+    superslow <= superslow + 1;
+    if (superslow == 0)
     if (spi_bytes_sent == spi_length)
     begin // nothing to send
       if (spi_continue == 0)
       begin
         spi_clk <= 1; // clock inactive
         spi_csn <= 1; // disable chip
-        spi_bit_counter <= 15; // skip first clock cycle
+        spi_bit_counter <= 10; // skip first few clock cycle
       end
     end
     else // spi_bytes_sent != spi_length
     begin
       spi_csn <= 0; // enable chip
-      if(out_buf_addr != spi_bytes_sent) // more spi data
+      if(out_buf_addr_usb != out_buf_addr_spi) // more spi data
       begin
         if (spi_bit_counter[3])
-          spi_bit_counter <= 0; // skip one cycle, flash needs small delay from csn=0 to clk
+          spi_bit_counter <= spi_bit_counter + 1; // skip some cycles, flash needs small delay from csn=0 to clk
         else // spi_bit_counter < 8
         begin
           if (spi_clk == 1)
           begin // clock=0: send data to SPI chip
             if (spi_bit_counter[2:0] == 0)
-              spi_mosi_byte <= out_buf[spi_bytes_sent]; // new byte from buffer
+              spi_mosi_byte <= out_buf[out_buf_addr_spi]; // new byte from buffer
             else
               spi_mosi_byte <= spi_mosi_byte_next; // shift bit output to SPI chip
           end
@@ -435,6 +436,7 @@ module usb_asp_ctrl_ep (
             begin
               in_buf[spi_bytes_sent] <= spi_miso_byte_next; // complete byte to IN buffer, later sent
               spi_bytes_sent <= spi_bytes_sent + 1;
+              out_buf_addr_spi <= out_buf_addr_spi + 1; // catch up
             end
             spi_bit_counter[2:0] <= spi_bit_counter[2:0] + 1;
           end
@@ -442,7 +444,7 @@ module usb_asp_ctrl_ep (
         end // spi bit counter < 8
       end // more_spi_data
     end // spi_bytes_sent != spi_length
-    
+
 
     if (status_stage_end) begin
       setup_data_addr <= 0;      
@@ -464,7 +466,6 @@ module usb_asp_ctrl_ep (
       setup_data_addr <= 0;
       save_dev_addr <= 0;
       send_in_buf <= 0;
-      out_buf_addr <= 0;
       spi_length <= 0;
       spi_bytes_sent <= 0;
       debug_led <= 0;
