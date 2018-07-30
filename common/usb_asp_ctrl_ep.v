@@ -522,5 +522,5 @@ endmodule
 /* TODO
 [ ] duplicate packets sometimes recived (did SPI finish before new packet came')
 [ ] lsusb -vvv -d shows descriptor and vailts, try to dump traffic with wireshark
-[ ] overrun signal
+[ ] overrun signal - problem: SPI often stalls
 */
