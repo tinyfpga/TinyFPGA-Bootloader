@@ -362,12 +362,14 @@ module usb_asp_ctrl_ep (
             end
             if (out_data_stage)
             begin
-              send_in_buf <= 0;
-              // out_buf_addr_usb <= 0;
-              spi_length <= wLength;
-              spi_bytes_sent <= 0;
               if (spi_bytes_sent != spi_length)
                 debug_led <= debug_led + 1; // indicate overrun, new packet arrived before SPI finished
+              else
+              begin
+                send_in_buf <= 0;
+                spi_length <= wLength;
+                spi_bytes_sent <= 0;
+              end
             end
           end // end bRequest 0
           
