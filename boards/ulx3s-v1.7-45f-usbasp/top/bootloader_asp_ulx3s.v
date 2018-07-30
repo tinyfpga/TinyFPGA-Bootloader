@@ -119,8 +119,8 @@ module bootloader_asp_ulx3s (
   ////////////////////////////////////////////////////////////////////////////////
   assign wifi_gpio0 = btn[0];
   //assign led[5] = boot;
-  assign led = debug_led;
-  // assign led[3:0] = {flash_miso, flash_mosi, S_flash_clk, S_flash_csn}; 
+  // assign led = debug_led;
+  assign led[3:0] = {flash_miso, flash_mosi, S_flash_clk, S_flash_csn}; 
   
 
 endmodule

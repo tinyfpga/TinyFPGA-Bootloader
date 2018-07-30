@@ -402,8 +402,8 @@ module usb_asp_ctrl_ep (
       out_buf_addr_usb <= out_buf_addr_usb + 1;
     end
 
-    superslow <= superslow + 1;
-    if (superslow == 0)
+    //superslow <= superslow + 1;
+    //if (superslow == 0)
     if (spi_bytes_sent == spi_length)
     begin // nothing to send
       if (spi_continue == 0)
