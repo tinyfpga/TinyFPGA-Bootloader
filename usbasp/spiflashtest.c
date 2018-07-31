@@ -21,6 +21,18 @@
 static struct libusb_device_handle *device_handle = NULL;
 uint8_t libusb_initialized = 0, interface_claimed = 0;
 
+void print_progress_bar (size_t done, size_t total)
+{
+    const char *PBSTR = "#################################################";
+    if(total == 0 || done > total)
+      done = total = 1; // avoid division by zero
+    const size_t PBWIDTH = strlen(PBSTR);
+    int percent = (int) (100 * done / total);
+    int lpad = (int) (PBWIDTH * done / total);
+    int rpad = PBWIDTH - lpad;
+    printf("\r%3d%% [%.*s%*s]", percent, lpad, PBSTR, rpad, "");
+    fflush(stdout);
+}
 
 void cmd_addr(uint8_t *buf, uint8_t cmd, uint32_t addr)
 {
@@ -493,7 +505,16 @@ int main(void)
   // flash_write(data, 0x200000+33*1024, 100);
   free(data);
   test_read(0x200000+33*1024-64, 256); // alphabet
-  // read_to_file("/tmp/flashcontent.bin", 0, 0x400000);  
+  // read_to_file("/tmp/flashcontent.bin", 0, 0x400000);
+
+  int i, pbarmax = 300000;
+  for(i = 0; i < pbarmax; i += 1024)
+  {
+    print_progress_bar(i, pbarmax);
+    usleep(100000);
+  }
+  print_progress_bar(i, pbarmax);
+  printf("\n");
 
   return 0;
 }
