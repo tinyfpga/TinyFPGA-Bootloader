@@ -30,137 +30,6 @@ void cmd_addr(uint8_t *buf, uint8_t cmd, uint32_t addr)
   buf[3] = 0XFF & addr;
 }
 
-int flash_read(uint8_t *data, size_t addr, size_t length)
-{
-  uint8_t buf[32]; // USB I/O buffer
-  size_t accumulated_read = 0; // accumulate total read
-  size_t payload_start = 4; // initial payload starts at byte 4 without continuation
-  uint8_t data1 = 0; // currently no use
-  uint8_t bRequest = 0; // currently no use
-  uint16_t wIndex = 0; // currently no use
-  uint16_t wValue = length <= sizeof(buf)-payload_start ? 0 : 1; // wValue: 0-no continuation, 1-continuation
-  uint16_t timeout_ms = 10; // 10 ms waiting for response
-
-  cmd_addr(buf, 0x03, addr); // FLASH normal (slow) read
-  
-  while(accumulated_read < length)
-  {
-    int response;
-
-    #if 0
-    // IN request - wait for SPI to finish its transmission 
-    buf[0] = 1;
-    while(buf[0] == 1)
-    {
-      response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_IN|LIBUSB_REQUEST_TYPE_VENDOR),
-        1, 0, 0, buf, 1, timeout_ms);
-      if(buf[0])
-        printf("spi busy before out %d\n", buf[0]);
-    }
-    #endif
-
-    // write to USB read command followed with dummy bytes
-    // in order to read, we must first write command and the
-    // contiue writing anything to SPI
-    // every written byte will also result in reading a byte.
-    // up to 32 read bytes are buffered inside of the USB device.
-    // this USB buffer can be retrieved by subsequent IN command later.
-    response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_OUT|LIBUSB_REQUEST_TYPE_VENDOR|data1),
-      bRequest, wValue, wIndex, buf, sizeof(buf), timeout_ms);
-    if(response < 0)
-    {
-      fprintf(stderr, "OUT: %s\n", libusb_error_name(response));
-      return -1; // something went wrong with USB
-    }
-    // calculate next request length (how much to read from USB)
-    size_t request_size;
-    if(accumulated_read + sizeof(buf) - payload_start >= length)
-    {
-      // printf("last packet\n");
-      // end packet, trim request size to how much we really need
-      request_size = length + payload_start - accumulated_read;
-      wValue = 0; // terminate continuation
-    }
-    else
-      request_size = sizeof(buf);
-
-    #if 0
-    // IN request - wait for SPI to finish its transmission 
-    buf[0] = 1;
-    while(buf[0] == 1)
-    {
-      response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_IN|LIBUSB_REQUEST_TYPE_VENDOR),
-        1, 0, 0, buf, 1, timeout_ms);
-      if(buf[0])
-        printf("spi busy before in %d\n", buf[0]);
-    }
-    #endif
-
-    //usleep(1000000);
-    // usleep(11); // sleep 11us for SPI to tranfer (usually not needed)
-    response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_IN|LIBUSB_REQUEST_TYPE_VENDOR|data1),
-      bRequest, wValue, wIndex, buf, request_size, timeout_ms);
-    if(response != request_size)
-    {
-      fprintf(stderr, "IN: %s\n", libusb_error_name(response));
-      return -1; // something went wrong with USB
-    }
-    size_t response_size = response - payload_start;
-    memcpy(data, buf+payload_start, response_size);
-    data += response_size;
-    accumulated_read += response_size;
-    if(payload_start) // contination will result in full 32-byte payload
-      payload_start = 0;
-  }
-  return 0; // 0 on success
-}
-
-
-// read from addr, length bytes and write to file
-int read_to_file(char *filename, size_t addr, size_t length)
-{
-  // printf("reading\n");
-  const int bufsize = 28; // not much speed improvement in increasing this
-  uint8_t buf[2][bufsize]; // 2 buffers, both must match
-  size_t accumulated_read = 0;
-  int file_descriptor = open(filename, O_CREAT | O_TRUNC | O_RDWR, S_IRUSR | S_IWUSR);
-  const int retry = 1000;
-  while(accumulated_read < length)
-  {
-    int match; // repeat reading until 2 subsequent readings match
-    int ib = 0; // buffer index 0/1 to match
-    size_t requested_size = accumulated_read + bufsize >= length ? length - accumulated_read : bufsize;
-    match = 0;
-    const int match_required = 2;
-    // printf("accumulated_read %d\n", accumulated_read);
-    for(int i = 0; i < retry && match < match_required; i++)
-  {
-      buf[ib][0] = ~buf[ib^1][0]; // damage first byte for the match to initially fail unless read correct
-      buf[ib][requested_size-1] = ~buf[ib^1][requested_size-1]; // damage first byte for the match to initially fail unless read correct
-      int rc = flash_read(buf[ib], addr, requested_size);
-      if(rc == 0 && memcmp(buf[ib], buf[ib^1], requested_size) == 0)
-        match++;
-      else
-      {
-        match = 0;
-        if(i > 0)
-          printf("read verify error %d\n", i);
-      }
-      ib ^= 1; // switch buffer
-    }
-    if(match < match_required)
-    {
-      fprintf(stderr, "failure after %d retries\n", retry);
-      return -1;
-    }
-    write(file_descriptor, buf[0], requested_size);
-    accumulated_read += requested_size;
-    addr += requested_size;
-  }
-  close(file_descriptor);
-  return 0;
-}
-
 // up to 32 byte single packet in/out exchange
 int txrx(uint8_t *out_data, size_t out_len, uint8_t *in_data, size_t in_len)
 {
@@ -254,6 +123,212 @@ int flash_erase_sector(size_t addr, size_t len)
     return -1; // error in txrx
   flash_wait_while_busy();
 }
+
+int flash_read(uint8_t *data, size_t addr, size_t length)
+{
+  uint8_t buf[32]; // USB I/O buffer
+  size_t accumulated_read = 0; // accumulate total read
+  size_t payload_start = 4; // initial payload starts at byte 4 without continuation
+  uint8_t data1 = 0; // currently no use
+  uint8_t bRequest = 0; // currently no use
+  uint16_t wIndex = 0; // currently no use
+  uint16_t wValue = length <= sizeof(buf)-payload_start ? 0 : 1; // wValue: 0-no continuation, 1-continuation
+  uint16_t timeout_ms = 10; // 10 ms waiting for response
+
+  cmd_addr(buf, 0x03, addr); // FLASH normal (slow) read
+  
+  while(accumulated_read < length)
+  {
+    int response;
+
+    #if 0
+    // IN request - wait for SPI to finish its transmission 
+    buf[0] = 1;
+    while(buf[0] == 1)
+    {
+      response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_IN|LIBUSB_REQUEST_TYPE_VENDOR),
+        1, 0, 0, buf, 1, timeout_ms);
+      if(buf[0])
+        printf("spi busy before out %d\n", buf[0]);
+    }
+    #endif
+
+    // write to USB read command followed with dummy bytes
+    // in order to read, we must first write command and the
+    // contiue writing anything to SPI
+    // every written byte will also result in reading a byte.
+    // up to 32 read bytes are buffered inside of the USB device.
+    // this USB buffer can be retrieved by subsequent IN command later.
+    response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_OUT|LIBUSB_REQUEST_TYPE_VENDOR|data1),
+      bRequest, wValue, wIndex, buf, sizeof(buf), timeout_ms);
+    if(response < 0)
+    {
+      fprintf(stderr, "OUT: %s\n", libusb_error_name(response));
+      return -1; // something went wrong with USB
+    }
+    // calculate next request length (how much to read from USB)
+    size_t request_size;
+    if(accumulated_read + sizeof(buf) - payload_start >= length)
+    {
+      // printf("last packet\n");
+      // end packet, trim request size to how much we really need
+      request_size = length + payload_start - accumulated_read;
+      wValue = 0; // terminate continuation
+    }
+    else
+      request_size = sizeof(buf);
+
+    #if 0
+    // IN request - wait for SPI to finish its transmission 
+    buf[0] = 1;
+    while(buf[0] == 1)
+    {
+      response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_IN|LIBUSB_REQUEST_TYPE_VENDOR),
+        1, 0, 0, buf, 1, timeout_ms);
+      if(buf[0])
+        printf("spi busy before in %d\n", buf[0]);
+    }
+    #endif
+
+    //usleep(1000000);
+    // usleep(11); // sleep 11us for SPI to tranfer (usually not needed)
+    response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_IN|LIBUSB_REQUEST_TYPE_VENDOR|data1),
+      bRequest, wValue, wIndex, buf, request_size, timeout_ms);
+    if(response != request_size)
+    {
+      fprintf(stderr, "IN: %s\n", libusb_error_name(response));
+      return -1; // something went wrong with USB
+    }
+    size_t response_size = response - payload_start;
+    memcpy(data, buf+payload_start, response_size);
+    data += response_size;
+    accumulated_read += response_size;
+    if(payload_start) // contination will result in full 32-byte payload
+      payload_start = 0;
+  }
+  return 0; // 0 on success
+}
+
+int flash_write(uint8_t *data, size_t addr, size_t length)
+{
+  uint8_t buf[32]; // USB I/O buffer
+  size_t accumulated_read = 0; // accumulate total read
+  size_t payload_start = 4; // initial payload starts at byte 4 without continuation
+  uint8_t data1 = 0; // currently no use
+  uint8_t bRequest = 0; // currently no use
+  uint16_t wIndex = 0; // currently no use
+  uint16_t wValue = length <= sizeof(buf)-payload_start ? 0 : 1; // wValue: 0-no continuation, 1-continuation
+  uint16_t timeout_ms = 10; // 10 ms waiting for response
+
+  cmd_addr(buf, 0x02, addr); // FLASH write (should be previous erased to 0xFF)
+  
+  while(accumulated_read < length)
+  {
+    int response;
+
+    #if 0
+    // IN request - wait for SPI to finish its transmission 
+    buf[0] = 1;
+    while(buf[0] == 1)
+    {
+      response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_IN|LIBUSB_REQUEST_TYPE_VENDOR),
+        1, 0, 0, buf, 1, timeout_ms);
+      if(buf[0])
+        printf("spi busy before out %d\n", buf[0]);
+    }
+    #endif
+
+    // calculate next request length (how much to read from USB)
+    size_t request_size;
+    if(accumulated_read + sizeof(buf) - payload_start >= length)
+    {
+      // printf("last packet\n");
+      // end packet, trim request size to how much we really need
+      request_size = length + payload_start - accumulated_read;
+      wValue = 0; // terminate continuation
+    }
+    else
+      request_size = sizeof(buf);
+    size_t response_size = sizeof(buf) - payload_start;
+    printf("paystart %d, response_size %d\n", payload_start, response_size);
+    memcpy(buf+payload_start, data, response_size);
+
+    // write to USB the flash write command followed with data
+    response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_OUT|LIBUSB_REQUEST_TYPE_VENDOR|data1),
+      bRequest, wValue, wIndex, buf, request_size, timeout_ms);
+    if(response < 0)
+    {
+      fprintf(stderr, "OUT: %s\n", libusb_error_name(response));
+      return -1; // something went wrong with USB
+    }
+
+    #if 0
+    // IN request - wait for SPI to finish its transmission 
+    buf[0] = 1;
+    while(buf[0] == 1)
+    {
+      response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_IN|LIBUSB_REQUEST_TYPE_VENDOR),
+        1, 0, 0, buf, 1, timeout_ms);
+      if(buf[0])
+        printf("spi busy before in %d\n", buf[0]);
+    }
+    #endif
+
+    data += response_size;
+    accumulated_read += response_size;
+    if(payload_start) // contination will result in full 32-byte payload
+      payload_start = 0;
+
+  }
+  return 0; // 0 on success
+}
+
+
+// read from addr, length bytes and write to file
+int read_to_file(char *filename, size_t addr, size_t length)
+{
+  // printf("reading\n");
+  const int bufsize = 28; // not much speed improvement in increasing this
+  uint8_t buf[2][bufsize]; // 2 buffers, both must match
+  size_t accumulated_read = 0;
+  int file_descriptor = open(filename, O_CREAT | O_TRUNC | O_RDWR, S_IRUSR | S_IWUSR);
+  const int retry = 1000;
+  while(accumulated_read < length)
+  {
+    int match; // repeat reading until 2 subsequent readings match
+    int ib = 0; // buffer index 0/1 to match
+    size_t requested_size = accumulated_read + bufsize >= length ? length - accumulated_read : bufsize;
+    match = 0;
+    const int match_required = 2;
+    // printf("accumulated_read %d\n", accumulated_read);
+    for(int i = 0; i < retry && match < match_required; i++)
+  {
+      buf[ib][0] = ~buf[ib^1][0]; // damage first byte for the match to initially fail unless read correct
+      buf[ib][requested_size-1] = ~buf[ib^1][requested_size-1]; // damage first byte for the match to initially fail unless read correct
+      int rc = flash_read(buf[ib], addr, requested_size);
+      if(rc == 0 && memcmp(buf[ib], buf[ib^1], requested_size) == 0)
+        match++;
+      else
+      {
+        match = 0;
+        if(i > 0)
+          printf("read verify error %d\n", i);
+      }
+      ib ^= 1; // switch buffer
+    }
+    if(match < match_required)
+    {
+      fprintf(stderr, "failure after %d retries\n", retry);
+      return -1;
+    }
+    write(file_descriptor, buf[0], requested_size);
+    accumulated_read += requested_size;
+    addr += requested_size;
+  }
+  close(file_descriptor);
+  return 0;
+}
+
 
 static void print_devs(libusb_device **devs)
 {
@@ -376,7 +451,7 @@ int send_one_packet()
 int test_read(size_t addr, size_t len)
 {
   uint8_t *buf; // buffer 64K
-  buf = (uint8_t *)malloc(len);
+  buf = (uint8_t *)malloc(len * sizeof(uint8_t));
   flash_read(buf, addr, len); // read complete buffer from flash address 0
 
   // print start of the buffer
@@ -406,9 +481,18 @@ int main(void)
   
   //usleep(1000000);
   // test_read(0x300000); // alphabet
-  test_read(0x200000+64*1024-64, 128); // alphabet
-  // flash_erase_sector(0x200000, 64*1024);
-  test_read(0x200000+64*1024-64, 128); // alphabet
+  test_read(0x200000+32*1024-64, 128); // alphabet
+  
+  //flash_erase_sector(0x200000, 64*1024);
+  size_t length = 100;
+  uint8_t *data = (uint8_t *)malloc(length * sizeof(uint8_t));
+  for(int i = 0; i < length; i++)
+    data[i] = 0xFF & i;
+  //flash_write_enable();
+  //flash_write(data, 0x208000, 100);
+  //flash_write_disable();
+  free(data);
+  test_read(0x200000+32*1024-64, 256); // alphabet
   // read_to_file("/tmp/flashcontent.bin", 0, 0x400000);  
 
   return 0;
