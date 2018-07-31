@@ -424,19 +424,20 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
       printf("restore begin 0x%06X-0x%06X\n", erase_sector_addr, erase_sector_addr+restore_begin_len-1);
       // TODO read with retry-verify
       flash_read(sector_buf, erase_sector_addr, restore_begin_len);
-      // print_hex_buf(sector_buf, restore_begin_len);
+      print_hex_buf(sector_buf, restore_begin_len);
     }
     if(restore_end_len > 0)
     {
       printf("restore end 0x%06X-0x%06X\n", restore_end_addr, restore_end_addr+restore_end_len-1);
       // TODO read with retry-verify
       flash_read(sector_buf+sector_size-restore_end_len, restore_end_addr, restore_end_len);
-      // print_hex_buf(sector_buf+sector_size-restore_end_len, restore_end_len);
+      print_hex_buf(sector_buf+sector_size-restore_end_len, restore_end_len);
     }
     // erase sector here (erase_sector_addr, sector_size) (verify if erased to 0xFF)
     // read data from file and write to buffer (sector_buf + addr - erase_sector_addr, data_bytes_to_write);
     read(file_descriptor, sector_buf + addr - erase_sector_addr, data_bytes_to_write);
-    print_hex_buf(sector_buf + addr - erase_sector_addr, 100);
+    printf("sector to write\n");
+    print_hex_buf(sector_buf, sector_size);
     // write sector with retry-verify (addr, sector_size)
     bytes_written += data_bytes_to_write; // not correct but OK for now
     addr += data_bytes_to_write;
