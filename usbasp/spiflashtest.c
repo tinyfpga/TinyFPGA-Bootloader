@@ -388,6 +388,8 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
   printf("file length %d\n", file_length);
   if(file_length < length)
     length = file_length;
+
+  #if 0
   int sector_map_len = length/available_sector_size[0]+1; // max number of sectors
   uint8_t *sector_map = (uint8_t *) malloc(sector_map_len * sizeof(uint8_t)); // sector erase map
   memset(sector_map, 0, sector_map_len);
@@ -477,7 +479,8 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
   }
   printf("sector map base 0x%06X\n", sector_map_base);
   print_hex_buf(sector_map, sector_map_len);
-  
+  free(sector_map);
+  #endif
   // **** sector logic ****
   // we need to interated over flash sectors
   // if writing to partial sector we first read old data from the sector,
@@ -497,6 +500,7 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
     size_t sector_size = available_sector_size[0]; // minimal sector size
     size_t sector_part_before_data = addr % sector_size; // start as minimal sector
     // find do we have any larger  
+    if(0)
     for(int i = 1; i < num_available_sector_size; i++)
     {
       if( addr % available_sector_size[i] == sector_part_before_data // if part before is the same
@@ -539,7 +543,6 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
     addr += data_bytes_to_write;
   }
   printf("bytes from file %d\n", lseek(file_descriptor, 0, SEEK_CUR));
-  free(sector_map);
 }
 
 
@@ -694,8 +697,8 @@ int main(void)
   free(data);
   test_read(0x200000+33*1024-64, 256); // alphabet
   // read_flash_write_file("/tmp/flashcontent.bin", 0, 0x400000);
-  // read_file_write_flash("/tmp/flashcontent.bin", 5155, 160000);
-  read_file_write_flash("/tmp/flashcontent.bin", 0x100000, 500000);
+  read_file_write_flash("/tmp/flashcontent.bin", 5155, 16000);
+  // read_file_write_flash("/tmp/flashcontent.bin", 0x100000, 50000);
 
   return 0;
 }
