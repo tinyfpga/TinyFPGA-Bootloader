@@ -299,7 +299,7 @@ int flash_write(uint8_t *data, size_t addr, size_t length)
 
 
 // read from addr, length bytes and write to file
-int read_to_file(char *filename, size_t addr, size_t length)
+int read_flash_write_file(char *filename, size_t addr, size_t length)
 {
   // printf("reading\n");
   const int bufsize = 28; // not much speed improvement in increasing this
@@ -349,6 +349,60 @@ int read_to_file(char *filename, size_t addr, size_t length)
   fprintf(stderr, "\n");
   close(file_descriptor);
   return 0;
+}
+
+
+// write that many bytes found or file or if file is larger, limit by length
+int read_file_write_flash(char *filename, size_t addr, size_t length)
+{
+  const size_t available_sector_size[] = {4*1024, 32*1024, 64*1024};
+  const int num_available_sector_size = sizeof(available_sector_size)/sizeof(available_sector_size[0]);
+  int file_descriptor = open(filename, O_RDONLY, S_IRUSR | S_IWUSR);
+  size_t file_length = lseek(file_descriptor, 0, SEEK_END);
+  lseek(file_descriptor, 0, SEEK_SET); // rewind
+  printf("file length %d\n", file_length);
+  if(file_length < length)
+    length = file_length;
+  
+  // **** sector logic *****
+  // we need to interated over flash sectors
+  // if writing to partial sector we first read old data from the sector,
+  // erase whole sector, write from file and write old data, then verify and retry 
+  const int retry = 10;
+  size_t bytes_written = 0;
+  int retries_remaining = retry;
+  
+  printf("writing range 0x%06X-0x%06X\n", addr, addr+length-1);
+  
+  while(bytes_written < length)
+  {
+    size_t length_remaining = length - bytes_written;
+    // find suitable sector to erase
+    // 1. priority is to minimize easeing part of data we don't have to erase
+    // 2. maximize sector size
+    size_t sector_size = available_sector_size[0]; // minimal sector size
+    size_t sector_part_before_data = addr % sector_size; // start as minimal sector
+    // find do we have any larger  
+    for(int i = 1; i < num_available_sector_size; i++)
+    {
+      if( addr % available_sector_size[i] == sector_part_before_data // if part before is the same
+      && (length_remaining >= available_sector_size[i]-available_sector_size[0])) // and we have enough data
+        sector_size = available_sector_size[i]; // accept new sector size
+    }
+    size_t data_bytes_to_write = sector_size - sector_part_before_data;
+    if(bytes_written + data_bytes_to_write >= length)
+      data_bytes_to_write = length - bytes_written; // last sector, clamp size
+    size_t erase_sector_addr = addr-sector_part_before_data;
+    int restore_sector = addr != erase_sector_addr || erase_sector_addr+sector_size != addr+data_bytes_to_write;
+    printf("erase sector 0x%06X-0x%06X (size %d, restore %d) data 0x%06X-0x%06X\n",
+      erase_sector_addr,
+      erase_sector_addr+sector_size-1,
+      sector_size, restore_sector,
+      addr, addr+data_bytes_to_write-1); 
+
+    bytes_written += data_bytes_to_write; // not correct but OK for now
+    addr += data_bytes_to_write;
+  }
 }
 
 
@@ -513,17 +567,8 @@ int main(void)
   // flash_write(data, 0x200000+33*1024, 100);
   free(data);
   test_read(0x200000+33*1024-64, 256); // alphabet
-  read_to_file("/tmp/flashcontent.bin", 0, 0x400000);
+  // read_flash_write_file("/tmp/flashcontent.bin", 0, 0x400000);
+  read_file_write_flash("/tmp/flashcontent.bin", 5155, 548000);
 
-#if 0
-  int i, pbarmax = 300000;
-  for(i = 0; i < pbarmax; i += 1024)
-  {
-    print_progress_bar(i, pbarmax);
-    usleep(100000);
-  }
-  print_progress_bar(i, pbarmax);
-  printf("\n");
-#endif
   return 0;
 }
