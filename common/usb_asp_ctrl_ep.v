@@ -499,4 +499,6 @@ endmodule
 [ ] lsusb -vvv -d shows descriptor and vailts, try to dump traffic with wireshark
 [ ] lsusb -vvv -d will make lisbusb fail
 [ ] overrun signal - problem: SPI often stalls
+[ ] wValue OUT: append dummy bytes after end of SPI data (after last byte, add to addr)
+[ ] wIndex OUT: set index to skip first N bytes for next IN
 */
