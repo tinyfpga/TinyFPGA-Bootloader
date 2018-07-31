@@ -30,8 +30,8 @@ void print_progress_bar (size_t done, size_t total)
     int percent = (int) (100 * done / total);
     int lpad = (int) (PBWIDTH * done / total);
     int rpad = PBWIDTH - lpad;
-    printf("\r%3d%% [%.*s%*s]", percent, lpad, PBSTR, rpad, "");
-    fflush(stdout);
+    fprintf(stderr, "\r%3d%% [%.*s%*s]", percent, lpad, PBSTR, rpad, "");
+    fflush(stderr);
 }
 
 void cmd_addr(uint8_t *buf, uint8_t cmd, uint32_t addr)
@@ -307,6 +307,7 @@ int read_to_file(char *filename, size_t addr, size_t length)
   size_t accumulated_read = 0;
   int file_descriptor = open(filename, O_CREAT | O_TRUNC | O_RDWR, S_IRUSR | S_IWUSR);
   const int retry = 1000;
+  size_t next_progress = 0, progress_step = length / 100;
   while(accumulated_read < length)
   {
     int match; // repeat reading until 2 subsequent readings match
@@ -316,7 +317,7 @@ int read_to_file(char *filename, size_t addr, size_t length)
     const int match_required = 2;
     // printf("accumulated_read %d\n", accumulated_read);
     for(int i = 0; i < retry && match < match_required; i++)
-  {
+    {
       buf[ib][0] = ~buf[ib^1][0]; // damage first byte for the match to initially fail unless read correct
       buf[ib][requested_size-1] = ~buf[ib^1][requested_size-1]; // damage first byte for the match to initially fail unless read correct
       int rc = flash_read(buf[ib], addr, requested_size);
@@ -338,7 +339,14 @@ int read_to_file(char *filename, size_t addr, size_t length)
     write(file_descriptor, buf[0], requested_size);
     accumulated_read += requested_size;
     addr += requested_size;
+    if(accumulated_read > next_progress)
+    {
+      print_progress_bar(accumulated_read, length);
+      next_progress += progress_step;
+    }
   }
+  print_progress_bar(accumulated_read, length);
+  fprintf(stderr, "\n");
   close(file_descriptor);
   return 0;
 }
@@ -505,8 +513,9 @@ int main(void)
   // flash_write(data, 0x200000+33*1024, 100);
   free(data);
   test_read(0x200000+33*1024-64, 256); // alphabet
-  // read_to_file("/tmp/flashcontent.bin", 0, 0x400000);
+  read_to_file("/tmp/flashcontent.bin", 0, 0x400000);
 
+#if 0
   int i, pbarmax = 300000;
   for(i = 0; i < pbarmax; i += 1024)
   {
@@ -515,6 +524,6 @@ int main(void)
   }
   print_progress_bar(i, pbarmax);
   printf("\n");
-
+#endif
   return 0;
 }
