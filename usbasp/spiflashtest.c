@@ -4,6 +4,9 @@
 // uint types
 #include <unistd.h>
 
+// malloc
+#include <stdlib.h>
+
 // memcpy
 #include <memory.h>
 
@@ -18,6 +21,15 @@
 static struct libusb_device_handle *device_handle = NULL;
 uint8_t libusb_initialized = 0, interface_claimed = 0;
 
+
+void cmd_addr(uint8_t *buf, uint8_t cmd, uint32_t addr)
+{
+  buf[0] = cmd;
+  buf[1] = 0xFF & (addr >> 16);
+  buf[2] = 0xFF & (addr >> 8);
+  buf[3] = 0XFF & addr;
+}
+
 int flash_read(uint8_t *data, size_t addr, size_t length)
 {
   uint8_t buf[32]; // USB I/O buffer
@@ -29,10 +41,7 @@ int flash_read(uint8_t *data, size_t addr, size_t length)
   uint16_t wValue = length <= sizeof(buf)-payload_start ? 0 : 1; // wValue: 0-no continuation, 1-continuation
   uint16_t timeout_ms = 10; // 10 ms waiting for response
 
-  buf[0] = 0x03; // FLASH normal (slow) read
-  buf[1] = (addr >> 16) & 0xFF; // MSB start address
-  buf[2] = (addr >> 8) & 0xFF; // start address
-  buf[3] = addr & 0xFF; // LSB start address
+  cmd_addr(buf, 0x03, addr); // FLASH normal (slow) read
   
   while(accumulated_read < length)
   {
@@ -107,7 +116,6 @@ int flash_read(uint8_t *data, size_t addr, size_t length)
 }
 
 
-
 // read from addr, length bytes and write to file
 int read_to_file(char *filename, size_t addr, size_t length)
 {
@@ -153,36 +161,99 @@ int read_to_file(char *filename, size_t addr, size_t length)
   return 0;
 }
 
-
-int read_flash_id(uint8_t *id, size_t len)
+// up to 32 byte single packet in/out exchange
+int txrx(uint8_t *out_data, size_t out_len, uint8_t *in_data, size_t in_len)
 {
-  uint8_t buf[32];
-  buf[0] = 0xAB;
-  buf[1] = 0x00;
-  buf[2] = 0x00;
-  buf[3] = 0x00;
-  for(int i = 4; i < 32; i++)
-    buf[i] = 0x00;
-  uint16_t datalen = 32;
-  uint8_t data1 = 0; // currently no use
   uint8_t bRequest = 0; // currently no use
   uint16_t wIndex = 0; // currently no use
   uint16_t wValue = 0; // wValue: 0-no continuation, 1-continuation
-  uint16_t timeout_ms = 100; // 10 ms waiting for response
+  uint16_t timeout_ms = 10; // 10 ms waiting for response
+  int response;
 
-  int response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_OUT|LIBUSB_REQUEST_TYPE_VENDOR|data1),
-      bRequest, wValue, wIndex, buf, datalen, timeout_ms);
+  response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_OUT|LIBUSB_REQUEST_TYPE_VENDOR),
+      bRequest, wValue, wIndex, out_data, out_len, timeout_ms);
   if(response < 0)
-    return response;
+  {
+    fprintf(stderr, "txrx OUT: %s\n", libusb_error_name(response));
+    return -1; // something went wrong with USB
+  }
 
-  response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_IN|LIBUSB_REQUEST_TYPE_VENDOR|data1),
-      bRequest, wValue, wIndex, buf, datalen, timeout_ms);
+  if(in_data == NULL || in_len == 0)
+    return 0;
 
-  memcpy(id, buf+4, len); // copy buffer
-  
-  return response;
+  response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_IN|LIBUSB_REQUEST_TYPE_VENDOR),
+      bRequest, wValue, wIndex, in_data, in_len, timeout_ms);
+  if(response < 0)
+  {
+    fprintf(stderr, "txrx IN: %s\n", libusb_error_name(response));
+    return -1; // something went wrong with USB
+  }
+
+  return 0;
 }
 
+int flash_read_id()
+{
+  uint8_t buf[5];
+  cmd_addr(buf, 0xAB, 0);
+  int rc = txrx(buf, sizeof(buf), buf, sizeof(buf));
+  if(rc < 0)
+    return rc;
+  return buf[4];
+}
+
+int flash_read_status()
+{
+  uint8_t buf[2];
+  buf[0] = 0x05;
+  int rc = txrx(buf, sizeof(buf), buf, sizeof(buf));
+  if(rc < 0)
+    return rc;
+  return buf[1];
+}
+
+int flash_wait_while_busy()
+{
+  while(flash_read_status() & 1);
+}
+
+int flash_write_enable()
+{
+  uint8_t buf[1];
+  buf[0] = 0x06;
+  int rc = txrx(buf, sizeof(buf), NULL, 0);
+  if(rc < 0)
+    return rc;
+  return 0;
+}
+
+int flash_write_disable()
+{
+  uint8_t buf[1];
+  buf[0] = 0x04;
+  int rc = txrx(buf, sizeof(buf), NULL, 0);
+  if(rc < 0)
+    return rc;
+  return 0;
+}
+
+// only 3 selected sector lengths are possible
+int flash_erase_sector(size_t addr, size_t len)
+{
+  uint8_t opcode = 0; // null-opcode is NOP
+  if(len ==  4*1024) opcode = 0x20;
+  if(len == 32*1024) opcode = 0x52;
+  if(len == 64*1024) opcode = 0xd8;
+  if(opcode == 0)
+    return -1; // unsupported length
+  flash_write_enable();
+  uint8_t buf[4];
+  cmd_addr(buf, opcode, addr);
+  int rc = txrx(buf, sizeof(buf), NULL, 0);
+  if(rc < 0)
+    return -1; // error in txrx
+  flash_wait_while_busy();
+}
 
 static void print_devs(libusb_device **devs)
 {
@@ -302,14 +373,16 @@ int send_one_packet()
 }
 
 
-int test_read(void)
+int test_read(size_t addr, size_t len)
 {
-  uint8_t buf[0x40]; // buffer 64K
-  
-  flash_read(buf, 0x300000, sizeof(buf)); // read complete buffer from flash address 0
+  uint8_t *buf; // buffer 64K
+  buf = (uint8_t *)malloc(len);
+  flash_read(buf, addr, len); // read complete buffer from flash address 0
 
   // print start of the buffer
-  print_hex_buf(buf, sizeof(buf));
+  printf("address 0x%06X length %d\n", addr, len);
+  print_hex_buf(buf, len);
+  free(buf);
   return 0;
 }
 
@@ -323,15 +396,20 @@ int main(void)
   //send_one_packet();
   //send_one_packet();
   
-  uint8_t id[1];
+  uint8_t flash_id;
   for(int i = 0; i < 3; i++)
-    read_flash_id(id, 1);
-  printf("FLASH ID: 0x%02X\n", id[0]);
-
-  //usleep(1000000);
-  test_read();
+    flash_id = flash_read_id(0xAB);
+  printf("FLASH ID: 0x%02X\n", flash_id);
   
-  read_to_file("/tmp/flashcontent.bin", 0, 0x400000);  
+  uint8_t flash_status = flash_read_status(0x05);
+  printf("FLASH STATUS: 0x%02X\n", flash_status);
+  
+  //usleep(1000000);
+  // test_read(0x300000); // alphabet
+  test_read(0x200000+64*1024-64, 128); // alphabet
+  // flash_erase_sector(0x200000, 64*1024);
+  test_read(0x200000+64*1024-64, 128); // alphabet
+  // read_to_file("/tmp/flashcontent.bin", 0, 0x400000);  
 
   return 0;
 }
