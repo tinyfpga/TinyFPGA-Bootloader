@@ -393,12 +393,18 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
     if(bytes_written + data_bytes_to_write >= length)
       data_bytes_to_write = length - bytes_written; // last sector, clamp size
     size_t erase_sector_addr = addr-sector_part_before_data;
-    int restore_sector = addr != erase_sector_addr || erase_sector_addr+sector_size != addr+data_bytes_to_write;
-    printf("erase sector 0x%06X-0x%06X (size %d, restore %d) data 0x%06X-0x%06X\n",
+    size_t restore_begin_len = addr - erase_sector_addr;
+    size_t restore_end_len = erase_sector_addr+sector_size - (addr+data_bytes_to_write);
+    printf("erase sector 0x%06X-0x%06X (size %d, restore begin %d, restore end %d) data 0x%06X-0x%06X\n",
       erase_sector_addr,
       erase_sector_addr+sector_size-1,
-      sector_size, restore_sector,
+      sector_size, restore_begin_len, restore_end_len,
       addr, addr+data_bytes_to_write-1); 
+    size_t restore_end_addr = erase_sector_addr+sector_size-restore_end_len;
+    if(restore_begin_len > 0)
+      printf("restore begin 0x%06X-0x%06X\n", erase_sector_addr, erase_sector_addr+restore_begin_len-1);
+    if(restore_end_len > 0)
+      printf("restore end 0x%06X-0x%06X\n", restore_end_addr, restore_end_addr+restore_end_len-1);
 
     bytes_written += data_bytes_to_write; // not correct but OK for now
     addr += data_bytes_to_write;
@@ -569,6 +575,7 @@ int main(void)
   test_read(0x200000+33*1024-64, 256); // alphabet
   // read_flash_write_file("/tmp/flashcontent.bin", 0, 0x400000);
   read_file_write_flash("/tmp/flashcontent.bin", 5155, 548000);
+  read_file_write_flash("/tmp/flashcontent.bin", 5155, 20);
 
   return 0;
 }
