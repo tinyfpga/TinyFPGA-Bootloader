@@ -382,12 +382,16 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
   const size_t available_sector_size[] = {4*1024, 32*1024, 64*1024}; // sizes in ascending order
   const int num_available_sector_size = sizeof(available_sector_size)/sizeof(available_sector_size[0]);
   uint8_t sector_buf[available_sector_size[num_available_sector_size-1]]; // allocate buf, max sector size
-  int file_descriptor = open(filename, O_RDONLY, S_IRUSR | S_IWUSR);
+  int file_descriptor = open(filename, O_RDONLY);
+
+  #if 0
+  // PIPE: file length is not known in advance
   size_t file_length = lseek(file_descriptor, 0, SEEK_END);
   lseek(file_descriptor, 0, SEEK_SET); // rewind
   printf("file length %d\n", file_length);
   if(file_length < length)
     length = file_length;
+  #endif
 
   #if 0
   int sector_map_len = length/available_sector_size[0]+1; // max number of sectors
@@ -481,6 +485,7 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
   print_hex_buf(sector_map, sector_map_len);
   free(sector_map);
   #endif
+
   // **** sector logic ****
   // we need to interated over flash sectors
   // if writing to partial sector we first read old data from the sector,
@@ -491,7 +496,10 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
   
   printf("writing range 0x%06X-0x%06X\n", addr, addr+length-1);
   
-  while(bytes_written < length)
+  // TODO: file sequential read (from stdio) when length is not known in advance
+  
+  size_t last_read_from_file = 1;
+  while(bytes_written < length && last_read_from_file > 0)
   {
     size_t length_remaining = length - bytes_written;
     // find suitable sector to erase
@@ -511,6 +519,27 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
     if(bytes_written + data_bytes_to_write >= length)
       data_bytes_to_write = length - bytes_written; // last sector, clamp size
     size_t erase_sector_addr = addr-sector_part_before_data;
+
+    // data_bytes_to_write is what we want to write, but file may contain less
+    // try to read from file "data_bytes_to_write" or get eof:
+    size_t remaining_to_read = data_bytes_to_write;
+    uint8_t *file_data_pointer = sector_buf + addr - erase_sector_addr;
+    last_read_from_file = 1;
+    while(remaining_to_read > 0 && last_read_from_file > 0)
+    {
+      last_read_from_file = read(file_descriptor, file_data_pointer, remaining_to_read);
+      if(last_read_from_file > 0)
+      {
+        remaining_to_read -= last_read_from_file;
+        file_data_pointer += last_read_from_file;
+      }
+    }
+    size_t actual_bytes_from_file = data_bytes_to_write - remaining_to_read;
+    printf("actual_bytes_from_file %d\n", actual_bytes_from_file);
+    if(last_read_from_file <= 0)
+      printf("****** EOF *******\n");
+    // update number of bytes to write
+    data_bytes_to_write = actual_bytes_from_file;
     size_t restore_begin_len = addr - erase_sector_addr;
     size_t restore_end_len = erase_sector_addr+sector_size - (addr+data_bytes_to_write);
     size_t restore_end_addr = erase_sector_addr+sector_size-restore_end_len;
@@ -535,14 +564,13 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
     }
     // erase sector here (erase_sector_addr, sector_size) (verify if erased to 0xFF)
     // read data from file and write to buffer (sector_buf + addr - erase_sector_addr, data_bytes_to_write);
-    read(file_descriptor, sector_buf + addr - erase_sector_addr, data_bytes_to_write);
+    // size_t bytes_from_file = read(file_descriptor, sector_buf + addr - erase_sector_addr, data_bytes_to_write);
     // printf("sector to write\n");
     // print_hex_buf(sector_buf, sector_size);
     // write sector with retry-verify (addr, sector_size)
     bytes_written += data_bytes_to_write; // not correct but OK for now
     addr += data_bytes_to_write;
   }
-  printf("bytes from file %d\n", lseek(file_descriptor, 0, SEEK_CUR));
 }
 
 
@@ -697,8 +725,8 @@ int main(void)
   free(data);
   test_read(0x200000+33*1024-64, 256); // alphabet
   // read_flash_write_file("/tmp/flashcontent.bin", 0, 0x400000);
-  read_file_write_flash("/tmp/flashcontent.bin", 5155, 16000);
-  // read_file_write_flash("/tmp/flashcontent.bin", 0x100000, 50000);
+  // read_file_write_flash("/tmp/flashcontent.bin", 5155, 16000);
+  read_file_write_flash("/tmp/alphabet.bin", 0x300020, 50);
 
   return 0;
 }
