@@ -388,12 +388,17 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
   printf("file length %d\n", file_length);
   if(file_length < length)
     length = file_length;
-  size_t sector_map_len = length/available_sector_size[0]+1; // max number of sectors
+  int sector_map_len = length/available_sector_size[0]+1; // max number of sectors
   uint8_t *sector_map = (uint8_t *) malloc(sector_map_len * sizeof(uint8_t)); // sector erase map
   memset(sector_map, 0, sector_map_len);
   size_t sector_map_base = addr - (addr % available_sector_size[0]);
-  printf("sector map base 0x%06X\n", sector_map_base);
-  print_hex_buf(sector_map, sector_map_len);
+  // 0 - skip this sector, correct data already there
+  // 1 - sector doesn't have to be erased but has to be written
+  // 4,32,64 - sector has to be erased but not written
+  // 5,33,65 - sector has to be erased and written
+  
+  //printf("sector map base 0x%06X\n", sector_map_base);
+  //print_hex_buf(sector_map, sector_map_len);
   
   // compare flash to file, set sector erase map
   size_t accumulated_read = 0;
@@ -401,22 +406,79 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
   // calculate how much to read until next sector
   size_t read_to_end_of_sector = sector_map_base + available_sector_size[0] - addr;
   // printf("read_to_end_of_sector 0x%06x-0x%06x, size %d\n", addr, addr+read_to_end_of_sector-1, read_to_end_of_sector);
+  int sector_num = 0;
   if(1)
   while(accumulated_read < length)
   {
     if(accumulated_read + read_to_end_of_sector >= length)
       read_to_end_of_sector = length - accumulated_read;
-    printf("read_to_end_of_sector 0x%06X-0x%06X, size %d\n",
-      read_addr, read_addr+read_to_end_of_sector-1, read_to_end_of_sector);
-    // determine how much bytes to read to complete current sector
-    // sector index to which this byte belongs
+    printf("read_to_end_of_sector 0x%06X-0x%06X, size %d sector %d/%d\n",
+      read_addr, read_addr+read_to_end_of_sector-1, read_to_end_of_sector, sector_num, sector_map_len);
+    uint8_t *file_byte = sector_buf;
+    read(file_descriptor, file_byte, read_to_end_of_sector);
+    uint8_t *flash_byte = sector_buf+available_sector_size[0];
+    flash_read(flash_byte, read_addr, read_to_end_of_sector);
+    for(int i = 0; i < read_to_end_of_sector; i++) // compare every byte
+    {
+      if( (*flash_byte & *file_byte) != *file_byte)
+        sector_map[sector_num] |= 4; // must erase 4K (will become 0xFF after erase)
+      if( *flash_byte != *file_byte && *file_byte != 0xFF)
+        sector_map[sector_num] |= 1; // must write data
+      flash_byte++;
+      file_byte++;
+    }
     read_addr += read_to_end_of_sector;
     accumulated_read += read_to_end_of_sector;
     read_to_end_of_sector = available_sector_size[0];
+    sector_num++;
   }
+  lseek(file_descriptor, 0, SEEK_SET); // rewind
+  printf("sector map base 0x%06X\n", sector_map_base);
+  print_hex_buf(sector_map, sector_map_len);
+  // join consecutive 4K sectors into 32K or 64K
+  // calculate which small sector relate to larger sector boundary
+  size_t sector_32K_map_base = sector_map_base - (sector_map_base % available_sector_size[1]);
+  int first_32K_sector = (sector_32K_map_base - sector_map_base) / available_sector_size[0];
+  size_t sector_64K_map_base = sector_map_base - (sector_map_base % available_sector_size[2]);  
+  int first_64K_sector = (sector_64K_map_base - sector_map_base) / available_sector_size[0];
+  printf("first 32K sector %d 0x%06X\n", first_32K_sector, sector_32K_map_base);
+  printf("first 64K sector %d 0x%06X\n", first_64K_sector, sector_64K_map_base);
+  // join 8 sectors of 4K to 1 of 32K
+  int num_sectors_to_join = 8;
+  for(int i = first_32K_sector; i < sector_map_len-num_sectors_to_join; i += num_sectors_to_join)
+  {
+    if(i >= 0)
+    {
+      int consecutive_sector_count = 0;
+      for(int j = 0; j < num_sectors_to_join; j++)
+        if((sector_map[i+j] & 4) == 4)
+          consecutive_sector_count++;
+      if(consecutive_sector_count == num_sectors_to_join)
+      {
+        sector_map[i] |= 32; // set 32K erase
+        for(int j = 0; j < num_sectors_to_join; j++)
+          sector_map[i+j] &= ~4; // remove 4K erase
+      }
+    }
+  }
+  // join 2 sectors of 32K to 1 of 64K
+  num_sectors_to_join = available_sector_size[2]/available_sector_size[0];
+  for(int i = first_64K_sector; i < sector_map_len-num_sectors_to_join; i += num_sectors_to_join)
+  {
+    if(i >= 0)
+    {
+      if(sector_map[i] == 32 && sector_map[i+num_sectors_to_join/2] == 32)
+      {
+        sector_map[i] |= 64; // set 64K erase
+        sector_map[i] &= ~32; // remove 32K erase
+        sector_map[i+num_sectors_to_join/2] &= ~32; // remove 32K erase
+      }
+    }
+  }
+  printf("sector map base 0x%06X\n", sector_map_base);
+  print_hex_buf(sector_map, sector_map_len);
   
-  
-  // **** sector logic *****
+  // **** sector logic ****
   // we need to interated over flash sectors
   // if writing to partial sector we first read old data from the sector,
   // erase whole sector, write from file and write old data, then verify and retry 
@@ -633,7 +695,7 @@ int main(void)
   test_read(0x200000+33*1024-64, 256); // alphabet
   // read_flash_write_file("/tmp/flashcontent.bin", 0, 0x400000);
   // read_file_write_flash("/tmp/flashcontent.bin", 5155, 160000);
-  read_file_write_flash("/tmp/flashcontent.bin", 5155, 100000);
+  read_file_write_flash("/tmp/flashcontent.bin", 0x100000, 500000);
 
   return 0;
 }
