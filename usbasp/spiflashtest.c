@@ -369,7 +369,14 @@ int read_flash_write_file(char *filename, size_t addr, size_t length)
 }
 
 
+
 // write that many bytes found or file or if file is larger, limit by length
+// construct a map of sectors, each byte represents one 4k sector
+// map byte value represents erase size in KB 4,32,64
+// compare map with file data to find which sector must be erased
+// sector must be erased if any bit changes from 0 to 1 set erase value to 4KB
+// collect multiple 4K erase sectors into 32K or 64K
+
 int read_file_write_flash(char *filename, size_t addr, size_t length)
 {
   const size_t available_sector_size[] = {4*1024, 32*1024, 64*1024}; // sizes in ascending order
@@ -381,6 +388,33 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
   printf("file length %d\n", file_length);
   if(file_length < length)
     length = file_length;
+  size_t sector_map_len = length/available_sector_size[0]+1; // max number of sectors
+  uint8_t *sector_map = (uint8_t *) malloc(sector_map_len * sizeof(uint8_t)); // sector erase map
+  memset(sector_map, 0, sector_map_len);
+  size_t sector_map_base = addr - (addr % available_sector_size[0]);
+  printf("sector map base 0x%06X\n", sector_map_base);
+  print_hex_buf(sector_map, sector_map_len);
+  
+  // compare flash to file, set sector erase map
+  size_t accumulated_read = 0;
+  size_t read_addr = addr;
+  // calculate how much to read until next sector
+  size_t read_to_end_of_sector = sector_map_base + available_sector_size[0] - addr;
+  // printf("read_to_end_of_sector 0x%06x-0x%06x, size %d\n", addr, addr+read_to_end_of_sector-1, read_to_end_of_sector);
+  if(1)
+  while(accumulated_read < length)
+  {
+    if(accumulated_read + read_to_end_of_sector >= length)
+      read_to_end_of_sector = length - accumulated_read;
+    printf("read_to_end_of_sector 0x%06X-0x%06X, size %d\n",
+      read_addr, read_addr+read_to_end_of_sector-1, read_to_end_of_sector);
+    // determine how much bytes to read to complete current sector
+    // sector index to which this byte belongs
+    read_addr += read_to_end_of_sector;
+    accumulated_read += read_to_end_of_sector;
+    read_to_end_of_sector = available_sector_size[0];
+  }
+  
   
   // **** sector logic *****
   // we need to interated over flash sectors
@@ -421,28 +455,29 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
       addr, addr+data_bytes_to_write-1); 
     if(restore_begin_len > 0)
     {
-      printf("restore begin 0x%06X-0x%06X\n", erase_sector_addr, erase_sector_addr+restore_begin_len-1);
+      // printf("restore begin 0x%06X-0x%06X\n", erase_sector_addr, erase_sector_addr+restore_begin_len-1);
       // TODO read with retry-verify
       flash_read(sector_buf, erase_sector_addr, restore_begin_len);
-      print_hex_buf(sector_buf, restore_begin_len);
+      // print_hex_buf(sector_buf, restore_begin_len);
     }
     if(restore_end_len > 0)
     {
-      printf("restore end 0x%06X-0x%06X\n", restore_end_addr, restore_end_addr+restore_end_len-1);
+      // printf("restore end 0x%06X-0x%06X\n", restore_end_addr, restore_end_addr+restore_end_len-1);
       // TODO read with retry-verify
       flash_read(sector_buf+sector_size-restore_end_len, restore_end_addr, restore_end_len);
-      print_hex_buf(sector_buf+sector_size-restore_end_len, restore_end_len);
+      // print_hex_buf(sector_buf+sector_size-restore_end_len, restore_end_len);
     }
     // erase sector here (erase_sector_addr, sector_size) (verify if erased to 0xFF)
     // read data from file and write to buffer (sector_buf + addr - erase_sector_addr, data_bytes_to_write);
     read(file_descriptor, sector_buf + addr - erase_sector_addr, data_bytes_to_write);
-    printf("sector to write\n");
-    print_hex_buf(sector_buf, sector_size);
+    // printf("sector to write\n");
+    // print_hex_buf(sector_buf, sector_size);
     // write sector with retry-verify (addr, sector_size)
     bytes_written += data_bytes_to_write; // not correct but OK for now
     addr += data_bytes_to_write;
   }
   printf("bytes from file %d\n", lseek(file_descriptor, 0, SEEK_CUR));
+  free(sector_map);
 }
 
 
@@ -597,8 +632,8 @@ int main(void)
   free(data);
   test_read(0x200000+33*1024-64, 256); // alphabet
   // read_flash_write_file("/tmp/flashcontent.bin", 0, 0x400000);
-  read_file_write_flash("/tmp/flashcontent.bin", 5155, 160000);
-  // read_file_write_flash("/tmp/flashcontent.bin", 5155, 20);
+  // read_file_write_flash("/tmp/flashcontent.bin", 5155, 160000);
+  read_file_write_flash("/tmp/flashcontent.bin", 5155, 100000);
 
   return 0;
 }
