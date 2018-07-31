@@ -106,24 +106,6 @@ int flash_write_disable()
   return 0;
 }
 
-// only 3 selected sector lengths are possible
-int flash_erase_sector(size_t addr, size_t len)
-{
-  uint8_t opcode = 0; // null-opcode is NOP
-  if(len ==  4*1024) opcode = 0x20;
-  if(len == 32*1024) opcode = 0x52;
-  if(len == 64*1024) opcode = 0xd8;
-  if(opcode == 0)
-    return -1; // unsupported length
-  flash_write_enable();
-  uint8_t buf[4];
-  cmd_addr(buf, opcode, addr);
-  int rc = txrx(buf, sizeof(buf), NULL, 0);
-  if(rc < 0)
-    return -1; // error in txrx
-  flash_wait_while_busy();
-}
-
 int flash_read(uint8_t *data, size_t addr, size_t length)
 {
   uint8_t buf[32]; // USB I/O buffer
@@ -209,10 +191,28 @@ int flash_read(uint8_t *data, size_t addr, size_t length)
   return 0; // 0 on success
 }
 
+// only 3 selected sector lengths are possible
+int flash_erase_sector(size_t addr, size_t len)
+{
+  uint8_t opcode = 0; // null-opcode is NOP
+  if(len ==  4*1024) opcode = 0x20;
+  if(len == 32*1024) opcode = 0x52;
+  if(len == 64*1024) opcode = 0xd8;
+  if(opcode == 0)
+    return -1; // unsupported length
+  flash_write_enable();
+  uint8_t buf[4];
+  cmd_addr(buf, opcode, addr);
+  int rc = txrx(buf, sizeof(buf), NULL, 0);
+  if(rc < 0)
+    return -1; // error in txrx
+  flash_wait_while_busy();
+}
+
 int flash_write(uint8_t *data, size_t addr, size_t length)
 {
   uint8_t buf[32]; // USB I/O buffer
-  size_t accumulated_read = 0; // accumulate total read
+  size_t accumulated_write = 0; // accumulate total read
   size_t payload_start = 4; // initial payload starts at byte 4 without continuation
   uint8_t data1 = 0; // currently no use
   uint8_t bRequest = 0; // currently no use
@@ -220,9 +220,10 @@ int flash_write(uint8_t *data, size_t addr, size_t length)
   uint16_t wValue = length <= sizeof(buf)-payload_start ? 0 : 1; // wValue: 0-no continuation, 1-continuation
   uint16_t timeout_ms = 10; // 10 ms waiting for response
 
+  flash_write_enable();
+
   cmd_addr(buf, 0x02, addr); // FLASH write (should be previous erased to 0xFF)
-  
-  while(accumulated_read < length)
+  while(accumulated_write < length)
   {
     int response;
 
@@ -240,18 +241,18 @@ int flash_write(uint8_t *data, size_t addr, size_t length)
 
     // calculate next request length (how much to read from USB)
     size_t request_size;
-    if(accumulated_read + sizeof(buf) - payload_start >= length)
+    if(accumulated_write + sizeof(buf) - payload_start >= length)
     {
       // printf("last packet\n");
       // end packet, trim request size to how much we really need
-      request_size = length + payload_start - accumulated_read;
+      request_size = length + payload_start - accumulated_write;
       wValue = 0; // terminate continuation
     }
     else
       request_size = sizeof(buf);
-    size_t response_size = sizeof(buf) - payload_start;
-    printf("paystart %d, response_size %d\n", payload_start, response_size);
-    memcpy(buf+payload_start, data, response_size);
+    size_t payload_size = sizeof(buf) - payload_start;
+    // printf("paystart %d, payload_size %d\n", payload_start, payload_size);
+    memcpy(buf+payload_start, data, payload_size);
 
     // write to USB the flash write command followed with data
     response = libusb_control_transfer(device_handle, (uint8_t)(LIBUSB_ENDPOINT_OUT|LIBUSB_REQUEST_TYPE_VENDOR|data1),
@@ -274,12 +275,13 @@ int flash_write(uint8_t *data, size_t addr, size_t length)
     }
     #endif
 
-    data += response_size;
-    accumulated_read += response_size;
+    data += payload_size;
+    accumulated_write += payload_size;
     if(payload_start) // contination will result in full 32-byte payload
       payload_start = 0;
 
   }
+  flash_wait_while_busy();
   return 0; // 0 on success
 }
 
@@ -481,18 +483,16 @@ int main(void)
   
   //usleep(1000000);
   // test_read(0x300000); // alphabet
-  test_read(0x200000+32*1024-64, 128); // alphabet
+  test_read(0x200000+33*1024-64, 128); // alphabet
   
   //flash_erase_sector(0x200000, 64*1024);
   size_t length = 100;
   uint8_t *data = (uint8_t *)malloc(length * sizeof(uint8_t));
   for(int i = 0; i < length; i++)
     data[i] = 0xFF & i;
-  //flash_write_enable();
-  //flash_write(data, 0x208000, 100);
-  //flash_write_disable();
+  // flash_write(data, 0x200000+33*1024, 100);
   free(data);
-  test_read(0x200000+32*1024-64, 256); // alphabet
+  test_read(0x200000+33*1024-64, 256); // alphabet
   // read_to_file("/tmp/flashcontent.bin", 0, 0x400000);  
 
   return 0;
