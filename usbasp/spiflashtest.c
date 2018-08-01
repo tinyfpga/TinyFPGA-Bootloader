@@ -21,12 +21,12 @@
 static struct libusb_device_handle *device_handle = NULL;
 uint8_t libusb_initialized = 0, interface_claimed = 0;
 
-void print_progress_bar (size_t done, size_t total)
+void print_progress_bar (uint32_t done, uint32_t total)
 {
     const char *PBSTR = "#################################################";
     if(total == 0 || done > total)
       done = total = 1; // avoid division by zero
-    const size_t PBWIDTH = strlen(PBSTR);
+    const uint32_t PBWIDTH = strlen(PBSTR);
     int percent = (int) (100 * done / total);
     int lpad = (int) (PBWIDTH * done / total);
     int rpad = PBWIDTH - lpad;
@@ -34,7 +34,7 @@ void print_progress_bar (size_t done, size_t total)
     fflush(stderr);
 }
 
-void print_hex_buf(uint8_t *buf, size_t len)
+void print_hex_buf(uint8_t *buf, uint32_t len)
 {
   for(int i = 0; i < len; i++)
   {
@@ -55,7 +55,7 @@ void cmd_addr(uint8_t *buf, uint8_t cmd, uint32_t addr)
 }
 
 // up to 32 byte single packet in/out exchange
-int txrx(uint8_t *out_data, size_t out_len, uint8_t *in_data, size_t in_len)
+int txrx(uint8_t *out_data, uint32_t out_len, uint8_t *in_data, uint32_t in_len)
 {
   uint8_t bRequest = 0; // currently no use
   uint16_t wIndex = 0; // currently no use
@@ -108,6 +108,7 @@ int flash_read_status()
 int flash_wait_while_busy()
 {
   while(flash_read_status() & 1);
+  return 0;
 }
 
 int flash_write_enable()
@@ -131,11 +132,11 @@ int flash_write_disable()
 }
 
 
-int flash_read(uint8_t *data, size_t addr, size_t length)
+int flash_read(uint8_t *data, uint32_t addr, uint32_t length)
 {
   uint8_t buf[32]; // USB I/O buffer
-  size_t accumulated_read = 0; // accumulate total read
-  size_t payload_start = 4; // initial payload starts at byte 4 without continuation
+  uint32_t accumulated_read = 0; // accumulate total read
+  uint32_t payload_start = 4; // initial payload starts at byte 4 without continuation
   uint8_t data1 = 0; // currently no use
   uint8_t bRequest = 0; // currently no use
   uint16_t wIndex = 0; // currently no use
@@ -174,7 +175,7 @@ int flash_read(uint8_t *data, size_t addr, size_t length)
       return -1; // something went wrong with USB
     }
     // calculate next request length (how much to read from USB)
-    size_t request_size;
+    uint32_t request_size;
     if(accumulated_read + sizeof(buf) - payload_start >= length)
     {
       // printf("last packet\n");
@@ -206,7 +207,7 @@ int flash_read(uint8_t *data, size_t addr, size_t length)
       fprintf(stderr, "IN: %s\n", libusb_error_name(response));
       return -1; // something went wrong with USB
     }
-    size_t response_size = response - payload_start;
+    uint32_t response_size = response - payload_start;
     memcpy(data, buf+payload_start, response_size);
     data += response_size;
     accumulated_read += response_size;
@@ -217,12 +218,12 @@ int flash_read(uint8_t *data, size_t addr, size_t length)
 }
 
 // retry max "retry" times until 'match' of consecutive identical readings appear
-int flash_read_retry(uint8_t *data, size_t addr, size_t length, int retry, int match)
+int flash_read_retry(uint8_t *data, uint32_t addr, uint32_t length, int retry, int match)
 {
 }
 
 // only 3 selected sector lengths are possible
-int flash_erase_sector(size_t addr, size_t len)
+int flash_erase_sector(uint32_t addr, uint32_t len)
 {
   uint8_t opcode = 0; // null-opcode is NOP
   if(len ==  4*1024) opcode = 0x20;
@@ -237,13 +238,14 @@ int flash_erase_sector(size_t addr, size_t len)
   if(rc < 0)
     return -1; // error in txrx
   flash_wait_while_busy();
+  return 0;
 }
 
-int flash_write(uint8_t *data, size_t addr, size_t length)
+int flash_write(uint8_t *data, uint32_t addr, uint32_t length)
 {
   uint8_t buf[32]; // USB I/O buffer
-  size_t accumulated_write = 0; // accumulate total read
-  size_t payload_start = 4; // initial payload starts at byte 4 without continuation
+  uint32_t accumulated_write = 0; // accumulate total read
+  uint32_t payload_start = 4; // initial payload starts at byte 4 without continuation
   uint8_t data1 = 0; // currently no use
   uint8_t bRequest = 0; // currently no use
   uint16_t wIndex = 0; // currently no use
@@ -270,7 +272,7 @@ int flash_write(uint8_t *data, size_t addr, size_t length)
     #endif
 
     // calculate next request length (how much to read from USB)
-    size_t request_size;
+    uint32_t request_size;
     if(accumulated_write + sizeof(buf) - payload_start >= length)
     {
       // printf("last packet\n");
@@ -280,7 +282,7 @@ int flash_write(uint8_t *data, size_t addr, size_t length)
     }
     else
       request_size = sizeof(buf);
-    size_t payload_size = sizeof(buf) - payload_start;
+    uint32_t payload_size = sizeof(buf) - payload_start;
     // printf("paystart %d, payload_size %d\n", payload_start, payload_size);
     memcpy(buf+payload_start, data, payload_size);
 
@@ -317,20 +319,20 @@ int flash_write(uint8_t *data, size_t addr, size_t length)
 
 
 // read from addr, length bytes and write to file
-int read_flash_write_file(char *filename, size_t addr, size_t length)
+int read_flash_write_file(char *filename, uint32_t addr, uint32_t length)
 {
   // printf("reading\n");
   const int bufsize = 28; // not much speed improvement in increasing this
   uint8_t buf[2][bufsize]; // 2 buffers, both must match
-  size_t accumulated_read = 0;
+  uint32_t accumulated_read = 0;
   int file_descriptor = open(filename, O_CREAT | O_TRUNC | O_RDWR, S_IRUSR | S_IWUSR);
   const int retry = 1000;
-  size_t next_progress = 0, progress_step = length / 100;
+  uint32_t next_progress = 0, progress_step = length / 100;
   while(accumulated_read < length)
   {
     int match; // repeat reading until 2 subsequent readings match
     int ib = 0; // buffer index 0/1 to match
-    size_t requested_size = accumulated_read + bufsize >= length ? length - accumulated_read : bufsize;
+    uint32_t requested_size = accumulated_read + bufsize >= length ? length - accumulated_read : bufsize;
     match = 0;
     const int match_required = 2;
     // printf("accumulated_read %d\n", accumulated_read);
@@ -379,9 +381,9 @@ int read_flash_write_file(char *filename, size_t addr, size_t length)
 // length:
 // positive integer: limit flash write to max this size
 // 0: try to lseek() to determine actual file length
-int read_file_write_flash(char *filename, size_t addr, size_t length)
+int read_file_write_flash(char *filename, uint32_t addr, uint32_t length)
 {
-  const size_t available_sector_size[] = {4*1024, 32*1024, 64*1024}; // sizes in ascending order
+  const uint32_t available_sector_size[] = {4*1024, 32*1024, 64*1024}; // sizes in ascending order
   const int num_available_sector_size = sizeof(available_sector_size)/sizeof(available_sector_size[0]);
   uint8_t flash_sector_buf[available_sector_size[num_available_sector_size-1]]; // allocate buf, max sector size
   uint8_t file_sector_buf[available_sector_size[num_available_sector_size-1]]; // allocate buf, max sector size
@@ -400,20 +402,20 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
   // if writing to partial sector we first read old data from the sector,
   // erase whole sector, write from file and write old data, then verify and retry 
   const int retry = 10;
-  size_t bytes_written = 0;
+  uint32_t bytes_written = 0;
   int retries_remaining = retry;
   
-  printf("writing range limit 0x%06X-0x%06X\n", addr, addr+length-1);
+  printf("writing range 0x%06X-0x%06X\n", addr, addr+length-1);
   
-  size_t last_read_from_file = 1;
+  uint32_t last_read_from_file = 1;
   while(bytes_written < length && last_read_from_file > 0 && retries_remaining > 0)
   {
-    size_t length_remaining = length - bytes_written;
+    uint32_t length_remaining = length - bytes_written;
     // find suitable sector to erase
     // 1. priority is to minimize easeing part of data we don't have to erase
     // 2. maximize sector size
-    size_t sector_size = available_sector_size[0]; // minimal sector size
-    size_t sector_part_before_data = addr % sector_size; // start as minimal sector
+    uint32_t sector_size = available_sector_size[0]; // minimal sector size
+    uint32_t sector_part_before_data = addr % sector_size; // start as minimal sector
     
     // printf("retry %d\n", retries_remaining);
     retries_remaining--; // if this while does early-exit with "continue", retries will be left decremented
@@ -425,10 +427,10 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
       && (length_remaining >= available_sector_size[i]-available_sector_size[0])) // and we have enough data
         sector_size = available_sector_size[i]; // accept new sector size
     }
-    size_t data_bytes_to_write = sector_size - sector_part_before_data;
+    uint32_t data_bytes_to_write = sector_size - sector_part_before_data;
     if(bytes_written + data_bytes_to_write >= length)
       data_bytes_to_write = length - bytes_written; // last sector, clamp size
-    size_t erase_sector_addr = addr-sector_part_before_data;
+    uint32_t erase_sector_addr = addr-sector_part_before_data;
 
     // read sector before erase and before the file
     flash_read(flash_sector_buf, erase_sector_addr, sector_size);
@@ -437,7 +439,7 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
 
     // data_bytes_to_write is what we want to write, but file may contain less
     // try to read from file "data_bytes_to_write" or get eof:
-    size_t remaining_to_read = data_bytes_to_write;
+    uint32_t remaining_to_read = data_bytes_to_write;
     uint8_t *file_data_pointer = file_sector_buf + addr - erase_sector_addr;
     last_read_from_file = 1;
     while(remaining_to_read > 0 && last_read_from_file > 0)
@@ -449,7 +451,7 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
         file_data_pointer += last_read_from_file;
       }
     }
-    size_t actual_bytes_from_file = data_bytes_to_write - remaining_to_read;
+    uint32_t actual_bytes_from_file = data_bytes_to_write - remaining_to_read;
     //printf("actual_bytes_from_file %d\n", actual_bytes_from_file);
     //if(last_read_from_file <= 0)
     //  printf("****** EOF *******\n");
@@ -460,7 +462,7 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
     // compare byte-by-byte flash_sector_buf and file_sector_buf
     uint8_t must_erase = 0;
     uint8_t must_write = 0;
-    for(size_t i = 0; i < sector_size; i++)
+    for(uint32_t i = 0; i < sector_size; i++)
     {
       if( (flash_sector_buf[i] & file_sector_buf[i]) != file_sector_buf[i])
         must_erase = 1;
@@ -475,7 +477,7 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
       must_erase, must_write);
     if(must_erase)
       flash_erase_sector(erase_sector_addr, sector_size);
-    const size_t page_program_size = 256; // up to this bytes max in one page write operation
+    const uint32_t page_program_size = 256; // up to this bytes max in one page write operation
     if(must_write)
       for(int i = 0; i < sector_size; i += page_program_size)
         flash_write(file_sector_buf + i, erase_sector_addr + i, page_program_size);
@@ -491,39 +493,14 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
   }
   printf("\n"); // after progress bar to new line
   if(retries_remaining == 0)
-    printf("FAIL\n");
+  {
+    fprintf(stderr, "FAIL\n");
+    return -1;
+  }
+  printf("last read from file: %d bytes\n", last_read_from_file); 
+  return 0;
 }
 
-
-static void print_devs(libusb_device **devs)
-{
-	libusb_device *dev;
-	int i = 0, j = 0;
-	uint8_t path[8]; 
-
-	while ((dev = devs[i++]) != NULL) {
-		struct libusb_device_descriptor desc;
-		int r = libusb_get_device_descriptor(dev, &desc);
-		if (r < 0) {
-			fprintf(stderr, "failed to get device descriptor");
-			return;
-		}
-
-		printf("%04x:%04x (bus %d, device %d)",
-			desc.idVendor, desc.idProduct,
-			libusb_get_bus_number(dev), libusb_get_device_address(dev));
-
-		r = libusb_get_port_numbers(dev, path, sizeof(path));
-		if (r > 0) {
-			printf(" path: %d", path[0]);
-			for (j = 1; j < r; j++)
-				printf(".%d", path[j]);
-		}
-		printf("\n");
-//		if(desc.idVendor == 0x16C0 && desc.idProduct == 0x05DC)
-//		  vendorspecific();
-	}
-}
 
 void close_usb_device(void)
 {
@@ -602,7 +579,7 @@ int send_one_packet()
 }
 
 
-int test_read(size_t addr, size_t len)
+int test_read(uint32_t addr, uint32_t len)
 {
   uint8_t *buf; // buffer 64K
   buf = (uint8_t *)malloc(len * sizeof(uint8_t));
@@ -617,18 +594,12 @@ int test_read(size_t addr, size_t len)
 
 int main(void)
 {
-  // vendorspecific();
-
   if(open_usb_device(0x16C0, 0x05DC) < 0)
     return -1;
 
-  //send_one_packet();
-  //send_one_packet();
+  printf("FLASH ID: 0x%02X\n", flash_read_id());
   
-  uint8_t flash_id;
-  for(int i = 0; i < 3; i++)
-    flash_id = flash_read_id(0xAB);
-  printf("FLASH ID: 0x%02X\n", flash_id);
+  #if 0
   
   uint8_t flash_status = flash_read_status(0x05);
   printf("FLASH STATUS: 0x%02X\n", flash_status);
@@ -638,18 +609,19 @@ int main(void)
   test_read(0x200000+2*1024-64, 128); // alphabet
   
   //flash_erase_sector(0x200000, 4*1024);
-  size_t length = 4096;
+  uint32_t length = 4096;
   uint8_t *data = (uint8_t *)malloc(length * sizeof(uint8_t));
   for(int i = 0; i < length; i++)
     data[i] = 0xFF & i;
   // flash_write(data, 0x200000+2*1024, length);
   free(data);
   test_read(0x200000+2*1024-64, 256); // alphabet
+  #endif
+  
   // read_flash_write_file("/tmp/flashcontent.bin", 0, 0x400000);
   // read_file_write_flash("/tmp/flashcontent.bin", 0, 16000);
   read_file_write_flash("/tmp/f32c.bit", 0x200000, 0);
-  // read_file_write_flash("-", 5155, 90016000);
-  // read_file_write_flash("/tmp/alphabet.bin", 0x200000+2*1024-64, 5000);
+  // read_file_write_flash("/tmp/oled-example.bit", 0x200000, 0);
 
   return 0;
 }
