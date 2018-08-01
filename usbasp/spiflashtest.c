@@ -40,7 +40,7 @@ void print_hex_buf(uint8_t *buf, size_t len)
   {
       if(i % 32 == 0 && i != 0)
         printf("\n");
-      printf("%02x ", buf[i]);
+      printf("%02X ", buf[i]);
   }
   printf("\n");
 }
@@ -574,11 +574,11 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
       flash_erase_sector(erase_sector_addr, sector_size);
     if(must_write)
       flash_write(file_sector_buf, erase_sector_addr, sector_size);
+    printf("file sector written\n");
+    print_hex_buf(file_sector_buf, 128);
     // verify
     // read sector before erase and before the file
     flash_read(flash_sector_buf, erase_sector_addr, sector_size);
-    printf("file sector written\n");
-    print_hex_buf(file_sector_buf, 128);
     printf("flash sector readback\n");
     print_hex_buf(flash_sector_buf, 128);
     int verify_result = memcmp(flash_sector_buf, file_sector_buf, sector_size);
@@ -768,21 +768,21 @@ int main(void)
   
   //usleep(1000000);
   // test_read(0x300000); // alphabet
-  test_read(0x200000+33*1024-64, 128); // alphabet
+  test_read(0x200000+2*1024-64, 128); // alphabet
   
-  //flash_erase_sector(0x200000, 64*1024);
-  size_t length = 100;
+  //flash_erase_sector(0x200000, 4*1024);
+  size_t length = 4096;
   uint8_t *data = (uint8_t *)malloc(length * sizeof(uint8_t));
   for(int i = 0; i < length; i++)
     data[i] = 0xFF & i;
-  // flash_write(data, 0x200000+33*1024, 100);
+  //flash_write(data, 0x200000+2*1024, length);
   free(data);
-  test_read(0x200000+33*1024-64, 256); // alphabet
+  test_read(0x200000+2*1024-64, 256); // alphabet
   // read_flash_write_file("/tmp/flashcontent.bin", 0, 0x400000);
   // read_file_write_flash("/tmp/flashcontent.bin", 0, 16000);
-  read_file_write_flash("/tmp/flashcontent.bin", 0x280000, 16000);
+  // read_file_write_flash("/tmp/flashcontent.bin", 0x280000, 16000);
   // read_file_write_flash("-", 5155, 90016000);
-  // read_file_write_flash("/tmp/alphabet.bin", 0x300020, 50);
+  read_file_write_flash("/tmp/alphabet.bin", 0x200020, 50);
 
   return 0;
 }
