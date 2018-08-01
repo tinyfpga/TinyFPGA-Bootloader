@@ -376,7 +376,9 @@ int read_flash_write_file(char *filename, size_t addr, size_t length)
 // compare map with file data to find which sector must be erased
 // sector must be erased if any bit changes from 0 to 1 set erase value to 4KB
 // collect multiple 4K erase sectors into 32K or 64K
-
+// length:
+// positive integer: limit flash write to max this size
+// 0: try to lseek() to determine actual file length
 int read_file_write_flash(char *filename, size_t addr, size_t length)
 {
   const size_t available_sector_size[] = {4*1024, 32*1024, 64*1024}; // sizes in ascending order
@@ -386,6 +388,12 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
   int file_descriptor = open(filename, O_RDONLY);
   if(file_descriptor < 0)
     return -1; // cant't open file
+  
+  if(length == 0)
+  {
+    length = lseek(file_descriptor, 0, SEEK_END);
+    lseek(file_descriptor, 0, SEEK_SET);
+  }
 
   // **** sector logic ****
   // we need to interated over flash sectors
@@ -398,7 +406,7 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
   printf("writing range limit 0x%06X-0x%06X\n", addr, addr+length-1);
   
   size_t last_read_from_file = 1;
-  while(bytes_written < length && last_read_from_file > 0)
+  while(bytes_written < length && last_read_from_file > 0 && retries_remaining > 0)
   {
     size_t length_remaining = length - bytes_written;
     // find suitable sector to erase
@@ -406,6 +414,9 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
     // 2. maximize sector size
     size_t sector_size = available_sector_size[0]; // minimal sector size
     size_t sector_part_before_data = addr % sector_size; // start as minimal sector
+    
+    // printf("retry %d\n", retries_remaining);
+    retries_remaining--; // if this while does early-exit with "continue", retries will be left decremented
     // find do we have any larger  
     if(0) // disabled
     for(int i = 1; i < num_available_sector_size; i++)
@@ -439,9 +450,9 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
       }
     }
     size_t actual_bytes_from_file = data_bytes_to_write - remaining_to_read;
-    printf("actual_bytes_from_file %d\n", actual_bytes_from_file);
-    if(last_read_from_file <= 0)
-      printf("****** EOF *******\n");
+    //printf("actual_bytes_from_file %d\n", actual_bytes_from_file);
+    //if(last_read_from_file <= 0)
+    //  printf("****** EOF *******\n");
     // update number of bytes to write
     data_bytes_to_write = actual_bytes_from_file;
     
@@ -456,6 +467,7 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
       if( flash_sector_buf[i] != file_sector_buf[i] && file_sector_buf[i] != 0xFF)
         must_write = 1;
     }
+    if(0)
     printf("sector 0x%06X-0x%06X (size %d, erase %d, write %d)\n",
       erase_sector_addr,
       erase_sector_addr+sector_size-1,
@@ -467,22 +479,19 @@ int read_file_write_flash(char *filename, size_t addr, size_t length)
     if(must_write)
       for(int i = 0; i < sector_size; i += page_program_size)
         flash_write(file_sector_buf + i, erase_sector_addr + i, page_program_size);
-    //printf("file sector written\n");
-    //print_hex_buf(file_sector_buf, sector_size);
     // verify
-    // read sector before erase and before the file
     flash_read(flash_sector_buf, erase_sector_addr, sector_size);
-    //printf("flash sector readback\n");
-    //print_hex_buf(flash_sector_buf, sector_size);
-    int verify_result = memcmp(flash_sector_buf, file_sector_buf, sector_size);
-    if(verify_result == 0)
-      printf("VERIFY OK\n");
-    else
-      printf("VERIFY FAIL\n");
-
+    int verify_fail = memcmp(flash_sector_buf, file_sector_buf, sector_size);
+    if(verify_fail)
+      continue; // jumps to new while iteration without update of addr and bytes written
     bytes_written += data_bytes_to_write; // not correct but OK for now
     addr += data_bytes_to_write;
+    print_progress_bar(bytes_written, length);
+    retries_remaining = retry; // if we get this far, we are successful and set retry counter
   }
+  printf("\n"); // after progress bar to new line
+  if(retries_remaining == 0)
+    printf("FAIL\n");
 }
 
 
@@ -638,7 +647,7 @@ int main(void)
   test_read(0x200000+2*1024-64, 256); // alphabet
   // read_flash_write_file("/tmp/flashcontent.bin", 0, 0x400000);
   // read_file_write_flash("/tmp/flashcontent.bin", 0, 16000);
-  read_file_write_flash("/tmp/flashcontent.bin", 0x280000, 128*1024);
+  read_file_write_flash("/tmp/f32c.bit", 0x200000, 0);
   // read_file_write_flash("-", 5155, 90016000);
   // read_file_write_flash("/tmp/alphabet.bin", 0x200000+2*1024-64, 5000);
 
