@@ -618,7 +618,7 @@ int main(int argc, char **argv)
 
   if(open_usb_device(0x16C0, 0x05DC) < 0)
     return -1;
-
+    
   printf("FLASH ID: 0x%02X\n", flash_read_id());
   
   #if 0
@@ -640,10 +640,10 @@ int main(int argc, char **argv)
   test_read(0x200000+2*1024-64, 256); // alphabet
   #endif
   
-  // read_flash_write_file("/tmp/flashcontent.bin", 0, 0x400000);
-  // read_file_write_flash("/tmp/flashcontent.bin", 0, 16000);
-  read_file_write_flash("/tmp/f32c.bit", 0x200000, 0);
-  // read_file_write_flash("/tmp/oled-example.bit", 0x200000, 0);
+  if(args->read_given)
+    read_flash_write_file(args->read_arg, args->address_arg, args->length_arg);
+  if(args->write_given)
+    read_file_write_flash(args->write_arg, args->address_arg, 0);
 
   return 0;
 }
