@@ -18,6 +18,12 @@
 // USB
 #include <libusb-1.0/libusb.h>
 
+// commandline parser cmdline.ggo with gengetpot
+#include "cmdline.h"
+
+struct gengetopt_args_info args_info;
+struct gengetopt_args_info *args = &args_info;
+
 static struct libusb_device_handle *device_handle = NULL;
 uint8_t libusb_initialized = 0, interface_claimed = 0;
 
@@ -406,6 +412,8 @@ int read_file_write_flash(char *filename, uint32_t addr, uint32_t length)
   int retries_remaining = retry;
   
   printf("writing range 0x%06X-0x%06X\n", addr, addr+length-1);
+  // some simple satistics about flash wear
+  uint32_t count_erase = 0, count_write = 0;
   
   uint32_t last_read_from_file = 1;
   while(bytes_written < length && last_read_from_file > 0 && retries_remaining > 0)
@@ -417,10 +425,8 @@ int read_file_write_flash(char *filename, uint32_t addr, uint32_t length)
     uint32_t sector_size = available_sector_size[0]; // minimal sector size
     uint32_t sector_part_before_data = addr % sector_size; // start as minimal sector
     
-    // printf("retry %d\n", retries_remaining);
-    retries_remaining--; // if this while does early-exit with "continue", retries will be left decremented
-    // find do we have any larger  
-    if(0) // disabled
+    // find do we have any larger sector
+    if(0) // disabled, the smalles 4K sector is most suitable for retry procedure
     for(int i = 1; i < num_available_sector_size; i++)
     {
       if( addr % available_sector_size[i] == sector_part_before_data // if part before is the same
@@ -432,31 +438,39 @@ int read_file_write_flash(char *filename, uint32_t addr, uint32_t length)
       data_bytes_to_write = length - bytes_written; // last sector, clamp size
     uint32_t erase_sector_addr = addr-sector_part_before_data;
 
-    // read sector before erase and before the file
-    flash_read(flash_sector_buf, erase_sector_addr, sector_size);
-    // copy to file sector (as file may be read in less than sector size)
-    memcpy(file_sector_buf, flash_sector_buf, sector_size);
-
-    // data_bytes_to_write is what we want to write, but file may contain less
-    // try to read from file "data_bytes_to_write" or get eof:
-    uint32_t remaining_to_read = data_bytes_to_write;
-    uint8_t *file_data_pointer = file_sector_buf + addr - erase_sector_addr;
-    last_read_from_file = 1;
-    while(remaining_to_read > 0 && last_read_from_file > 0)
-    {
-      last_read_from_file = read(file_descriptor, file_data_pointer, remaining_to_read);
-      if(last_read_from_file > 0)
+    uint32_t actual_bytes_from_file = 0;
+    if(retries_remaining == retry)
+    { // first retry, it's new sector we need to read flash and file
+      // read sector before erase and before the file
+      flash_read(flash_sector_buf, erase_sector_addr, sector_size);
+      // copy to file sector (as file may be read in less than sector size)
+      memcpy(file_sector_buf, flash_sector_buf, sector_size);
+      // data_bytes_to_write is what we want to write, but file may contain less
+      // try to read from file "data_bytes_to_write" or get eof:
+      uint32_t remaining_to_read = data_bytes_to_write;
+      uint8_t *file_data_pointer = file_sector_buf + addr - erase_sector_addr;
+      last_read_from_file = 1;
+      while(remaining_to_read > 0 && last_read_from_file > 0)
       {
-        remaining_to_read -= last_read_from_file;
-        file_data_pointer += last_read_from_file;
+        last_read_from_file = read(file_descriptor, file_data_pointer, remaining_to_read);
+        if(last_read_from_file > 0)
+        {
+          remaining_to_read -= last_read_from_file;
+          file_data_pointer += last_read_from_file;
+        }
       }
+      actual_bytes_from_file = data_bytes_to_write - remaining_to_read;
     }
-    uint32_t actual_bytes_from_file = data_bytes_to_write - remaining_to_read;
     //printf("actual_bytes_from_file %d\n", actual_bytes_from_file);
     //if(last_read_from_file <= 0)
     //  printf("****** EOF *******\n");
     // update number of bytes to write
     data_bytes_to_write = actual_bytes_from_file;
+
+    // printf("retry %d\n", retries_remaining);
+    retries_remaining--; 
+    // this while loop may be early relooped after this point
+    // with "continue" -> retries will be left decremented
     
     // determine do we have to 2:erase, 1:write or 0:leave  the sector unmodified
     // compare byte-by-byte flash_sector_buf and file_sector_buf
@@ -476,11 +490,17 @@ int read_file_write_flash(char *filename, uint32_t addr, uint32_t length)
       sector_size, 
       must_erase, must_write);
     if(must_erase)
+    {
       flash_erase_sector(erase_sector_addr, sector_size);
+      count_erase++;
+    }
     const uint32_t page_program_size = 256; // up to this bytes max in one page write operation
     if(must_write)
+    {
       for(int i = 0; i < sector_size; i += page_program_size)
         flash_write(file_sector_buf + i, erase_sector_addr + i, page_program_size);
+      count_write++;
+    }
     // verify
     flash_read(flash_sector_buf, erase_sector_addr, sector_size);
     int verify_fail = memcmp(flash_sector_buf, file_sector_buf, sector_size);
@@ -497,7 +517,7 @@ int read_file_write_flash(char *filename, uint32_t addr, uint32_t length)
     fprintf(stderr, "FAIL\n");
     return -1;
   }
-  printf("last read from file: %d bytes\n", last_read_from_file); 
+  printf("4K sectors erased:%d written:%d\n", count_erase, count_write); 
   return 0;
 }
 
@@ -592,8 +612,10 @@ int test_read(uint32_t addr, uint32_t len)
   return 0;
 }
 
-int main(void)
+int main(int argc, char **argv)
 {
+  cmdline_parser(argc, argv, args);
+
   if(open_usb_device(0x16C0, 0x05DC) < 0)
     return -1;
 

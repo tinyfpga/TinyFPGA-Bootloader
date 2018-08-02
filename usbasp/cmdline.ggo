@@ -1,0 +1,15 @@
+# file cmdline.ggo
+
+# Name of your program
+package "fpgasp"        # don't use package if you're using automake
+# Version of your program
+version "0.1.0"         # don't use version if you're using automake
+
+purpose "Flasher for tinyfpga bootloader with USB vendor-specific support"
+
+#       long         short    description                     type    default              required
+option  "address"    a "starting flash address"                int    default="0x200000"   no
+option  "read"       r "read from flash write to file"         string default="read.bit"   no
+option  "write"      w "read from file write to flash"         string default="write.bit"  no
+option  "verbose"    v "Print extra info (0-no|1-some|2-much)" int    default="0"          no
+option  "device"     d "usb device hex vid:pid"                string default="16c0:05dc"  no
