@@ -1,4 +1,4 @@
-module usbasp_bootloader (
+module tinyfpgasp_bootloader (
   input  clk_48mhz,
   input  reset,
 
@@ -137,7 +137,7 @@ module usbasp_bootloader (
   wire boot_to_user_design;
 
   assign boot = host_presence_timeout || boot_to_user_design;
-  usb_asp_ctrl_ep ctrl_ep_inst (
+  usb_sp_ctrl_ep ctrl_ep_inst (
     .clk(clk_48mhz),
     .reset(reset),
     .dev_addr(dev_addr),

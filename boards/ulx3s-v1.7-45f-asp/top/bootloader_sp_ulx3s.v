@@ -1,4 +1,4 @@
-module bootloader_asp_ulx3s (
+module bootloader_sp_ulx3s (
   input  clk_25mhz,
 
   inout  usb_fpga_dp,
@@ -57,7 +57,7 @@ module bootloader_asp_ulx3s (
   wire S_flash_clk;
   wire S_flash_csn;
 
-  usbasp_bootloader usbasp_bootloader_inst (
+  tinyfpgasp_bootloader tinyfpgasp_bootloader_inst (
     .clk_48mhz(clk_48mhz),
     .reset(reset),
     .usb_p_tx(usb_p_tx),

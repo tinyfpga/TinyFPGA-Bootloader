@@ -1,4 +1,4 @@
-module usb_asp_ctrl_ep (
+module usb_sp_ctrl_ep (
   input clk,
   input reset,
   output [6:0] dev_addr,

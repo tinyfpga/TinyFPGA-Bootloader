@@ -1,7 +1,7 @@
 CFLAGS=-Wall -s -Os
 CLIBS=-lusb-1.0
 
-project=spiflashtest
+project=tinyfpgasp
 parser=cmdline
 version=$(shell ./version.sh)
 
