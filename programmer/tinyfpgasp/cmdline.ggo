@@ -8,9 +8,9 @@ version "0.1.0"         # don't use version if you're using automake
 purpose "Flasher for tinyfpga bootloader with USB vendor-specific support"
 
 #       long         short    description                     type    default              required
-option  "address"    a "byte Start Address"                    int    default="0x200000"   no
-option  "length"     l "byte Length"                           int    default="0"          no
-option  "read"       r "filename Flash -> File"                string default="read.bit"   no
-option  "write"      w "filename File -> Flash"                string default="write.bit"  no
+option  "address"    a "Byte Start Address"                    int    default="0x200000"   no
+option  "length"     l "Bytes Length"                           int    default="0"          no
+option  "read"       r "Filename Flash -> File"                string default="read.bit"   no
+option  "write"      w "Filename File -> Flash"                string default="write.bit"  no
+option  "device"     d "VID:PID of USB device"                 string default="16c0:05dc"  no
 # option  "verbose"    v "Print extra info (0-no|1-some|2-much)" int    default="0"          no
-# option  "device"     d "VID:PID of USB device"                 string default="16c0:05dc"  no

@@ -548,10 +548,10 @@ int open_usb_device(uint16_t vid, uint16_t pid)
   }
   libusb_initialized = 1;
 
-  device_handle = libusb_open_device_with_vid_pid(NULL, 0x16C0, 0x05DC);
+  device_handle = libusb_open_device_with_vid_pid(NULL, vid, pid);
   if (!device_handle)
   {
-    fprintf(stderr, "Error finding USB device\n");
+    fprintf(stderr, "Error finding USB device %04X:%04X\n", vid, pid);
     return -1;
   }
 
@@ -615,8 +615,11 @@ int test_read(uint32_t addr, uint32_t len)
 int main(int argc, char **argv)
 {
   cmdline_parser(argc, argv, args);
+  uint32_t usb_vid, usb_pid;
+  
+  sscanf(args->device_arg, "%x:%x", &usb_vid, &usb_pid);
 
-  if(open_usb_device(0x16C0, 0x05DC) < 0)
+  if(open_usb_device(usb_vid, usb_pid) < 0)
     return -1;
     
   printf("FLASH ID: 0x%02X\n", flash_read_id());
