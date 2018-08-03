@@ -2,9 +2,9 @@
 <BaliProject version="3.2" title="project" device="LFE5U-45F-6BG381C" default_implementation="project">
     <Options/>
     <Implementation title="project" dir="project" description="project" synthesis="synplify" default_strategy="Strategy1">
-        <Options def_top="bootloader_ulx3s" top="bootloader_ulx3s"/>
-        <Source name="top/bootloader_ulx3s.v" type="Verilog" type_short="Verilog">
-            <Options top_module="bootloader_ulx3s"/>
+        <Options def_top="bootloader_sp_ulx3s" top="bootloader_sp_ulx3s"/>
+        <Source name="top/bootloader_sp_ulx3s.v" type="Verilog" type_short="Verilog">
+            <Options top_module="bootloader_sp_ulx3s"/>
         </Source>
         <Source name="constraints/ulx3s_v17patch.lpf" type="Logic Preference" type_short="LPF">
             <Options/>
@@ -15,13 +15,10 @@
         <Source name="clocks/clk_200M_48M.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
+        <Source name="../../common/tinyfpgasp_bootloader.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
         <Source name="../../common/edge_detect.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../common/serial.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../common/tinyfpga_bootloader.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
         <Source name="../../common/usb_fs_in_arb.v" type="Verilog" type_short="Verilog">
@@ -51,10 +48,7 @@
         <Source name="../../common/usb_reset_det.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
-        <Source name="../../common/usb_serial_ctrl_ep.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../common/usb_spi_bridge_ep.v" type="Verilog" type_short="Verilog">
+        <Source name="../../common/usb_sp_ctrl_ep.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
     </Implementation>
