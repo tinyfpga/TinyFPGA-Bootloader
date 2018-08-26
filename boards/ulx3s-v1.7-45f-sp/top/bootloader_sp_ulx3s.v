@@ -118,8 +118,10 @@ module bootloader_sp_ulx3s (
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
   assign wifi_gpio0 = btn[0];
-  //assign led[5] = boot;
-  assign led = debug_led;
+  assign led[0] = pin_led;
+  assign led[1] = ~pin_led;
+  assign led[5] = debug_led;
+  assign led[7] = boot;
   // assign led[3:0] = {flash_miso, flash_mosi, S_flash_clk, S_flash_csn}; 
   
 
