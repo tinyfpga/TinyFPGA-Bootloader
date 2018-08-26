@@ -56,15 +56,15 @@
 					<Pos>1</Pos>
 					<Vendor>Micron</Vendor>
 					<Family>SPI Serial Flash</Family>
-					<Name>SPI-M25P32</Name>
+					<Name>SPI-M25P128</Name>
 					<IDCode>0x15</IDCode>
 					<Package>8-pin VDFPN8</Package>
 					<Operation>SPI Flash Erase,Program</Operation>
 					<File>project/project_project_multiboot_flash_micron_32mbit.mcs</File>
 					<AddressBase>0x00000000</AddressBase>
-					<EndAddress>0x00400000</EndAddress>
-					<DeviceSize>32</DeviceSize>
-					<DataSize>4194304</DataSize>
+					<EndAddress>0x01000000</EndAddress>
+					<DeviceSize>128</DeviceSize>
+					<DataSize>16777216</DataSize>
 					<NumberOfDevices>1</NumberOfDevices>
 					<ReInitialize value="FALSE"/>
 				</Device>
