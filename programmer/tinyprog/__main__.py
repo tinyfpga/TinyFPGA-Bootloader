@@ -107,7 +107,9 @@ def check_if_overwrite_bootloader(addr, length, bootloader_range):
         print("    over the USB interface. Without the USB bootloader, the board can")
         print("    only be programmed via the SPI flash interface.")
         print("")
-        return strict_query_user("    Are you sure you want to continue? Type in 'yes' to overwrite bootloader.")
+        retval = strict_query_user("    Are you sure you want to continue? Type in 'yes' to overwrite bootloader.")
+        print("")
+        return retval
 
     return True
 
@@ -312,6 +314,7 @@ def main():
 
     # program the flash memory
     if (args.program is not None) or (args.program_userdata is not None):
+        boot_fpga = False
         def progress(info):
             if isinstance(info, str):
                 print("    " + str(info))
@@ -337,6 +340,7 @@ def main():
                     sys.exit(1)
 
                 if check_if_overwrite_bootloader(addr, len(bitstream), fpga.meta.bootloader_addr_range()):
+                    boot_fpga = True
                     print("    Programming at addr {:06x}".format(addr))
                     if not fpga.program_bitstream(addr, bitstream):
                         sys.exit(1)
@@ -360,13 +364,15 @@ def main():
                     sys.exit(1)
 
                 if check_if_overwrite_bootloader(addr, len(bitstream), fpga.meta.bootloader_addr_range()):
+                    boot_fpga = True
                     print("    Programming at addr {:06x}".format(addr))
                     if not fpga.program_bitstream(addr, bitstream):
                         sys.exit(1)
 
-            fpga.boot()
-            print("")
-            sys.exit(0)
+            if boot_fpga:
+                fpga.boot()
+                print("")
+                sys.exit(0)
 
     # boot the FPGA
     if args.boot:
