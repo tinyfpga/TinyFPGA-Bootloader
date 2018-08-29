@@ -94,18 +94,19 @@ def check_for_wrong_tinyfpga_bx_vidpid():
     return boards_needing_update
 
 
-def check_if_overwrite_bootloader(addr, length, bootloader_range):
-    bstart = bootloader_range[0]
-    bend = bootloader_range[1]
+def check_if_overwrite_bootloader(addr, length, userdata_range):
+    ustart = userdata_range[0]
+    uend = userdata_range[1]
 
-    if (addr >= bstart and addr < bend) or ((addr + length) >= bstart and (addr + length) < bend) or (addr <= bstart and (addr + length) >= bend):
+    if addr < ustart or addr + length >= uend:
         print("")
         print("    !!! WARNING !!!")
         print("")
-        print("    The address given will overwrite the USB bootloader. Without the")
+        print("    The address given may overwrite the USB bootloader. Without the")
         print("    USB bootloader the board will no longer be able to be programmed")
         print("    over the USB interface. Without the USB bootloader, the board can")
-        print("    only be programmed via the SPI flash interface.")
+        print("    only be programmed via the SPI flash interface on the bottom of")
+        print("    the board")
         print("")
         retval = strict_query_user("    Are you sure you want to continue? Type in 'yes' to overwrite bootloader.")
         print("")
@@ -339,7 +340,7 @@ def main():
                     print("    Bootloader not active")
                     sys.exit(1)
 
-                if check_if_overwrite_bootloader(addr, len(bitstream), fpga.meta.bootloader_addr_range()):
+                if check_if_overwrite_bootloader(addr, len(bitstream), fpga.meta.userimage_addr_range()):
                     boot_fpga = True
                     print("    Programming at addr {:06x}".format(addr))
                     if not fpga.program_bitstream(addr, bitstream):
@@ -363,7 +364,7 @@ def main():
                     print("    Bootloader not active")
                     sys.exit(1)
 
-                if check_if_overwrite_bootloader(addr, len(bitstream), fpga.meta.bootloader_addr_range()):
+                if check_if_overwrite_bootloader(addr, len(bitstream), fpga.meta.userdata_addr_range()):
                     boot_fpga = True
                     print("    Programming at addr {:06x}".format(addr))
                     if not fpga.program_bitstream(addr, bitstream):
