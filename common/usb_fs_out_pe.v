@@ -14,7 +14,7 @@ module usb_fs_out_pe #(
   output [NUM_OUT_EPS-1:0] out_ep_data_avail,
   output reg [NUM_OUT_EPS-1:0] out_ep_setup = 0,
   input [NUM_OUT_EPS-1:0] out_ep_data_get,
-  output reg [7:0] out_ep_data = 0,
+  output reg [7:0] out_ep_data,
   input [NUM_OUT_EPS-1:0] out_ep_stall,
   output reg [NUM_OUT_EPS-1:0] out_ep_acked = 0,
 
