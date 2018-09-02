@@ -51,7 +51,7 @@ module usb_fs_in_pe #(
   // Data payload to send if any
   output tx_data_avail,
   input tx_data_get,
-  output reg [7:0] tx_data = 0
+  output reg [7:0] tx_data
 );
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -344,6 +344,9 @@ module usb_fs_in_pe #(
     endcase
   end
 
+  always @(posedge clk)
+      tx_data <= in_data_buffer[buffer_get_addr];
+
   integer j;
   always @(posedge clk) begin
     if (reset) begin
@@ -351,8 +354,6 @@ module usb_fs_in_pe #(
 
     end else begin
       in_xfr_state <= in_xfr_state_next;
-
-      tx_data <= in_data_buffer[buffer_get_addr];
 
       if (setup_token_received) begin
         data_toggle[rx_endp] <= 1;
