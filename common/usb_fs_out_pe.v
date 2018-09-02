@@ -154,6 +154,8 @@ module usb_fs_out_pe #(
     for (ep_num = 0; ep_num < NUM_OUT_EPS; ep_num = ep_num + 1) begin
       always @* begin
 
+        ep_state_next[ep_num] <= ep_state[ep_num];
+
         if (out_ep_stall[ep_num]) begin
           ep_state_next[ep_num] <= STALL;
 
@@ -272,7 +274,9 @@ module usb_fs_out_pe #(
   ////////////////////////////////////////////////////////////////////////////////
 
   always @* begin
+    out_ep_acked <= 0;
     out_xfr_start <= 0;
+    out_xfr_state_next <= out_xfr_state;
     tx_pkt_start <= 0;
     tx_pid <= 0;
     new_pkt_end <= 0;
