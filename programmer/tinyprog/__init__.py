@@ -211,7 +211,14 @@ class TinyMeta(object):
         return self._get_addr_range(u"userdata")
 
     def _get_addr_range(self, name):
-        addr_str = self.root[u"bootmeta"][u"addrmap"][name]
+        # get the bootmeta's addrmap or fallback to the root's addrmap.
+        addr_map = self.root.get(u"bootmeta", {}).get(u"addrmap", self.root.get(u"addrmap", None))
+        if addr_map is None:
+            raise Exception("Missing address map from device metadata")
+        addr_str = addr_map.get(name, None)
+        if addr_str is None:
+            raise Exception("Missing address map for '{0}'.".format(name))
+
         m = re.search(
             r"^\s*0x(?P<start>[A-Fa-f0-9]+)\s*-\s*0x(?P<end>[A-Fa-f0-9]+)\s*$",
             addr_str)
