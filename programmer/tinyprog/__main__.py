@@ -214,9 +214,11 @@ def main():
     parser.add_argument("-l", "--list", action="store_true",
                         help="list connected and active FPGA boards")
     parser.add_argument("-p", "--program", type=str,
-                        help="program FPGA board with the given bitstream")
+                        help="program FPGA board with the given user bitstream")
     parser.add_argument("-u", "--program-userdata", type=str,
                         help="program FPGA board with the given user data")
+    parser.add_argument("--program-image", type=str,
+                        help="program FPGA board with a combined user bitstream and data")
     parser.add_argument("-b", "--boot", action="store_true",
                         help="command the FPGA board to exit the "
                              "bootloader and load the user configuration")
@@ -314,7 +316,7 @@ def main():
                 perform_bootloader_update(port)
 
     # program the flash memory
-    if (args.program is not None) or (args.program_userdata is not None):
+    if (args.program is not None) or (args.program_userdata is not None) or (args.program_image is not None):
         boot_fpga = False
         def progress(info):
             if isinstance(info, str):
@@ -346,6 +348,7 @@ def main():
                     if not fpga.program_bitstream(addr, bitstream):
                         sys.exit(1)
     
+
             # program user flash area
             if args.program_userdata is not None:
                 print("    Programming " + str(active_port) + " with " + str(args.program_userdata))
@@ -365,6 +368,31 @@ def main():
                     sys.exit(1)
 
                 if check_if_overwrite_bootloader(addr, len(bitstream), fpga.meta.userdata_addr_range()):
+                    boot_fpga = True
+                    print("    Programming at addr {:06x}".format(addr))
+                    if not fpga.program_bitstream(addr, bitstream):
+                        sys.exit(1)
+    
+
+            # program user image and data area
+            if args.program_image is not None:
+                print("    Programming " + str(active_port) + " with " + str(args.program_image))
+
+                bitstream = fpga.slurp(args.program_image)
+
+                if args.addr is not None:
+                    addr = parse_int(args.addr)
+                else:
+                    addr = fpga.meta.userimage_addr_range()[0]
+
+                if addr < 0:
+                    print("    Negative write addr: {}".format(addr))
+                    sys.exit(1)
+                if not fpga.is_bootloader_active():
+                    print("    Bootloader not active")
+                    sys.exit(1)
+
+                if check_if_overwrite_bootloader(addr, len(bitstream), (fpga.meta.userimage_addr_range()[0], fpga.meta.userdata_addr_range()[1])):
                     boot_fpga = True
                     print("    Programming at addr {:06x}".format(addr))
                     if not fpga.program_bitstream(addr, bitstream):
