@@ -9,7 +9,7 @@
 			<Pos>1</Pos>
 			<Vendor>Lattice</Vendor>
 			<Family>ECP5U</Family>
-			<Name>LFE5U-45F</Name>
+			<Name>LFE5U-25F</Name>
 			<Package>All</Package>
 			<Bypass>
 				<InstrLen>8</InstrLen>
@@ -30,10 +30,10 @@
 					<Pos>1</Pos>
 					<Vendor>Lattice</Vendor>
 					<Family>ECP5U</Family>
-					<Name>LFE5U-45F</Name>
+					<Name>LFE5U-25F</Name>
 					<IDCode>0x41111043</IDCode>
 					<Package>All</Package>
-					<PON>LFE5U-45F</PON>
+					<PON>LFE5U-25F</PON>
 					<Bypass>
 						<InstrLen>8</InstrLen>
 						<InstrVal>11111111</InstrVal>
@@ -54,11 +54,11 @@
 			<FlashDevice>
 				<Device>
 					<Pos>1</Pos>
-					<Vendor>Micron</Vendor>
+					<Vendor>SPANSION</Vendor>
 					<Family>SPI Serial Flash</Family>
-					<Name>SPI-M25P128</Name>
-					<IDCode>0x15</IDCode>
-					<Package>8-pin VDFPN8</Package>
+					<Name>SPI-S25FL128S</Name>
+					<IDCode>0x17</IDCode>
+					<Package>8-lead WSON</Package>
 					<Operation>SPI Flash Erase,Program</Operation>
 					<File>project/project_project_multiboot_flash_micron_128mbit.mcs</File>
 					<AddressBase>0x00000000</AddressBase>
