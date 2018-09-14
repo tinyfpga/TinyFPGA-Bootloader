@@ -30,8 +30,8 @@ all: $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
 	$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_32mbit.svf \
 	$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_spansion_64mbit.vme \
 	$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_spansion_64mbit.svf \
-	$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_128mbit.vme \
-	$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_128mbit.svf \
+	$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.vme \
+	$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.svf \
 
 
 $(PROJECT)/$(PROJECT)_$(PROJECT).bit:
@@ -81,17 +81,17 @@ $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_spansion_64mbit.vme: $(PROJECT)
 $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_spansion_64mbit.svf: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_spansion_64mbit.mcs
 	LANG=C ${DDTCMD} -oft -svfsingle -revd -maxdata 8 -if ulx3s_85f_multiboot_spansion_64mbit.xcf -of $@
 
-$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_128mbit.mcs: $(PROJECT)/$(PROJECT)_$(PROJECT).bit $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit
+$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.mcs: $(PROJECT)/$(PROJECT)_$(PROJECT).bit $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit
 	LANG=C ${DDTCMD} -dev $(FPGA_DEVICE) -oft -advanced -format int -flashsize 128 -header  \
 	-if $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
 	-golden $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
 	-multi 1 -altfile $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit -address 0x200000 -next prim -of $@
 
-$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_128mbit.vme: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_128mbit.mcs
-	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_85f_multiboot_micron_128mbit.xcf -nocompress -noheader -of $@
+$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.vme: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.mcs
+	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_85f_multiboot_is25lp128f.xcf -nocompress -noheader -of $@
 
-$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_128mbit.svf: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_128mbit.mcs
-	LANG=C ${DDTCMD} -oft -svfsingle -revd -maxdata 8 -if ulx3s_85f_multiboot_micron_128mbit.xcf -of $@
+$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.svf: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.mcs
+	LANG=C ${DDTCMD} -oft -svfsingle -revd -maxdata 8 -if ulx3s_85f_multiboot_is25lp128f.xcf -of $@
 
 program: $(PROJECT)/$(PROJECT)_$(PROJECT).bit
 	echo pgr_project open ulx3s_85f_sram.xcf \; pgr_program run | ${DIAMONDC}

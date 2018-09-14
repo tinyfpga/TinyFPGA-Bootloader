@@ -17,9 +17,9 @@
 				<BScanLen>1</BScanLen>
 				<BScanVal>0</BScanVal>
 			</Bypass>
-			<File>project/project_project_multiboot_flash_micron_128mbit.mcs</File>
+			<File>project/project_project_multiboot_flash_is25lp128f.mcs</File>
 			<FileTime>12/23/17 00:34:50</FileTime>
-			<Operation>SPI Flash Erase,Program</Operation>
+			<Operation>SPI Flash Erase,Program,Verify</Operation>
 			<Option>
 				<SVFVendor>JTAG STANDARD</SVFVendor>
 				<AccessMode>SPI Flash Background Programming</AccessMode>
@@ -54,13 +54,13 @@
 			<FlashDevice>
 				<Device>
 					<Pos>1</Pos>
-					<Vendor>Micron</Vendor>
+					<Vendor>SPANSION</Vendor>
 					<Family>SPI Serial Flash</Family>
-					<Name>SPI-M25P128</Name>
-					<IDCode>0x15</IDCode>
-					<Package>8-pin VDFPN8</Package>
-					<Operation>SPI Flash Erase,Program</Operation>
-					<File>project/project_project_multiboot_flash_micron_128mbit.mcs</File>
+					<Name>SPI-S25FL128S</Name>
+					<IDCode>0x17</IDCode>
+					<Package>8-lead WSON</Package>
+					<Operation>SPI Flash Erase,Program,Verify</Operation>
+					<File>project/project_project_multiboot_flash_is25lp128f.mcs</File>
 					<AddressBase>0x00000000</AddressBase>
 					<EndAddress>0x01000000</EndAddress>
 					<DeviceSize>128</DeviceSize>
@@ -73,11 +73,11 @@
 				<Device>
 					<Pos>1</Pos>
 					<Name></Name>
-					<File>project/project_project_multiboot_flash_micron_128mbit.mcs</File>
+					<File>project/project_project_multiboot_flash_is25lp128f.mcs</File>
 					<LocalChainList>
 						<LocalDevice index="-99"
 							name="Unknown"
-							file="project/project_project_multiboot_flash_micron_128mbit.mcs"/>
+							file="project/project_project_multiboot_flash_is25lp128f.mcs"/>
 					</LocalChainList>
 					<Option>
 						<SVFVendor>JTAG STANDARD</SVFVendor>
