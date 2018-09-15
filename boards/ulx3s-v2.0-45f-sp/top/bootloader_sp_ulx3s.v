@@ -11,8 +11,9 @@ module bootloader_sp_ulx3s (
 
   input  flash_miso,
   output flash_mosi,
-  output flash_clk,
   output flash_csn,
+  output flash_wpn,
+  output flash_holdn,
  
   input [6:0] btn,
   output wifi_gpio0
@@ -93,7 +94,6 @@ module bootloader_sp_ulx3s (
     .USRMCLKI(S_flash_clk),
     .USRMCLKTS(S_flash_csn)
   ) /* synthesis syn_noprune=1 */;
-  assign flash_clk = S_flash_clk;
   assign flash_csn = S_flash_csn;
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -129,7 +129,11 @@ module bootloader_sp_ulx3s (
   
   // PULLUP 1.5k D+
   assign usb_fpga_pu_dp = 1;
-  
+
+  // set 1 to holdn wpn for use as single bit mode spi
+  assign flash_holdn = 1;
+  assign flash_wpn = 1;
+
   // EXIT from BOOTLOADER
   // assign user_programn = ~boot;
   

@@ -26,10 +26,10 @@ JUNK += project_tcr.dir
 all: $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
 	$(PROJECT)/$(PROJECT)_$(PROJECT)_sram.svf \
 	$(PROJECT)/$(PROJECT)_$(PROJECT)_sram.vme \
-	$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_32mbit.vme \
-	$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_32mbit.svf \
-	$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_spansion_64mbit.vme \
-	$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_spansion_64mbit.svf \
+	$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp032d.vme \
+	$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp032d.svf \
+	$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_s25fl164k.vme \
+	$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_s25fl164k.svf \
 	$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.vme \
 	$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.svf \
 
@@ -50,36 +50,29 @@ $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.svf: $(PROJECT)/$(PROJECT)_$(PROJECT).bit
 $(PROJECT)/$(PROJECT)_$(PROJECT).mcs: $(PROJECT)/$(PROJECT)_$(PROJECT).bit
 	LANG=C ${DDTCMD} -dev $(FPGA_DEVICE) -if $(PROJECT)/$(PROJECT)_$(PROJECT).bit -oft -int -of $@
 
-$(PROJECT)/$(PROJECT)_$(PROJECT)_flash_micron_32mbit.vme: $(PROJECT)/$(PROJECT)_$(PROJECT).mcs
-	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_85f_flash_micron_32mbit.xcf -nocompress -noheader -of $@
-
-$(PROJECT)/$(PROJECT)_$(PROJECT)_flash_spansion_64mbit.vme: $(PROJECT)/$(PROJECT)_$(PROJECT).mcs
-	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_85f_flash_spansion_64mbit.xcf -nocompress -noheader -of $@
-
-$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_32mbit.mcs: $(PROJECT)/$(PROJECT)_$(PROJECT).bit $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit
+$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp032d.mcs: $(PROJECT)/$(PROJECT)_$(PROJECT).bit $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit
 	LANG=C ${DDTCMD} -dev $(FPGA_DEVICE) -oft -advanced -format int -flashsize 32 -header  \
 	-if $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
 	-golden $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
 	-multi 1 -altfile $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit -address 0x200000 -next prim -of $@
 
-$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_32mbit.vme: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_32mbit.mcs
-	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_85f_multiboot_micron_32mbit.xcf -nocompress -noheader -of $@
+$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp032d.vme: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp032d.mcs
+	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_85f_multiboot_flash_is25lp032d.xcf -nocompress -noheader -of $@
 
-$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_32mbit.svf: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_32mbit.mcs
-	LANG=C ${DDTCMD} -oft -svfsingle -revd -maxdata 8 -if ulx3s_85f_multiboot_micron_32mbit.xcf -of $@
+$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp032d.svf: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp032d.mcs
+	LANG=C ${DDTCMD} -oft -svfsingle -revd -maxdata 8 -if ulx3s_85f_multiboot_flash_is25lp032d.xcf -of $@
 
-$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_spansion_64mbit.mcs: $(PROJECT)/$(PROJECT)_$(PROJECT).bit $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit
-	dd if=/dev/zero of=/tmp/zero.bit bs=1k count=300
+$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_s25fl164k.mcs: $(PROJECT)/$(PROJECT)_$(PROJECT).bit $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit
 	LANG=C ${DDTCMD} -dev $(FPGA_DEVICE) -oft -advanced -format int -flashsize 64 -header  \
 	-if $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
 	-golden $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
 	-multi 1 -altfile $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit -address 0x200000 -next prim -of $@
 
-$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_spansion_64mbit.vme: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_spansion_64mbit.mcs
-	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_85f_multiboot_spansion_64mbit.xcf -nocompress -noheader -of $@
+$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_s25fl164k.vme: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_s25fl164k.mcs
+	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_85f_multiboot_flash_s25fl164k.xcf -nocompress -noheader -of $@
 
-$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_spansion_64mbit.svf: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_spansion_64mbit.mcs
-	LANG=C ${DDTCMD} -oft -svfsingle -revd -maxdata 8 -if ulx3s_85f_multiboot_spansion_64mbit.xcf -of $@
+$(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_s25fl164k.svf: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_s25fl164k.mcs
+	LANG=C ${DDTCMD} -oft -svfsingle -revd -maxdata 8 -if ulx3s_85f_multiboot_flash_s25fl164k.xcf -of $@
 
 $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.mcs: $(PROJECT)/$(PROJECT)_$(PROJECT).bit $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit
 	LANG=C ${DDTCMD} -dev $(FPGA_DEVICE) -oft -advanced -format int -flashsize 128 -header  \
@@ -88,10 +81,10 @@ $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.mcs: $(PROJECT)/$(PR
 	-multi 1 -altfile $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit -address 0x200000 -next prim -of $@
 
 $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.vme: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.mcs
-	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_85f_multiboot_is25lp128f.xcf -nocompress -noheader -of $@
+	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_85f_multiboot_flash_is25lp128f.xcf -nocompress -noheader -of $@
 
 $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.svf: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.mcs
-	LANG=C ${DDTCMD} -oft -svfsingle -revd -maxdata 8 -if ulx3s_85f_multiboot_is25lp128f.xcf -of $@
+	LANG=C ${DDTCMD} -oft -svfsingle -revd -maxdata 8 -if ulx3s_85f_multiboot_flash_is25lp128f.xcf -of $@
 
 program: $(PROJECT)/$(PROJECT)_$(PROJECT).bit
 	echo pgr_project open ulx3s_85f_sram.xcf \; pgr_program run | ${DIAMONDC}
@@ -102,7 +95,7 @@ program_wifi: $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.svf
 program_web: $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.svf
 	svfupload.py ulx3s.lan $<
 
-program_web_flash: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_32mbit.svf
+program_web_flash: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.svf
 	svfupload.py ulx3s.lan $<
 
 program_ft2232: $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.svf
@@ -111,17 +104,17 @@ program_ft2232: $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.svf
 program_flea: $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.vme
 	FleaFPGA-JTAG $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.vme
 
-program_flea_flash: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_micron_32mbit.vme
+program_flea_flash: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.vme
 	FleaFPGA-JTAG $<
 
-program_flea_flash_spansion: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_spansion_64mbit.vme
+program_flea_flash_spansion: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_s25fl164k.vme
 	FleaFPGA-JTAG $<
 
 #$(PROJECT)/$(PROJECT)_$(PROJECT).jed:
 #	echo prj_project open ${PROJ_FILE} \; prj_run Export -task Jedecgen | ${DIAMONDC}
 
 #$(PROJECT)/$(PROJECT)_$(PROJECT)_flash.vme: $(PROJECT)/$(PROJECT)_$(PROJECT).jed
-#	${DDTCMD} -oft -fullvme -if sparrowhawk_flash_micron_32mbit.xcf -nocompress -noheader -of $@
+#	${DDTCMD} -oft -fullvme -if sparrowhawk_flash_is25lp128f.xcf -nocompress -noheader -of $@
 
 #$(PROJECT)/$(PROJECT)_$(PROJECT)_flash.svf: $(PROJECT)/$(PROJECT)_$(PROJECT).jed
 #	${DDTCMD} -oft -svfsingle -op "FLASH Erase,Program,Verify" -if $< -of $@
