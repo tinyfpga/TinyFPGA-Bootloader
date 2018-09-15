@@ -51,7 +51,7 @@ $(PROJECT)/$(PROJECT)_$(PROJECT).mcs: $(PROJECT)/$(PROJECT)_$(PROJECT).bit
 	LANG=C ${DDTCMD} -dev $(FPGA_DEVICE) -if $(PROJECT)/$(PROJECT)_$(PROJECT).bit -oft -int -of $@
 
 $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp032d.mcs: $(PROJECT)/$(PROJECT)_$(PROJECT).bit $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit
-	LANG=C ${DDTCMD} -dev $(FPGA_DEVICE) -oft -advanced -format int -flashsize 32 -header  \
+	LANG=C ${DDTCMD} -dev $(FPGA_DEVICE) -oft -advanced -format int -flashsize 32 -quad 1 -header  \
 	-if $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
 	-golden $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
 	-multi 1 -altfile $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit -address 0x200000 -next prim -of $@
@@ -63,7 +63,7 @@ $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp032d.svf: $(PROJECT)/$(PR
 	LANG=C ${DDTCMD} -oft -svfsingle -revd -maxdata 8 -if ulx3s_12f_multiboot_flash_is25lp032d.xcf -of $@
 
 $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_s25fl164k.mcs: $(PROJECT)/$(PROJECT)_$(PROJECT).bit $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit
-	LANG=C ${DDTCMD} -dev $(FPGA_DEVICE) -oft -advanced -format int -flashsize 64 -header  \
+	LANG=C ${DDTCMD} -dev $(FPGA_DEVICE) -oft -advanced -format int -flashsize 64 -quad 1 -header  \
 	-if $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
 	-golden $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
 	-multi 1 -altfile $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit -address 0x200000 -next prim -of $@
@@ -75,7 +75,7 @@ $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_s25fl164k.svf: $(PROJECT)/$(PRO
 	LANG=C ${DDTCMD} -oft -svfsingle -revd -maxdata 8 -if ulx3s_12f_multiboot_flash_s25fl164k.xcf -of $@
 
 $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.mcs: $(PROJECT)/$(PROJECT)_$(PROJECT).bit $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit
-	LANG=C ${DDTCMD} -dev $(FPGA_DEVICE) -oft -advanced -format int -flashsize 128 -header  \
+	LANG=C ${DDTCMD} -dev $(FPGA_DEVICE) -oft -advanced -format int -flashsize 128 -quad 1 -header  \
 	-if $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
 	-golden $(PROJECT)/$(PROJECT)_$(PROJECT).bit \
 	-multi 1 -altfile $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit -address 0x200000 -next prim -of $@
