@@ -43,6 +43,7 @@ module bootloader (
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
   wire clk_48mhz;
+  wire clk_48mhz_to_bufg;
   wire clkfbout_buf;
   wire clkfbout;
   wire mmcm_locked;
@@ -57,7 +58,7 @@ module bootloader (
   mmcme2_inst 
     (
      .CLKIN1(pin_clk),
-     .CLKOUT0(clk_48mhz),
+     .CLKOUT0(clk_48mhz_to_bufg),
      .PWRDWN(1'b0),
      .RST(1'b0),              
      .LOCKED(mmcm_locked),
@@ -69,6 +70,12 @@ module bootloader (
     (
      .I(clkfbout),
      .O(clkfbout_buf)
+     );
+
+  BUFG clk48_buf
+    (
+     .I(clk_48mhz_to_bufg),
+     .O(clk_48mhz)
      );
 
   ////////////////////////////////////////////////////////////////////////////////
