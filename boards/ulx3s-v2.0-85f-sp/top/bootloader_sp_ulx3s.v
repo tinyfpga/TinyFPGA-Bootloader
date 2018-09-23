@@ -135,7 +135,7 @@ module bootloader_sp_ulx3s (
   assign flash_wpn = 1;
 
   // EXIT from BOOTLOADER
-  // assign user_programn = ~boot;
+  assign user_programn = ~boot;
   
 
 endmodule
