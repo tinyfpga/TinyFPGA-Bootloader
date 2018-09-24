@@ -101,6 +101,9 @@ program_web_flash: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.s
 program_ft2232: $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.svf
 	openocd --file=$(OPENOCD_BASE)/ft2232-fpu1.ocd --file=$(OPENOCD_BASE)/ecp5-12f.ocd
 
+program_ft231x: $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.svf
+	openocd_ft232r --file=$(OPENOCD_BASE)/ft231x.ocd --file=$(OPENOCD_BASE)/ecp5-12f.ocd
+
 program_flea: $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.vme
 	FleaFPGA-JTAG $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.vme
 
