@@ -57,7 +57,7 @@ $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp032d.mcs: $(PROJECT)/$(PR
 	-multi 1 -altfile $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit -address 0x200000 -next prim -of $@
 
 $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp032d.vme: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp032d.mcs
-	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_85f_multiboot_flash_is25lp032d.xcf -nocompress -noheader -quad 4 -of $@
+	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_85f_multiboot_flash_is25lp032d.xcf -nocompress -noheader -of $@
 
 $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp032d.svf: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp032d.mcs
 	LANG=C ${DDTCMD} -oft -svfsingle -revd -maxdata 8 -if ulx3s_85f_multiboot_flash_is25lp032d.xcf -of $@
@@ -69,7 +69,7 @@ $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_s25fl164k.mcs: $(PROJECT)/$(PRO
 	-multi 1 -altfile $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit -address 0x200000 -next prim -of $@
 
 $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_s25fl164k.vme: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_s25fl164k.mcs
-	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_85f_multiboot_flash_s25fl164k.xcf -nocompress -noheader -quad 4 -of $@
+	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_85f_multiboot_flash_s25fl164k.xcf -nocompress -noheader -of $@
 
 $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_s25fl164k.svf: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_s25fl164k.mcs
 	LANG=C ${DDTCMD} -oft -svfsingle -revd -maxdata 8 -if ulx3s_85f_multiboot_flash_s25fl164k.xcf -of $@
@@ -81,7 +81,7 @@ $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.mcs: $(PROJECT)/$(PR
 	-multi 1 -altfile $(PROJECT)/$(PROJECT)_$(PROJECT)_altfile.bit -address 0x200000 -next prim -of $@
 
 $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.vme: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.mcs
-	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_85f_multiboot_flash_is25lp128f.xcf -nocompress -noheader -quad 4 -of $@
+	LANG=C ${DDTCMD} -oft -fullvme -if ulx3s_85f_multiboot_flash_is25lp128f.xcf -nocompress -noheader -of $@
 
 $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.svf: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.mcs
 	LANG=C ${DDTCMD} -oft -svfsingle -revd -maxdata 8 -if ulx3s_85f_multiboot_flash_is25lp128f.xcf -of $@
