@@ -9,6 +9,7 @@ DIAMOND_BIN :=  $(shell find ${DIAMOND_BASE}/ -maxdepth 2 -name bin | sort -rn |
 DIAMONDC := $(shell find ${DIAMOND_BIN}/ -name diamondc)
 DDTCMD := $(shell find ${DIAMOND_BIN}/ -name ddtcmd)
 
+OPENOCD = openocd_ft232r
 # OPENOCD_BASE := ../../programmer/openocd/ulx3s
 OPENOCD_BASE := .
 
@@ -102,7 +103,7 @@ program_ft2232: $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.svf
 	openocd --file=$(OPENOCD_BASE)/ft2232-fpu1.ocd --file=$(OPENOCD_BASE)/ecp5-12f.ocd
 
 program_ft231x: $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.svf
-	openocd_ft232r --file=$(OPENOCD_BASE)/ft231x.ocd --file=$(OPENOCD_BASE)/ecp5-12f.ocd
+	$(OPENOCD) --file=$(OPENOCD_BASE)/ft231x.ocd --file=$(OPENOCD_BASE)/ecp5-12f.ocd
 
 program_flea: $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.vme
 	FleaFPGA-JTAG $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.vme

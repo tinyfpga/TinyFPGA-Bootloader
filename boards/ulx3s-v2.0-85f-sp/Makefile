@@ -9,6 +9,7 @@ DIAMOND_BIN :=  $(shell find ${DIAMOND_BASE}/ -maxdepth 2 -name bin | sort -rn |
 DIAMONDC := $(shell find ${DIAMOND_BIN}/ -name diamondc)
 DDTCMD := $(shell find ${DIAMOND_BIN}/ -name ddtcmd)
 
+OPENOCD = openocd_ft232r
 # OPENOCD_BASE := ../../programmer/openocd/ulx3s
 OPENOCD_BASE := .
 
