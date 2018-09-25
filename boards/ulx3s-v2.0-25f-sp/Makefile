@@ -9,8 +9,8 @@ DIAMOND_BIN :=  $(shell find ${DIAMOND_BASE}/ -maxdepth 2 -name bin | sort -rn |
 DIAMONDC := $(shell find ${DIAMOND_BIN}/ -name diamondc)
 DDTCMD := $(shell find ${DIAMOND_BIN}/ -name ddtcmd)
 
-# OPENOCD_BASE := ../../programmer/openocd/ulx3s/
-OPENOCD_BASE := ./
+# OPENOCD_BASE := ../../programmer/openocd/ulx3s
+OPENOCD_BASE := .
 
 # name of the project as defined in project file
 PROJECT = project
