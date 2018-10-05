@@ -43,15 +43,40 @@ module bootloader (
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
   wire clk_48mhz;
+  wire clk_48mhz_to_bufg;
+  wire clkfbout_buf;
+  wire clkfbout;
+  wire mmcm_locked;
 
+  MMCME2_BASE 
+    #(
+      .CLKFBOUT_MULT_F(12.000000),
+      .CLKFBOUT_PHASE(0.000000),
+      .CLKIN1_PERIOD(10),
+      .CLKOUT0_DIVIDE_F(25.000000)
+      )                        
+  mmcme2_inst 
+    (
+     .CLKIN1(pin_clk),
+     .CLKOUT0(clk_48mhz_to_bufg),
+     .PWRDWN(1'b0),
+     .RST(1'b0),              
+     .LOCKED(mmcm_locked),
+     .CLKFBIN(clkfbout_buf),
+     .CLKFBOUT(clkfbout)
+     );
 
-  clk_wiz_0 clk_wiz_0_inst (
-    .clk_100mhz(pin_clk),
-    .clk_48mhz(clk_48mhz)
-  );
+  BUFG clkf_buf
+    (
+     .I(clkfbout),
+     .O(clkfbout_buf)
+     );
 
-
-
+  BUFG clk48_buf
+    (
+     .I(clk_48mhz_to_bufg),
+     .O(clk_48mhz)
+     );
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -105,5 +130,5 @@ module bootloader (
   assign usb_p_rx = usb_tx_en ? 1'b1 : pin_usbp;
   assign usb_n_rx = usb_tx_en ? 1'b0 : pin_usbn;
 
-  assign reset = 1'b0; 
+  assign reset = !mmcm_locked; 
 endmodule
