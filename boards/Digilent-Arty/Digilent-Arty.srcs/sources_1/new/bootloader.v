@@ -86,9 +86,11 @@ module bootloader (
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
   wire boot;
-
+  wire reset;
+  
   wbicapetwo wbicapetwo_inst (
     .clk_48mhz(clk_48mhz),
+    .reset(reset),
     .boot(boot)
   );
 
@@ -99,7 +101,7 @@ module bootloader (
   ////////
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
-  wire reset;
+
   wire usb_p_tx;
   wire usb_n_tx;
   wire usb_p_rx;
@@ -128,5 +130,5 @@ module bootloader (
   assign usb_p_rx = usb_tx_en ? 1'b1 : pin_usbp;
   assign usb_n_rx = usb_tx_en ? 1'b0 : pin_usbn;
 
-  assign reset = !mmcm_locked; 
+  assign reset = !mmcm_locked;  // TODO : add hysteresis
 endmodule

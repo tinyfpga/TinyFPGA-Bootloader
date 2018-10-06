@@ -8,7 +8,7 @@ module wbicapetwo_tb;
   integer counter = 0;
 
   wbicapetwo wbicapetwo_inst (
-                              .clk_48mhz(clk_48mhz),
+                              .clk(clk_48mhz),
                               .reset(reset),
                               .boot(boot)
                               );

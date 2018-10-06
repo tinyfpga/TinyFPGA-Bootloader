@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="wbicapetwo_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="wbicapetwo_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="43110086667fs"></ZoomStartTime>
+      <ZoomEndTime time="47096086668fs"></ZoomEndTime>
+      <Cursor1Time time="43774420000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="175"></NameColumnWidth>
+      <ValueColumnWidth column_width="133"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="10" />
+   <wvobject type="logic" fp_name="/wbicapetwo_tb/clk_48mhz">
+      <obj_property name="ElementShortName">clk_48mhz</obj_property>
+      <obj_property name="ObjectShortName">clk_48mhz</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/wbicapetwo_tb/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/wbicapetwo_tb/boot">
+      <obj_property name="ElementShortName">boot</obj_property>
+      <obj_property name="ObjectShortName">boot</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/wbicapetwo_tb/wbicapetwo_inst/boot_1d">
+      <obj_property name="ElementShortName">boot_1d</obj_property>
+      <obj_property name="ObjectShortName">boot_1d</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/wbicapetwo_tb/wbicapetwo_inst/enable">
+      <obj_property name="ElementShortName">enable</obj_property>
+      <obj_property name="ObjectShortName">enable</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/wbicapetwo_tb/counter">
+      <obj_property name="ElementShortName">counter[31:0]</obj_property>
+      <obj_property name="ObjectShortName">counter[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/wbicapetwo_tb/wbicapetwo_inst/icape2_input">
+      <obj_property name="ElementShortName">icape2_input[31:0]</obj_property>
+      <obj_property name="ObjectShortName">icape2_input[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/wbicapetwo_tb/wbicapetwo_inst/icape2_csib">
+      <obj_property name="ElementShortName">icape2_csib</obj_property>
+      <obj_property name="ObjectShortName">icape2_csib</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/wbicapetwo_tb/wbicapetwo_inst/icape2_rdwrb">
+      <obj_property name="ElementShortName">icape2_rdwrb</obj_property>
+      <obj_property name="ObjectShortName">icape2_rdwrb</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/wbicapetwo_tb/wbicapetwo_inst/ix">
+      <obj_property name="ElementShortName">ix[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ix[31:0]</obj_property>
+   </wvobject>
+</wave_config>
