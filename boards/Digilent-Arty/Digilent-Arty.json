@@ -1,0 +1,14 @@
+{
+    "name"   : "Digilent Arty-7",
+    "version": "Rev C",
+    "uuid"   : "75dea31e-c9ae-11e8-a8d5-f2801f1b9fd1",
+    "fpga"   : "Xilinx XC7A35T",
+    "bootmeta" : {
+        "addrmap" : {
+            "bootloader" : "0x00000000-0x000FEFFF",
+            "metadata"   : "0x000FF000-0x000FFFFF",
+            "userimage"  : "0x00100000-0x003EFFFF",
+            "userdata"   : "0x003F0000-0x003FFFFF"
+        }
+    }
+}
