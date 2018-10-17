@@ -4,7 +4,7 @@
 <!-- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.        -->
 
 <hwsession version="1" minor="2">
-  <device name="xc7a35t_0" gui_info="dashboard1=dashboard_1[xc7a35t_0/XADC=XADC_PLOT_1;],dashboard2=hw_ila_1[xc7a35t_0/hw_ila_1/Settings=ILA_SETTINGS_1;xc7a35t_0/hw_ila_1/Status=ILA_STATUS_1;xc7a35t_0/hw_ila_1/Trigger Setup=ILA_TRIGGER_1;xc7a35t_0/hw_ila_1/Waveform=ILA_WAVE_1;xc7a35t_0/hw_ila_1/Capture Setup=ILA_CAPTURE_1;],dashboard3=hw_ila_2[xc7a35t_0/hw_ila_2/Capture Setup=ILA_CAPTURE_1;xc7a35t_0/hw_ila_2/Trigger Setup=ILA_TRIGGER_1;xc7a35t_0/hw_ila_2/Waveform=ILA_WAVE_1;xc7a35t_0/hw_ila_2/Settings=ILA_SETTINGS_1;xc7a35t_0/hw_ila_2/Status=ILA_STATUS_1;]"/>
+  <device name="xc7a35t_0" gui_info="dashboard1=dashboard_1[xc7a35t_0/XADC=XADC_PLOT_1;]"/>
   <ObjectList object_type="hw_cfgmem" gui_info="">
     <Object name="" gui_info="">
       <Properties Property="PROGRAM.ADDRESS_RANGE" value="entire_device"/>
@@ -12,7 +12,7 @@
       <Properties Property="PROGRAM.CFG_PROGRAM" value="1"/>
       <Properties Property="PROGRAM.CHECKSUM" value="0"/>
       <Properties Property="PROGRAM.ERASE" value="1"/>
-      <Properties Property="PROGRAM.FILES" value="/home/tom/git/TomKeddie/TinyFPGA-Bootloader/programmer/output.bin"/>
+      <Properties Property="PROGRAM.FILES" value="output.bin"/>
       <Properties Property="PROGRAM.PRM_FILE" value=""/>
       <Properties Property="PROGRAM.UNUSED_PIN_TERMINATION" value="pull-none"/>
       <Properties Property="PROGRAM.VERIFY" value="1"/>
@@ -22,7 +22,7 @@
     <Object name="xc7a35t_0" gui_info="">
       <Properties Property="FULL_PROBES.FILE" value="$_project_name_.runs/impl_1/bootloader.ltx"/>
       <Properties Property="PROBES.FILE" value="$_project_name_.runs/impl_1/bootloader.ltx"/>
-      <Properties Property="PROGRAM.HW_BITSTREAM" value="/opt/Xilinx/Vivado/2018.1/data/xicom/cfgmem/bitfile/spi_xc7a35t_pullnone.bit"/>
+      <Properties Property="PROGRAM.HW_BITSTREAM" value=""/>
       <Properties Property="PROGRAM.HW_CFGMEM_PART" value="mt25ql128-spi-x1_x2_x4"/>
       <Properties Property="SLR.COUNT" value="1"/>
     </Object>

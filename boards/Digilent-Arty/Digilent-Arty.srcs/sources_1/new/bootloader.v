@@ -102,8 +102,7 @@ module bootloader (
   wbicapetwo_inst (
     .clk(clk_48mhz),
     .reset(reset),
-    .boot(boot),
-    .pin_led(pin_led)
+    .boot(boot)
   );
 
   ////////////////////////////////////////////////////////////////////////////////

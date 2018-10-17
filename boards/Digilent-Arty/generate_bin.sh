@@ -12,6 +12,6 @@ pad_size=$((${region_size} - ${file_size} - ${json_size}))
 echo "Generating ${pad_size} bytes of padding"
 pad_size_1k=$((${pad_size} / 1024))
 pad_size=$((${pad_size} - ${pad_size_1k}*1024))
-dd if=/dev/zero of=${pad_filename} bs=1024 count=${pad_size_1k}
-dd if=/dev/zero of=${pad_filename} bs=1 count=${pad_size} oflag=append conv=notrunc
+dd if=/dev/zero of=${pad_filename} bs=1024 count=${pad_size_1k} >/dev/null 2>&1
+dd if=/dev/zero of=${pad_filename} bs=1 count=${pad_size} oflag=append conv=notrunc >/dev/null 2>&1
 cat ${bootloader_filename} ${pad_filename} ${json_filename} > ${output_filename}

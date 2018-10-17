@@ -23,8 +23,7 @@
 module wbicapetwo(
         input clk,
         input reset,
-        input boot,
-        input pin_led
+        input boot
     );
     
     parameter [31:0] G_START_ADDRESS = 32'h00000000;
@@ -148,15 +147,4 @@ module wbicapetwo(
       .I(icape2_input_swapped),    // 32-bit input: Configuration data input bus
       .RDWRB(icape2_rdwrb_1d)  // 1-bit input: Read/Write Select input
    );
-
-
-
-ila_0 ila_0_inst (
-                  .clk(clk),
-                  .probe0(icape2_input_swapped),
-                  .probe1(boot),
-                  .probe2(icape2_csib_1d),
-                  .probe3(icape2_rdwrb_1d),
-                  .probe4(pin_led));
-
 endmodule
