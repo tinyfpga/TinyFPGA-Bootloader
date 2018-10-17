@@ -64,5 +64,5 @@ tom@z400:~/git/TomKeddie/TinyFPGA-Bootloader/boards/Digilent-Arty$ python -m tin
 
 ## design references
 
-| UG470 | https://www.xilinx.com/support/documentation/user_guides/ug470_7Series_Config.pdf |
-| ICAPE2 with bit swapping | https://github.com/ptracton/Picoblaze/blob/master/Picoblaze/Reference_Designs/ICAP/kc705_kcpsm6_icap.vhd |
+ * [UG470](https://www.xilinx.com/support/documentation/user_guides/ug470_7Series_Config.pdf)
+ * [ICAPE2 with bit swapping](https://github.com/ptracton/Picoblaze/blob/master/Picoblaze/Reference_Designs/ICAP/kc705_kcpsm6_icap.vhd)
