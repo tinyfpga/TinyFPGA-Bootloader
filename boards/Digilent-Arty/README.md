@@ -2,9 +2,9 @@
 
 This implementation is for the Arty using xc7a35tcsg324 but should work for any 7 series device.
 
-## Pinout
+## pinout
 
-This implementation uses the upper row of the JB PMOD.  You can find a small pcb at (oshpark)[https://oshpark.com/shared_projects/UDlBSFXa].  Oshpark are very generous with their community support, please support them.  You can find the source files for the pcb in my (github repo)[https://github.com/TomKeddie/prj-pmod/tree/master/hardware/pmod-usb-raw].  The PCB has both micro and mini usb, you can use either but not both!
+This implementation uses the upper row of the JB PMOD.  You can find a small pcb at [oshpark](https://oshpark.com/shared_projects/UDlBSFXa).  Oshpark are very generous with their community support, please support them.  You can find the source files for the pcb in my [github repo](https://github.com/TomKeddie/prj-pmod/tree/master/hardware/pmod-usb-raw).  The PCB has both micro and mini usb, you can use either but not both!
 
 ```
 set_property PACKAGE_PIN C15 [get_ports pin_led]
@@ -64,5 +64,5 @@ tom@z400:~/git/TomKeddie/TinyFPGA-Bootloader/boards/Digilent-Arty$ python -m tin
 
 ## design references
 
-|UG470|https://www.xilinx.com/support/documentation/user_guides/ug470_7Series_Config.pdf|
-|ICAPE2 with bit swapping|https://github.com/ptracton/Picoblaze/blob/master/Picoblaze/Reference_Designs/ICAP/kc705_kcpsm6_icap.vhd|
+| UG470 | https://www.xilinx.com/support/documentation/user_guides/ug470_7Series_Config.pdf |
+| ICAPE2 with bit swapping | https://github.com/ptracton/Picoblaze/blob/master/Picoblaze/Reference_Designs/ICAP/kc705_kcpsm6_icap.vhd |
