@@ -34,6 +34,14 @@ module bootloader (
   output pin_sck
 );
 
+// Micron N25Q128A13ESF40 on Arty-7
+// 32MB of flash
+// "bootloader" : "0x00000000-0x000FEFFF",
+// "metadata"   : "0x000FF000-0x000FFFFF",
+// "userimage"  : "0x00100000-0x003EFFFF",
+// "userdata"   : "0x003F0000-0x003FFFFF"
+
+  localparam c_user_start = 48'h0000_0100_0000;
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -88,10 +96,14 @@ module bootloader (
   wire boot;
   wire reset;
   
-  wbicapetwo wbicapetwo_inst (
-    .clk_48mhz(clk_48mhz),
+  wbicapetwo #(
+    .G_START_ADDRESS(c_user_start)
+    )                        
+  wbicapetwo_inst (
+    .clk(clk_48mhz),
     .reset(reset),
-    .boot(boot)
+    .boot(boot),
+    .pin_led(pin_led)
   );
 
   ////////////////////////////////////////////////////////////////////////////////

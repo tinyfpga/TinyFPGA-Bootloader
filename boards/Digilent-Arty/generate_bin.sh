@@ -1,5 +1,5 @@
 #!/bin/sh
-[ $# -ne 4 ] && echo "usage ${0} bootloader_bin_file json_file output_file" && exit -1
+[ $# -ne 3 ] && echo "usage ${0} bootloader_bin_file json_file output_file" && exit -1
 bootloader_filename=${1}
 json_filename=${2}
 output_filename=${3}

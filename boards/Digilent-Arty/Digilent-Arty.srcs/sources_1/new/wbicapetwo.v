@@ -23,10 +23,11 @@
 module wbicapetwo(
         input clk,
         input reset,
-        input boot
+        input boot,
+        input pin_led
     );
     
-    parameter [31:0] g_address = 32'h00000000;
+    parameter [31:0] G_START_ADDRESS = 32'h00000000;
 
      localparam [31:0] c_dummy_word = 32'hFFFFFFFF; // Dummy Word
      localparam [31:0] c_sync_word = 32'hAA995566; // Sync Word
@@ -39,9 +40,13 @@ module wbicapetwo(
      reg enable = 1'b0;
      reg boot_1d = 1'b0;
      reg [31:0] icape2_input = 0;
+     reg [31:0] icape2_input_swapped = 0;
      reg icape2_csib = 1'b1;
+     reg icape2_csib_1d = 1'b1;
      reg icape2_rdwrb = 1'b1;
+     reg icape2_rdwrb_1d = 1'b1;
      wire [31:0] icape2_output;
+     integer iy = 0;
 
     always @(posedge clk)
     begin
@@ -52,7 +57,9 @@ module wbicapetwo(
             end
         else 
             begin
-                boot_1d <= boot;
+              boot_1d        <= boot;
+              icape2_csib_1d <= icape2_csib;
+              icape2_rdwrb_1d <= icape2_rdwrb;
                 if (boot == 1'b1 && boot_1d == 1'b0)
                     enable <= 1'b1;
 
@@ -83,7 +90,17 @@ module wbicapetwo(
                             icape2_csib  <= 1'b0;
                         end
                     5:  begin
-                            icape2_input <= g_address;
+                      // When using ICAPE2 to set the WBSTAR address,
+                      // the 24 most significant address bits should be
+                      // written to WBSTAR[23:0]. For SPI 32-bit
+                      // addressing mode, WBSTAR[23:0] are sent as
+                      // address bits [31:8]. The lower 8 bits of the
+                      // address are undefined and the value could be
+                      // as high as 0xFF. Any bitstream at the WBSTAR
+                      // address should contain 256 dummy bytes before
+                      // the start of the bitstream..
+                            icape2_input[31:24] <= 8'b00000000;
+                            icape2_input[23:0] <= G_START_ADDRESS[31:8];
                             icape2_rdwrb <= 1'b0;
                             icape2_csib  <= 1'b0;
                         end
@@ -108,7 +125,16 @@ module wbicapetwo(
                             icape2_csib  <= 1'b1;
                             //enable       <= 1'b0;
                         end
-                 endcase
+                endcase // case (ix)
+
+
+                for (iy=0; iy < 8; iy=iy+1)
+                begin
+                    icape2_input_swapped[iy+00] <= icape2_input[07-iy];
+                    icape2_input_swapped[iy+08] <= icape2_input[15-iy];
+                    icape2_input_swapped[iy+16] <= icape2_input[23-iy];
+                    icape2_input_swapped[iy+24] <= icape2_input[31-iy];
+                end // for
              end  // else reset
     end // always
 
@@ -118,10 +144,19 @@ module wbicapetwo(
    ICAPE2_inst (
       .O(icape2_output),   // 32-bit output: Configuration data output bus
       .CLK(clk),           // 1-bit input: Clock Input
-      .CSIB(icape2_csib),  // 1-bit input: Active-Low ICAP Enable
-      .I(icape2_input),    // 32-bit input: Configuration data input bus
-      .RDWRB(icape2_csib)  // 1-bit input: Read/Write Select input
+      .CSIB(icape2_csib_1d),  // 1-bit input: Active-Low ICAP Enable
+      .I(icape2_input_swapped),    // 32-bit input: Configuration data input bus
+      .RDWRB(icape2_rdwrb_1d)  // 1-bit input: Read/Write Select input
    );
 
+
+
+ila_0 ila_0_inst (
+                  .clk(clk),
+                  .probe0(icape2_input_swapped),
+                  .probe1(boot),
+                  .probe2(icape2_csib_1d),
+                  .probe3(icape2_rdwrb_1d),
+                  .probe4(pin_led));
 
 endmodule
