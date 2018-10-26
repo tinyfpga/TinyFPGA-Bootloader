@@ -91,7 +91,7 @@ program: $(PROJECT)/$(PROJECT)_$(PROJECT).bit
 	echo pgr_project open ulx3s_85f_sram.xcf \; pgr_program run | ${DIAMONDC}
 
 program_wifi: $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.svf
-	openocd --file=$(OPENOCD_BASE)/remote.ocd --file=$(OPENOCD_BASE)/ecp5-85f.ocd
+	$(OPENOCD) --file=$(OPENOCD_BASE)/remote.ocd --file=$(OPENOCD_BASE)/ecp5-85f.ocd
 
 program_web: $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.svf
 	svfupload.py ulx3s.lan $<
@@ -100,10 +100,10 @@ program_web_flash: $(PROJECT)/$(PROJECT)_$(PROJECT)_multiboot_flash_is25lp128f.s
 	svfupload.py ulx3s.lan $<
 
 program_ft2232: $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.svf
-	openocd --file=$(OPENOCD_BASE)/ft2232-fpu1.ocd --file=$(OPENOCD_BASE)/ecp5-85f.ocd
+	$(OPENOCD) --file=$(OPENOCD_BASE)/ft2232-fpu1.ocd --file=$(OPENOCD_BASE)/ecp5-85f.ocd
 
 program_ft231x: $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.svf
-	openocd_ft232r --file=$(OPENOCD_BASE)/ft231x.ocd --file=$(OPENOCD_BASE)/ecp5-85f.ocd
+	$(OPENOCD) --file=$(OPENOCD_BASE)/ft231x.ocd --file=$(OPENOCD_BASE)/ecp5-85f.ocd
 
 program_flea: $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.vme
 	FleaFPGA-JTAG $(PROJECT)/$(PROJECT)_$(PROJECT)_sram.vme
