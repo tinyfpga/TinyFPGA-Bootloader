@@ -378,15 +378,12 @@ int read_flash_write_file(char *filename, uint32_t addr, uint32_t length)
 }
 
 
-// write that many bytes found or file or if file is larger, limit by length
-// construct a map of sectors, each byte represents one 4k sector
-// map byte value represents erase size in KB 4,32,64
-// compare map with file data to find which sector must be erased
-// sector must be erased if any bit changes from 0 to 1 set erase value to 4KB
-// collect multiple 4K erase sectors into 32K or 64K
-// length:
-// positive integer: limit flash write to max this size
-// 0: try to lseek() to determine actual file length
+// write that many bytes found or file or if file is larger, limit by length.
+// read each sector, then determine should we erase it and/or write
+// read it back for verification, if different, retry few times and give up
+// return value
+//  0: ok
+// -1: error
 int read_file_write_flash(char *filename, uint32_t addr, uint32_t length)
 {
   const uint32_t available_sector_size[] = {4*1024, 32*1024, 64*1024}; // sizes in ascending order
