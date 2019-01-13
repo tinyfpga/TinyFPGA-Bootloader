@@ -224,7 +224,7 @@ module usb_fs_rx (
     end  
   end
 
-  assign dvalid = dvalid_raw && !(bitstuff_history == 6'b111111);
+  wire dvalid = dvalid_raw && !(bitstuff_history == 6'b111111);
 
 
   ////////////////////////////////////////////////////////////////////////////////
