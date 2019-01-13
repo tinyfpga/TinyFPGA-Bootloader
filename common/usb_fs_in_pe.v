@@ -100,9 +100,9 @@ module usb_fs_in_pe #(
   integer i = 0;
   initial begin
     for (i = 0; i < NUM_IN_EPS; i = i + 1) begin
-      ep_put_addr[i] = 0;
-      ep_get_addr[i] = 0;
-      ep_state[i] = 0;
+      ep_put_addr[i] <= 0;
+      ep_get_addr[i] <= 0;
+      ep_state[i] <= 0;
     end
   end
 
