@@ -7,10 +7,10 @@ set_io -nowarn pin_led_r    C5  # Red
 set_io -nowarn pin_led_g    B5  # Green
 set_io -nowarn pin_led_b    A5  # Blue
 
-set_io -nowarn pin_32_sck D1 # IOB_35a
-set_io -nowarn pin_30_cs  C1 # IOB_35b
-set_io -nowarn pin_31_mosi F1 # IOB_32a
-set_io -nowarn pin_29_miso E1 # IOB_33b
+set_io -nowarn flash_sck D1 # IOB_35a
+set_io -nowarn flash_cs  C1 # IOB_35b
+set_io -nowarn flash_mosi F1 # IOB_32a
+set_io -nowarn flash_miso E1 # IOB_33b
 
 set_io -nowarn pin_usbp   A4 # IOT_47a
 set_io -nowarn pin_usbn   A2 # IOT_37a

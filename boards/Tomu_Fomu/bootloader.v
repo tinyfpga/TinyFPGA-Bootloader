@@ -1,3 +1,5 @@
+// `include "pll-48.v"
+
 module bootloader (
   input  pin_clk,
 
@@ -9,10 +11,10 @@ module bootloader (
   output pin_led_g,
   output pin_led_b,
 
-  input  pin_29_miso,
-  output pin_30_cs,
-  output pin_31_mosi,
-  output pin_32_sck
+  input  flash_miso,
+  output flash_cs,
+  output flash_mosi,
+  output flash_sck
 );
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -33,56 +35,25 @@ module bootloader (
 	);
 	assign locked = 1;
 `else
-/*
-   pll_48 pll(
-	.clock_in(pin_clk),
-	.clock_out(clk_48mhz),
-	.locked(locked)
-  );
-  //SB_PLL40_CORE #(
-  SB_PLL40_PAD #(
-    .DIVR(4'b0000),
-    //.DIVF(7'b0101111),
-    .DIVF(7'b0111111),
-    .DIVQ(3'b100),
-    .FILTER_RANGE(3'b001),
-    .FEEDBACK_PATH("SIMPLE"),
-    .DELAY_ADJUSTMENT_MODE_FEEDBACK("FIXED"),
-    .FDA_FEEDBACK(4'b0000),
-    .DELAY_ADJUSTMENT_MODE_RELATIVE("FIXED"),
-    .FDA_RELATIVE(4'b0000),
-    .SHIFTREG_DIV_MODE(2'b00),
-    .PLLOUT_SELECT("GENCLK"),
-    .ENABLE_ICEGATE(1'b0)
-  ) usb_pll_inst (
-    //.REFERENCECLK(pin_clk),
-    .PACKAGEPIN(pin_clk),
-    .PLLOUTCORE(clk_48mhz),
-    .PLLOUTGLOBAL(),
-    .EXTFEEDBACK(),
-    .DYNAMICDELAY(),
-    .RESETB(1'b1),
-    .BYPASS(1'b0),
-    .LATCHINPUTVALUE(),
-    .LOCK(locked),
-    .SDI(),
-    .SDO(),
-    .SCLK()
-  );
-*/
+	// the Tomu hacker verison has an external 48 MHz oscillator
+	// so there is no need for a PLL.
 	assign locked = 1;
 	assign clk_48mhz = pin_clk;
+`endif
 
 	assign pin_led_g = 1;
 
+/*
 	reg [23:0] counter;
 	always @(posedge clk_48mhz)
-		if (counter == 24'hFFFFFF)
+		if (counter == 24'h7FFFFF)
 			pin_led_r <= 1;
 		else begin
 			counter <= counter + 1;
 			pin_led_r <= 0;
 		end
+*/
+	assign pin_led_r = 1;
 
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -123,46 +94,47 @@ module bootloader (
     .usb_n_rx(usb_n_rx),
     .usb_tx_en(usb_tx_en),
     .led(pin_led_b),
-    .spi_miso(pin_29_miso),
-    .spi_cs(pin_30_cs),
-    .spi_mosi(pin_31_mosi),
-    .spi_sck(pin_32_sck),
+    .spi_miso(flash_miso),
+    .spi_cs(flash_cs),
+    .spi_mosi(flash_mosi),
+    .spi_sck(flash_sck),
     .boot(boot)
   );
 
   assign pin_pu = 1'b1;
-  //assign pin_usbp = usb_tx_en ? usb_p_tx : 1'bz;
-  //assign pin_usbn = usb_tx_en ? usb_n_tx : 1'bz;
+
   wire usb_p_rx_io;
   wire usb_n_rx_io;
   assign usb_p_rx = usb_tx_en ? 1'b1 : usb_p_rx_io;
   assign usb_n_rx = usb_tx_en ? 1'b0 : usb_n_rx_io;
 
-  SB_IO #(
-    .PIN_TYPE(6'b1010_01) // tristatable output
-  ) usbp_buffer(
-    .PACKAGE_PIN(pin_usbp),
-    .OUTPUT_ENABLE(usb_tx_en),
-    .D_IN_0(usb_p_rx_io),
-    .D_OUT_0(usb_p_tx),
+  tristate usbn_buffer(
+	.pin(pin_usbn),
+	.enable(usb_tx_en),
+	.data_in(usb_n_rx_io),
+	.data_out(usb_n_tx)
   );
 
-  SB_IO #(
-    .PIN_TYPE(6'b1010_01) // tristatable output
-  ) usbn_buffer(
-    .PACKAGE_PIN(pin_usbn),
-    .OUTPUT_ENABLE(usb_tx_en),
-    .D_IN_0(usb_n_rx_io),
-    .D_OUT_0(usb_n_tx),
+  tristate usbp_buffer(
+	.pin(pin_usbp),
+	.enable(usb_tx_en),
+	.data_in(usb_p_rx_io),
+	.data_out(usb_p_tx)
   );
-
 endmodule
-
 
 module tristate(
   inout pin,
   input enable,
-  input data_out
+  input data_out,
+  output data_in
 );
-
+  SB_IO #(
+    .PIN_TYPE(6'b1010_01) // tristatable output
+  ) buffer(
+    .PACKAGE_PIN(pin),
+    .OUTPUT_ENABLE(enable),
+    .D_IN_0(data_in),
+    .D_OUT_0(data_out)
+  );
 endmodule
