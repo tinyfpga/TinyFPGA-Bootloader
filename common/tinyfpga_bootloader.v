@@ -254,7 +254,7 @@ module tinyfpga_bootloader (
       host_presence_timer <= host_presence_timer + 1;
     end
 
-    if (host_presence_timer > 48000000) begin
+    if (host_presence_timer > 196000000) begin
       host_presence_timeout <= 1;
     end
   end
