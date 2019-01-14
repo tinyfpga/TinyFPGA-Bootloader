@@ -1,5 +1,3 @@
-// `include "pll-48.v"
-
 module bootloader (
   input  pin_clk,
 
