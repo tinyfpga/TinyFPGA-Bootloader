@@ -38,7 +38,7 @@ all: multiboot.bin
 		--pcf $(PIN_DEF) \
 		--asc $@ \
 
-%.asc: $(PIN_DEF) %.blif
+no-%.asc: $(PIN_DEF) %.blif
 	arachne-pnr -d 5k -P $(PKG) -o $@ -p $^
 
 %.bin: %.asc
