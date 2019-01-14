@@ -41,12 +41,12 @@ module usb_fs_in_pe #(
   ////////////////////
 
   // Strobe to send new packet.
-  output reg tx_pkt_start = 0,
+  output reg tx_pkt_start,
   input tx_pkt_end,
 
 
   // Packet type to send
-  output reg [3:0] tx_pid = 0,
+  output reg [3:0] tx_pid,
 
   // Data payload to send if any
   output tx_data_avail,
@@ -106,7 +106,7 @@ module usb_fs_in_pe #(
     end
   end
 
-  reg [3:0] in_ep_num = 0;
+  reg [3:0] in_ep_num;
 
   wire [8:0] buffer_put_addr = {in_ep_num[3:0], ep_put_addr[in_ep_num][4:0]};
   wire [8:0] buffer_get_addr = {current_endp[3:0], ep_get_addr[current_endp][4:0]};
@@ -348,8 +348,8 @@ module usb_fs_in_pe #(
     endcase
   end
 
-  always @(posedge clk)
-      tx_data <= in_data_buffer[buffer_get_addr];
+  //always @(posedge clk)
+      //tx_data <= in_data_buffer[buffer_get_addr];
 
   integer j;
   always @(posedge clk) begin
@@ -358,6 +358,8 @@ module usb_fs_in_pe #(
 
     end else begin
       in_xfr_state <= in_xfr_state_next;
+
+      tx_data <= in_data_buffer[buffer_get_addr];
 
       if (setup_token_received) begin
         data_toggle[rx_endp] <= 1;

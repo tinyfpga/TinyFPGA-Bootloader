@@ -12,7 +12,7 @@ module usb_fs_out_pe #(
   // endpoint interface 
   ////////////////////
   output [NUM_OUT_EPS-1:0] out_ep_data_avail,
-  output reg [NUM_OUT_EPS-1:0] out_ep_setup = 0,
+  output reg [NUM_OUT_EPS-1:0] out_ep_setup,
   input [NUM_OUT_EPS-1:0] out_ep_data_get,
   output reg [7:0] out_ep_data,
   input [NUM_OUT_EPS-1:0] out_ep_stall,
@@ -44,9 +44,9 @@ module usb_fs_out_pe #(
   ////////////////////
 
   // Strobe to send new packet.
-  output reg tx_pkt_start = 0,
+  output reg tx_pkt_start,
   input tx_pkt_end,
-  output reg [3:0] tx_pid = 0
+  output reg [3:0] tx_pid
 );
   ////////////////////////////////////////////////////////////////////////////////
   // endpoint state machine
@@ -71,12 +71,12 @@ module usb_fs_out_pe #(
   reg [1:0] out_xfr_state = IDLE;
   reg [1:0] out_xfr_state_next;
 
-  reg out_xfr_start = 0;
+  reg out_xfr_start;
   reg new_pkt_end = 0;
   reg rollback_data = 0;
 
 
-  reg [3:0] out_ep_num = 0;
+  reg [3:0] out_ep_num;
   
 
   reg [NUM_OUT_EPS - 1:0] out_ep_data_avail_i = 0;
