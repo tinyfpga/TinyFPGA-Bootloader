@@ -19,8 +19,10 @@ PROJ = bootloader
 PIN_DEF = pins.pcf
 DEVICE = up5k
 PKG = uwg30
+SEED ?= 12345678
 
-all: $(PROJ).rpt multiboot.bin
+#all: $(PROJ).rpt multiboot.bin
+all: multiboot.bin
 
 %.json: %.v ../../common/*.v 
 	yosys -q -p 'synth_ice40 -top $(PROJ) -json $@' $^
@@ -28,13 +30,16 @@ all: $(PROJ).rpt multiboot.bin
 	yosys -q -p 'synth_ice40 -top $(PROJ) -blif $@' $^
 
 %.asc: $(PIN_DEF) %.json
-	#arachne-pnr -d 5k -P $(PKG) -o $@ -p $^
 	nextpnr-ice40 \
+		--seed $(SEED) \
 		--up5k \
 		--package $(PKG) \
 		--json $(basename $@).json \
 		--pcf $(PIN_DEF) \
 		--asc $@ \
+
+%.asc: $(PIN_DEF) %.blif
+	arachne-pnr -d 5k -P $(PKG) -o $@ -p $^
 
 %.bin: %.asc
 	icepack $< $@
