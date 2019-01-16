@@ -14,6 +14,12 @@ import platform
 use_libusb = False
 use_pyserial = False
 
+def pretty_hex(data):
+    output = ""
+    for i in range(0, len(data), 16):
+        output += " ".join(["%02x" % ord(x) for x in data[i:i+16]]) + "\n"
+    return output
+
 def to_int(value):
     try:
         return ord(value)
@@ -268,11 +274,11 @@ class TinyProg(object):
     def read_security_register_page(self, page):
         return self.cmd(self.security_page_read_cmd, addr=page << (8 + self.security_page_bit_offset), data=b'\x00', read_len=255)
 
-    def read(self, addr, length, disable_progress=True):
+    def read(self, addr, length, disable_progress=True, max_length = 255):
         data = b''
         with tqdm(desc="    Reading", unit="B", unit_scale=True, total=length, disable=disable_progress) as pbar:
             while length > 0:
-                read_length = min(255, length)
+                read_length = min(max_length, length)
                 data += self.cmd(0x0b, addr, b'\x00', read_len=read_length)
                 self.progress(read_length)
                 addr += read_length
@@ -358,12 +364,12 @@ class TinyProg(object):
         self.wait_while_busy()
         self.progress(len(data))
 
-    def write(self, addr, data, disable_progress=True):
+    def write(self, addr, data, disable_progress=True, max_length = 256):
         offset = 0
         with tqdm(desc="    Writing", unit="B", unit_scale=True, total=len(data), disable=disable_progress) as pbar:
             while offset < len(data):
                 dist_to_256_byte_boundary = 256 - (addr & 0xff)
-                write_length = min(256, len(data) - offset, dist_to_256_byte_boundary)
+                write_length = min(max_length, len(data) - offset, dist_to_256_byte_boundary)
                 write_data = data[offset : offset+write_length]
             
                 self._write(addr, write_data)
@@ -371,7 +377,7 @@ class TinyProg(object):
                 addr += write_length
                 pbar.update(write_length)
 
-    def program(self, addr, data):
+    def program_fast(self, addr, data):
         self.erase(addr, len(data), disable_progress=False)
         self.write(addr, data, disable_progress=False)
         read_back = self.read(addr, len(data), disable_progress=False)
@@ -380,14 +386,49 @@ class TinyProg(object):
             self.progress("Success!")
             return True
         else:
-            self.progress("Failure!")
+            read_back_file = open("readback.bin", "wb")
+            read_back_file.write(read_back)
+            read_back_file.close()
+            self.progress("FAILED!")
             return False
+
+    def program_sectors(self, addr, data):
+        sector_size = 4 * 1024
+
+        with tqdm(desc="    Programming and Verifying", unit="B", unit_scale=True, total=len(data)) as pbar:
+            for offset in range(0, len(data), sector_size):
+                current_addr = addr + offset
+                current_write_data = data[offset:offset + sector_size]
+                self.erase(current_addr, sector_size, disable_progress=True)
+
+                minor_sector_size = 256
+                for minor_offset in range(0, 4 * 1024, minor_sector_size):
+                    minor_write_data = current_write_data[minor_offset:minor_offset+minor_sector_size]
+                    self.write(current_addr + minor_offset, minor_write_data, disable_progress=True, max_length=256)
+                    minor_read_data = self.read(current_addr + minor_offset, len(minor_write_data), disable_progress=True, max_length=255)
+                    
+                    pbar.update(len(minor_write_data))
+
+                    if minor_read_data != minor_write_data:
+                        print("")
+                        print("Offset: %d" % (current_addr + minor_offset))
+                        print("Readback Data:")
+                        print(pretty_hex(minor_read_data))
+                        print("Write Data:")
+                        print(pretty_hex(minor_write_data))
+                        self.progress("FAILED!")
+                        return False
+
+
+        self.progress("Success!")
+        return True
+
 
     def boot(self):
         try:
             self.ser.write(b"\x00")
             self.ser.flush()
-        except SerialTimeoutException as e:
+        except:
             # we might get a writeTimeoutError and that's OK.  Sometimes the
             # bootloader will reboot before it finishes sending out the USB ACK
             # for the boot command data packet.
@@ -416,4 +457,11 @@ class TinyProg(object):
         self.progress("Waking up SPI flash")
         self.wake()
         self.progress(str(len(bitstream)) + " bytes to program")
-        return self.program(addr, bitstream)
+        return self.program_sectors(addr, bitstream)
+
+    
+    def program_bitstream_fast(self, addr, bitstream):
+        self.progress("Waking up SPI flash")
+        self.wake()
+        self.progress(str(len(bitstream)) + " bytes to program")
+        return self.program_fast(addr, bitstream)
