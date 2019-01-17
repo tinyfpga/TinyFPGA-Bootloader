@@ -13,7 +13,7 @@ matrix:
 
 install:
  - cd programmer
- - pip install tox
+ - pip install --upgrade tox
 
 script:
  - tox
