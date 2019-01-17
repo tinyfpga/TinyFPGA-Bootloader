@@ -15,7 +15,8 @@ setup(
         'packaging',
         'pyusb'
     ],
-    version = '1.0.23',
+    use_scm_version={"root": "..", "relative_to": __file__, 'git_describe_command': r'git describe --dirty --tags --long --match tinyprog-*.*'},
+    setup_requires=['setuptools_scm'],
     description = 'Programmer for FPGA boards using the TinyFPGA USB Bootloader (http://tinyfpga.com)',
     long_description=long_description,
     long_description_content_type="text/markdown",
