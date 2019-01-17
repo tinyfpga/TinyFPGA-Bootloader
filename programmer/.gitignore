@@ -7,6 +7,7 @@ dist/
 __pycache__/
 *.so
 *~
+tinyprog/full_version.py
 
 # due to using tox and pytest
 .tox

@@ -1,4 +1,19 @@
+import os
+import subprocess
+import sys
 from setuptools import setup, find_packages
+
+GIT_DESCRIBE_CMD = 'git describe --dirty --tags --long --match tinyprog-*.*'
+
+full_version_path = os.path.join(
+    os.path.dirname(__file__), "tinyprog", "full_version.py")
+try:
+    full_version = subprocess.check_output(GIT_DESCRIBE_CMD, shell=True)
+    with open(full_version_path, "w") as fh:
+        fh.write('__full_version__ = "%s"\n' % full_version.strip())
+except subprocess.CalledProcessError as e:
+    sys.stderr.write(str(e))
+    sys.stderr.write('\n')
 
 with open("README.md", "rb") as fh:
     long_description = fh.read().decode('utf-8')
@@ -13,8 +28,7 @@ setup(
     use_scm_version={
         "root": "..",
         "relative_to": __file__,
-        'git_describe_command':
-            r'git describe --dirty --tags --long --match tinyprog-*.*',
+        'git_describe_command': GIT_DESCRIBE_CMD,
     },
     setup_requires=['setuptools_scm'],
     description="""\

@@ -279,7 +279,8 @@ try using libusb to connect to boards without a serial driver attached"""
 
     args = parser.parse_args()
     if args.version:
-        print("tinyprog %s" % tinyprog.__version__)
+        print("tinyprog %s (%s)" % (
+            tinyprog.__version__, tinyprog.__full_version__))
         sys.exit(0)
 
     device = args.device.lower().replace(':', '')

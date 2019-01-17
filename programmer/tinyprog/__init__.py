@@ -20,6 +20,12 @@ except DistributionNotFound:
     # package is not installed
     pass
 
+try:
+    from .full_version import __full_version__
+    assert __full_version__
+except (ImportError, AssertionError):
+    __full_version__ = "unknown"
+
 
 use_libusb = False
 use_pyserial = False
