@@ -1,4 +1,4 @@
-# Programmer
+# TinyFPGA CLI Programmer
 
 ## GUI
 
