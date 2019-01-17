@@ -1,6 +1,6 @@
 [paths]
 source =
-	tinyfpgab/
+	tinyprog/
 
 [run]
 branch = True
