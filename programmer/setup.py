@@ -18,6 +18,13 @@ except subprocess.CalledProcessError as e:
 with open("README.md", "rb") as fh:
     long_description = fh.read().decode('utf-8')
 
+short_description = """
+Programmer for FPGA boards using the TinyFPGA USB Bootloader
+ (http://tinyfpga.com).
+""".replace("\n", "").replace("\r", "").strip()
+# short description should not have newlines or start/ending spaces.
+assert len(short_description.splitlines()) == 1
+
 setup(
     name='tinyprog',
     packages=find_packages(),
@@ -31,10 +38,7 @@ setup(
         'git_describe_command': GIT_DESCRIBE_CMD,
     },
     setup_requires=['setuptools_scm'],
-    description="""\
-Programmer for FPGA boards using the TinyFPGA USB Bootloader
-(http://tinyfpga.com).
-""",
+    description=short_description,
     long_description=long_description,
     long_description_content_type="text/markdown",
     author='Luke Valenty',
@@ -56,10 +60,10 @@ Programmer for FPGA boards using the TinyFPGA USB Bootloader
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3'
-        'Programming Language :: Python :: 3.5'
-        'Programming Language :: Python :: 3.6'
-        'Programming Language :: Python :: 3.7'
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
     ],
     entry_points={'console_scripts': ['tinyprog = tinyprog.__main__:main']},
 )
