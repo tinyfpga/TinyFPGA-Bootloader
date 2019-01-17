@@ -39,9 +39,17 @@ def pretty_hex(data):
 
 
 def to_int(value):
+    """
+    >>> to_int('A')
+    65
+    >>> to_int(0xff)
+    256
+    >>> list(to_int(i) for i in ['T', 'i', 'n', 'y', 0xff, 0, 0])
+    [84, 105, 110, 121, 255, 0, 0]
+    """
     try:
         return ord(value)
-    except ValueError:
+    except (ValueError, TypeError):
         return int(value)
 
 
@@ -151,7 +159,7 @@ class TinyMeta(object):
     def _parse_json(self, data):
         try:
             return json.loads(bytes(data).decode("utf-8"))
-        except Exception:
+        except BaseException:
             return None
 
     def _resolve_pointers(self, meta):
@@ -464,7 +472,7 @@ class TinyProg(object):
         try:
             self.ser.write(b"\x00")
             self.ser.flush()
-        except Exception:
+        except BaseException:
             # we might get a writeTimeoutError and that's OK.  Sometimes the
             # bootloader will reboot before it finishes sending out the USB ACK
             # for the boot command data packet.

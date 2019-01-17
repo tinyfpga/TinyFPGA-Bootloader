@@ -376,7 +376,7 @@ try using libusb to connect to boards without a serial driver attached"""
             fpga = TinyProg(active_port, progress)
 
             if args.program is not None:
-                print("    Programming %s with %s".format(
+                print("    Programming %s with %s" % (
                     active_port, args.program))
 
                 bitstream = fpga.slurp(args.program)
@@ -403,7 +403,7 @@ try using libusb to connect to boards without a serial driver attached"""
 
             # program user flash area
             if args.program_userdata is not None:
-                print("    Programming %s with %s".format(
+                print("    Programming %s with %s" % (
                     active_port, args.program_userdata))
 
                 bitstream = fpga.slurp(args.program_userdata)
@@ -429,7 +429,7 @@ try using libusb to connect to boards without a serial driver attached"""
 
             # program user image and data area
             if args.program_image is not None:
-                print("    Programming %s with %s".format(
+                print("    Programming %s with %s" % (
                     active_port, args.program_image))
 
                 bitstream = fpga.slurp(args.program_image)
