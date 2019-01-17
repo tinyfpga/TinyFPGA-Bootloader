@@ -4,6 +4,7 @@ import re
 import struct
 
 from functools import reduce
+from pkg_resources import get_distribution, DistributionNotFound
 
 import jsonmerge
 import serial
@@ -12,6 +13,13 @@ from serial.tools.list_ports import comports
 from tqdm import tqdm
 
 from .data_tables import bit_reverse_table
+
+try:
+    __version__ = get_distribution(__name__).version
+except DistributionNotFound:
+    # package is not installed
+    pass
+
 
 use_libusb = False
 use_pyserial = False

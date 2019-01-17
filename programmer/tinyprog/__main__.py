@@ -7,7 +7,6 @@ from six.moves.urllib.request import urlopen
 from six.moves import input
 
 import tinyprog
-
 from tinyprog import TinyProg, get_ports
 
 
@@ -216,7 +215,10 @@ def main():
             return int(str_value)
 
     parser = argparse.ArgumentParser()
-
+    parser.add_argument(
+        "--version",
+        action="store_true",
+        help="Print the tinyprog version.")
     parser.add_argument(
         "-l",
         "--list",
@@ -276,6 +278,9 @@ try using libusb to connect to boards without a serial driver attached"""
         help="use pyserial to connect to boards")
 
     args = parser.parse_args()
+    if args.version:
+        print("tinyprog %s" % tinyprog.__version__)
+        sys.exit(0)
 
     device = args.device.lower().replace(':', '')
     if len(device) != 8 or not all(c in '0123456789abcdef' for c in device):
