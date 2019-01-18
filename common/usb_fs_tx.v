@@ -13,8 +13,10 @@ module usb_fs_tx (
   output reg dp = 0,
   output reg dn = 0,
 
-  // pulse to initiate new packet transmission in clk domain
+  // pulse to initiate new packet transmission (clk domain)
   input pkt_start,
+
+  // pulse to indicate end of packet transmission (clk domain)
   output pkt_end,
 
   // pid to send (clk domain)
@@ -34,6 +36,10 @@ module usb_fs_tx (
 	pkt_start, pkt_start_48,
 	pid, pidq
   );
+
+  wire tx_data_avail_48;
+  dflip tx_data_avail_buffer(clk_48mhz, tx_data_avail, tx_data_avail_48);
+  //wire tx_data_avail_48 = tx_data_avail;
 
   // convert tx_data_get from 48 to clk
   //wire tx_data_get_48 = tx_data_get;
@@ -118,7 +124,7 @@ module usb_fs_tx (
 
       DATA_OR_CRC16_0 : begin
         if (byte_strobe) begin
-          if (tx_data_avail) begin
+          if (tx_data_avail_48) begin
             pkt_state <= DATA_OR_CRC16_0;
             data_payload <= 1;
             tx_data_get_48 <= 1;

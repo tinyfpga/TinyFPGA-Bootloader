@@ -16,9 +16,14 @@ module bootloader (
   output pin_31_mosi,
   output pin_32_sck,
 
-  output pin_8 // uart
+  output pin_2, // debug
+  output pin_3, // debug
+  output pin_4, // debug
+  output pin_5, // debug
+  output pin_9 // uart
 );
-  wire serial_tx = pin_8;
+  wire serial_tx = pin_9;
+  wire [3:0] debug = { pin_5, pin_4, pin_3, pin_2 };
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -60,10 +65,18 @@ module bootloader (
   );
 
 	reg clk_24mhz;
-	reg clk_12mhz;
 	always @(posedge clk_48mhz) clk_24mhz = !clk_24mhz;
+
+	reg clk_12mhz;
 	always @(posedge clk_24mhz) clk_12mhz = !clk_12mhz;
-	wire clk = !clk_48mhz;
+
+	wire clk = clk_12mhz; // half speed clock
+	//wire clk = !clk_48mhz; // invert the clock for testing
+
+	// generate a 3 MHz clock for the baud rate
+	wire clk_1;
+	divide_by_n #(.N(16)) div48(clk_48mhz, reset, clk_1);
+
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -176,22 +189,42 @@ module bootloader (
 		end
 	end
 `endif
+	reg hello_done;
+	reg hello_strobe;
+	reg [63:0] hello_msg = "\n\r!OLLEH";
+	reg [3:0] hello_counter;
+	reg [7:0] hello_data;
+	always @(posedge clk) begin
+		hello_strobe <= 0;
+
+		if (reset) begin
+			hello_counter <= 0;
+			hello_done <= 0;
+		end else
+		if (hello_counter == 8)
+			hello_done <= 1;
+		else
+		if (!hello_strobe) begin
+			hello_data <= hello_msg[hello_counter*8+7:hello_counter*8];
+			hello_counter <= hello_counter + 1;
+			hello_strobe <= 1;
+		end
+	end
+	
 
 	reg uart_strobe;
 	reg [7:0] uart_data;
 	wire uart_ready;
 
-	wire clk_1;
-	divide_by_n #(.N(16)) div48(clk_48mhz, reset, clk_1);
-
 	uart_tx_fifo uart_tx(
 		.clk(clk),
 		.reset(reset),
 		.baud_x1(clk_1),
-		.data(uart_data),
-		.data_strobe(uart_strobe),
+		.data(hello_done ? uart_data : hello_data),
+		.data_strobe(hello_done ? uart_strobe : hello_strobe),
 		.serial(serial_tx)
 	);
+
 
 /*
 	reg [FIFO_WIDTH-1:0] hexdata;
@@ -270,7 +303,8 @@ module bootloader (
     .usb_p_rx(usb_p_rx),
     .usb_n_rx(usb_n_rx),
     .usb_tx_en(usb_tx_en),
-    .led(pin_led),
+    //.led(pin_5),
+    .debug(debug),
     .spi_miso(pin_29_miso),
     .spi_cs(pin_30_cs),
     .spi_mosi(pin_31_mosi),
@@ -283,5 +317,17 @@ module bootloader (
   assign pin_usbn = usb_tx_en ? usb_n_tx : 1'bz;
   assign usb_p_rx = usb_tx_en ? 1'b1 : pin_usbp;
   assign usb_n_rx = usb_tx_en ? 1'b0 : pin_usbn;
+
+
+  // our own counter pattern for now
+  reg [5:0] pattern = 5'b10100;
+  reg [22:0] counter;
+  assign pin_led = pattern[0];
+
+  always @(posedge clk) begin
+	counter <= counter + 1;
+	if (counter == 0)
+		pattern <= { pattern[0], pattern[5:1] };
+  end
 
 endmodule

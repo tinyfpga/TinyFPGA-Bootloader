@@ -3,15 +3,15 @@
 # Package:            CM81
 ###############################################################################
 
-#set_io pin_1 A2
-#set_io pin_2 A1
-#set_io pin_3 B1
-#set_io pin_4 C2
-#set_io pin_5 C1
+set_io -nowarn pin_1 A2
+set_io -nowarn pin_2 A1
+set_io -nowarn pin_3 B1
+set_io -nowarn pin_4 C2
+set_io -nowarn pin_5 C1
 set_io -nowarn pin_6 D2
 #set_io pin_7 D1
 set_io -nowarn pin_8 E2
-#set_io pin_9 E1
+set_io -nowarn pin_9 E1
 #set_io pin_10 G2
 #set_io pin_11 H1
 #set_io pin_12 J1

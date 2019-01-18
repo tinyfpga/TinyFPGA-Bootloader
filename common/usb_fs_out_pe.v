@@ -356,6 +356,10 @@ module usb_fs_out_pe #(
   integer j;
   always @(posedge clk) begin
 	uart_strobe <= 0;
+	if (rx_pkt_start && !uart_strobe) begin
+		uart_strobe <= 1;
+		uart_data <= "R";
+	end
 
     if (reset) begin
       out_xfr_state <= IDLE;
@@ -363,7 +367,7 @@ module usb_fs_out_pe #(
       out_xfr_state <= out_xfr_state_next;
 	if (out_xfr_state != out_xfr_state_next) begin
 		uart_strobe <= 1;
-		uart_data <= out_xfr_state_next + "A";
+		uart_data <= out_xfr_state_next + "0";
 		if (out_xfr_state == RCVD_DATA_END)
 			uart_data <= "0" + tx_pid;
 	end
