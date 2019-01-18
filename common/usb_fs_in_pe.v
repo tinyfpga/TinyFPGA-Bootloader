@@ -348,8 +348,8 @@ module usb_fs_in_pe #(
     endcase
   end
 
-  //always @(posedge clk)
-      //tx_data <= in_data_buffer[buffer_get_addr];
+  always @(posedge clk)
+      tx_data <= in_data_buffer[buffer_get_addr];
 
   integer j;
   always @(posedge clk) begin
@@ -358,8 +358,6 @@ module usb_fs_in_pe #(
 
     end else begin
       in_xfr_state <= in_xfr_state_next;
-
-      tx_data <= in_data_buffer[buffer_get_addr];
 
       if (setup_token_received) begin
         data_toggle[rx_endp] <= 1;

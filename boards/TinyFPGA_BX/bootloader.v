@@ -20,6 +20,8 @@ module bootloader (
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
   wire clk_48mhz;
+  wire lock;
+  wire reset = !lock;
 
   SB_PLL40_CORE #(
     .DIVR(4'b0000),
@@ -43,13 +45,18 @@ module bootloader (
     .RESETB(1'b1),
     .BYPASS(1'b0),
     .LATCHINPUTVALUE(),
-    .LOCK(),
+    .LOCK(lock),
     .SDI(),
     .SDO(),
     .SCLK()
   );
 
+	reg clk_24mhz;
+	reg clk_12mhz;
+	always @(posedge clk_48mhz) clk_24mhz = !clk_24mhz;
+	always @(posedge clk_24mhz) clk_12mhz = !clk_12mhz;
 
+	wire clk = clk_12mhz; // quarter speed clock
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -74,7 +81,6 @@ module bootloader (
   ////////
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
-  wire reset;
   wire usb_p_tx;
   wire usb_n_tx;
   wire usb_p_rx;
@@ -83,6 +89,7 @@ module bootloader (
 
   tinyfpga_bootloader tinyfpga_bootloader_inst (
     .clk_48mhz(clk_48mhz),
+    .clk(clk),
     .reset(reset),
     .usb_p_tx(usb_p_tx),
     .usb_n_tx(usb_n_tx),
@@ -98,10 +105,39 @@ module bootloader (
   );
 
   assign pin_pu = 1'b1;
-  assign pin_usbp = usb_tx_en ? usb_p_tx : 1'bz;
-  assign pin_usbn = usb_tx_en ? usb_n_tx : 1'bz;
-  assign usb_p_rx = usb_tx_en ? 1'b1 : pin_usbp;
-  assign usb_n_rx = usb_tx_en ? 1'b0 : pin_usbn;
 
-  assign reset = 1'b0; 
+  wire usb_p_rx_io;
+  wire usb_n_rx_io;
+  assign usb_p_rx = usb_tx_en ? 1'b1 : usb_p_rx_io;
+  assign usb_n_rx = usb_tx_en ? 1'b0 : usb_n_rx_io;
+
+  tristate usbn_buffer(
+	.pin(pin_usbn),
+	.enable(usb_tx_en),
+	.data_in(usb_n_rx_io),
+	.data_out(usb_n_tx)
+  );
+
+  tristate usbp_buffer(
+	.pin(pin_usbp),
+	.enable(usb_tx_en),
+	.data_in(usb_p_rx_io),
+	.data_out(usb_p_tx)
+  );
+endmodule
+
+module tristate(
+  inout pin,
+  input enable,
+  input data_out,
+  output data_in
+);
+  SB_IO #(
+    .PIN_TYPE(6'b1010_01) // tristatable output
+  ) buffer(
+    .PACKAGE_PIN(pin),
+    .OUTPUT_ENABLE(enable),
+    .D_IN_0(data_in),
+    .D_OUT_0(data_out)
+  );
 endmodule

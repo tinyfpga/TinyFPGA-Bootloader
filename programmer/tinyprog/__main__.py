@@ -1,12 +1,14 @@
-from tinyprog import TinyProg, get_ports
-import tinyprog
-from six.moves.urllib.request import urlopen
-from six.moves import input
 import sys
 import argparse
 import json
-from packaging import version
 import time
+
+from six.moves.urllib.request import urlopen
+from six.moves import input
+
+import tinyprog
+from tinyprog import TinyProg, get_ports
+
 
 # adapted from http://code.activestate.com/recipes/577058/
 def query_user(question, default="no"):
@@ -20,8 +22,7 @@ def query_user(question, default="no"):
     The "answer" return value is True for "yes" or False for "no".
     """
 
-    valid = {"yes": True, "y": True, "ye": True,
-             "no": False, "n": False}
+    valid = {"yes": True, "y": True, "ye": True, "no": False, "n": False}
     if default is None:
         prompt = " [y/n] "
     elif default == "yes":
@@ -39,8 +40,9 @@ def query_user(question, default="no"):
         elif choice in valid:
             return valid[choice]
         else:
-            sys.stdout.write("Please respond with 'yes' or 'no' "
-                             "(or 'y' or 'n').\n")
+            sys.stdout.write(
+                "Please respond with 'yes' or 'no' "
+                "(or 'y' or 'n').\n")
 
 
 def strict_query_user(question):
@@ -63,16 +65,12 @@ def get_port_by_uuid(device, uuid):
                 if p.meta.uuid().startswith(uuid):
                     return port
 
-        except:
+        except Exception:
             pass
     return None
 
 
 def check_for_new_bootloader():
-    #ports = [p[0] for p in comports() if "1d50:6130" in p[2].lower()]
-
-    # download bootloader update information
-    #bootloader_update_info = urlopen(m[u"bootmeta"][u"update"] + "/bootloader.json").read()
     return []
 
 
@@ -99,16 +97,19 @@ def check_if_overwrite_bootloader(addr, length, userdata_range):
     uend = userdata_range[1]
 
     if addr < ustart or addr + length >= uend:
-        print("")
-        print("    !!! WARNING !!!")
-        print("")
-        print("    The address given may overwrite the USB bootloader. Without the")
-        print("    USB bootloader the board will no longer be able to be programmed")
-        print("    over the USB interface. Without the USB bootloader, the board can")
-        print("    only be programmed via the SPI flash interface on the bottom of")
-        print("    the board")
-        print("")
-        retval = strict_query_user("    Are you sure you want to continue? Type in 'yes' to overwrite bootloader.")
+        print("""\
+
+    !!! WARNING !!!
+
+    The address given may overwrite the USB bootloader. Without the
+    USB bootloader the board will no longer be able to be programmed
+    over the USB interface. Without the USB bootloader, the board can
+    only be programmed via the SPI flash interface on the bottom of
+    the board
+""")
+        retval = strict_query_user(
+            "    Are you sure you want to continue?"
+            "Type in 'yes' to overwrite bootloader.")
         print("")
         return retval
 
@@ -125,7 +126,8 @@ def perform_bootloader_update(port):
         uuid = m[u"boardmeta"][u"uuid"]
 
         # download bootloader update information
-        bootloader_update_info = json.loads(urlopen(m[u"bootmeta"][u"update"] + "/bootloader.json").read())
+        bootloader_update_info = json.loads(
+            urlopen(m[u"bootmeta"][u"update"] + "/bootloader.json").read())
 
         # ask permission to update the board
         print("")
@@ -137,13 +139,14 @@ def perform_bootloader_update(port):
         print("    is available for this board:")
         print_board(port, m)
         print("")
-        
+
         if query_user("    Would you like to perform the update?"):
             ####################
-            # STAGE ONE 
+            # STAGE ONE
             ####################
             print("    Fetching stage one...")
-            bitstream = urlopen(bootloader_update_info[u"stage_one_url"]).read()
+            bitstream = urlopen(
+                bootloader_update_info[u"stage_one_url"]).read()
 
             print("    Programming stage one...")
             userimage_addr = p.meta.userimage_addr_range()[0]
@@ -170,12 +173,12 @@ def perform_bootloader_update(port):
         if new_port is not None:
             print("connected!")
             break
-    
+
     with new_port:
         p = TinyProg(new_port)
 
         ####################
-        # STAGE TWO 
+        # STAGE TWO
         ####################
         print("    Fetching stage two...")
         bitstream = urlopen(bootloader_update_info[u"stage_two_url"]).read()
@@ -193,7 +196,9 @@ def perform_bootloader_update(port):
 def print_board(port, m):
     if isinstance(m, dict) and u"boardmeta" in m:
         print("")
-        print("        %s: %s %s" % (port, m[u"boardmeta"][u"name"], m[u"boardmeta"][u"hver"]))
+        print(
+            "        %s: %s %s" %
+            (port, m[u"boardmeta"][u"name"], m[u"boardmeta"][u"hver"]))
         print("            UUID: %s" % m[u"boardmeta"][u"uuid"])
         print("            FPGA: %s" % m[u"boardmeta"][u"fpga"])
     else:
@@ -210,34 +215,73 @@ def main():
             return int(str_value)
 
     parser = argparse.ArgumentParser()
-
-    parser.add_argument("-l", "--list", action="store_true",
-                        help="list connected and active FPGA boards")
-    parser.add_argument("-p", "--program", type=str,
-                        help="program FPGA board with the given user bitstream")
-    parser.add_argument("-u", "--program-userdata", type=str,
-                        help="program FPGA board with the given user data")
-    parser.add_argument("--program-image", type=str,
-                        help="program FPGA board with a combined user bitstream and data")
-    parser.add_argument("-b", "--boot", action="store_true",
-                        help="command the FPGA board to exit the "
-                             "bootloader and load the user configuration")
+    parser.add_argument(
+        "--version",
+        action="store_true",
+        help="Print the tinyprog version.")
+    parser.add_argument(
+        "-l",
+        "--list",
+        action="store_true",
+        help="list connected and active FPGA boards")
+    parser.add_argument(
+        "-p",
+        "--program",
+        type=str,
+        help="program FPGA board with the given user bitstream")
+    parser.add_argument(
+        "-u",
+        "--program-userdata",
+        type=str,
+        help="program FPGA board with the given user data")
+    parser.add_argument(
+        "--program-image",
+        type=str,
+        help="program FPGA board with a combined user bitstream and data")
+    parser.add_argument(
+        "-b",
+        "--boot",
+        action="store_true",
+        help="command the FPGA board to exit the "
+        "bootloader and load the user configuration")
     parser.add_argument("-c", "--com", type=str, help="serial port name")
     parser.add_argument("-i", "--id", type=str, help="FPGA board ID")
-    parser.add_argument("-d", "--device", type=str, default="1d50:6130",
-                        help="device id (vendor:product); default is (1d50:6130)")
-    parser.add_argument("-a", "--addr", type=str,
-                        help="force the address to write the bitstream to")
-    parser.add_argument("-m", "--meta", action="store_true",
-                        help="dump out the metadata for all connected boards in JSON")
-    parser.add_argument("--update-bootloader", action="store_true",
-                        help="check for new bootloader and update eligible connected boards")
-    parser.add_argument("--libusb", action="store_true",
-                        help="try using libusb to connect to boards without a serial driver attached")
-    parser.add_argument("--pyserial", action="store_true",
-                        help="use pyserial to connect to boards")
+    parser.add_argument(
+        "-d",
+        "--device",
+        type=str,
+        default="1d50:6130",
+        help="device id (vendor:product); default is (1d50:6130)")
+    parser.add_argument(
+        "-a",
+        "--addr",
+        type=str,
+        help="force the address to write the bitstream to")
+    parser.add_argument(
+        "-m",
+        "--meta",
+        action="store_true",
+        help="dump out the metadata for all connected boards in JSON")
+    parser.add_argument(
+        "--update-bootloader",
+        action="store_true",
+        help="check for new bootloader and update eligible connected boards")
+    parser.add_argument(
+        "--libusb",
+        action="store_true",
+        help="""\
+try using libusb to connect to boards without a serial driver attached"""
+    )
+    parser.add_argument(
+        "--pyserial",
+        action="store_true",
+        help="use pyserial to connect to boards")
 
     args = parser.parse_args()
+    if args.version:
+        print("tinyprog %s (%s)" % (
+            tinyprog.__version__, tinyprog.__full_version__))
+        sys.exit(0)
 
     device = args.device.lower().replace(':', '')
     if len(device) != 8 or not all(c in '0123456789abcdef' for c in device):
@@ -264,9 +308,8 @@ def main():
     print("")
     print("    TinyProg CLI")
     print("    ------------")
-    
-    print("    Using device id {}".format(device))
 
+    print("    Using device id {}".format(device))
 
     # find port to use
     active_port = None
@@ -277,18 +320,23 @@ def main():
         active_port = get_port_by_uuid(device, args.id)
 
     elif not active_boards:
-        print("    No port was specified and no active bootloaders found.")
-        print("    Activate bootloader by pressing the reset button.")
+        print("""\
+    No port was specified and no active bootloaders found.
+    Activate bootloader by pressing the reset button.
+""")
         sys.exit(1)
 
     elif len(active_boards) == 1:
-        print("    Only one board with active bootloader, using it.")
+        print("""\
+    Only one board with active bootloader, using it.
+""")
         active_port = active_boards[0]
 
     else:
-        print("    Please choose a board with the -c or -i option.  Using first board in list.")
+        print("""\
+    Please choose a board with the -c or -i option.  Using first board in list.
+""")
         active_port = active_boards[0]
-
 
     # list boards
     if args.list or active_port is None:
@@ -300,24 +348,26 @@ def main():
                 print_board(port, m)
 
         if len(active_boards) == 0:
-            print("        No active bootloaders found.  Check USB connections")
-            print("        and press reset button to activate bootloader.")
+            print("""\
+        No active bootloaders found.  Check USB connections
+        and press reset button to activate bootloader.""")
 
     if args.update_bootloader:
         boards_needing_update = (
-            check_for_wrong_tinyfpga_bx_vidpid() +
-            check_for_new_bootloader()
-        )
+            check_for_wrong_tinyfpga_bx_vidpid() + check_for_new_bootloader())
 
         if len(boards_needing_update) == 0:
-            print("    All connected and active boards are up to date!")
+            print("""\
+        All connected and active boards are up to date!""")
         else:
             for port in boards_needing_update:
                 perform_bootloader_update(port)
 
     # program the flash memory
-    if (args.program is not None) or (args.program_userdata is not None) or (args.program_image is not None):
+    if (args.program is not None) or (args.program_userdata is not None) or (
+            args.program_image is not None):
         boot_fpga = False
+
         def progress(info):
             if isinstance(info, str):
                 print("    " + str(info))
@@ -326,10 +376,11 @@ def main():
             fpga = TinyProg(active_port, progress)
 
             if args.program is not None:
-                print("    Programming " + str(active_port) + " with " + str(args.program))
+                print("    Programming %s with %s" % (
+                    active_port, args.program))
 
                 bitstream = fpga.slurp(args.program)
-                
+
                 if args.addr is not None:
                     addr = parse_int(args.addr)
                 else:
@@ -342,16 +393,18 @@ def main():
                     print("    Bootloader not active")
                     sys.exit(1)
 
-                if check_if_overwrite_bootloader(addr, len(bitstream), fpga.meta.userimage_addr_range()):
+                if check_if_overwrite_bootloader(
+                        addr, len(bitstream),
+                        fpga.meta.userimage_addr_range()):
                     boot_fpga = True
                     print("    Programming at addr {:06x}".format(addr))
                     if not fpga.program_bitstream(addr, bitstream):
                         sys.exit(1)
-    
 
             # program user flash area
             if args.program_userdata is not None:
-                print("    Programming " + str(active_port) + " with " + str(args.program_userdata))
+                print("    Programming %s with %s" % (
+                    active_port, args.program_userdata))
 
                 bitstream = fpga.slurp(args.program_userdata)
 
@@ -367,16 +420,17 @@ def main():
                     print("    Bootloader not active")
                     sys.exit(1)
 
-                if check_if_overwrite_bootloader(addr, len(bitstream), fpga.meta.userdata_addr_range()):
+                if check_if_overwrite_bootloader(
+                        addr, len(bitstream), fpga.meta.userdata_addr_range()):
                     boot_fpga = True
                     print("    Programming at addr {:06x}".format(addr))
                     if not fpga.program_bitstream(addr, bitstream):
                         sys.exit(1)
-    
 
             # program user image and data area
             if args.program_image is not None:
-                print("    Programming " + str(active_port) + " with " + str(args.program_image))
+                print("    Programming %s with %s" % (
+                    active_port, args.program_image))
 
                 bitstream = fpga.slurp(args.program_image)
 
@@ -392,7 +446,10 @@ def main():
                     print("    Bootloader not active")
                     sys.exit(1)
 
-                if check_if_overwrite_bootloader(addr, len(bitstream), (fpga.meta.userimage_addr_range()[0], fpga.meta.userdata_addr_range()[1])):
+                if check_if_overwrite_bootloader(
+                        addr, len(bitstream),
+                        (fpga.meta.userimage_addr_range()[0],
+                         fpga.meta.userdata_addr_range()[1])):
                     boot_fpga = True
                     print("    Programming at addr {:06x}".format(addr))
                     if not fpga.program_bitstream(addr, bitstream):
