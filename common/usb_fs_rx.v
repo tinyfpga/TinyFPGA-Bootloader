@@ -8,26 +8,26 @@ module usb_fs_rx (
   input dp,
   input dn,
 
-  // pulse on every bit transition in clk_48mhz
+  // pulse on every bit transition (clk_48mhz domain)
   output bit_strobe,
 
-  // Pulse on beginning of new packet in clk.
+  // Pulse on beginning of new packet (clk domain)
   output pkt_start,
 
-  // Pulse on end of current packet in clk.
+  // Pulse on end of current packet (clk domain)
   output pkt_end,
 
-  // Most recent packet decoded.
+  // Most recent packet decoded (clk domain)
   output [3:0] pid,
   output [6:0] addr,
   output [3:0] endp,
   output [10:0] frame_num,
 
-  // Pulse on valid data on rx_data in clk.
+  // Pulse on valid data on rx_data (clk domain)
   output rx_data_put,
   output [7:0] rx_data,
 
-  // Most recent packet passes PID and CRC checks
+  // Most recent packet passes PID and CRC checks (clk domain)
   output valid_packet
 );
   wire [3:0] pid_48;
@@ -312,12 +312,13 @@ module usb_fs_rx (
 
   // TODO: need to check for data packet babble
   // TODO: do i need to check for bitstuff error?
-  assign valid_packet = pid_valid && (
+  wire valid_packet_48 = pid_valid && (
     (pkt_is_handshake) || 
     (pkt_is_data && crc16_valid) ||
     (pkt_is_token && crc5_valid)
   );
   
+  strobe valid_packet_strobe(clk_48mhz, clk, valid_packet_48, valid_packet);
 
   reg [11:0] token_payload = 0;
   wire token_payload_done = token_payload[0];
@@ -368,8 +369,14 @@ module usb_fs_rx (
   //assign rx_data_put = dvalid && pid_complete && pkt_is_data;
   reg [8:0] rx_data_buffer = 0;
   wire rx_data_buffer_full = rx_data_buffer[0];
-  assign rx_data_put = rx_data_buffer_full;
-  assign rx_data = rx_data_buffer[8:1];
+  //assign rx_data_put = rx_data_buffer_full;
+  //assign rx_data = rx_data_buffer[8:1];
+
+  strobe #(.WIDTH(8)) rx_data_put_strobe(
+	clk_48mhz, clk,
+	rx_data_buffer_full, rx_data_put,
+	rx_data_buffer[8:1], rx_data
+  );
 
   always @(posedge clk_48mhz) begin
     if (packet_start || rx_data_buffer_full) begin
