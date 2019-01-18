@@ -27,10 +27,16 @@ all: $(PROJ).rpt fw.bin
 %.blif: %.v ../../common/*.v 
 	yosys -q -p 'synth_ice40 -top $(PROJ) -blif $@' $^
 
-%.asc: $(PIN_DEF) %.blif
+NO-%.asc: $(PIN_DEF) %.blif
 	arachne-pnr -d 8k -P $(PKG) -o $@ -p $^
-no-%.asc: $(PIN_DEF) %.json
-	nextpnr-ice40 -d 8k -P $(PKG) -o $@ -p $^
+
+%.asc: $(PIN_DEF) %.json
+	nextpnr-ice40 \
+		--$(DEVICE) \
+		--package $(PKG) \
+		--asc $@ \
+		--pcf $(PIN_DEF) \
+		--json $(basename $@).json \
 
 %.bin: %.asc
 	icepack $< $@
