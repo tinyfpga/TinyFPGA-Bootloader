@@ -5,6 +5,8 @@ module usb_fs_in_pe #(
 ) (
   input clk, 
   input reset, 
+  output uart_strobe,
+  output [7:0] uart_data,
   input [NUM_IN_EPS-1:0] reset_ep, 
   input [6:0] dev_addr,
 
@@ -353,11 +355,17 @@ module usb_fs_in_pe #(
 
   integer j;
   always @(posedge clk) begin
+	uart_strobe <= 0;
+
     if (reset) begin
       in_xfr_state <= IDLE;
 
     end else begin
       in_xfr_state <= in_xfr_state_next;
+	if (in_xfr_state != in_xfr_state_next) begin
+		uart_strobe <= 1;
+		uart_data <= in_xfr_state_next + "A";
+	end
 
       if (setup_token_received) begin
         data_toggle[rx_endp] <= 1;

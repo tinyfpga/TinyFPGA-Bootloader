@@ -2,9 +2,11 @@ module usb_fs_pe #(
   parameter [4:0] NUM_OUT_EPS = 1,
   parameter [4:0] NUM_IN_EPS = 1
 ) (
+  input clk_48mhz,
   input clk,
   input [6:0] dev_addr,
-
+  output uart_strobe,
+  output [7:0] uart_data,
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -123,6 +125,8 @@ module usb_fs_pe #(
     .NUM_IN_EPS(NUM_IN_EPS)
   ) usb_fs_in_pe_inst (
     .clk(clk),
+    //.uart_strobe(uart_strobe),
+    //.uart_data(uart_data),
     .reset(reset),
     .reset_ep({NUM_IN_EPS{1'b0}}),
     .dev_addr(dev_addr),
@@ -159,6 +163,8 @@ module usb_fs_pe #(
     .clk(clk),
     .reset(reset),
     .reset_ep({NUM_OUT_EPS{1'b0}}),
+    .uart_strobe(uart_strobe),
+    .uart_data(uart_data),
     .dev_addr(dev_addr),
 
     // endpoint interface 
@@ -187,7 +193,8 @@ module usb_fs_pe #(
   );
 
   usb_fs_rx usb_fs_rx_inst (
-    .clk_48mhz(clk),
+    .clk_48mhz(clk_48mhz),
+    .clk(clk),
     .reset(reset),
     .dp(usb_p_rx),
     .dn(usb_n_rx),
@@ -218,7 +225,8 @@ module usb_fs_pe #(
   );
 
   usb_fs_tx usb_fs_tx_inst (
-    .clk_48mhz(clk),
+    .clk_48mhz(clk_48mhz),
+    .clk(clk),
     .reset(reset),
     .bit_strobe(bit_strobe),
     .oe(usb_tx_en),

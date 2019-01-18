@@ -2,9 +2,10 @@ module usb_fs_tx (
   // A 48MHz clock is required to receive USB data at 12MHz
   // it's simpler to juse use 48MHz everywhere
   input clk_48mhz,
+  input clk,
   input reset,
 
-  // bit strobe from rx to align with senders clock
+  // bit strobe from rx to align with senders clock (in clk_48mhz domain)
   input bit_strobe,
 
   // output enable to take ownership of bus and data out
@@ -12,28 +13,32 @@ module usb_fs_tx (
   output reg dp = 0,
   output reg dn = 0,
 
-  // pulse to initiate new packet transmission
+  // pulse to initiate new packet transmission in clk domain
   input pkt_start,
   output pkt_end,
 
-  // pid to send
+  // pid to send (clk domain)
   input [3:0] pid,
 
   // tx logic pulls data until there is nothing available
   input tx_data_avail,  
-  output reg tx_data_get = 0,
+  output tx_data_get,
   input [7:0] tx_data
 );
-  wire clk = clk_48mhz;
-
+  // convert pkt_start to clk_48mhz domain
   // save packet parameters at pkt_start
-  reg [3:0] pidq = 0;
+  wire pkt_start_48;
+  wire [3:0] pidq;
+  strobe #(.WIDTH(4)) pkt_start_strobe(
+	clk, clk_48mhz,
+	pkt_start, pkt_start_48,
+	pid, pidq
+  );
 
-  always @(posedge clk) begin
-    if (pkt_start) begin
-      pidq <= pid;
-    end
-  end
+  // convert tx_data_get from 48 to clk
+  //wire tx_data_get_48 = tx_data_get;
+  reg tx_data_get_48;
+  strobe tx_data_get_strobe(clk_48mhz, clk, tx_data_get_48, tx_data_get);
 
   reg [7:0] data_shift_reg = 0;
   reg [7:0] oe_shift_reg = 0;
@@ -58,14 +63,15 @@ module usb_fs_tx (
   reg bitstuff_qqqq = 0;
 
 
-  always @(posedge clk) begin
+  always @(posedge clk_48mhz) begin
     bitstuff_q <= bitstuff;
     bitstuff_qq <= bitstuff_q;
     bitstuff_qqq <= bitstuff_qq;
     bitstuff_qqqq <= bitstuff_qqq;
   end
 
-  assign pkt_end = bit_strobe && se0_shift_reg[1:0] == 2'b01;
+  wire pkt_end_48 = bit_strobe && se0_shift_reg[1:0] == 2'b01;
+  strobe pkt_end_strobe(clk_48mhz, pkt_end_48, clk, pkt_end);
 
   reg data_payload = 0;
 
@@ -79,10 +85,10 @@ module usb_fs_tx (
 
   reg [15:0] crc16 = 0;
 
-  always @(posedge clk) begin
+  always @(posedge clk_48mhz) begin
     case (pkt_state)
       IDLE : begin
-        if (pkt_start) begin
+        if (pkt_start_48) begin
           pkt_state <= SYNC;
         end
       end
@@ -115,20 +121,20 @@ module usb_fs_tx (
           if (tx_data_avail) begin
             pkt_state <= DATA_OR_CRC16_0;
             data_payload <= 1;
-            tx_data_get <= 1;
+            tx_data_get_48 <= 1;
             data_shift_reg <= tx_data;
             oe_shift_reg <= 8'b11111111;
             se0_shift_reg <= 8'b00000000;
           end else begin
             pkt_state <= CRC16_1;
             data_payload <= 0;
-            tx_data_get <= 0;
+            tx_data_get_48 <= 0;
             data_shift_reg <= ~{crc16[8], crc16[9], crc16[10], crc16[11], crc16[12], crc16[13], crc16[14], crc16[15]};
             oe_shift_reg <= 8'b11111111;
             se0_shift_reg <= 8'b00000000;
           end
         end else begin
-          tx_data_get <= 0; 
+          tx_data_get_48 <= 0; 
         end
       end
 
@@ -156,7 +162,7 @@ module usb_fs_tx (
       byte_strobe <= 0;
     end
 
-    if (pkt_start) begin
+    if (pkt_start_48) begin
       bit_count <= 1;
       bit_history_q <= 0;
 
@@ -184,12 +190,12 @@ module usb_fs_tx (
   // calculate crc16
   wire crc16_invert = serial_tx_data ^ crc16[15];  
 
-  always @(posedge clk) begin
-    if (pkt_start) begin
+  always @(posedge clk_48mhz) begin
+    if (pkt_start_48) begin
       crc16 <= 16'b1111111111111111;
     end
 
-    if (bit_strobe && data_payload && !bitstuff_qqqq && !pkt_start) begin
+    if (bit_strobe && data_payload && !bitstuff_qqqq && !pkt_start_48) begin
       crc16[15] <= crc16[14] ^ crc16_invert;
       crc16[14] <= crc16[13];
       crc16[13] <= crc16[12];
@@ -213,8 +219,8 @@ module usb_fs_tx (
 
 
   // nrzi and differential driving
-  always @(posedge clk) begin
-    if (pkt_start) begin
+  always @(posedge clk_48mhz) begin
+    if (pkt_start_48) begin
       // J
       dp <= 1;
       dn <= 0;

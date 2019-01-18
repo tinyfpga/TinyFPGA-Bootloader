@@ -1,6 +1,10 @@
 module tinyfpga_bootloader (
   input  clk_48mhz,
+  input  clk,
   input  reset,
+
+  output uart_strobe,
+  output [7:0] uart_data,
 
   // USB lines.  Split into input vs. output and oe control signal to maintain
   // highest level of compatibility with synthesis tools.
@@ -26,6 +30,7 @@ module tinyfpga_bootloader (
   // function.
   output boot
 );
+ 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
   ////////
@@ -38,7 +43,7 @@ module tinyfpga_bootloader (
   
   reg [5:0] ns_cnt = 0;
   wire ns_rst = (ns_cnt == 48);
-  always @(posedge clk_48mhz) begin
+  always @(posedge clk) begin
     if (ns_rst) begin
       ns_cnt <= 0;
     end else begin
@@ -48,7 +53,7 @@ module tinyfpga_bootloader (
   
   reg [9:0] us_cnt = 0;
   wire us_rst = (us_cnt == 1000);
-  always @(posedge clk_48mhz) begin
+  always @(posedge clk) begin
     if (us_rst) begin
       us_cnt <= 0;
     end else if (ns_rst) begin
@@ -57,7 +62,7 @@ module tinyfpga_bootloader (
   end
   
   reg count_down = 0;
-  always @(posedge clk_48mhz) begin
+  always @(posedge clk) begin
     if (us_rst) begin
       if (count_down) begin 
         if (led_pwm == 0) begin
@@ -74,7 +79,7 @@ module tinyfpga_bootloader (
       end
     end
   end
-  always @(posedge clk_48mhz) pwm_cnt <= pwm_cnt + 1'b1; 
+  always @(posedge clk) pwm_cnt <= pwm_cnt + 1'b1; 
   assign led = led_pwm > pwm_cnt;  
 
 
@@ -136,7 +141,7 @@ module tinyfpga_bootloader (
   assign boot = host_presence_timeout || boot_to_user_design;
 
   usb_serial_ctrl_ep ctrl_ep_inst (
-    .clk(clk_48mhz),
+    .clk(clk),
     .reset(reset),
     .dev_addr(dev_addr),
 
@@ -163,7 +168,7 @@ module tinyfpga_bootloader (
   );
 
   usb_spi_bridge_ep usb_spi_bridge_ep_inst (
-    .clk(clk_48mhz),
+    .clk(clk),
     .reset(reset),
 
     // out endpoint interface 
@@ -204,8 +209,11 @@ module tinyfpga_bootloader (
     .NUM_OUT_EPS(5'd2),
     .NUM_IN_EPS(5'd3)
   ) usb_fs_pe_inst (
-    .clk(clk_48mhz),
+    .clk_48mhz(clk_48mhz),
+    .clk(clk),
     .reset(reset),
+    .uart_strobe(uart_strobe),
+    .uart_data(uart_data),
 
     .usb_p_tx(usb_p_tx),
     .usb_n_tx(usb_n_tx),
@@ -246,7 +254,7 @@ module tinyfpga_bootloader (
   // host presence detection
   ////////////////////////////////////////////////////////////////////////////////
 
-  always @(posedge clk_48mhz) begin
+  always @(posedge clk) begin
     if (sof_valid) begin
       host_presence_timer <= 0;
       host_presence_timeout <= 0;
