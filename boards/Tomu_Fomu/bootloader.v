@@ -39,6 +39,13 @@ module bootloader (
 	assign clk_48mhz = pin_clk;
 `endif
 
+	reg clk_24mhz;
+	reg clk_12mhz;
+	wire clk = clk_12mhz;
+	always @(posedge clk_48mhz) clk_24mhz = !clk_24mhz;
+	always @(posedge clk_24mhz) clk_12mhz = !clk_12mhz;
+
+
 	assign pin_led_g = 1;
 
 /*
@@ -85,6 +92,7 @@ module bootloader (
 
   tinyfpga_bootloader tinyfpga_bootloader_inst (
     .clk_48mhz(clk_48mhz),
+    .clk(clk),
     .reset(reset),
     .usb_p_tx(usb_p_tx),
     .usb_n_tx(usb_n_tx),
