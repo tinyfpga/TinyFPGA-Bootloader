@@ -3,7 +3,6 @@ module usb_fs_rx (
   input clk_48mhz,
   input clk,
   input reset,
-  output [3:0] debug,
 
   // USB data+ and data- lines (clk_48mhz domain)
   input dp,
@@ -343,15 +342,10 @@ module usb_fs_rx (
     end
   end
 
-  //assign pkt_start = packet_start;
-  //assign pkt_end = packet_end; 
+  // cross the packet start signal to the endpoint clk domain
   strobe pkt_start_strobe(clk_48mhz, clk, packet_start, pkt_start);
-  assign debug[0] = valid_packet_48;
-  assign debug[1] = valid_packet;
-  assign debug[2] = din;
-  //assign debug[3] = bit_strobe;
 
-  // at the end of the packet, capture the parameters
+  // at the end of the packet, capture the parameters to the clk domain
   strobe #(.WIDTH(26)) pkt_end_strobe(
 	clk_48mhz, clk,
 	packet_end, pkt_end,
@@ -359,11 +353,6 @@ module usb_fs_rx (
 	{ pid, addr, endp, frame_num },
   );
   assign pid_48 = full_pid[4:1]; 
-
-  //assign pid = pid_48;
-  //assign addr = addr_48;
-  //assign endp = endp_48;
-  //assign frame_num = frame_num_48;
 
   //assign addr = token_payload[7:1];
   //assign endp = token_payload[11:8];
@@ -375,11 +364,8 @@ module usb_fs_rx (
   //assign rx_data_put = dvalid && pid_complete && pkt_is_data;
   reg [8:0] rx_data_buffer = 0;
   wire rx_data_buffer_full = rx_data_buffer[0];
-  //assign rx_data_put = rx_data_buffer_full;
-  //assign rx_data = rx_data_buffer[8:1];
 
   // convert the rx_data_put to clk domain
-  //dflip rx_data_put_flop(clk, rx_data_buffer_full, rx_data_put);
   strobe #(.WIDTH(8)) rx_data_strobe(
 	clk_48mhz, clk,
 	rx_data_buffer_full, rx_data_put,

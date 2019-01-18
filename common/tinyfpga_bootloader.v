@@ -3,9 +3,6 @@ module tinyfpga_bootloader (
   input  clk,
   input  reset,
 
-  output uart_strobe,
-  output [7:0] uart_data,
-
   // USB lines.  Split into input vs. output and oe control signal to maintain
   // highest level of compatibility with synthesis tools.
   output usb_p_tx,
@@ -18,9 +15,6 @@ module tinyfpga_bootloader (
 
   // bootloader indicator light, pulses on and off when bootloader is active
   output led,
-
-  // debug connection for oscilloscope debugging
-  output [3:0] debug,
 
   // connection to SPI flash
   output spi_cs,
@@ -83,8 +77,7 @@ module tinyfpga_bootloader (
     end
   end
   always @(posedge clk) pwm_cnt <= pwm_cnt + 1'b1; 
-  //assign led = led_pwm > pwm_cnt;  
-
+  assign led = led_pwm > pwm_cnt;  
 
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -215,9 +208,6 @@ module tinyfpga_bootloader (
     .clk_48mhz(clk_48mhz),
     .clk(clk),
     .reset(reset),
-    .uart_strobe(uart_strobe),
-    .uart_data(uart_data),
-    .debug(debug),
 
     .usb_p_tx(usb_p_tx),
     .usb_n_tx(usb_n_tx),

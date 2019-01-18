@@ -5,9 +5,6 @@ module usb_fs_pe #(
   input clk_48mhz,
   input clk,
   input [6:0] dev_addr,
-  output uart_strobe,
-  output [7:0] uart_data,
-  output [3:0] debug,
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -71,8 +68,6 @@ module usb_fs_pe #(
   // in pe interface
   wire [7:0] arb_in_ep_data;
 
-assign debug[3] = usb_tx_en;
-
   // rx interface
   wire bit_strobe;
   wire rx_pkt_start;
@@ -128,8 +123,6 @@ assign debug[3] = usb_tx_en;
     .NUM_IN_EPS(NUM_IN_EPS)
   ) usb_fs_in_pe_inst (
     .clk(clk),
-    .uart_strobe(uart_strobe),
-    .uart_data(uart_data),
     .reset(reset),
     .reset_ep({NUM_IN_EPS{1'b0}}),
     .dev_addr(dev_addr),
@@ -166,8 +159,6 @@ assign debug[3] = usb_tx_en;
     .clk(clk),
     .reset(reset),
     .reset_ep({NUM_OUT_EPS{1'b0}}),
-    //.uart_strobe(uart_strobe),
-    //.uart_data(uart_data),
     .dev_addr(dev_addr),
 
     // endpoint interface 
@@ -199,7 +190,6 @@ assign debug[3] = usb_tx_en;
     .clk_48mhz(clk_48mhz),
     .clk(clk),
     .reset(reset),
-    .debug(debug),
     .dp(usb_p_rx),
     .dn(usb_n_rx),
     .bit_strobe(bit_strobe),

@@ -5,8 +5,6 @@ module usb_fs_out_pe #(
 ) (
   input clk,
   input reset,
-  output uart_strobe,
-  output [7:0] uart_data,
   input [NUM_OUT_EPS-1:0] reset_ep, 
   input [6:0] dev_addr,
 
@@ -355,22 +353,10 @@ module usb_fs_out_pe #(
 
   integer j;
   always @(posedge clk) begin
-	uart_strobe <= 0;
-	if (rx_pkt_start && !uart_strobe) begin
-		uart_strobe <= 1;
-		uart_data <= "R";
-	end
-
     if (reset) begin
       out_xfr_state <= IDLE;
     end else begin
       out_xfr_state <= out_xfr_state_next;
-	if (out_xfr_state != out_xfr_state_next) begin
-		uart_strobe <= 1;
-		uart_data <= out_xfr_state_next + "0";
-		if (out_xfr_state == RCVD_DATA_END)
-			uart_data <= "0" + tx_pid;
-	end
 
       if (out_xfr_start) begin
         current_endp <= rx_endp;
