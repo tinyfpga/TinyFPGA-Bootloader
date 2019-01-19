@@ -44,7 +44,12 @@ module usb_fs_tx (
   // convert tx_data_get from 48 to clk
   //wire tx_data_get_48 = tx_data_get;
   reg tx_data_get_48;
-  strobe tx_data_get_strobe(clk_48mhz, clk, tx_data_get_48, tx_data_get);
+  strobe tx_data_get_strobe(
+	.clk_in(clk_48mhz),
+	.clk_out(clk),
+	.strobe_in(tx_data_get_48),
+	.strobe_out(tx_data_get)
+  );
 
   reg [7:0] data_shift_reg = 0;
   reg [7:0] oe_shift_reg = 0;
@@ -77,7 +82,12 @@ module usb_fs_tx (
   end
 
   wire pkt_end_48 = bit_strobe && se0_shift_reg[1:0] == 2'b01;
-  strobe pkt_end_strobe(clk_48mhz, pkt_end_48, clk, pkt_end);
+  strobe pkt_end_strobe(
+	.clk_in(clk_48mhz),
+	.clk_out(clk),
+	.strobe_in(pkt_end_48),
+	.strobe_out(pkt_end)
+  );
 
   reg data_payload = 0;
 

@@ -343,14 +343,19 @@ module usb_fs_rx (
   end
 
   // cross the packet start signal to the endpoint clk domain
-  strobe pkt_start_strobe(clk_48mhz, clk, packet_start, pkt_start);
+  strobe pkt_start_strobe(
+	.clk_in(clk_48mhz),
+	.clk_out(clk),
+	.strobe_in(packet_start),
+	.strobe_out(pkt_start)
+  );
 
   // at the end of the packet, capture the parameters to the clk domain
   strobe #(.WIDTH(26)) pkt_end_strobe(
 	clk_48mhz, clk,
 	packet_end, pkt_end,
 	{ pid_48, addr_48, endp_48, frame_num_48 },
-	{ pid, addr, endp, frame_num },
+	{ pid, addr, endp, frame_num }
   );
   assign pid_48 = full_pid[4:1]; 
 
