@@ -1,5 +1,6 @@
 test.v
 ../../common/edge_detect.v
+../../common/strobe.v
 ../../common/tinyfpga_bootloader.v
 ../../common/usb_fs_in_arb.v
 ../../common/usb_fs_in_pe.v
