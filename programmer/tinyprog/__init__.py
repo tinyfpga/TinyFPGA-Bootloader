@@ -158,7 +158,7 @@ class TinyMeta(object):
 
     def _parse_json(self, data):
         try:
-            return json.loads(bytes(data).decode("utf-8"))
+            return json.loads(bytes(data).replace(b"\x00", b"").replace(b"\xff", b"").decode("utf-8"))
         except BaseException:
             return None
 
@@ -176,7 +176,7 @@ class TinyMeta(object):
             if m:
                 data = self.prog.read(
                     int(m.group("addr"), 16), int(m.group("len")))
-                return json.loads(bytes(data).decode("utf-8"))
+                return self._parse_json(data)
             else:
                 return meta
 
@@ -187,14 +187,12 @@ class TinyMeta(object):
         meta_roots = (
             [
                 self._parse_json(
-                    self.prog.read_security_register_page(p).replace(
-                        b"\x00", b"").replace(b"\xff", b""))
+                    self.prog.read_security_register_page(p))
                 for p in [1, 2, 3]
             ] + [
                 self._parse_json(
                     self.prog.read(
-                        int(math.pow(2, p) - (4 * 1024)), (4 * 1024)).replace(
-                            b"\x00", b"").replace(b"\xff", b""))
+                        int(math.pow(2, p) - (4 * 1024)), (4 * 1024)))
                 for p in [17, 18, 19, 20, 21, 22, 23, 24]
             ])
         meta_roots = [root for root in meta_roots if root is not None]
@@ -213,7 +211,14 @@ class TinyMeta(object):
         return self._get_addr_range(u"userdata")
 
     def _get_addr_range(self, name):
-        addr_str = self.root[u"bootmeta"][u"addrmap"][name]
+        # get the bootmeta's addrmap or fallback to the root's addrmap.
+        addr_map = self.root.get(u"bootmeta", {}).get(u"addrmap", self.root.get(u"addrmap", None))
+        if addr_map is None:
+            raise Exception("Missing address map from device metadata")
+        addr_str = addr_map.get(name, None)
+        if addr_str is None:
+            raise Exception("Missing address map for '{0}'.".format(name))
+
         m = re.search(
             r"^\s*0x(?P<start>[A-Fa-f0-9]+)\s*-\s*0x(?P<end>[A-Fa-f0-9]+)\s*$",
             addr_str)
