@@ -79,6 +79,8 @@ module bootloader (
   wire usb_n_tx;
   wire usb_p_rx;
   wire usb_n_rx;
+  wire usb_p_rx_io;
+  wire usb_n_rx_io;
   wire usb_tx_en;
 
   tinyfpga_bootloader tinyfpga_bootloader_inst (
@@ -98,10 +100,44 @@ module bootloader (
   );
 
   assign pin_pu = 1'b1;
-  assign pin_usbp = usb_tx_en ? usb_p_tx : 1'bz;
-  assign pin_usbn = usb_tx_en ? usb_n_tx : 1'bz;
-  assign usb_p_rx = usb_tx_en ? 1'b1 : pin_usbp;
-  assign usb_n_rx = usb_tx_en ? 1'b0 : pin_usbn;
+  assign usb_p_rx = usb_tx_en ? 1'b1 : usb_p_rx_io;
+  assign usb_n_rx = usb_tx_en ? 1'b0 : usb_n_rx_io;
+
+  SB_IO #(
+     .PIN_TYPE(6'b101001),
+     .PULLUP(1'b0),
+     .NEG_TRIGGER(1'b0),
+     .IO_STANDARD("SB_LVCMOS")
+   ) io_dp_I (
+     .PACKAGE_PIN(pin_usbp),
+     .LATCH_INPUT_VALUE(1'b0),
+     .CLOCK_ENABLE(1'b1),
+     .INPUT_CLK(1'b0),
+     .OUTPUT_CLK(1'b0),
+     .OUTPUT_ENABLE(usb_tx_en),
+     .D_OUT_0(usb_p_tx),
+     .D_OUT_1(1'b0),
+     .D_IN_0(usb_p_rx_io),
+     .D_IN_1()
+  );
+
+  SB_IO #(
+     .PIN_TYPE(6'b101001),
+     .PULLUP(1'b0),
+     .NEG_TRIGGER(1'b0),
+     .IO_STANDARD("SB_LVCMOS")
+   ) io_dn_I (
+     .PACKAGE_PIN(pin_usbn),
+     .LATCH_INPUT_VALUE(1'b0),
+     .CLOCK_ENABLE(1'b1),
+     .INPUT_CLK(1'b0),
+     .OUTPUT_CLK(1'b0),
+     .OUTPUT_ENABLE(usb_tx_en),
+     .D_OUT_0(usb_n_tx),
+     .D_OUT_1(1'b0),
+     .D_IN_0(usb_n_rx_io),
+     .D_IN_1()
+  );
 
   assign reset = 1'b0; 
 endmodule
