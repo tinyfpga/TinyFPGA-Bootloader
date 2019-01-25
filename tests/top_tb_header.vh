@@ -1,9 +1,13 @@
 `timescale 1ps / 1ps
 
-`ifdef __ICARUS__
- `define finish_and_return(code) $finish_and_return(code)
+`ifdef continue_on_fail
+ `define finish_and_return(code) #0
 `else
- `define finish_and_return(code) $finish
+ `ifdef __ICARUS__
+  `define finish_and_return(code) $finish_and_return(code)
+ `else
+  `define finish_and_return(code) $finish
+ `endif
 `endif
 
 `define assert(msg, signal, value) \
@@ -19,10 +23,23 @@
         end
 
 module top_tb;
-    initial begin
-      $dumpfile("test.vcd");
-      $dumpvars(0, dut);
-    end
+    /* By instantiating vlog_tb_utils we get access to some
+     extra functionality that can be activated by plusargs at
+     runtime.
+     fusesoc run --target=simple_spi_in_test TinyFPGA-Bootloader --help
+     will list all available options. Refer to this for details
+     */
+    vlog_tb_utils vtu();
+
+   /* Set a default name for the tap file.
+    Doesn't necessarily have to be unique as each target
+    executes in a separate work directory
+    Filename specified here can be overridden with the
+    vtg.set_file("filename") function at compile-time
+    or with a plusarg at run time by adding --tapfile=filename
+    to the FuseSoC command line
+    */
+   vlog_tap_generator #("test.tap") vtg();
 
     reg clk_48mhz;
     reg reset = 0;
