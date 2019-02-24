@@ -57,6 +57,7 @@ FPGA_CHIP_EQUIVALENT ?= lfe5u-$(FPGA_K)f
 # open source synthesis tools
 ECPPLL ?= $(TRELLIS)/libtrellis/ecppll
 ECPPACK ?= $(TRELLIS)/libtrellis/ecppack
+ECPMULTI ?= $(TRELLIS)/libtrellis/ecpmulti
 TRELLISDB ?= $(TRELLIS)/database
 LIBTRELLIS ?= $(TRELLIS)/libtrellis
 BIT2SVF ?= $(TRELLIS)/tools/bit_to_svf.py
@@ -137,6 +138,15 @@ $(BOARD)_$(FPGA_SIZE)f_$(PROJECT).config: $(PROJECT).json $(BASECFG)
 
 #$(BOARD)_$(FPGA_SIZE)f_$(PROJECT).bit: $(BOARD)_$(FPGA_SIZE)f_$(PROJECT).config
 #	LANG=C LD_LIBRARY_PATH=$(LIBTRELLIS) $(ECPPACK) $(IDCODE_CHIPID) --db $(TRELLISDB) --input $< --bit $@
+
+multi.bit: $(BOARD)_$(FPGA_SIZE)f_$(PROJECT).bit
+	LANG=C LD_LIBRARY_PATH=$(LIBTRELLIS) $(ECPMULTI) \
+	  --db $(TRELLISDB) \
+	  --flashsize 128 \
+	  --input $(BOARD)_$(FPGA_SIZE)f_$(PROJECT).bit \
+	  --input $(BOARD)_$(FPGA_SIZE)f_$(PROJECT).bit --address 0x200000 \
+	  --output multi.bit
+
 
 # generate LDF project file for diamond
 $(BOARD)_$(FPGA_SIZE)f_$(PROJECT).ldf: $(SCRIPTS)/project.ldf $(SCRIPTS)/ldf.xsl
