@@ -134,8 +134,15 @@ module bootloader_sp_ulx3s (
   assign flash_holdn = 1;
   assign flash_wpn = 1;
 
+  // delay for BTN0 is required
+  reg [3:0] R_progn = 0;
+  always @(posedge clk_25mhz)
+      if(btn[0])
+        R_progn <= 0;
+      else
+        R_progn <= R_progn + 1;
+
   // EXIT from BOOTLOADER
-  assign user_programn = ~boot;
-  
+  assign user_programn = ~boot & ~R_progn[3];
 
 endmodule
