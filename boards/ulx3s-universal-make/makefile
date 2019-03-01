@@ -2,7 +2,7 @@
 PROJECT = ulx3s_bootloader
 BOARD = ulx3s
 # 12 25 45 85
-FPGA_SIZE = 25
+FPGA_SIZE = 12
 
 FPGA_PACKAGE = 6bg381c
 # config flash: 1:SPI (standard), 4:QSPI (quad)
@@ -51,8 +51,8 @@ VHDL_FILES =
 # synthesis options
 #YOSYS_OPTIONS = -noccu2
 
-SCRIPTS = scripts
 TRELLIS = /mt/scratch/tmp/openfpga/multiboot/prjtrellis/
+SCRIPTS = scripts
 include $(SCRIPTS)/ulx3s_diamond.mk
 
 #include $(SCRIPTS)/ulx3s_trellis.mk

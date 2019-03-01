@@ -145,7 +145,17 @@ multi.bit: $(BOARD)_$(FPGA_SIZE)f_$(PROJECT).bit
 	  --flashsize 128 \
 	  --input $(BOARD)_$(FPGA_SIZE)f_$(PROJECT).bit \
 	  --input $(BOARD)_$(FPGA_SIZE)f_$(PROJECT).bit --address 0x200000 \
-	  --output multi.bit
+	  --output $@
+
+multi12f.bit: $(BOARD)_$(FPGA_SIZE)f_$(PROJECT).bit
+	LANG=C LD_LIBRARY_PATH=$(LIBTRELLIS) $(ECPMULTI) \
+	  --db $(TRELLISDB) \
+	  --flashsize 128 \
+	  --input-idcode 0x41111043 \
+	  --input $(BOARD)_$(FPGA_SIZE)f_$(PROJECT).bit \
+	  --input $(BOARD)_$(FPGA_SIZE)f_$(PROJECT).bit --address 0x200000 \
+	  --output-idcode 0x21111043 \
+	  --output $@
 
 
 # generate LDF project file for diamond
