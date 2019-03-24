@@ -18,7 +18,7 @@ try:
     __version__ = get_distribution(__name__).version
 except DistributionNotFound:
     # package is not installed
-    pass
+    __version__ = "unknown"
 
 try:
     from .full_version import __full_version__
