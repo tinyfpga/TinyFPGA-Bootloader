@@ -22,8 +22,9 @@ except DistributionNotFound:
 
 try:
     from .full_version import __full_version__
-    assert __full_version__
-except (ImportError, AssertionError):
+    if not __full_version__:
+        raise ValueError
+except (ImportError, ValueError):
     __full_version__ = "unknown"
 
 
