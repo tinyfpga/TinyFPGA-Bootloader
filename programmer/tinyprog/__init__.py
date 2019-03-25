@@ -68,11 +68,14 @@ def get_ports(device_id):
         import usb
         vid, pid = [int(x, 16) for x in device_id.split(":")]
 
-        ports += [
-            UsbPort(d)
-            for d in usb.core.find(idVendor=vid, idProduct=pid, find_all=True)
-            if not d.is_kernel_driver_active(1)
-        ]
+        try:
+            ports += [
+                UsbPort(usb, d)
+                for d in usb.core.find(idVendor=vid, idProduct=pid, find_all=True)
+                if not d.is_kernel_driver_active(1)
+            ]
+        except usb.core.USBError as e:
+            raise PortError("Failed to open USB:\n%s" % str(e))
 
     # MacOS is not playing nicely with the serial drivers for the bootloader
     if platform.system() != "Darwin" or use_pyserial:
@@ -127,7 +130,8 @@ class SerialPort(object):
             raise PortError("Failed to read from serial port:\n%s" % str(e))
 
 class UsbPort(object):
-    def __init__(self, device):
+    def __init__(self, usb, device):
+        self.usb = usb
         self.device = device
         usb_interface = device.configurations()[0].interfaces()[1]
         self.OUT = usb_interface.endpoints()[0]
@@ -143,19 +147,24 @@ class UsbPort(object):
         pass
 
     def write(self, data):
-        self.OUT.write(data)
+        try:
+            self.OUT.write(data)
+        except self.usb.core.USBError as e:
+            raise PortError("Failed to write to USB:\n%s" % str(e))
 
     def flush(self):
         # i don't think there's a comparable function on pyusb endpoints
         pass
 
     def read(self, length):
-        if length > 0:
-            data = self.IN.read(length)
-            return bytearray(data)
-        else:
-            return ""
-
+        try:
+            if length > 0:
+                data = self.IN.read(length)
+                return bytearray(data)
+            else:
+                return ""
+        except self.usb.core.USBError as e:
+            raise PortError("Failed to read from USB:\n%s" % str(e))
 
 def _mirror_byte(b):
     return bit_reverse_table[to_int(b)]
