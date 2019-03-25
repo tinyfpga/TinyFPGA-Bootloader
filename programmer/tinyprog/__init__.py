@@ -84,6 +84,9 @@ def get_ports(device_id):
     return ports
 
 
+class PortError(Exception):
+    pass
+
 class SerialPort(object):
     def __init__(self, port_name):
         self.port_name = port_name
@@ -93,21 +96,35 @@ class SerialPort(object):
         return self.port_name
 
     def __enter__(self):
-        self.ser = serial.Serial(
-            self.port_name, timeout=1.0, writeTimeout=1.0).__enter__()
+        try:
+            self.ser = serial.Serial(
+                self.port_name, timeout=1.0, writeTimeout=1.0).__enter__()
+        except serial.SerialException as e:
+            raise PortError("Failed to open serial port:\n%s" % str(e))
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self.ser.__exit__(exc_type, exc_val, exc_tb)
+        try:
+            self.ser.__exit__(exc_type, exc_val, exc_tb)
+        except serial.SerialException as e:
+            raise PortError("Failed to close serial port:\n%s" % str(e))
 
     def write(self, data):
-        self.ser.write(data)
+        try:
+            self.ser.write(data)
+        except serial.SerialException as e:
+            raise PortError("Failed to write to serial port:\n%s" % str(e))
 
     def flush(self):
-        self.ser.flush()
+        try:
+            self.ser.flush()
+        except serial.SerialException as e:
+            raise PortError("Failed to flush serial port:\n%s" % str(e))
 
     def read(self, length):
-        return self.ser.read(length)
-
+        try:
+            return self.ser.read(length)
+        except serial.SerialException as e:
+            raise PortError("Failed to read from serial port:\n%s" % str(e))
 
 class UsbPort(object):
     def __init__(self, device):

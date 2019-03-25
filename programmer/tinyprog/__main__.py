@@ -7,7 +7,7 @@ from six.moves.urllib.request import urlopen
 from six.moves import input
 
 import tinyprog
-from tinyprog import TinyProg, get_ports
+from tinyprog import TinyProg, get_ports, PortError
 
 
 # adapted from http://code.activestate.com/recipes/577058/
@@ -292,180 +292,184 @@ try using libusb to connect to boards without a serial driver attached"""
     tinyprog.use_libusb = args.libusb
     tinyprog.use_pyserial = args.pyserial
 
-    active_boards = get_ports(device) + get_ports("1209:2100")
+    try:
+        active_boards = get_ports(device) + get_ports("1209:2100")
 
-    if args.meta:
-        meta = []
-        for port in active_boards:
-            with port:
-                p = TinyProg(port)
-                m = p.meta.root
-                m["port"] = str(port)
-                meta.append(m)
-        print(json.dumps(meta, indent=2))
-        sys.exit(0)
+        if args.meta:
+            meta = []
+            for port in active_boards:
+                with port:
+                    p = TinyProg(port)
+                    m = p.meta.root
+                    m["port"] = str(port)
+                    meta.append(m)
+            print(json.dumps(meta, indent=2))
+            sys.exit(0)
 
-    print("")
-    print("    TinyProg CLI")
-    print("    ------------")
+        print("")
+        print("    TinyProg CLI")
+        print("    ------------")
 
-    print("    Using device id {}".format(device))
+        print("    Using device id {}".format(device))
 
-    # find port to use
-    active_port = None
-    if args.com is not None:
-        active_port = tinyprog.SerialPort(args.com)
+        # find port to use
+        active_port = None
+        if args.com is not None:
+            active_port = tinyprog.SerialPort(args.com)
 
-    elif args.id is not None:
-        active_port = get_port_by_uuid(device, args.id)
+        elif args.id is not None:
+            active_port = get_port_by_uuid(device, args.id)
 
-    elif not active_boards:
-        print("""\
+        elif not active_boards:
+            print("""\
     No port was specified and no active bootloaders found.
     Activate bootloader by pressing the reset button.
 """)
-        sys.exit(1)
+            sys.exit(1)
 
-    elif len(active_boards) == 1:
-        print("""\
+        elif len(active_boards) == 1:
+            print("""\
     Only one board with active bootloader, using it.
 """)
-        active_port = active_boards[0]
+            active_port = active_boards[0]
 
-    else:
-        print("""\
+        else:
+            print("""\
     Please choose a board with the -c or -i option.  Using first board in list.
 """)
-        active_port = active_boards[0]
+            active_port = active_boards[0]
 
-    # list boards
-    if args.list or active_port is None:
-        print("    Boards with active bootloaders:")
-        for port in active_boards:
-            with port:
-                p = TinyProg(port)
-                m = p.meta.root
-                print_board(port, m)
+        # list boards
+        if args.list or active_port is None:
+            print("    Boards with active bootloaders:")
+            for port in active_boards:
+                with port:
+                    p = TinyProg(port)
+                    m = p.meta.root
+                    print_board(port, m)
 
-        if len(active_boards) == 0:
-            print("""\
+            if len(active_boards) == 0:
+                print("""\
         No active bootloaders found.  Check USB connections
         and press reset button to activate bootloader.""")
 
-    if args.update_bootloader:
-        boards_needing_update = (
-            check_for_wrong_tinyfpga_bx_vidpid() + check_for_new_bootloader())
+        if args.update_bootloader:
+            boards_needing_update = (
+                check_for_wrong_tinyfpga_bx_vidpid() + check_for_new_bootloader())
 
-        if len(boards_needing_update) == 0:
-            print("""\
+            if len(boards_needing_update) == 0:
+                print("""\
         All connected and active boards are up to date!""")
-        else:
-            for port in boards_needing_update:
-                perform_bootloader_update(port)
+            else:
+                for port in boards_needing_update:
+                    perform_bootloader_update(port)
 
-    # program the flash memory
-    if (args.program is not None) or (args.program_userdata is not None) or (
-            args.program_image is not None):
-        boot_fpga = False
+        # program the flash memory
+        if (args.program is not None) or (args.program_userdata is not None) or (
+                args.program_image is not None):
+            boot_fpga = False
 
-        def progress(info):
-            if isinstance(info, str):
-                print("    " + str(info))
+            def progress(info):
+                if isinstance(info, str):
+                    print("    " + str(info))
 
-        with active_port:
-            fpga = TinyProg(active_port, progress)
+            with active_port:
+                fpga = TinyProg(active_port, progress)
 
-            if args.program is not None:
-                print("    Programming %s with %s" % (
-                    active_port, args.program))
+                if args.program is not None:
+                    print("    Programming %s with %s" % (
+                        active_port, args.program))
 
-                bitstream = fpga.slurp(args.program)
+                    bitstream = fpga.slurp(args.program)
 
-                if args.addr is not None:
-                    addr = parse_int(args.addr)
-                else:
-                    addr = fpga.meta.userimage_addr_range()[0]
+                    if args.addr is not None:
+                        addr = parse_int(args.addr)
+                    else:
+                        addr = fpga.meta.userimage_addr_range()[0]
 
-                if addr < 0:
-                    print("    Negative write addr: {}".format(addr))
-                    sys.exit(1)
-                if not fpga.is_bootloader_active():
-                    print("    Bootloader not active")
-                    sys.exit(1)
-
-                if check_if_overwrite_bootloader(
-                        addr, len(bitstream),
-                        fpga.meta.userimage_addr_range()):
-                    boot_fpga = True
-                    print("    Programming at addr {:06x}".format(addr))
-                    if not fpga.program_bitstream(addr, bitstream):
+                    if addr < 0:
+                        print("    Negative write addr: {}".format(addr))
+                        sys.exit(1)
+                    if not fpga.is_bootloader_active():
+                        print("    Bootloader not active")
                         sys.exit(1)
 
-            # program user flash area
-            if args.program_userdata is not None:
-                print("    Programming %s with %s" % (
-                    active_port, args.program_userdata))
+                    if check_if_overwrite_bootloader(
+                            addr, len(bitstream),
+                            fpga.meta.userimage_addr_range()):
+                        boot_fpga = True
+                        print("    Programming at addr {:06x}".format(addr))
+                        if not fpga.program_bitstream(addr, bitstream):
+                            sys.exit(1)
 
-                bitstream = fpga.slurp(args.program_userdata)
+                # program user flash area
+                if args.program_userdata is not None:
+                    print("    Programming %s with %s" % (
+                        active_port, args.program_userdata))
 
-                if args.addr is not None:
-                    addr = parse_int(args.addr)
-                else:
-                    addr = fpga.meta.userdata_addr_range()[0]
+                    bitstream = fpga.slurp(args.program_userdata)
 
-                if addr < 0:
-                    print("    Negative write addr: {}".format(addr))
-                    sys.exit(1)
-                if not fpga.is_bootloader_active():
-                    print("    Bootloader not active")
-                    sys.exit(1)
+                    if args.addr is not None:
+                        addr = parse_int(args.addr)
+                    else:
+                        addr = fpga.meta.userdata_addr_range()[0]
 
-                if check_if_overwrite_bootloader(
-                        addr, len(bitstream), fpga.meta.userdata_addr_range()):
-                    boot_fpga = True
-                    print("    Programming at addr {:06x}".format(addr))
-                    if not fpga.program_bitstream(addr, bitstream):
+                    if addr < 0:
+                        print("    Negative write addr: {}".format(addr))
+                        sys.exit(1)
+                    if not fpga.is_bootloader_active():
+                        print("    Bootloader not active")
                         sys.exit(1)
 
-            # program user image and data area
-            if args.program_image is not None:
-                print("    Programming %s with %s" % (
-                    active_port, args.program_image))
+                    if check_if_overwrite_bootloader(
+                            addr, len(bitstream), fpga.meta.userdata_addr_range()):
+                        boot_fpga = True
+                        print("    Programming at addr {:06x}".format(addr))
+                        if not fpga.program_bitstream(addr, bitstream):
+                            sys.exit(1)
 
-                bitstream = fpga.slurp(args.program_image)
+                # program user image and data area
+                if args.program_image is not None:
+                    print("    Programming %s with %s" % (
+                        active_port, args.program_image))
 
-                if args.addr is not None:
-                    addr = parse_int(args.addr)
-                else:
-                    addr = fpga.meta.userimage_addr_range()[0]
+                    bitstream = fpga.slurp(args.program_image)
 
-                if addr < 0:
-                    print("    Negative write addr: {}".format(addr))
-                    sys.exit(1)
-                if not fpga.is_bootloader_active():
-                    print("    Bootloader not active")
-                    sys.exit(1)
+                    if args.addr is not None:
+                        addr = parse_int(args.addr)
+                    else:
+                        addr = fpga.meta.userimage_addr_range()[0]
 
-                if check_if_overwrite_bootloader(
-                        addr, len(bitstream),
-                        (fpga.meta.userimage_addr_range()[0],
-                         fpga.meta.userdata_addr_range()[1])):
-                    boot_fpga = True
-                    print("    Programming at addr {:06x}".format(addr))
-                    if not fpga.program_bitstream(addr, bitstream):
+                    if addr < 0:
+                        print("    Negative write addr: {}".format(addr))
+                        sys.exit(1)
+                    if not fpga.is_bootloader_active():
+                        print("    Bootloader not active")
                         sys.exit(1)
 
-            if boot_fpga:
+                    if check_if_overwrite_bootloader(
+                            addr, len(bitstream),
+                            (fpga.meta.userimage_addr_range()[0],
+                             fpga.meta.userdata_addr_range()[1])):
+                        boot_fpga = True
+                        print("    Programming at addr {:06x}".format(addr))
+                        if not fpga.program_bitstream(addr, bitstream):
+                            sys.exit(1)
+
+                if boot_fpga:
+                    fpga.boot()
+                    print("")
+                    sys.exit(0)
+
+        # boot the FPGA
+        if args.boot:
+            print("    Booting " + str(active_port))
+            with active_port:
+                fpga = TinyProg(active_port)
                 fpga.boot()
-                print("")
-                sys.exit(0)
-
-    # boot the FPGA
-    if args.boot:
-        print("    Booting " + str(active_port))
-        with active_port:
-            fpga = TinyProg(active_port)
-            fpga.boot()
+    except PortError as e:
+        print(str(e), file=sys.stderr)
+        sys.exit(1)
 
     print("")
 
