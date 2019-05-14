@@ -33,10 +33,22 @@ use_pyserial = False
 
 
 def pretty_hex(data):
-    output = ""
+    """
+    >>> print(pretty_hex("abc123"))
+    61 62 63 31 32 33
+    >>> print(pretty_hex(b"abc123"))
+    61 62 63 31 32 33
+    >>> print(pretty_hex(u"abc123"))
+    61 62 63 31 32 33
+    >>> print(pretty_hex("\\x00a\\x02"*12))
+    00 61 02 00 61 02 00 61 02 00 61 02 00 61 02 00
+    61 02 00 61 02 00 61 02 00 61 02 00 61 02 00 61
+    02 00 61 02
+    """
+    output = []
     for i in range(0, len(data), 16):
-        output += " ".join(["%02x" % ord(x) for x in data[i:i + 16]]) + "\n"
-    return output
+        output.append(" ".join("%02x" % to_int(x) for x in data[i:i + 16]))
+    return "\n".join(output)
 
 
 def to_int(value):
@@ -44,7 +56,7 @@ def to_int(value):
     >>> to_int('A')
     65
     >>> to_int(0xff)
-    256
+    255
     >>> list(to_int(i) for i in ['T', 'i', 'n', 'y', 0xff, 0, 0])
     [84, 105, 110, 121, 255, 0, 0]
     """
@@ -71,7 +83,8 @@ def get_ports(device_id):
         try:
             ports += [
                 UsbPort(usb, d)
-                for d in usb.core.find(idVendor=vid, idProduct=pid, find_all=True)
+                for d in usb.core.find(
+                    idVendor=vid, idProduct=pid, find_all=True)
                 if not d.is_kernel_driver_active(1)
             ]
         except usb.core.USBError as e:
@@ -89,6 +102,7 @@ def get_ports(device_id):
 
 class PortError(Exception):
     pass
+
 
 class SerialPort(object):
     def __init__(self, port_name):
@@ -129,6 +143,7 @@ class SerialPort(object):
         except serial.SerialException as e:
             raise PortError("Failed to read from serial port:\n%s" % str(e))
 
+
 class UsbPort(object):
     def __init__(self, usb, device):
         self.usb = usb
@@ -166,6 +181,7 @@ class UsbPort(object):
         except self.usb.core.USBError as e:
             raise PortError("Failed to read from USB:\n%s" % str(e))
 
+
 def _mirror_byte(b):
     return bit_reverse_table[to_int(b)]
 
@@ -185,7 +201,11 @@ class TinyMeta(object):
 
     def _parse_json(self, data):
         try:
-            return json.loads(bytes(data).replace(b"\x00", b"").replace(b"\xff", b"").decode("utf-8"))
+            data = bytes(data)
+            data = data.replace(b"\x00", b"")
+            data = data.replace(b"\xff", b"")
+            data = data.decode("utf-8")
+            return json.loads(data)
         except BaseException:
             return None
 
@@ -239,7 +259,8 @@ class TinyMeta(object):
 
     def _get_addr_range(self, name):
         # get the bootmeta's addrmap or fallback to the root's addrmap.
-        addr_map = self.root.get(u"bootmeta", {}).get(u"addrmap", self.root.get(u"addrmap", None))
+        addr_map = self.root.get(u"bootmeta", {}).get(
+            u"addrmap", self.root.get(u"addrmap", None))
         if addr_map is None:
             raise Exception("Missing address map from device metadata")
         addr_str = addr_map.get(name, None)

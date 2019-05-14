@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+
+from __future__ import print_function
+
 import sys
 import argparse
 import json
@@ -355,7 +359,8 @@ try using libusb to connect to boards without a serial driver attached"""
 
         if args.update_bootloader:
             boards_needing_update = (
-                check_for_wrong_tinyfpga_bx_vidpid() + check_for_new_bootloader())
+                check_for_wrong_tinyfpga_bx_vidpid()
+                + check_for_new_bootloader())
 
             if len(boards_needing_update) == 0:
                 print("""\
@@ -365,7 +370,8 @@ try using libusb to connect to boards without a serial driver attached"""
                     perform_bootloader_update(port)
 
         # program the flash memory
-        if (args.program is not None) or (args.program_userdata is not None) or (
+        if (args.program is not None) or (
+                args.program_userdata is not None) or (
                 args.program_image is not None):
             boot_fpga = False
 
@@ -422,7 +428,8 @@ try using libusb to connect to boards without a serial driver attached"""
                         sys.exit(1)
 
                     if check_if_overwrite_bootloader(
-                            addr, len(bitstream), fpga.meta.userdata_addr_range()):
+                            addr, len(bitstream),
+                            fpga.meta.userdata_addr_range()):
                         boot_fpga = True
                         print("    Programming at addr {:06x}".format(addr))
                         if not fpga.program_bitstream(addr, bitstream):
