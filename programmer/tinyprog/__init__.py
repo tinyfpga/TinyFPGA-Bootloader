@@ -33,10 +33,22 @@ use_pyserial = False
 
 
 def pretty_hex(data):
-    output = ""
+    """
+    >>> print(pretty_hex("abc123"))
+    61 62 63 31 32 33
+    >>> print(pretty_hex(b"abc123"))
+    61 62 63 31 32 33
+    >>> print(pretty_hex(u"abc123"))
+    61 62 63 31 32 33
+    >>> print(pretty_hex("\\x00a\\x02"*12))
+    00 61 02 00 61 02 00 61 02 00 61 02 00 61 02 00
+    61 02 00 61 02 00 61 02 00 61 02 00 61 02 00 61
+    02 00 61 02
+    """
+    output = []
     for i in range(0, len(data), 16):
-        output += " ".join(["%02x" % ord(x) for x in data[i:i + 16]]) + "\n"
-    return output
+        output.append(" ".join("%02x" % to_int(x) for x in data[i:i + 16]))
+    return "\n".join(output)
 
 
 def to_int(value):
@@ -44,7 +56,7 @@ def to_int(value):
     >>> to_int('A')
     65
     >>> to_int(0xff)
-    256
+    255
     >>> list(to_int(i) for i in ['T', 'i', 'n', 'y', 0xff, 0, 0])
     [84, 105, 110, 121, 255, 0, 0]
     """
