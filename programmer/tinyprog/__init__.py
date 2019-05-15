@@ -153,7 +153,11 @@ class UsbPort(object):
         self.IN = usb_interface.endpoints()[1]
 
     def __str__(self):
-        return "USB %d.%d" % (self.device.bus, self.device.port_number)
+        if self.device.port_number is not None:
+            port_number = int(self.device.port_number)
+        else:
+            port_number = "[no port number]"
+        return "USB %d.%s" % (self.device.bus, port_number)
 
     def __enter__(self):
         return self
