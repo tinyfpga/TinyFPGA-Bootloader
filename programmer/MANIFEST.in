@@ -4,6 +4,7 @@ include *.md
 # Include the license file
 include LICENSE
 
+include *.py
 include *.sh
 include *.toml
 include .coveragerc

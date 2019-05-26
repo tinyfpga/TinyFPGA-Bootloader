@@ -85,6 +85,8 @@ module bootloader (
   wire usb_n_tx;
   wire usb_p_rx;
   wire usb_n_rx;
+  wire usb_p_rx_io;
+  wire usb_n_rx_io;
   wire usb_tx_en;
 
   tinyfpga_bootloader tinyfpga_bootloader_inst (
