@@ -36,6 +36,7 @@ filesets:
       - tests/top_tb_header.vh : {is_include_file : true}
       - tests/top_tb_footer.vh : {is_include_file : true}
     file_type : verilogSource
+    depend : [">=::vlog_tb_utils:1.1"]
 
   address_device_test:
     files : [tests/address_device_test/test.v : {file_type : verilogSource}]
@@ -137,6 +138,7 @@ targets:
   address_device_test: &tc
     default_tool : icarus
     filesets : [common, test_common, address_device_test]
+    parameters : [continue_on_fail]
     tools:
       modelsim:
         vlog_options : [-sv]
@@ -233,3 +235,9 @@ targets:
   win10_enumeration_test:
     <<: *tc
     filesets : [common, test_common, win10_enumeration_test]
+
+parameters:
+  continue_on_fail:
+    datatype    : bool
+    description : Continue instead of exit on failed assertions
+    paramtype   : vlogdefine

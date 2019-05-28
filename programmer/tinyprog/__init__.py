@@ -18,12 +18,13 @@ try:
     __version__ = get_distribution(__name__).version
 except DistributionNotFound:
     # package is not installed
-    pass
+    __version__ = "unknown"
 
 try:
     from .full_version import __full_version__
-    assert __full_version__
-except (ImportError, AssertionError):
+    if not __full_version__:
+        raise ValueError
+except (ImportError, ValueError):
     __full_version__ = "unknown"
 
 
@@ -32,10 +33,22 @@ use_pyserial = False
 
 
 def pretty_hex(data):
-    output = ""
+    """
+    >>> print(pretty_hex("abc123"))
+    61 62 63 31 32 33
+    >>> print(pretty_hex(b"abc123"))
+    61 62 63 31 32 33
+    >>> print(pretty_hex(u"abc123"))
+    61 62 63 31 32 33
+    >>> print(pretty_hex("\\x00a\\x02"*12))
+    00 61 02 00 61 02 00 61 02 00 61 02 00 61 02 00
+    61 02 00 61 02 00 61 02 00 61 02 00 61 02 00 61
+    02 00 61 02
+    """
+    output = []
     for i in range(0, len(data), 16):
-        output += " ".join(["%02x" % ord(x) for x in data[i:i + 16]]) + "\n"
-    return output
+        output.append(" ".join("%02x" % to_int(x) for x in data[i:i + 16]))
+    return "\n".join(output)
 
 
 def to_int(value):
@@ -43,7 +56,7 @@ def to_int(value):
     >>> to_int('A')
     65
     >>> to_int(0xff)
-    256
+    255
     >>> list(to_int(i) for i in ['T', 'i', 'n', 'y', 0xff, 0, 0])
     [84, 105, 110, 121, 255, 0, 0]
     """
@@ -67,11 +80,15 @@ def get_ports(device_id):
         import usb
         vid, pid = [int(x, 16) for x in device_id.split(":")]
 
-        ports += [
-            UsbPort(d)
-            for d in usb.core.find(idVendor=vid, idProduct=pid, find_all=True)
-            if not d.is_kernel_driver_active(1)
-        ]
+        try:
+            ports += [
+                UsbPort(usb, d)
+                for d in usb.core.find(
+                    idVendor=vid, idProduct=pid, find_all=True)
+                if not d.is_kernel_driver_active(1)
+            ]
+        except usb.core.USBError as e:
+            raise PortError("Failed to open USB:\n%s" % str(e))
 
     # MacOS is not playing nicely with the serial drivers for the bootloader
     if platform.system() != "Darwin" or use_pyserial:
@@ -83,6 +100,10 @@ def get_ports(device_id):
     return ports
 
 
+class PortError(Exception):
+    pass
+
+
 class SerialPort(object):
     def __init__(self, port_name):
         self.port_name = port_name
@@ -92,31 +113,51 @@ class SerialPort(object):
         return self.port_name
 
     def __enter__(self):
-        self.ser = serial.Serial(
-            self.port_name, timeout=1.0, writeTimeout=1.0).__enter__()
+        try:
+            self.ser = serial.Serial(
+                self.port_name, timeout=1.0, writeTimeout=1.0).__enter__()
+        except serial.SerialException as e:
+            raise PortError("Failed to open serial port:\n%s" % str(e))
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self.ser.__exit__(exc_type, exc_val, exc_tb)
+        try:
+            self.ser.__exit__(exc_type, exc_val, exc_tb)
+        except serial.SerialException as e:
+            raise PortError("Failed to close serial port:\n%s" % str(e))
 
     def write(self, data):
-        self.ser.write(data)
+        try:
+            self.ser.write(data)
+        except serial.SerialException as e:
+            raise PortError("Failed to write to serial port:\n%s" % str(e))
 
     def flush(self):
-        self.ser.flush()
+        try:
+            self.ser.flush()
+        except serial.SerialException as e:
+            raise PortError("Failed to flush serial port:\n%s" % str(e))
 
     def read(self, length):
-        return self.ser.read(length)
+        try:
+            return self.ser.read(length)
+        except serial.SerialException as e:
+            raise PortError("Failed to read from serial port:\n%s" % str(e))
 
 
 class UsbPort(object):
-    def __init__(self, device):
+    def __init__(self, usb, device):
+        self.usb = usb
         self.device = device
         usb_interface = device.configurations()[0].interfaces()[1]
         self.OUT = usb_interface.endpoints()[0]
         self.IN = usb_interface.endpoints()[1]
 
     def __str__(self):
-        return "USB %d.%d" % (self.device.bus, self.device.port_number)
+        if self.device.port_number is not None:
+            port_number = int(self.device.port_number)
+        else:
+            port_number = "[no port number]"
+        return "USB %d.%s" % (self.device.bus, port_number)
 
     def __enter__(self):
         return self
@@ -125,18 +166,24 @@ class UsbPort(object):
         pass
 
     def write(self, data):
-        self.OUT.write(data)
+        try:
+            self.OUT.write(data)
+        except self.usb.core.USBError as e:
+            raise PortError("Failed to write to USB:\n%s" % str(e))
 
     def flush(self):
         # i don't think there's a comparable function on pyusb endpoints
         pass
 
     def read(self, length):
-        if length > 0:
-            data = self.IN.read(length)
-            return bytearray(data)
-        else:
-            return ""
+        try:
+            if length > 0:
+                data = self.IN.read(length)
+                return bytearray(data)
+            else:
+                return ""
+        except self.usb.core.USBError as e:
+            raise PortError("Failed to read from USB:\n%s" % str(e))
 
 
 def _mirror_byte(b):
@@ -158,7 +205,11 @@ class TinyMeta(object):
 
     def _parse_json(self, data):
         try:
-            return json.loads(bytes(data).decode("utf-8"))
+            data = bytes(data)
+            data = data.replace(b"\x00", b"")
+            data = data.replace(b"\xff", b"")
+            data = data.decode("utf-8")
+            return json.loads(data)
         except BaseException:
             return None
 
@@ -176,7 +227,7 @@ class TinyMeta(object):
             if m:
                 data = self.prog.read(
                     int(m.group("addr"), 16), int(m.group("len")))
-                return json.loads(bytes(data).decode("utf-8"))
+                return self._parse_json(data)
             else:
                 return meta
 
@@ -187,14 +238,12 @@ class TinyMeta(object):
         meta_roots = (
             [
                 self._parse_json(
-                    self.prog.read_security_register_page(p).replace(
-                        b"\x00", b"").replace(b"\xff", b""))
+                    self.prog.read_security_register_page(p))
                 for p in [1, 2, 3]
             ] + [
                 self._parse_json(
                     self.prog.read(
-                        int(math.pow(2, p) - (4 * 1024)), (4 * 1024)).replace(
-                            b"\x00", b"").replace(b"\xff", b""))
+                        int(math.pow(2, p) - (4 * 1024)), (4 * 1024)))
                 for p in [17, 18, 19, 20, 21, 22, 23, 24]
             ])
         meta_roots = [root for root in meta_roots if root is not None]
@@ -213,7 +262,15 @@ class TinyMeta(object):
         return self._get_addr_range(u"userdata")
 
     def _get_addr_range(self, name):
-        addr_str = self.root[u"bootmeta"][u"addrmap"][name]
+        # get the bootmeta's addrmap or fallback to the root's addrmap.
+        addr_map = self.root.get(u"bootmeta", {}).get(
+            u"addrmap", self.root.get(u"addrmap", None))
+        if addr_map is None:
+            raise Exception("Missing address map from device metadata")
+        addr_str = addr_map.get(name, None)
+        if addr_str is None:
+            raise Exception("Missing address map for '{0}'.".format(name))
+
         m = re.search(
             r"^\s*0x(?P<start>[A-Fa-f0-9]+)\s*-\s*0x(?P<end>[A-Fa-f0-9]+)\s*$",
             addr_str)
