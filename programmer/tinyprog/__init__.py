@@ -113,9 +113,20 @@ class SerialPort(object):
         return self.port_name
 
     def __enter__(self):
+        # Timeouts:
+        # - Read:  2.0 seconds (timeout)
+        # - Write: 5.0 seconds (writeTimeout)
+        #
+        # Rationale: hitting the writeTimeout is fatal, so it pays to be
+        # patient in case there is a brief delay; readTimeout is less
+        # fatal, but can result in short reads if it is hit, so we want
+        # a timeout high enough that is never hit normally.  In practice
+        # 1.0 seconds is *usually* enough, so the chosen values are double
+        # and five times the "usually enough" values.
+        #
         try:
             self.ser = serial.Serial(
-                self.port_name, timeout=1.0, writeTimeout=1.0).__enter__()
+                self.port_name, timeout=2.0, writeTimeout=5.0).__enter__()
         except serial.SerialException as e:
             raise PortError("Failed to open serial port:\n%s" % str(e))
 
