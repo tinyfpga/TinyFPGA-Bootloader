@@ -512,13 +512,20 @@ class TinyProg(object):
                         minor_offset:minor_offset + minor_sector_size]
 
                     # The TinyFPGA firmware and/or flash chip does not handle
-                    # partial minor sector writes properly, so pad out short
-                    # writes to a whole minor sector.  (This is safe because
-                    # we explicitly erased the whole sector above, so the
-                    # following bytes must be freshly erased.  Usually it will
-                    # only happen on the final minor sector to be written.)
+                    # partial minor sector writes properly, so pad out a final
+                    # write of a partial to a whole minor sector, if we are
+                    # writing aligned to the SPI flash internal minor sectors.
                     #
-                    if (len(minor_write_data) < minor_sector_size):
+                    # Due to the way SPI flash works, writing 0xff *without
+                    # erasing* should be a no-opt, because 0xff is what you
+                    # get after erasing, and you can only write 0 bits.
+                    #
+                    current_minor_addr = current_addr + minor_offset
+
+                    if (((current_minor_addr % minor_sector_size) == 0) and
+                        (len(minor_write_data) < minor_sector_size)):
+                         assert((current_minor_addr % minor_sector_size) == 0)
+
                          pad_len = minor_sector_size - len(minor_write_data)
                          padding = b'\xff' * pad_len
 
