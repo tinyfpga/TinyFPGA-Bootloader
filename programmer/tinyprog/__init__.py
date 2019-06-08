@@ -499,6 +499,22 @@ class TinyProg(object):
                 for minor_offset in range(0, 4 * 1024, minor_sector_size):
                     minor_write_data = current_write_data[
                         minor_offset:minor_offset + minor_sector_size]
+
+                    # The TinyFPGA firmware and/or flash chip does not handle
+                    # partial minor sector writes properly, so pad out short
+                    # writes to a whole minor sector.  (This is safe because
+                    # we explicitly erased the whole sector above, so the
+                    # following bytes must be freshly erased.  Usually it will
+                    # only happen on the final minor sector to be written.)
+                    #
+                    if (len(minor_write_data) < minor_sector_size):
+                         pad_len = minor_sector_size - len(minor_write_data)
+                         padding = b'\xff' * pad_len
+
+                         minor_write_data = bytearray(minor_write_data)
+                         minor_write_data.extend(padding)
+                         assert(len(minor_write_data) == minor_sector_size)
+
                     self.write(
                         current_addr + minor_offset,
                         minor_write_data,
