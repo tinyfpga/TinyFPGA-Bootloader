@@ -572,7 +572,7 @@ class TinyProg(object):
         self.progress("Waking up SPI flash")
         self.wake()
         self.progress("Erasing security page " + str(page))
-	self.erase_security_register_page(page)
+        self.erase_security_register_page(page)
         self.progress(str(len(data)) + " bytes to program")
-	return self.program_security_register_page(page, data)
+        return self.program_security_register_page(page, data)
 
