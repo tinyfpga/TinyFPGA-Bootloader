@@ -2,6 +2,7 @@ import json
 import platform
 import re
 import struct
+import time
 
 from functools import reduce
 from pkg_resources import get_distribution, DistributionNotFound
@@ -566,3 +567,12 @@ class TinyProg(object):
         self.wake()
         self.progress(str(len(bitstream)) + " bytes to program")
         return self.program_fast(addr, bitstream)
+
+    def program_security_page(self, page, data):
+        self.progress("Waking up SPI flash")
+        self.wake()
+        self.progress("Erasing security page " + str(page))
+        self.erase_security_register_page(page)
+        self.progress(str(len(data)) + " bytes to program")
+        return self.program_security_register_page(page, data)
+

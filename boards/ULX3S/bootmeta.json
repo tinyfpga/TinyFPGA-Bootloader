@@ -1,0 +1,10 @@
+{"bootmeta":{
+"bootloader":"TinyFPGA USB Bootloader",
+"bver":"2.0.0",
+"update":"https://tinyfpga.com/update/ulx3s",
+"addrmap":{
+"bootloader":"0x0-0xFFFFF",
+"userimage":"0x100000-0x1EFFFF",
+"userdata":"0x200000-0xFFFFFF",
+"desc.tgz":"0x1F0000-0x1FFFFF"
+}}}

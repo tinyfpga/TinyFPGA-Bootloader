@@ -8,3 +8,9 @@ synlog.tcl
 gerbers/
 build/
 *.pyc
+*.bit
+*.json
+.*.d
+.*.sw*
+gmon.out
+*.bin

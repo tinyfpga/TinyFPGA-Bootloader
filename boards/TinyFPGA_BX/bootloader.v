@@ -20,6 +20,8 @@ module bootloader (
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
   wire clk_48mhz;
+  wire lock;
+  wire reset = !lock;
 
   SB_PLL40_CORE #(
     .DIVR(4'b0000),
@@ -43,13 +45,18 @@ module bootloader (
     .RESETB(1'b1),
     .BYPASS(1'b0),
     .LATCHINPUTVALUE(),
-    .LOCK(),
+    .LOCK(lock),
     .SDI(),
     .SDO(),
     .SCLK()
   );
 
+	reg clk_24mhz;
+	reg clk_12mhz;
+	always @(posedge clk_48mhz) clk_24mhz = !clk_24mhz;
+	always @(posedge clk_24mhz) clk_12mhz = !clk_12mhz;
 
+	wire clk = clk_12mhz; // quarter speed clock
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -74,7 +81,6 @@ module bootloader (
   ////////
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
-  wire reset;
   wire usb_p_tx;
   wire usb_n_tx;
   wire usb_p_rx;
@@ -85,6 +91,7 @@ module bootloader (
 
   tinyfpga_bootloader tinyfpga_bootloader_inst (
     .clk_48mhz(clk_48mhz),
+    .clk(clk),
     .reset(reset),
     .usb_p_tx(usb_p_tx),
     .usb_n_tx(usb_n_tx),
@@ -100,44 +107,38 @@ module bootloader (
   );
 
   assign pin_pu = 1'b1;
+  wire usb_p_rx_io;
+  wire usb_n_rx_io;
   assign usb_p_rx = usb_tx_en ? 1'b1 : usb_p_rx_io;
   assign usb_n_rx = usb_tx_en ? 1'b0 : usb_n_rx_io;
 
-  SB_IO #(
-     .PIN_TYPE(6'b101001),
-     .PULLUP(1'b0),
-     .NEG_TRIGGER(1'b0),
-     .IO_STANDARD("SB_LVCMOS")
-   ) io_dp_I (
-     .PACKAGE_PIN(pin_usbp),
-     .LATCH_INPUT_VALUE(1'b0),
-     .CLOCK_ENABLE(1'b1),
-     .INPUT_CLK(1'b0),
-     .OUTPUT_CLK(1'b0),
-     .OUTPUT_ENABLE(usb_tx_en),
-     .D_OUT_0(usb_p_tx),
-     .D_OUT_1(1'b0),
-     .D_IN_0(usb_p_rx_io),
-     .D_IN_1()
+  tristate usbn_buffer(
+	.pin(pin_usbn),
+	.enable(usb_tx_en),
+	.data_in(usb_n_rx_io),
+	.data_out(usb_n_tx)
   );
 
-  SB_IO #(
-     .PIN_TYPE(6'b101001),
-     .PULLUP(1'b0),
-     .NEG_TRIGGER(1'b0),
-     .IO_STANDARD("SB_LVCMOS")
-   ) io_dn_I (
-     .PACKAGE_PIN(pin_usbn),
-     .LATCH_INPUT_VALUE(1'b0),
-     .CLOCK_ENABLE(1'b1),
-     .INPUT_CLK(1'b0),
-     .OUTPUT_CLK(1'b0),
-     .OUTPUT_ENABLE(usb_tx_en),
-     .D_OUT_0(usb_n_tx),
-     .D_OUT_1(1'b0),
-     .D_IN_0(usb_n_rx_io),
-     .D_IN_1()
+  tristate usbp_buffer(
+	.pin(pin_usbp),
+	.enable(usb_tx_en),
+	.data_in(usb_p_rx_io),
+	.data_out(usb_p_tx)
   );
+endmodule
 
-  assign reset = 1'b0; 
+module tristate(
+  inout pin,
+  input enable,
+  input data_out,
+  output data_in
+);
+  SB_IO #(
+    .PIN_TYPE(6'b1010_01) // tristatable output
+  ) buffer(
+    .PACKAGE_PIN(pin),
+    .OUTPUT_ENABLE(enable),
+    .D_IN_0(data_in),
+    .D_OUT_0(data_out)
+  );
 endmodule

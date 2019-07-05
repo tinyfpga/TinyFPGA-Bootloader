@@ -267,6 +267,10 @@ def main():
         action="store_true",
         help="dump out the metadata for all connected boards in JSON")
     parser.add_argument(
+        "--security",
+        type=str,
+        help="update the security page in the flash at address addr")
+    parser.add_argument(
         "--update-bootloader",
         action="store_true",
         help="check for new bootloader and update eligible connected boards")
@@ -372,6 +376,7 @@ try using libusb to connect to boards without a serial driver attached"""
         # program the flash memory
         if (args.program is not None) or (
                 args.program_userdata is not None) or (
+                args.security is not None) or (
                 args.program_image is not None):
             boot_fpga = False
 
@@ -381,6 +386,7 @@ try using libusb to connect to boards without a serial driver attached"""
 
             with active_port:
                 fpga = TinyProg(active_port, progress)
+                force = False
 
                 if args.program is not None:
                     print("    Programming %s with %s" % (
@@ -390,6 +396,7 @@ try using libusb to connect to boards without a serial driver attached"""
 
                     if args.addr is not None:
                         addr = parse_int(args.addr)
+                        force = True
                     else:
                         addr = fpga.meta.userimage_addr_range()[0]
 
@@ -400,7 +407,7 @@ try using libusb to connect to boards without a serial driver attached"""
                         print("    Bootloader not active")
                         sys.exit(1)
 
-                    if check_if_overwrite_bootloader(
+                    if force or check_if_overwrite_bootloader(
                             addr, len(bitstream),
                             fpga.meta.userimage_addr_range()):
                         boot_fpga = True
@@ -417,6 +424,7 @@ try using libusb to connect to boards without a serial driver attached"""
 
                     if args.addr is not None:
                         addr = parse_int(args.addr)
+                        force = True
                     else:
                         addr = fpga.meta.userdata_addr_range()[0]
 
@@ -427,7 +435,7 @@ try using libusb to connect to boards without a serial driver attached"""
                         print("    Bootloader not active")
                         sys.exit(1)
 
-                    if check_if_overwrite_bootloader(
+                    if force or check_if_overwrite_bootloader(
                             addr, len(bitstream),
                             fpga.meta.userdata_addr_range()):
                         boot_fpga = True
@@ -444,6 +452,7 @@ try using libusb to connect to boards without a serial driver attached"""
 
                     if args.addr is not None:
                         addr = parse_int(args.addr)
+                        force = True
                     else:
                         addr = fpga.meta.userimage_addr_range()[0]
 
@@ -454,7 +463,7 @@ try using libusb to connect to boards without a serial driver attached"""
                         print("    Bootloader not active")
                         sys.exit(1)
 
-                    if check_if_overwrite_bootloader(
+                    if force or check_if_overwrite_bootloader(
                             addr, len(bitstream),
                             (fpga.meta.userimage_addr_range()[0],
                              fpga.meta.userdata_addr_range()[1])):
@@ -462,6 +471,27 @@ try using libusb to connect to boards without a serial driver attached"""
                         print("    Programming at addr {:06x}".format(addr))
                         if not fpga.program_bitstream(addr, bitstream):
                             sys.exit(1)
+
+                if args.security is not None:
+                    print("    Programming %s security page with %s" % (
+                        active_port, args.security))
+
+                    data = open(args.security, 'r').read()
+
+                    if args.addr is not None:
+                        addr = parse_int(args.addr)
+                    else:
+                        addr = 1
+
+                    if addr < 0:
+                        print("    Negative write addr: {}".format(addr))
+                        sys.exit(1)
+                    if not fpga.is_bootloader_active():
+                        print("    Bootloader not active")
+                        sys.exit(1)
+
+                    if not fpga.program_security_page(addr, data):
+                        sys.exit(1)
 
                 if boot_fpga:
                     fpga.boot()
