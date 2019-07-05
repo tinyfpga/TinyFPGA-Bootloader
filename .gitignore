@@ -13,3 +13,4 @@ build/
 .*.d
 .*.sw*
 gmon.out
+*.bin
