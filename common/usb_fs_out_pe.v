@@ -287,7 +287,6 @@ module usb_fs_out_pe #(
         if (out_token_received || setup_token_received) begin
           out_xfr_state_next <= RCVD_OUT;
           out_xfr_start <= 1;
-
         end else begin
           out_xfr_state_next <= IDLE;
         end
@@ -296,7 +295,6 @@ module usb_fs_out_pe #(
       RCVD_OUT : begin
         if (rx_pkt_start) begin
           out_xfr_state_next <= RCVD_DATA_START;
-
         end else begin
           out_xfr_state_next <= RCVD_OUT;
         end

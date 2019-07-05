@@ -42,6 +42,7 @@ module top_tb;
    vlog_tap_generator #("test.tap") vtg();
 
     reg clk_48mhz;
+    reg clk = 0;
     reg reset = 0;
 
     initial begin
@@ -50,6 +51,8 @@ module top_tb;
         #10416 clk_48mhz <= !clk_48mhz;
       end
     end
+
+    always @(posedge clk_48mhz) clk <= !clk;
 
     // usb interface
     wire usb_p_tx_raw;
@@ -76,6 +79,7 @@ module top_tb;
 
     tinyfpga_bootloader dut (
       .clk_48mhz(clk_48mhz),
+      .clk(clk),
       .reset(reset),
 
       .usb_p_tx(usb_p_tx_raw),

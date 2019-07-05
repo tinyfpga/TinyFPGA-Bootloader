@@ -1,36 +1,39 @@
 module usb_fs_rx (
   // A 48MHz clock is required to recover the clock from the incoming data. 
   input clk_48mhz,
+  input clk,
   input reset,
 
-  // USB data+ and data- lines.
+  // USB data+ and data- lines (clk_48mhz domain)
   input dp,
   input dn,
 
-  // pulse on every bit transition.
+  // pulse on every bit transition (clk_48mhz domain)
   output bit_strobe,
 
-  // Pulse on beginning of new packet.
+  // Pulse on beginning of new packet (clk domain)
   output pkt_start,
 
-  // Pulse on end of current packet.
+  // Pulse on end of current packet (clk domain)
   output pkt_end,
 
-  // Most recent packet decoded.
+  // Most recent packet decoded (clk domain)
   output [3:0] pid,
-  output reg [6:0] addr = 0,
-  output reg [3:0] endp = 0,
-  output reg [10:0] frame_num = 0,
+  output [6:0] addr,
+  output [3:0] endp,
+  output [10:0] frame_num,
 
-  // Pulse on valid data on rx_data.
+  // Pulse on valid data on rx_data (clk domain)
   output rx_data_put,
   output [7:0] rx_data,
 
-  // Most recent packet passes PID and CRC checks
+  // Most recent packet passes PID and CRC checks (clk domain)
   output valid_packet
 );
-  wire clk = clk_48mhz;
-
+  wire [3:0] pid_48;
+  reg [6:0] addr_48;
+  reg [3:0] endp_48;
+  reg [10:0] frame_num_48;
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
   ////////
@@ -51,7 +54,7 @@ module usb_fs_rx (
 
   reg [3:0] dpair_q = 0;
 
-  always @(posedge clk) begin
+  always @(posedge clk_48mhz) begin
       dpair_q[3:0] <= {dpair_q[1:0], dp, dn};
   end
 
@@ -78,7 +81,7 @@ module usb_fs_rx (
 
   wire [1:0] dpair = dpair_q[3:2];
 
-  always @(posedge clk) begin
+  always @(posedge clk_48mhz) begin
       case (line_state)
           // if we are in a transition state, then we can sample the pair and 
           // move to the next corresponding line state
@@ -122,7 +125,7 @@ module usb_fs_rx (
   wire line_state_valid = (bit_phase == 1);
   assign bit_strobe = (bit_phase == 2);
 
-  always @(posedge clk) begin
+  always @(posedge clk_48mhz) begin
       // keep track of phase within each bit
       if (line_state == DT) begin
           bit_phase <= 0;
@@ -165,7 +168,7 @@ module usb_fs_rx (
     end
   end
 
-  always @(posedge clk) begin
+  always @(posedge clk_48mhz) begin
     if (reset) begin
       line_history <= 6'b101010;
       packet_valid <= 0;
@@ -214,7 +217,7 @@ module usb_fs_rx (
 
   reg [5:0] bitstuff_history = 0;
 
-  always @(posedge clk) begin
+  always @(posedge clk_48mhz) begin
     if (reset || packet_end) begin
       bitstuff_history <= 6'b000000;
     end else begin
@@ -237,7 +240,7 @@ module usb_fs_rx (
   wire pid_valid = full_pid[4:1] == ~full_pid[8:5];
   wire pid_complete = full_pid[0];
 
-  always @(posedge clk) begin
+  always @(posedge clk_48mhz) begin
     if (packet_start) begin
       full_pid <= 9'b100000000;
     end
@@ -253,7 +256,7 @@ module usb_fs_rx (
   reg [4:0] crc5 = 0;
   wire crc5_valid = crc5 == 5'b01100;
   wire crc5_invert = din ^ crc5[4];
-  always @(posedge clk) begin
+  always @(posedge clk_48mhz) begin
     if (packet_start) begin
       crc5 <= 5'b11111;
     end
@@ -274,7 +277,7 @@ module usb_fs_rx (
   wire crc16_valid = crc16 == 16'b1000000000001101;
   wire crc16_invert = din ^ crc16[15];  
 
-  always @(posedge clk) begin
+  always @(posedge clk_48mhz) begin
     if (packet_start) begin
       crc16 <= 16'b1111111111111111;
     end
@@ -309,17 +312,19 @@ module usb_fs_rx (
 
   // TODO: need to check for data packet babble
   // TODO: do i need to check for bitstuff error?
-  assign valid_packet = pid_valid && (
+  wire valid_packet_48 = pid_valid && (
     (pkt_is_handshake) || 
     (pkt_is_data && crc16_valid) ||
     (pkt_is_token && crc5_valid)
   );
   
+  // valid is level, not a strobe
+  dflip valid_buffer(clk, valid_packet_48, valid_packet);
 
   reg [11:0] token_payload = 0;
   wire token_payload_done = token_payload[0];
 
-  always @(posedge clk) begin
+  always @(posedge clk_48mhz) begin
     if (packet_start) begin
       token_payload <= 12'b100000000000;
     end
@@ -329,17 +334,31 @@ module usb_fs_rx (
     end
   end
 
-  always @(posedge clk) begin
+  always @(posedge clk_48mhz) begin
     if (token_payload_done && pkt_is_token) begin
-      addr <= token_payload[7:1];
-      endp <= token_payload[11:8];
-      frame_num <= token_payload[11:1];
+      addr_48 <= token_payload[7:1];
+      endp_48 <= token_payload[11:8];
+      frame_num_48 <= token_payload[11:1];
     end
   end
 
-  assign pkt_start = packet_start;
-  assign pkt_end = packet_end; 
-  assign pid = full_pid[4:1]; 
+  // cross the packet start signal to the endpoint clk domain
+  strobe pkt_start_strobe(
+	.clk_in(clk_48mhz),
+	.clk_out(clk),
+	.strobe_in(packet_start),
+	.strobe_out(pkt_start)
+  );
+
+  // at the end of the packet, capture the parameters to the clk domain
+  strobe #(.WIDTH(26)) pkt_end_strobe(
+	clk_48mhz, clk,
+	packet_end, pkt_end,
+	{ pid_48, addr_48, endp_48, frame_num_48 },
+	{ pid, addr, endp, frame_num }
+  );
+  assign pid_48 = full_pid[4:1]; 
+
   //assign addr = token_payload[7:1];
   //assign endp = token_payload[11:8];
   //assign frame_num = token_payload[11:1];
@@ -350,10 +369,15 @@ module usb_fs_rx (
   //assign rx_data_put = dvalid && pid_complete && pkt_is_data;
   reg [8:0] rx_data_buffer = 0;
   wire rx_data_buffer_full = rx_data_buffer[0];
-  assign rx_data_put = rx_data_buffer_full;
-  assign rx_data = rx_data_buffer[8:1];
 
-  always @(posedge clk) begin
+  // convert the rx_data_put to clk domain
+  strobe #(.WIDTH(8)) rx_data_strobe(
+	clk_48mhz, clk,
+	rx_data_buffer_full, rx_data_put,
+	rx_data_buffer[8:1], rx_data
+  );
+
+  always @(posedge clk_48mhz) begin
     if (packet_start || rx_data_buffer_full) begin
       rx_data_buffer <= 9'b100000000;
     end

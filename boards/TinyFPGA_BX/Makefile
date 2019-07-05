@@ -22,11 +22,21 @@ PKG = cm81
 
 all: $(PROJ).rpt fw.bin
 
+%.json: %.v ../../common/*.v 
+	yosys -q -p 'synth_ice40 -top $(PROJ) -json $@' $^
 %.blif: %.v ../../common/*.v 
-	yosys -p 'synth_ice40 -top $(PROJ) -blif $@' $^
+	yosys -q -p 'synth_ice40 -top $(PROJ) -blif $@' $^
 
-%.asc: $(PIN_DEF) %.blif
+NO-%.asc: $(PIN_DEF) %.blif
 	arachne-pnr -d 8k -P $(PKG) -o $@ -p $^
+
+%.asc: $(PIN_DEF) %.json
+	nextpnr-ice40 \
+		--$(DEVICE) \
+		--package $(PKG) \
+		--asc $@ \
+		--pcf $(PIN_DEF) \
+		--json $(basename $@).json \
 
 %.bin: %.asc
 	icepack $< $@
