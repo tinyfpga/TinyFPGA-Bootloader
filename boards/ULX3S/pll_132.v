@@ -1,7 +1,8 @@
-module pll_240
+module pll_132
 (
     input clkin, // 25 MHz, 0 deg
-    output clkout0, // 240 MHz, 0 deg
+    output clkout0, // 132.143 MHz, 0 deg
+    output clkout1, // 132.143 MHz, 180 deg
     output locked
 );
 wire clkfb;
@@ -14,18 +15,23 @@ EHXPLLL #(
         .STDBY_ENABLE("DISABLED"),
         .DPHASE_SOURCE("DISABLED"),
         .CLKOP_FPHASE(0),
-        .CLKOP_CPHASE(0),
+        .CLKOP_CPHASE(2),
         .OUTDIVIDER_MUXA("DIVA"),
         .CLKOP_ENABLE("ENABLED"),
-        .CLKOP_DIV(2),
-        .CLKFB_DIV(48),
-        .CLKI_DIV(5),
+        .CLKOP_DIV(5),
+        .CLKOS_ENABLE("ENABLED"),
+        .CLKOS_DIV(5),
+        .CLKOS_CPHASE(4),
+        .CLKOS_FPHASE(4),
+        .CLKFB_DIV(37),
+        .CLKI_DIV(7),
         .FEEDBK_PATH("INT_OP")
     ) pll_i (
         .CLKI(clkin),
         .CLKFB(clkfb),
         .CLKINTFB(clkfb),
         .CLKOP(clkop),
+        .CLKOS(clkout1),
         .RST(1'b0),
         .STDBY(1'b0),
         .PHASESEL0(1'b0),

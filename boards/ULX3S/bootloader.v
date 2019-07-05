@@ -1,6 +1,7 @@
 `default_nettype none
 `include "tinyfpga_bootloader.v"
 `include "edge_detect.v"
+`include "strobe.v"
 `include "usb_fs_pe.v"
 `include "usb_fs_in_arb.v"
 `include "usb_fs_in_pe.v"
@@ -12,7 +13,7 @@
 `include "usb_reset_det.v"
 `include "usb_serial_ctrl_ep.v"
 `include "usb_spi_bridge_ep.v"
-`include "pll_240.v"
+`include "pll_132.v"
 `include "pll_48.v"
 
 
@@ -44,31 +45,31 @@ module top(
 	// avoid reboot?
 	assign wifi_gpio0 = 1;
 
-	// 25 MHz input clock, 240 MHz output
-	wire clk_240mhz, clk_48mhz;
+	// 25 MHz input clock, 132 MHz output
+	wire clk_132mhz, clk_48mhz;
 	wire locked;
 	wire reset = !locked;
-	pll_240 pll_240_i(clk_25mhz, clk_240mhz);
-	pll_48 pll_48_i(clk_240mhz, clk_48mhz, locked);
+	pll_132 pll_132_i(.clkin(clk_25mhz), .clkout0(clk_132mhz), .locked(locked));
+	pll_48 pll_48_i(clk_132mhz, clk_48mhz);
 
 	// configure as a full speed device (pull up on dp)
 	assign usb_fpga_pu_dp = 1; // full speed 1.1 device
 	assign usb_fpga_pu_dn = 0; // full speed 1.1 device
 	wire usb_tx_en;
-	wire usb_p_tx, usb_n_tx;
-	wire usb_p_rx, usb_n_rx;
+	wire usb_n_in, usb_n_out;
+	wire usb_p_in, usb_p_out;
 
 	TRELLIS_IO #(.DIR("BIDIR")) usb_p_buf(
 		.T(!usb_tx_en),
 		.B(usb_fpga_bd_dp),
-		.I(usb_p_tx),
-		.O(usb_p_rx),
+		.I(usb_p_out),
+		.O(usb_p_in),
 	);
 	TRELLIS_IO #(.DIR("BIDIR")) usb_n_buf(
 		.T(!usb_tx_en),
 		.B(usb_fpga_bd_dn),
-		.I(usb_n_tx),
-		.O(usb_n_rx),
+		.I(usb_n_out),
+		.O(usb_n_in),
 	);
 
 	// ensure that the flash aux pins are in a stable state
@@ -90,11 +91,12 @@ module top(
 
 	tinyfpga_bootloader tinyfgpa_bootloader_inst(
 		.clk_48mhz(clk_48mhz),
+		.clk(clk_132mhz),
 		.reset(reset),
-		.usb_p_tx(usb_p_tx),
-		.usb_n_tx(usb_n_tx),
-		.usb_p_rx(usb_tx_en ? 1'b1 : usb_p_rx),
-		.usb_n_rx(usb_tx_en ? 1'b0 : usb_n_rx),
+		.usb_p_tx(usb_p_out),
+		.usb_n_tx(usb_n_out),
+		.usb_p_rx(usb_tx_en ? 1'b1 : usb_p_in),
+		.usb_n_rx(usb_tx_en ? 1'b0 : usb_n_in),
 		.usb_tx_en(usb_tx_en),
 		.led(led[0]),
 		.spi_miso(flash_miso),
@@ -110,7 +112,7 @@ module top(
 	assign user_programn = ~boot_delay[8]; // initiate user program
 	assign led[7:1] = 0;
  
-	always @(posedge clk_48mhz) begin
+	always @(posedge clk_132mhz) begin
 		if (boot)
 			initiate_boot <= 1;
 

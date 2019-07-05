@@ -1,6 +1,6 @@
 module pll_48
 (
-    input clkin, // 240 MHz, 0 deg
+    input clkin, // 132 MHz, 0 deg
     output clkout0, // 48 MHz, 0 deg
     output locked
 );
@@ -18,8 +18,8 @@ EHXPLLL #(
         .OUTDIVIDER_MUXA("DIVA"),
         .CLKOP_ENABLE("ENABLED"),
         .CLKOP_DIV(12),
-        .CLKFB_DIV(1),
-        .CLKI_DIV(5),
+        .CLKFB_DIV(4),
+        .CLKI_DIV(11),
         .FEEDBK_PATH("INT_OP")
     ) pll_i (
         .CLKI(clkin),
