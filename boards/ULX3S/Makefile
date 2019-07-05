@@ -1,10 +1,22 @@
 #
 # Bootloader for the ulx3s ECP5 board
-# Builds with nextpnr-ecp5 and prjtrellis from git
+# Builds with nextpnr-ecp5 and prjtrellis from git as of 2019-07-05
 #
 IDCODE ?= 0x21111043 # 12f
 
-all: bootloader.bit
+all: fw.bin
+
+fw.bin: bootloader.bit
+	ecpmulti \
+		--input-idcode 0x41111043 \
+		--output-idcode $(IDCODE) \
+		-v \
+		--output $@ \
+		--flashsize 128 \
+		--input $< \
+		--address 0x100000 \
+		--input $<
+
 
 %.json: %.v
 	yosys \
