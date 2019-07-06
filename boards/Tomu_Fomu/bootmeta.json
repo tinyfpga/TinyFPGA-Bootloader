@@ -1,0 +1,9 @@
+{"bootmeta" : {
+"bootloader": "TinyFPGA USB Bootloader",
+"bver": "2.0.0",
+"update": "https://tomu.im/",
+"addrmap": {
+"bootloader": "0x000a0-0x20000",
+"userimage":  "0x20000-0x40000",
+"userdata":   "0x40000-0x100000"
+}}}

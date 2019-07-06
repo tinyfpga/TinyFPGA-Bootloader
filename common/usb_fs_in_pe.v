@@ -41,12 +41,12 @@ module usb_fs_in_pe #(
   ////////////////////
 
   // Strobe to send new packet.
-  output reg tx_pkt_start = 0,
+  output reg tx_pkt_start,
   input tx_pkt_end,
 
 
   // Packet type to send
-  output reg [3:0] tx_pid = 0,
+  output reg [3:0] tx_pid,
 
   // Data payload to send if any
   output tx_data_avail,
@@ -100,13 +100,13 @@ module usb_fs_in_pe #(
   integer i = 0;
   initial begin
     for (i = 0; i < NUM_IN_EPS; i = i + 1) begin
-      ep_put_addr[i] = 0;
-      ep_get_addr[i] = 0;
-      ep_state[i] = 0;
+      ep_put_addr[i] <= 0;
+      ep_get_addr[i] <= 0;
+      ep_state[i] <= 0;
     end
   end
 
-  reg [3:0] in_ep_num = 0;
+  reg [3:0] in_ep_num;
 
   wire [8:0] buffer_put_addr = {in_ep_num[3:0], ep_put_addr[in_ep_num][4:0]};
   wire [8:0] buffer_get_addr = {current_endp[3:0], ep_get_addr[current_endp][4:0]};

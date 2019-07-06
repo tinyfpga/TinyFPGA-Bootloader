@@ -5,12 +5,14 @@ module bootloader (
   inout  pin_usbn,
   output pin_pu,
 
-  output pin_led,
+  output pin_led_r,
+  output pin_led_g,
+  output pin_led_b,
 
-  input  pin_29_miso,
-  output pin_30_cs,
-  output pin_31_mosi,
-  output pin_32_sck
+  input  flash_miso,
+  output flash_cs,
+  output flash_mosi,
+  output flash_sck
 );
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -20,43 +22,44 @@ module bootloader (
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
   wire clk_48mhz;
-  wire lock;
-  wire reset = !lock;
+  wire locked;
 
-  SB_PLL40_CORE #(
-    .DIVR(4'b0000),
-    .DIVF(7'b0101111),
-    .DIVQ(3'b100),
-    .FILTER_RANGE(3'b001),
-    .FEEDBACK_PATH("SIMPLE"),
-    .DELAY_ADJUSTMENT_MODE_FEEDBACK("FIXED"),
-    .FDA_FEEDBACK(4'b0000),
-    .DELAY_ADJUSTMENT_MODE_RELATIVE("FIXED"),
-    .FDA_RELATIVE(4'b0000),
-    .SHIFTREG_DIV_MODE(2'b00),
-    .PLLOUT_SELECT("GENCLK"),
-    .ENABLE_ICEGATE(1'b0)
-  ) usb_pll_inst (
-    .REFERENCECLK(pin_clk),
-    .PLLOUTCORE(clk_48mhz),
-    .PLLOUTGLOBAL(),
-    .EXTFEEDBACK(),
-    .DYNAMICDELAY(),
-    .RESETB(1'b1),
-    .BYPASS(1'b0),
-    .LATCHINPUTVALUE(),
-    .LOCK(lock),
-    .SDI(),
-    .SDO(),
-    .SCLK()
-  );
+`define USE_HFOSC_NO
+`ifdef USE_HFOSC
+	SB_HFOSC u_hfosc (
+		.CLKHFPU(1'b1),
+		.CLKHFEN(1'b1),
+		.CLKHF(clk_48mhz)
+	);
+	assign locked = 1;
+`else
+	// the Tomu hacker verison has an external 48 MHz oscillator
+	// so there is no need for a PLL.
+	assign locked = 1;
+	assign clk_48mhz = pin_clk;
+`endif
 
 	reg clk_24mhz;
 	reg clk_12mhz;
+	wire clk = clk_12mhz;
 	always @(posedge clk_48mhz) clk_24mhz = !clk_24mhz;
 	always @(posedge clk_24mhz) clk_12mhz = !clk_12mhz;
 
-	wire clk = clk_12mhz; // quarter speed clock
+
+	assign pin_led_g = 1;
+
+/*
+	reg [23:0] counter;
+	always @(posedge clk_48mhz)
+		if (counter == 24'h7FFFFF)
+			pin_led_r <= 1;
+		else begin
+			counter <= counter + 1;
+			pin_led_r <= 0;
+		end
+*/
+	assign pin_led_r = 1;
+
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -73,7 +76,6 @@ module bootloader (
     .BOOT(boot)
   );
 
-
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
   ////////
@@ -81,12 +83,11 @@ module bootloader (
   ////////
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
+  wire reset = !locked;
   wire usb_p_tx;
   wire usb_n_tx;
   wire usb_p_rx;
   wire usb_n_rx;
-  wire usb_p_rx_io;
-  wire usb_n_rx_io;
   wire usb_tx_en;
 
   tinyfpga_bootloader tinyfpga_bootloader_inst (
@@ -98,11 +99,11 @@ module bootloader (
     .usb_p_rx(usb_p_rx),
     .usb_n_rx(usb_n_rx),
     .usb_tx_en(usb_tx_en),
-    .led(pin_led),
-    .spi_miso(pin_29_miso),
-    .spi_cs(pin_30_cs),
-    .spi_mosi(pin_31_mosi),
-    .spi_sck(pin_32_sck),
+    .led(pin_led_b),
+    .spi_miso(flash_miso),
+    .spi_cs(flash_cs),
+    .spi_mosi(flash_mosi),
+    .spi_sck(flash_sck),
     .boot(boot)
   );
 
