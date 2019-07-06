@@ -32,8 +32,8 @@ module usb_spi_bridge_ep (
   ////////////////////
   // spi interface 
   ////////////////////
-  output reg spi_cs_b = 0,
-  output reg spi_sck = 0,
+  output reg spi_cs_b,
+  output reg spi_sck,
   output spi_mosi,
   input spi_miso,
 
@@ -55,7 +55,7 @@ module usb_spi_bridge_ep (
   reg [15:0] data_in_length = 0;
 
   reg [8:0] spi_out_data = 0;
-  reg [8:0] spi_in_data = 0;
+  reg [8:0] spi_in_data;
 
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -79,7 +79,7 @@ module usb_spi_bridge_ep (
   reg get_cmd_out_data = 0;
   reg get_cmd_out_data_q = 0;
   reg spi_has_more_in_bytes = 0;
-  reg spi_has_more_out_bytes = 0;
+  reg spi_has_more_out_bytes;
   reg spi_start_new_xfr = 0;
 
 
@@ -95,11 +95,11 @@ module usb_spi_bridge_ep (
   localparam SPI_GET_BIT = 3;
   localparam SPI_END = 4;
 
-  reg spi_send_bit = 0;
-  reg spi_get_bit = 0;
+  reg spi_send_bit;
+  reg spi_get_bit;
   reg get_spi_out_data = 0;
   reg put_spi_in_data = 0;
-  reg reset_spi_bit_counter = 0;
+  reg reset_spi_bit_counter;
   reg update_spi_byte_counters = 0;
 
   reg [3:0] spi_bit_counter = 0;

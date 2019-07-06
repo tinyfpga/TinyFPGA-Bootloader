@@ -107,6 +107,7 @@ module bootloader (
   );
 
   assign pin_pu = 1'b1;
+
   wire usb_p_rx_io;
   wire usb_n_rx_io;
   assign usb_p_rx = usb_tx_en ? 1'b1 : usb_p_rx_io;

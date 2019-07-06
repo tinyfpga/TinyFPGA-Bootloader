@@ -52,6 +52,7 @@ module top_tb;
       end
     end
 
+    // generate the slower clock from the 48 MHz clock
     always @(posedge clk_48mhz) clk <= !clk;
 
     // usb interface

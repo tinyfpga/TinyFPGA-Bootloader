@@ -9,6 +9,10 @@ __pycache__/
 *~
 tinyprog/full_version.py
 
+# due to pip install . (for development)
+# https://github.com/pypa/pip/issues/6213
+pip-wheel-metadata
+
 # due to using tox and pytest
 .tox
 .coverage
