@@ -2,6 +2,7 @@ import json
 import platform
 import re
 import struct
+import time
 
 from functools import reduce
 from pkg_resources import get_distribution, DistributionNotFound
@@ -504,6 +505,19 @@ class TinyProg(object):
             for offset in range(0, len(data), sector_size):
                 current_addr = addr + offset
                 current_write_data = data[offset:offset + sector_size]
+
+                # Determine if we need to write this sector at all
+                current_flash_data = self.read(
+                    current_addr,
+                    sector_size,
+                    disable_progress=True,
+                    max_length=sector_size)
+
+                if current_flash_data == current_write_data:
+                    # skip this sector since it matches
+                    pbar.update(sector_size)
+                    continue
+
                 self.erase(current_addr, sector_size, disable_progress=True)
 
                 minor_sector_size = 256
@@ -519,7 +533,6 @@ class TinyProg(object):
                     # Due to the way SPI flash works, writing 0xff *without
                     # erasing* should be a no-opt, because 0xff is what you
                     # get after erasing, and you can only write 0 bits.
-                    #
                     current_minor_addr = current_addr + minor_offset
 
                     if (((current_minor_addr % minor_sector_size) == 0) and
@@ -533,11 +546,15 @@ class TinyProg(object):
                          minor_write_data.extend(padding)
                          assert(len(minor_write_data) == minor_sector_size)
 
-                    self.write(
-                        current_addr + minor_offset,
-                        minor_write_data,
-                        disable_progress=True,
-                        max_length=256)
+                    # if the minor data is all 0xFF then it will match
+                    # the erased bits and doesn't need to be re-sent
+                    if minor_write_data != chr(0xFF) * len(minor_write_data):
+                        self.write(
+                            current_addr + minor_offset,
+                            minor_write_data,
+                            disable_progress=True,
+                            max_length=256)
+
                     minor_read_data = self.read(
                         current_addr + minor_offset,
                         len(minor_write_data),
@@ -600,3 +617,12 @@ class TinyProg(object):
         self.wake()
         self.progress(str(len(bitstream)) + " bytes to program")
         return self.program_fast(addr, bitstream)
+
+    def program_security_page(self, page, data):
+        self.progress("Waking up SPI flash")
+        self.wake()
+        self.progress("Erasing security page " + str(page))
+        self.erase_security_register_page(page)
+        self.progress(str(len(data)) + " bytes to program")
+        return self.program_security_register_page(page, data)
+
