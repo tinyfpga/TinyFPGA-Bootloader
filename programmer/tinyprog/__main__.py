@@ -130,8 +130,11 @@ def perform_bootloader_update(port):
         uuid = m[u"boardmeta"][u"uuid"]
 
         # download bootloader update information
-        bootloader_update_info = json.loads(
-            urlopen(m[u"bootmeta"][u"update"] + "/bootloader.json").read())
+        bootloader_json_data = urlopen(
+            m[u"bootmeta"][u"update"] + "/bootloader.json").read()
+        if isinstance(bootloader_json_data, bytes):
+            bootloader_json_data = bootloader_json_data.decode('utf-8')
+        bootloader_update_info = json.loads(bootloader_json_data)
 
         # ask permission to update the board
         print("")
