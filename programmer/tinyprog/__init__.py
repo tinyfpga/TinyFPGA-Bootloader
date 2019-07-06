@@ -494,12 +494,32 @@ class TinyProg(object):
             for offset in range(0, len(data), sector_size):
                 current_addr = addr + offset
                 current_write_data = data[offset:offset + sector_size]
+
+                # Determine if we need to write this sector at all
+                current_flash_data = self.read(
+                    current_addr,
+                    sector_size,
+                    disable_progress=True,
+                    max_length=sector_size)
+
+                if current_flash_data == current_write_data:
+                    # skip this sector since it matches
+                    pbar.update(sector_size)
+                    continue
+
                 self.erase(current_addr, sector_size, disable_progress=True)
 
                 minor_sector_size = 256
                 for minor_offset in range(0, 4 * 1024, minor_sector_size):
                     minor_write_data = current_write_data[
                         minor_offset:minor_offset + minor_sector_size]
+
+                    # if the minor data is all 0xFF then it will match
+                    # the erased bits and doesn't need to be re-sent
+                    if minor_write_data == chr(0xFF) * len(minor_write_data):
+                        pbar.update(len(minor_write_data))
+                        continue;
+
                     self.write(
                         current_addr + minor_offset,
                         minor_write_data,
