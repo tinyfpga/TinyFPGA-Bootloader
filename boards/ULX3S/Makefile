@@ -6,6 +6,16 @@ IDCODE ?= 0x21111043 # 12f
 
 all: fw.bin
 
+flash: fw.bin bootloader.bit
+	@echo "-- Plug in both USB ports on the ecp5 --"
+	ujprog bootloader.bit
+	sleep 2
+	-tinyprog -a 1 --security boardmeta.json
+	-tinyprog -a 2 --security bootmeta.json
+	tinyprog -a 0 --program-image fw.bin
+	sleep 2
+	tinyprog -m
+
 fw.bin: bootloader.bit
 	ecpmulti \
 		--input-idcode 0x41111043 \
