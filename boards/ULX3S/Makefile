@@ -10,10 +10,10 @@ flash: fw.bin bootloader.bit
 	@echo "-- Plug in both USB ports on the ecp5 --"
 	ujprog bootloader.bit
 	sleep 2
-	-tinyprog -a 1 --security boardmeta.json
-	-tinyprog -a 2 --security bootmeta.json
+	tinyprog -a 1 --security boardmeta.json
+	tinyprog -a 2 --security bootmeta.json
 	tinyprog -a 0 --program-image fw.bin
-	sleep 2
+	sleep 5
 	tinyprog -m
 
 fw.bin: bootloader.bit

@@ -354,6 +354,7 @@ class TinyProg(object):
             self.security_page_write_cmd,
             page << (8 + self.security_page_bit_offset), data)
         self.wait_while_busy()
+        return True
 
     def read_security_register_page(self, page):
         return self.cmd(
@@ -518,7 +519,7 @@ class TinyProg(object):
                     # the erased bits and doesn't need to be re-sent
                     if minor_write_data == chr(0xFF) * len(minor_write_data):
                         pbar.update(len(minor_write_data))
-                        continue;
+                        continue
 
                     self.write(
                         current_addr + minor_offset,
