@@ -63,7 +63,7 @@ sudo-prog: multiboot.bin
 	sudo iceprog $<
 
 clean:
-	rm -f $(PROJ).blif $(PROJ).asc $(PROJ).rpt $(PROJ).bin multiboot.bin
+	rm -f $(PROJ).blif $(PROJ).asc $(PROJ).rpt $(PROJ).bin $(PROJ)_0.bin $(PROJ)_1.bin multiboot.bin
 
 .SECONDARY:
 .PHONY: all prog clean
