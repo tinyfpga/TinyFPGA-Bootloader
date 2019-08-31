@@ -32,7 +32,7 @@ all: multiboot.bin
 %.asc: $(PIN_DEF) %.json
 	nextpnr-ice40 \
 		--seed $(SEED) \
-		--up5k \
+		--$(DEVICE) \
 		--package $(PKG) \
 		--json $(basename $@).json \
 		--pcf $(PIN_DEF) \
