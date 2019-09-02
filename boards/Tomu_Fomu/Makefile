@@ -32,7 +32,7 @@ all: multiboot.bin
 %.asc: $(PIN_DEF) %.json
 	nextpnr-ice40 \
 		--seed $(SEED) \
-		--up5k \
+		--$(DEVICE) \
 		--package $(PKG) \
 		--json $(basename $@).json \
 		--pcf $(PIN_DEF) \
@@ -63,7 +63,7 @@ sudo-prog: multiboot.bin
 	sudo iceprog $<
 
 clean:
-	rm -f $(PROJ).blif $(PROJ).asc $(PROJ).rpt $(PROJ).bin multiboot.bin
+	rm -f $(PROJ).blif $(PROJ).asc $(PROJ).rpt $(PROJ).bin $(PROJ)_0.bin $(PROJ)_1.bin multiboot.bin
 
 .SECONDARY:
 .PHONY: all prog clean

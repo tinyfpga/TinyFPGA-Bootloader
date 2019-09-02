@@ -61,7 +61,7 @@ $(OUTDIR)/bootmeta.json:
 
 %.nextpnr.asc: %.yosys.json
 	@mkdir -p $(@D)
-	nextpnr-ice40 --lp8k --package $(PKG) --json $(filter %.yosys.json,$^) --pcf $(filter %.pcf,$^) --asc $@
+	nextpnr-ice40 --$(DEVICE) --package $(PKG) --json $(filter %.yosys.json,$^) --pcf $(filter %.pcf,$^) --asc $@
 
 %.bin: %.asc
 	@mkdir -p $(@D)

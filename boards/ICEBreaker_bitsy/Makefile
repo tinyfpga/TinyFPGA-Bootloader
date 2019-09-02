@@ -31,10 +31,10 @@ all: $(PROJ).rpt multiboot.bin
 %.bin: %.asc
 	icepack $< $@
 
-multiboot.bin: bootloader.bin
-	cp bootloader.bin bootloader_0.bin 
-	cp bootloader.bin bootloader_1.bin 
-	icemulti -v -o multiboot.bin -a16 -p0 bootloader_0.bin bootloader_1.bin
+multiboot.bin: $(PROJ).bin
+	cp $(PROJ).bin $(PROJ)_0.bin
+	cp $(PROJ).bin $(PROJ)_1.bin 
+	icemulti -v -o multiboot.bin -a16 -p0 $(PROJ)_0.bin $(PROJ)_1.bin
 
 %.rpt: %.asc
 	icetime -d $(DEVICE) -mtr $@ $<
@@ -50,7 +50,7 @@ sudo-prog: multiboot.bin
 	sudo iceprog $<
 
 clean:
-	rm -f $(PROJ).blif $(PROJ).asc $(PROJ).rpt $(PROJ).bin multiboot.bin
+	rm -f $(PROJ).blif $(PROJ).asc $(PROJ).rpt $(PROJ).bin $(PROJ)_0.bin $(PROJ)_1.bin multiboot.bin
 
 .SECONDARY:
 .PHONY: all prog clean

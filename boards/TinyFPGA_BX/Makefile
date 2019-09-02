@@ -41,10 +41,10 @@ NO-%.asc: $(PIN_DEF) %.blif
 %.bin: %.asc
 	icepack $< $@
 
-fw.bin: bootloader.bin
-	cp bootloader.bin bootloader_0.bin 
-	cp bootloader.bin bootloader_1.bin 
-	icemulti -v -o fw.bin -a15 -p0 bootloader_0.bin bootloader_1.bin
+fw.bin: $(PROJ).bin
+	cp $(PROJ).bin $(PROJ)_0.bin 
+	cp $(PROJ).bin $(PROJ)_1.bin 
+	icemulti -v -o fw.bin -a15 -p0 $(PROJ)_0.bin $(PROJ)_1.bin
 
 %.rpt: %.asc
 	icetime -d $(DEVICE) -mtr $@ $<
