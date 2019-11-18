@@ -152,6 +152,12 @@ module usb_fs_out_pe #(
   genvar ep_num;
   generate
     for (ep_num = 0; ep_num < NUM_OUT_EPS; ep_num = ep_num + 1) begin
+      initial begin
+        ep_state_next[ep_num] = READY_FOR_PKT;
+        ep_state[ep_num] = READY_FOR_PKT;
+        ep_get_addr_next[ep_num] = 0;
+        ep_get_addr[ep_num] = 0;
+      end
       always @* begin
 
         ep_state_next[ep_num] <= ep_state[ep_num];
