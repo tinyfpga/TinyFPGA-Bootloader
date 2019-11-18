@@ -4,6 +4,7 @@ name : ::TinyFPGA-Bootloader:0
 filesets:
   common:
     files:
+      - common/strobe.v
       - common/usb_fs_out_arb.v
       - common/usb_reset_det.v
       - common/usb_serial_ctrl_ep.v

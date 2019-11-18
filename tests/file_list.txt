@@ -1,4 +1,6 @@
 test.v
+../vlog_tb_utils/vlog_tb_utils.v
+../vlog_tb_utils/vlog_tap_generator.v
 ../../common/edge_detect.v
 ../../common/strobe.v
 ../../common/tinyfpga_bootloader.v
