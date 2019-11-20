@@ -19,8 +19,8 @@ module strobe(
 	initial begin
 		flag = 0;
 		prev_strobe = 0;
-		sync = 0;
-		data = 0;
+		sync[DELAY:0] = 0;
+		data[WIDTH-1:0] = 0;
 	end
 
 	// flip the flag and clock in the data when strobe is high
@@ -55,7 +55,7 @@ module dflip(
 );
 	reg [2:0] d;
 	initial begin
-		d = 0;
+		d[2:0] = 0;
 	end
 	always @(posedge clk)
 		d <= { d[1:0], in };
