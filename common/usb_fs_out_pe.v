@@ -152,67 +152,73 @@ module usb_fs_out_pe #(
   genvar ep_num;
   generate
     for (ep_num = 0; ep_num < NUM_OUT_EPS; ep_num = ep_num + 1) begin
+      initial begin
+        ep_state_next[ep_num] = READY_FOR_PKT;
+        ep_state[ep_num] = READY_FOR_PKT;
+        ep_get_addr_next[ep_num] = 0;
+        ep_get_addr[ep_num] = 0;
+      end
       always @* begin
 
-        ep_state_next[ep_num] <= ep_state[ep_num];
+        ep_state_next[ep_num] = ep_state[ep_num];
 
         if (out_ep_stall[ep_num]) begin
-          ep_state_next[ep_num] <= STALL;
+          ep_state_next[ep_num] = STALL;
 
         end else begin
           case (ep_state[ep_num])
             READY_FOR_PKT : begin
               if (out_xfr_start && rx_endp == ep_num) begin
-                ep_state_next[ep_num] <= PUTTING_PKT;
+                ep_state_next[ep_num] = PUTTING_PKT;
 
               end else begin
-                ep_state_next[ep_num] <= READY_FOR_PKT;
+                ep_state_next[ep_num] = READY_FOR_PKT;
               end
             end
 
             PUTTING_PKT : begin
               if (new_pkt_end && current_endp == ep_num) begin
-                ep_state_next[ep_num] <= GETTING_PKT;
+                ep_state_next[ep_num] = GETTING_PKT;
 
               end else if (rollback_data && current_endp == ep_num) begin
-                ep_state_next[ep_num] <= READY_FOR_PKT;
+                ep_state_next[ep_num] = READY_FOR_PKT;
 
               end else begin
-                ep_state_next[ep_num] <= PUTTING_PKT;
+                ep_state_next[ep_num] = PUTTING_PKT;
               end
             end
 
             GETTING_PKT : begin
 
               if (ep_get_addr[ep_num][5:0] >= (ep_put_addr[ep_num][5:0] - 2)) begin
-                ep_state_next[ep_num] <= READY_FOR_PKT;
+                ep_state_next[ep_num] = READY_FOR_PKT;
 
               end else begin
-                ep_state_next[ep_num] <= GETTING_PKT;
+                ep_state_next[ep_num] = GETTING_PKT;
               end
             end
 
             STALL : begin
               if (setup_token_received && rx_endp == ep_num) begin
-                ep_state_next[ep_num] <= READY_FOR_PKT;
+                ep_state_next[ep_num] = READY_FOR_PKT;
 
               end else begin
-                ep_state_next[ep_num] <= STALL;
+                ep_state_next[ep_num] = STALL;
               end
             end
 
             default begin
-              ep_state_next[ep_num] <= READY_FOR_PKT;
+              ep_state_next[ep_num] = READY_FOR_PKT;
             end
           endcase
         end
 
         if (ep_state_next[ep_num][1:0] == READY_FOR_PKT) begin
-          ep_get_addr_next[ep_num][5:0] <= 0;
+          ep_get_addr_next[ep_num][5:0] = 0;
         end else if (ep_state_next[ep_num][1:0] == GETTING_PKT && out_ep_data_get[ep_num]) begin
-          ep_get_addr_next[ep_num][5:0] <= ep_get_addr[ep_num][5:0] + 1;
+          ep_get_addr_next[ep_num][5:0] = ep_get_addr[ep_num][5:0] + 1;
         end else begin
-          ep_get_addr_next[ep_num][5:0] <= ep_get_addr[ep_num][5:0];
+          ep_get_addr_next[ep_num][5:0] = ep_get_addr[ep_num][5:0];
         end
       end
 

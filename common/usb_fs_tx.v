@@ -44,6 +44,9 @@ module usb_fs_tx (
   // convert tx_data_get from 48 to clk
   //wire tx_data_get_48 = tx_data_get;
   reg tx_data_get_48;
+  initial begin
+    tx_data_get_48 = 0;
+  end
   strobe tx_data_get_strobe(
 	.clk_in(clk_48mhz),
 	.clk_out(clk),
