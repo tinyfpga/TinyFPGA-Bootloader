@@ -479,7 +479,7 @@ try using libusb to connect to boards without a serial driver attached"""
                     print("    Programming %s security page with %s" % (
                         active_port, args.security))
 
-                    data = open(args.security, 'r').read()
+                    data = open(args.security, 'rb').read()
 
                     if args.addr is not None:
                         addr = parse_int(args.addr)
