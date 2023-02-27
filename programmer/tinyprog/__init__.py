@@ -314,7 +314,12 @@ class TinyProg(object):
             self.security_page_write_cmd = 0x62
             self.security_page_read_cmd = 0x68
             self.security_page_erase_cmd = 0x64
-
+        elif flash_id[0:2] == [0xEF, 0x40]:
+            # Winbond
+            self.security_page_bit_offset = 4
+            self.security_page_write_cmd = 0x42
+            self.security_page_read_cmd = 0x48
+            self.security_page_erase_cmd = 0x44
         else:
             # Adesto
             self.security_page_bit_offset = 0
