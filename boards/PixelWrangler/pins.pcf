@@ -1,0 +1,17 @@
+#
+# Pinmap for the Pixel Wrangler v0
+#
+set_io -nowarn BTN_N      2 # IOB_6a /  pin1
+set_io -nowarn pin_led_r    41  # Red
+set_io -nowarn pin_led_g    39  # Green
+set_io -nowarn pin_led_b    40  # Blue
+
+set_io -nowarn flash_sck 15 # IOB_34a
+set_io -nowarn flash_cs  16 # IOB_35b
+set_io -nowarn flash_mosi 14 # IOB_32a
+set_io -nowarn flash_miso 17 # IOB_33b
+
+set_io -nowarn pin_usbp   4 # IOB_8a
+set_io -nowarn pin_usbn   3 # IOB_9b
+set_io -nowarn pin_pu     6 # IOB_13b
+
