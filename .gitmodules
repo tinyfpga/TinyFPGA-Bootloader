@@ -1,0 +1,3 @@
+[submodule "tests/vlog_tb_utils"]
+	path = tests/vlog_tb_utils
+	url = https://github.com/fusesoc/vlog_tb_utils
