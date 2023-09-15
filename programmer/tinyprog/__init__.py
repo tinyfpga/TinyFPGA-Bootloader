@@ -3,6 +3,7 @@ import platform
 import re
 import struct
 import time
+import uuid
 
 from functools import reduce
 from pkg_resources import get_distribution, DistributionNotFound
@@ -214,6 +215,26 @@ class TinyMeta(object):
         self.prog = prog
         prog.wake()
         self.root = self._read_metadata()
+        if self.root is None:
+            self.root = {
+            "boardmeta": {
+                "hver": "0.0.0",
+                "name": "TinyFPGA BX",
+                "fpga": "ICE40LP8K-cm81",
+                "uuid": str(uuid.uuid4())
+            },
+            "bootmeta": {
+                "bver": "2.0.0",
+                "bootloader": "TinyFPGA USB Bootloader",
+                "update": "https://tinyfpga.com/update/tinyfpga-bx",
+                "addrmap": {
+                    "bootloader": "0x00000-0x28000",
+                    "userimage":  "0x28000-0x50000",
+                    "userdata":   "0x50000-0xFC000",
+                    "desc.tgz":   "0xFC000-0xFFFFF"
+                }
+            }
+        }
 
     def _parse_json(self, data):
         try:
